@@ -5585,8 +5585,12 @@ c$8AF7 LD A,E        ;
  $8B0B JR NC,$8B0F   ;
 *$8B0D POP AF        ;
  $8B0E RET           ;
-*$8B0F LD ($8623),SP ;
- $8B13 LD A,(HL)     ;
+
+; Routine at 8B0F
+;
+; Used by the routine at #R$8AF7.
+c$8B0F LD ($8623),SP ;
+*$8B13 LD A,(HL)     ;
  $8B14 OR C          ;
  $8B15 LD (HL),A     ;
  $8B16 LD D,L        ;
@@ -5608,123 +5612,505 @@ c$8AF7 LD A,E        ;
  $8B2C LD SP,$8FB6   ;
  $8B2F POP AF        ;
  $8B30 LD SP,HL      ;
-*$8B31 JR $8B31      ;
+@label=self_mod_1
+*$8B31 JR $8B31      ; Self-modified
+ $8B33 PUSH AF       ;
+ $8B34 PUSH AF       ;
+ $8B35 PUSH AF       ;
+ $8B36 PUSH AF       ;
+ $8B37 PUSH AF       ;
+ $8B38 PUSH AF       ;
+ $8B39 PUSH AF       ;
+ $8B3A PUSH AF       ;
+ $8B3B PUSH AF       ;
+ $8B3C PUSH AF       ;
+ $8B3D PUSH AF       ;
+ $8B3E PUSH AF       ;
+ $8B3F PUSH AF       ;
+ $8B40 PUSH AF       ;
+ $8B41 PUSH AF       ;
+ $8B42 PUSH AF       ;
+ $8B43 LD A,($8628)  ;
+ $8B46 AND A         ;
+ $8B47 LD SP,($8623) ;
+ $8B4B JR NZ,$8B52   ;
+ $8B4D CALL $8DEE    ;
+ $8B50 JR $8B55      ;
+*$8B52 CALL $8E08    ;
+*$8B55 EXX           ;
+ $8B56 ADD HL,DE     ;
+ $8B57 INC E         ;
+ $8B58 ADD HL,DE     ;
+ $8B59 BIT 7,H       ;
+ $8B5B EXX           ;
+ $8B5C JR NZ,$8B6D   ;
+ $8B5E SRL B         ;
+ $8B60 JR NC,$8B72   ;
+*$8B62 SLA C         ;
+ $8B64 JR NC,$8B7B   ;
+*$8B66 EXX           ;
+ $8B67 ADD HL,BC     ;
+ $8B68 INC C         ;
+; This entry point is used by the routines at #R$8C13 and #R$8D13.
+*$8B69 ADD HL,BC     ;
+ $8B6A BIT 7,H       ;
+ $8B6C EXX           ;
+*$8B6D JP NZ,$8B13   ;
+ $8B70 JR $8B9C      ;
+*$8B72 INC E         ;
+ $8B73 LD A,L        ;
+ $8B74 SUB E         ;
+ $8B75 JR Z,$8B84    ;
+ $8B77 LD B,$7F      ;
+ $8B79 JR $8B62      ;
+*$8B7B DEC L         ;
+ $8B7C LD A,L        ;
+ $8B7D SUB E         ;
+ $8B7E JR Z,$8B84    ;
+ $8B80 LD C,$FE      ;
+ $8B82 JR $8B66      ;
+; This entry point is used by the routine at #R$8B8A.
+*$8B84 LD SP,($8623) ;
+ $8B88 POP AF        ;
+ $8B89 RET           ;
 
-; Data block at 8B33
-b$8B33 DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8B3B DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8B43 DEFB $3A,$28,$86,$A7,$ED,$7B,$23,$86
- $8B4B DEFB $20,$05,$CD,$EE,$8D,$18,$03,$CD
- $8B53 DEFB $08,$8E,$D9,$19,$1C,$19,$CB,$7C
- $8B5B DEFB $D9,$20,$0F,$CB,$38,$30,$10,$CB
- $8B63 DEFB $21,$30,$15,$D9,$09,$0C,$09,$CB
- $8B6B DEFB $7C,$D9,$C2,$13,$8B,$18,$2A,$1C
- $8B73 DEFB $7D,$93,$28,$0D,$06,$7F,$18,$E7
- $8B7B DEFB $2D,$7D,$93,$28,$04,$0E,$FE,$18
- $8B83 DEFB $E2,$ED,$7B,$23,$86,$F1,$C9,$1C
- $8B8B DEFB $7D,$93,$28,$F5,$06,$7F,$18,$0D
- $8B93 DEFB $2D,$7D,$93,$28,$EC,$0E,$FE,$18
- $8B9B DEFB $08,$CB,$38,$30,$EA,$CB,$21,$30
- $8BA3 DEFB $EF,$D9,$09,$0C,$28,$DB,$09,$CB
- $8BAB DEFB $7C,$D9,$28,$ED,$D9,$19,$1C,$19
- $8BB3 DEFB $D9,$7E,$B1
+; Routine at 8B8A
+c$8B8A INC E         ;
+ $8B8B LD A,L        ;
+ $8B8C SUB E         ;
+ $8B8D JR Z,$8B84    ;
+ $8B8F LD B,$7F      ;
+ $8B91 JR $8BA0      ;
+*$8B93 DEC L         ;
+ $8B94 LD A,L        ;
+ $8B95 SUB E         ;
+ $8B96 JR Z,$8B84    ;
+ $8B98 LD C,$FE      ;
+ $8B9A JR $8BA4      ;
+; This entry point is used by the routine at #R$8AF7.
+*$8B9C SRL B         ;
+ $8B9E JR NC,$8B8A   ;
+*$8BA0 SLA C         ;
+ $8BA2 JR NC,$8B93   ;
+*$8BA4 EXX           ;
+ $8BA5 ADD HL,BC     ;
+ $8BA6 INC C         ;
+ $8BA7 JR Z,$8B84    ;
+; This entry point is used by the routines at #R$8C13 and #R$8D13.
+*$8BA9 ADD HL,BC     ;
+ $8BAA BIT 7,H       ;
+ $8BAC EXX           ;
+ $8BAD JR Z,$8B9C    ;
+ $8BAF EXX           ;
+ $8BB0 ADD HL,DE     ;
+ $8BB1 INC E         ;
+ $8BB2 ADD HL,DE     ;
+ $8BB3 EXX           ;
+ $8BB4 LD A,(HL)     ;
+ $8BB5 OR C          ;
+ $8BB6 LD (HL),A     ;
+ $8BB7 LD D,L        ;
+ $8BB8 LD L,E        ;
+ $8BB9 LD A,(HL)     ;
+ $8BBA OR B          ;
+ $8BBB LD (HL),A     ;
+ $8BBC LD A,D        ;
+ $8BBD SUB E         ;
+ $8BBE DEC A         ;
+ $8BBF SRL A         ;
+ $8BC1 JR NC,$8BC6   ;
+ $8BC3 INC L         ;
+ $8BC4 LD (HL),$FF   ;
+*$8BC6 LD L,D        ;
+ $8BC7 SUB $11       ;
+ $8BC9 CPL           ;
+ $8BCA LD ($8BD3),A  ;
+ $8BCD LD SP,$8FB6   ;
+ $8BD0 POP AF        ;
+ $8BD1 LD SP,HL      ;
+@label=self_mod_2
+*$8BD2 JR $8BD2      ; Self-modified
+ $8BD4 PUSH AF       ;
+ $8BD5 PUSH AF       ;
+ $8BD6 PUSH AF       ;
+ $8BD7 PUSH AF       ;
+ $8BD8 PUSH AF       ;
+ $8BD9 PUSH AF       ;
+ $8BDA PUSH AF       ;
+ $8BDB PUSH AF       ;
+ $8BDC PUSH AF       ;
+ $8BDD PUSH AF       ;
+ $8BDE PUSH AF       ;
+ $8BDF PUSH AF       ;
+ $8BE0 PUSH AF       ;
+ $8BE1 PUSH AF       ;
+ $8BE2 PUSH AF       ;
+ $8BE3 PUSH AF       ;
+ $8BE4 LD A,($8628)  ;
+ $8BE7 AND A         ;
+ $8BE8 LD SP,($8623) ;
+ $8BEC JR NZ,$8BF3   ;
+ $8BEE CALL $8DEE    ;
+ $8BF1 JR $8B9C      ;
+*$8BF3 CALL $8E08    ;
+ $8BF6 JR $8B9C      ;
+; This entry point is used by the routines at #R$865A and #R$8672.
+*$8BF8 LD A,L        ;
+ $8BF9 AND $1F       ;
+ $8BFB CP $20        ;
+ $8BFD JR NC,$8C11   ;
+ $8BFF LD A,($8628)  ;
+ $8C02 AND A         ;
+ $8C03 JR NZ,$8C0C   ;
+ $8C05 LD A,$BF      ;
+ $8C07 CP H          ;
+ $8C08 JR C,$8C13    ;
+ $8C0A JR $8C11      ;
+*$8C0C LD A,$CF      ;
+ $8C0E CP H          ;
+ $8C0F JR NC,$8C13   ;
+*$8C11 POP AF        ;
+ $8C12 RET           ;
 
-; Message at 8BB6
-t$8BB6 DEFM "wUk"
+; Routine at 8C13
+;
+; Used by the routine at #R$8B8A.
+c$8C13 LD ($8623),SP ;
+*$8C17 LD A,(HL)     ;
+ $8C18 OR C          ;
+ $8C19 LD (HL),A     ;
+ $8C1A LD D,L        ;
+ $8C1B LD L,E        ;
+ $8C1C LD A,D        ;
+ $8C1D SUB E         ;
+ $8C1E SRL A         ;
+ $8C20 JR NC,$8C24   ;
+ $8C22 LD (HL),$FF   ;
+*$8C24 LD L,D        ;
+ $8C25 SUB $11       ;
+ $8C27 CPL           ;
+ $8C28 LD ($8C31),A  ;
+ $8C2B LD SP,$8FB6   ;
+ $8C2E POP AF        ;
+ $8C2F LD SP,HL      ;
+@label=self_mod_3
+*$8C30 JR $8C30      ; Self-modified
+ $8C32 PUSH AF       ;
+ $8C33 PUSH AF       ;
+ $8C34 PUSH AF       ;
+ $8C35 PUSH AF       ;
+ $8C36 PUSH AF       ;
+ $8C37 PUSH AF       ;
+ $8C38 PUSH AF       ;
+ $8C39 PUSH AF       ;
+ $8C3A PUSH AF       ;
+ $8C3B PUSH AF       ;
+ $8C3C PUSH AF       ;
+ $8C3D PUSH AF       ;
+ $8C3E PUSH AF       ;
+ $8C3F PUSH AF       ;
+ $8C40 PUSH AF       ;
+ $8C41 PUSH AF       ;
+ $8C42 LD A,($8628)  ;
+ $8C45 AND A         ;
+ $8C46 LD SP,($8623) ;
+ $8C4A JR NZ,$8C51   ;
+ $8C4C CALL $8DEE    ;
+ $8C4F JR $8C54      ;
+*$8C51 CALL $8E08    ;
+*$8C54 EXX           ;
+ $8C55 ADD HL,DE     ;
+ $8C56 INC E         ;
+ $8C57 ADD HL,DE     ;
+ $8C58 BIT 7,H       ;
+ $8C5A EXX           ;
+ $8C5B JR NZ,$8C6D   ;
+ $8C5D SLA C         ;
+ $8C5F JR NC,$8C72   ;
+*$8C61 EXX           ;
+ $8C62 ADD HL,BC     ;
+ $8C63 INC C         ;
+ $8C64 EX AF,AF'     ;
+ $8C65 CP C          ;
+ $8C66 JR Z,$8C7C    ;
+ $8C68 EX AF,AF'     ;
+ $8C69 ADD HL,BC     ;
+ $8C6A BIT 7,H       ;
+ $8C6C EXX           ;
+*$8C6D JP NZ,$8C17   ;
+ $8C70 JR $8CA0      ;
+*$8C72 DEC L         ;
+ $8C73 LD A,L        ;
+ $8C74 SUB E         ;
+ $8C75 INC A         ;
+ $8C76 JR Z,$8C90    ;
+ $8C78 LD C,$FE      ;
+ $8C7A JR $8C61      ;
+*$8C7C EX AF,AF'     ;
+ $8C7D EXX           ;
+ $8C7E LD A,L        ;
+ $8C7F SUB E         ;
+ $8C80 EXX           ;
+ $8C81 JR Z,$8C90    ;
+ $8C83 JP $8B69      ;
+; This entry point is used by the routine at #R$8C96.
+*$8C86 EX AF,AF'     ;
+ $8C87 EXX           ;
+ $8C88 LD A,L        ;
+ $8C89 SUB E         ;
+ $8C8A EXX           ;
+ $8C8B JR Z,$8C90    ;
+ $8C8D JP $8BA9      ;
+; This entry point is used by the routine at #R$8C96.
+*$8C90 LD SP,($8623) ;
+ $8C94 POP AF        ;
+ $8C95 RET           ;
 
-; Data block at 8BB9
-b$8BB9 DEFB $7E,$B0,$77,$7A,$93,$3D,$CB,$3F
- $8BC1 DEFB $30,$03,$2C,$36,$FF,$6A,$D6,$11
- $8BC9 DEFB $2F,$32,$D3,$8B,$31,$B6,$8F,$F1
- $8BD1 DEFB $F9,$18,$FE,$F5,$F5,$F5,$F5,$F5
- $8BD9 DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8BE1 DEFB $F5,$F5,$F5,$3A,$28,$86,$A7,$ED
- $8BE9 DEFB $7B,$23,$86,$20,$05,$CD,$EE,$8D
- $8BF1 DEFB $18,$A9,$CD,$08,$8E,$18,$A4,$7D
- $8BF9 DEFB $E6,$1F,$FE,$20,$30,$12,$3A,$28
- $8C01 DEFB $86,$A7,$20,$07,$3E,$BF,$BC,$38
- $8C09 DEFB $09,$18,$05,$3E,$CF,$BC,$30,$02
- $8C11 DEFB $F1,$C9,$ED,$73,$23,$86,$7E,$B1
+; Routine at 8C96
+c$8C96 DEC L         ;
+ $8C97 LD A,L        ;
+ $8C98 SUB E         ;
+ $8C99 INC A         ;
+ $8C9A JR Z,$8C90    ;
+ $8C9C LD C,$FE      ;
+ $8C9E JR $8CA4      ;
+; This entry point is used by the routine at #R$8C13.
+*$8CA0 SLA C         ;
+ $8CA2 JR NC,$8C96   ;
+*$8CA4 EXX           ;
+ $8CA5 ADD HL,BC     ;
+ $8CA6 INC C         ;
+ $8CA7 JR Z,$8C90    ;
+ $8CA9 EX AF,AF'     ;
+ $8CAA CP C          ;
+ $8CAB JR Z,$8C86    ;
+ $8CAD EX AF,AF'     ;
+ $8CAE ADD HL,BC     ;
+ $8CAF BIT 7,H       ;
+ $8CB1 EXX           ;
+ $8CB2 JR Z,$8CA0    ;
+ $8CB4 EXX           ;
+ $8CB5 ADD HL,DE     ;
+ $8CB6 INC E         ;
+ $8CB7 ADD HL,DE     ;
+ $8CB8 EXX           ;
+ $8CB9 LD A,(HL)     ;
+ $8CBA OR C          ;
+ $8CBB LD (HL),A     ;
+ $8CBC LD D,L        ;
+ $8CBD LD L,E        ;
+ $8CBE LD A,D        ;
+ $8CBF SUB E         ;
+ $8CC0 SRL A         ;
+ $8CC2 JR NC,$8CC6   ;
+ $8CC4 LD (HL),$FF   ;
+*$8CC6 LD L,D        ;
+ $8CC7 SUB $11       ;
+ $8CC9 CPL           ;
+ $8CCA LD ($8CD3),A  ;
+ $8CCD LD SP,$8FB6   ;
+ $8CD0 POP AF        ;
+ $8CD1 LD SP,HL      ;
+@label=self_mod_4
+*$8CD2 JR $8CD2      ; Self-modified
+ $8CD4 PUSH AF       ;
+ $8CD5 PUSH AF       ;
+ $8CD6 PUSH AF       ;
+ $8CD7 PUSH AF       ;
+ $8CD8 PUSH AF       ;
+ $8CD9 PUSH AF       ;
+ $8CDA PUSH AF       ;
+ $8CDB PUSH AF       ;
+ $8CDC PUSH AF       ;
+ $8CDD PUSH AF       ;
+ $8CDE PUSH AF       ;
+ $8CDF PUSH AF       ;
+ $8CE0 PUSH AF       ;
+ $8CE1 PUSH AF       ;
+ $8CE2 PUSH AF       ;
+ $8CE3 PUSH AF       ;
+ $8CE4 LD A,($8628)  ;
+ $8CE7 AND A         ;
+ $8CE8 LD SP,($8623) ;
+ $8CEC JR NZ,$8CF3   ;
+ $8CEE CALL $8DEE    ;
+ $8CF1 JR $8CA0      ;
+*$8CF3 CALL $8E08    ;
+ $8CF6 JR $8CA0      ;
+; This entry point is used by the routines at #R$862B and #R$8643.
+*$8CF8 LD A,E        ;
+ $8CF9 AND $1F       ;
+ $8CFB CP $20        ;
+ $8CFD JR NC,$8D11   ;
+ $8CFF LD A,($8628)  ;
+ $8D02 AND A         ;
+ $8D03 JR NZ,$8D0C   ;
+ $8D05 LD A,$BF      ;
+ $8D07 CP H          ;
+ $8D08 JR C,$8D13    ;
+ $8D0A JR $8D11      ;
+*$8D0C LD A,$CF      ;
+ $8D0E CP H          ;
+ $8D0F JR NC,$8D13   ;
+*$8D11 POP AF        ;
+ $8D12 RET           ;
 
-; Message at 8C19
-t$8C19 DEFM "wUkz"
+; Routine at 8D13
+;
+; Used by the routine at #R$8C96.
+c$8D13 LD ($8623),SP ;
+*$8D17 LD D,L        ;
+ $8D18 LD L,E        ;
+ $8D19 LD A,(HL)     ;
+ $8D1A OR B          ;
+ $8D1B LD (HL),A     ;
+ $8D1C LD A,D        ;
+ $8D1D SUB E         ;
+ $8D1E DEC A         ;
+ $8D1F SRL A         ;
+ $8D21 JR NC,$8D26   ;
+ $8D23 INC L         ;
+ $8D24 LD (HL),$FF   ;
+*$8D26 LD L,D        ;
+ $8D27 SUB $11       ;
+ $8D29 CPL           ;
+ $8D2A LD ($8D33),A  ;
+ $8D2D LD SP,$8FB6   ;
+ $8D30 POP AF        ;
+ $8D31 LD SP,HL      ;
+@label=self_mod_5
+*$8D32 JR $8D32      ; Self-modified
+ $8D34 PUSH AF       ;
+ $8D35 PUSH AF       ;
+ $8D36 PUSH AF       ;
+ $8D37 PUSH AF       ;
+ $8D38 PUSH AF       ;
+ $8D39 PUSH AF       ;
+ $8D3A PUSH AF       ;
+ $8D3B PUSH AF       ;
+ $8D3C PUSH AF       ;
+ $8D3D PUSH AF       ;
+ $8D3E PUSH AF       ;
+ $8D3F PUSH AF       ;
+ $8D40 PUSH AF       ;
+ $8D41 PUSH AF       ;
+ $8D42 PUSH AF       ;
+ $8D43 PUSH AF       ;
+ $8D44 LD A,($8628)  ;
+ $8D47 AND A         ;
+ $8D48 LD SP,($8623) ;
+ $8D4C JR NZ,$8D53   ;
+ $8D4E CALL $8DEE    ;
+ $8D51 JR $8D56      ;
+*$8D53 CALL $8E08    ;
+*$8D56 EXX           ;
+ $8D57 ADD HL,DE     ;
+ $8D58 INC E         ;
+ $8D59 ADD HL,DE     ;
+ $8D5A BIT 7,H       ;
+ $8D5C EXX           ;
+ $8D5D JR NZ,$8D6F   ;
+ $8D5F SRL B         ;
+ $8D61 JR NC,$8D74   ;
+*$8D63 EXX           ;
+ $8D64 ADD HL,BC     ;
+ $8D65 INC C         ;
+ $8D66 EX AF,AF'     ;
+ $8D67 CP C          ;
+ $8D68 JR Z,$8D7D    ;
+ $8D6A EX AF,AF'     ;
+ $8D6B ADD HL,BC     ;
+ $8D6C BIT 7,H       ;
+ $8D6E EXX           ;
+*$8D6F JP NZ,$8D17   ;
+ $8D72 JR $8D94      ;
+*$8D74 INC E         ;
+ $8D75 LD A,L        ;
+ $8D76 SUB E         ;
+ $8D77 JR Z,$8D85    ;
+ $8D79 LD B,$7F      ;
+ $8D7B JR $8D63      ;
+*$8D7D EX AF,AF'     ;
+ $8D7E JP $8B69      ;
+; This entry point is used by the routine at #R$8D8B.
+*$8D81 EX AF,AF'     ;
+ $8D82 JP $8BA9      ;
+; This entry point is used by the routine at #R$8D8B.
+*$8D85 LD SP,($8623) ;
+ $8D89 POP AF        ;
+ $8D8A RET           ;
 
-; Data block at 8C1D
-b$8C1D DEFB $93,$CB,$3F,$30,$02,$36,$FF,$6A
- $8C25 DEFB $D6,$11
-
-; Message at 8C27
-t$8C27 DEFM "/21"
-
-; Data block at 8C2A
-b$8C2A DEFB $8C,$31,$B6,$8F,$F1,$F9,$18,$FE
- $8C32 DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8C3A DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8C42 DEFB $3A,$28,$86,$A7,$ED,$7B,$23,$86
- $8C4A DEFB $20,$05,$CD,$EE,$8D,$18,$03,$CD
- $8C52 DEFB $08,$8E,$D9,$19,$1C,$19,$CB,$7C
- $8C5A DEFB $D9,$20,$10,$CB,$21,$30,$11,$D9
- $8C62 DEFB $09,$0C,$08,$B9,$28,$14,$08,$09
- $8C6A DEFB $CB,$7C,$D9,$C2,$17,$8C,$18,$2E
- $8C72 DEFB $2D,$7D,$93,$3C,$28,$18,$0E,$FE
- $8C7A DEFB $18,$E5,$08,$D9,$7D,$93,$D9,$28
- $8C82 DEFB $0D,$C3,$69,$8B,$08,$D9,$7D,$93
- $8C8A DEFB $D9,$28,$03,$C3,$A9,$8B,$ED,$7B
- $8C92 DEFB $23,$86,$F1,$C9,$2D,$7D,$93,$3C
- $8C9A DEFB $28,$F4,$0E,$FE,$18,$04,$CB,$21
- $8CA2 DEFB $30,$F2,$D9,$09,$0C,$28,$E7,$08
- $8CAA DEFB $B9,$28,$D9,$08,$09,$CB,$7C,$D9
- $8CB2 DEFB $28,$EC,$D9,$19,$1C,$19,$D9,$7E
- $8CBA DEFB $B1
-
-; Message at 8CBB
-t$8CBB DEFM "wUkz"
-
-; Data block at 8CBF
-b$8CBF DEFB $93,$CB,$3F,$30,$02,$36,$FF,$6A
- $8CC7 DEFB $D6,$11,$2F,$32,$D3,$8C,$31,$B6
- $8CCF DEFB $8F,$F1,$F9,$18,$FE,$F5,$F5,$F5
- $8CD7 DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8CDF DEFB $F5,$F5,$F5,$F5,$F5,$3A,$28,$86
- $8CE7 DEFB $A7,$ED,$7B,$23,$86,$20,$05,$CD
- $8CEF DEFB $EE,$8D,$18,$AD,$CD,$08,$8E,$18
- $8CF7 DEFB $A8,$7B,$E6,$1F,$FE,$20,$30,$12
- $8CFF DEFB $3A,$28,$86,$A7,$20,$07,$3E,$BF
- $8D07 DEFB $BC,$38,$09,$18,$05,$3E,$CF,$BC
- $8D0F DEFB $30,$02,$F1,$C9,$ED,$73,$23,$86
- $8D17 DEFB $55,$6B,$7E,$B0,$77,$7A,$93,$3D
- $8D1F DEFB $CB,$3F,$30,$03,$2C,$36,$FF,$6A
- $8D27 DEFB $D6,$11
-
-; Message at 8D29
-t$8D29 DEFM "/23"
-
-; Data block at 8D2C
-b$8D2C DEFB $8D,$31,$B6,$8F,$F1,$F9,$18,$FE
- $8D34 DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8D3C DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8D44 DEFB $3A,$28,$86,$A7,$ED,$7B,$23,$86
- $8D4C DEFB $20,$05,$CD,$EE,$8D,$18,$03,$CD
- $8D54 DEFB $08,$8E,$D9,$19,$1C,$19,$CB,$7C
- $8D5C DEFB $D9,$20,$10,$CB,$38,$30,$11,$D9
- $8D64 DEFB $09,$0C,$08,$B9,$28,$13,$08,$09
- $8D6C DEFB $CB,$7C,$D9,$C2,$17,$8D,$18,$20
- $8D74 DEFB $1C,$7D,$93,$28,$0C,$06,$7F,$18
- $8D7C DEFB $E6,$08,$C3,$69,$8B,$08,$C3,$A9
- $8D84 DEFB $8B,$ED,$7B,$23,$86,$F1,$C9,$1C
- $8D8C DEFB $7D,$93,$28,$F5,$06,$7F,$18,$04
- $8D94 DEFB $CB,$38,$30,$F3,$D9,$09,$0C,$28
- $8D9C DEFB $E8,$08,$B9,$28,$E0,$08,$09,$CB
- $8DA4 DEFB $7C,$D9,$28,$EC,$D9,$19,$1C,$19
- $8DAC DEFB $D9,$55,$6B,$7E,$B0,$77,$7A,$93
- $8DB4 DEFB $3D,$CB,$3F,$30,$03,$2C,$36,$FF
- $8DBC DEFB $6A,$D6,$11,$2F,$32,$C9,$8D,$31
- $8DC4 DEFB $B6,$8F,$F1,$F9,$18,$FE,$F5,$F5
- $8DCC DEFB $F5,$F5,$F5,$F5,$F5,$F5,$F5,$F5
- $8DD4 DEFB $F5,$F5,$F5,$F5,$F5,$F5,$3A,$28
- $8DDC DEFB $86,$A7,$ED,$7B,$23,$86,$20,$05
- $8DE4 DEFB $CD,$EE,$8D,$18,$AB,$CD,$08,$8E
- $8DEC DEFB $18,$A6
+; Routine at 8D8B
+c$8D8B INC E         ;
+ $8D8C LD A,L        ;
+ $8D8D SUB E         ;
+ $8D8E JR Z,$8D85    ;
+ $8D90 LD B,$7F      ;
+ $8D92 JR $8D98      ;
+; This entry point is used by the routine at #R$8D13.
+*$8D94 SRL B         ;
+ $8D96 JR NC,$8D8B   ;
+*$8D98 EXX           ;
+ $8D99 ADD HL,BC     ;
+ $8D9A INC C         ;
+ $8D9B JR Z,$8D85    ;
+ $8D9D EX AF,AF'     ;
+ $8D9E CP C          ;
+ $8D9F JR Z,$8D81    ;
+ $8DA1 EX AF,AF'     ;
+ $8DA2 ADD HL,BC     ;
+ $8DA3 BIT 7,H       ;
+ $8DA5 EXX           ;
+ $8DA6 JR Z,$8D94    ;
+ $8DA8 EXX           ;
+ $8DA9 ADD HL,DE     ;
+ $8DAA INC E         ;
+ $8DAB ADD HL,DE     ;
+ $8DAC EXX           ;
+ $8DAD LD D,L        ;
+ $8DAE LD L,E        ;
+ $8DAF LD A,(HL)     ;
+ $8DB0 OR B          ;
+ $8DB1 LD (HL),A     ;
+ $8DB2 LD A,D        ;
+ $8DB3 SUB E         ;
+ $8DB4 DEC A         ;
+ $8DB5 SRL A         ;
+ $8DB7 JR NC,$8DBC   ;
+ $8DB9 INC L         ;
+ $8DBA LD (HL),$FF   ;
+*$8DBC LD L,D        ;
+ $8DBD SUB $11       ;
+ $8DBF CPL           ;
+ $8DC0 LD ($8DC9),A  ;
+ $8DC3 LD SP,$8FB6   ;
+ $8DC6 POP AF        ;
+ $8DC7 LD SP,HL      ;
+*$8DC8 JR $8DC8      ; Self-modified
+ $8DCA PUSH AF       ;
+ $8DCB PUSH AF       ;
+ $8DCC PUSH AF       ;
+ $8DCD PUSH AF       ;
+ $8DCE PUSH AF       ;
+ $8DCF PUSH AF       ;
+ $8DD0 PUSH AF       ;
+ $8DD1 PUSH AF       ;
+ $8DD2 PUSH AF       ;
+ $8DD3 PUSH AF       ;
+ $8DD4 PUSH AF       ;
+ $8DD5 PUSH AF       ;
+ $8DD6 PUSH AF       ;
+ $8DD7 PUSH AF       ;
+ $8DD8 PUSH AF       ;
+ $8DD9 PUSH AF       ;
+ $8DDA LD A,($8628)  ;
+ $8DDD AND A         ;
+ $8DDE LD SP,($8623) ;
+ $8DE2 JR NZ,$8DE9   ;
+ $8DE4 CALL $8DEE    ;
+ $8DE7 JR $8D94      ;
+*$8DE9 CALL $8E08    ;
+ $8DEC JR $8D94      ;
 
 ; Routine at 8DEE
 ;

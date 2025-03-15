@@ -360,28 +360,38 @@ c $8ACD Routine at 8ACD
 D $8ACD Used by the routines at #R$87FE, #R$884A, #R$88C2 and #R$893F.
 c $8AF7 Routine at 8AF7
 D $8AF7 Used by the routines at #R$8689 and #R$86A1.
-b $8B33 Data block at 8B33
-B $8B33,131,8*16,3
-t $8BB6 Message at 8BB6
-T $8BB6,3,3
-b $8BB9 Data block at 8BB9
-B $8BB9,96,8
-t $8C19 Message at 8C19
-T $8C19,4,4
-b $8C1D Data block at 8C1D
-B $8C1D,10,8,2
-t $8C27 Message at 8C27
-T $8C27,3,3
-b $8C2A Data block at 8C2A
-B $8C2A,145,8*18,1
-t $8CBB Message at 8CBB
-T $8CBB,4,4
-b $8CBF Data block at 8CBF
-B $8CBF,106,8*13,2
-t $8D29 Message at 8D29
-T $8D29,3,3
-b $8D2C Data block at 8D2C
-B $8D2C,194,8*24,2
+c $8B0F Routine at 8B0F
+D $8B0F Used by the routine at #R$8AF7.
+@ $8B31 label=self_mod_1
+C $8B31,2 Self-modified
+N $8B69 This entry point is used by the routines at #R$8C13 and #R$8D13.
+N $8B84 This entry point is used by the routine at #R$8B8A.
+c $8B8A Routine at 8B8A
+N $8B9C This entry point is used by the routine at #R$8AF7.
+N $8BA9 This entry point is used by the routines at #R$8C13 and #R$8D13.
+@ $8BD2 label=self_mod_2
+C $8BD2,2 Self-modified
+N $8BF8 This entry point is used by the routines at #R$865A and #R$8672.
+c $8C13 Routine at 8C13
+D $8C13 Used by the routine at #R$8B8A.
+@ $8C30 label=self_mod_3
+C $8C30,2 Self-modified
+N $8C86 This entry point is used by the routine at #R$8C96.
+N $8C90 This entry point is used by the routine at #R$8C96.
+c $8C96 Routine at 8C96
+N $8CA0 This entry point is used by the routine at #R$8C13.
+@ $8CD2 label=self_mod_4
+C $8CD2,2 Self-modified
+N $8CF8 This entry point is used by the routines at #R$862B and #R$8643.
+c $8D13 Routine at 8D13
+D $8D13 Used by the routine at #R$8C96.
+@ $8D32 label=self_mod_5
+C $8D32,2 Self-modified
+N $8D81 This entry point is used by the routine at #R$8D8B.
+N $8D85 This entry point is used by the routine at #R$8D8B.
+c $8D8B Routine at 8D8B
+N $8D94 This entry point is used by the routine at #R$8D13.
+C $8DC8,2 Self-modified
 c $8DEE Routine at 8DEE
 D $8DEE Used by the routines at #R$9060, #R$90CC, #R$917B, #R$91F4 and #R$925F.
 N $8DF3 This entry point is used by the routine at #R$90FB.
