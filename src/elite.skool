@@ -14705,7 +14705,7 @@ c$D138 LD HL,$D0B0   ;
  $D15A LD DE,$0A0F   ;
  $D15D LD HL,$0300   ;
  $D160 JR $D148      ;
-; This entry point is used by the routine at #R$D0F6.
+; This entry point is used by the routines at #R$D0F6 and #R$E6AE.
 *$D162 PUSH HL       ;
  $D163 PUSH DE       ;
  $D164 CALL $D61D    ;
@@ -14748,7 +14748,8 @@ c$D138 LD HL,$D0B0   ;
  $D1A9 LD (HL),A     ;
  $D1AA POP AF        ;
  $D1AB LD B,$01      ;
- $D1AD CP $0A        ;
+; This entry point is used by the routine at #R$E7DB.
+*$D1AD CP $0A        ;
  $D1AF JR Z,$D1BA    ;
  $D1B1 CP $03        ;
  $D1B3 JR Z,$D1B8    ;
@@ -15700,8 +15701,9 @@ w$D7C3 DEFW $D884
  $D819 DEFW $D8EF
  $D81B DEFW $D884
  $D81D DEFW $D884
- $D81F DEFW $5EC3
- $D821 DEFW $3EE3
+
+; Routine at D81F
+c$D81F JP $E35E      ;
 
 ; Routine at D822
 c$D822 LD A,$C5      ;
@@ -16537,45 +16539,113 @@ c$DC8E LD A,($D081)  ;
  $DDDF LD A,$FF      ;
  $DDE1 JR $DDE9      ;
 
-; Data block at DDE3
-b$DDE3 DEFB $3E,$05,$18,$3B,$3E,$7F,$02,$12
-*$DDEB DEFB $3A,$BB,$D0,$32,$99,$D0,$3A,$BC
- $DDF3 DEFB $D0,$32,$97,$D0,$3A,$65,$D0,$A7
+; Routine at DDE3
+c$DDE3 LD A,$05      ;
+ $DDE5 JR $DE22      ;
+; This entry point is used by the routine at #R$DC8E.
+*$DDE7 LD A,$7F      ;
+; This entry point is used by the routine at #R$DC8E.
+*$DDE9 LD (BC),A     ;
+ $DDEA LD (DE),A     ;
+; This entry point is used by the routine at #R$DC8E.
+*$DDEB LD A,($D0BB)  ;
+ $DDEE LD ($D099),A  ;
+ $DDF1 LD A,($D0BC)  ;
+ $DDF4 LD ($D097),A  ;
+ $DDF7 LD A,($D065)  ;
+ $DDFA AND A         ;
+ $DDFB JR Z,$DE4C    ;
+ $DDFD LD HL,$606E   ;
+ $DE00 BIT 7,(HL)    ;
+ $DE02 RES 7,(HL)    ;
+ $DE04 JR NZ,$DDE3   ;
+ $DE06 LD HL,$D0AF   ;
+ $DE09 LD A,(HL)     ;
+ $DE0A AND A         ;
+ $DE0B JR Z,$DE25    ;
+ $DE0D DEC A         ;
+ $DE0E JR NZ,$DE13   ;
+ $DE10 INC (HL)      ;
+ $DE11 JR $DE18      ;
+*$DE13 CP $03        ;
+ $DE15 JR NZ,$DE18   ;
+ $DE17 LD (HL),A     ;
+*$DE18 LD HL,$D096   ;
+ $DE1B CALL $EF37    ;
+ $DE1E JR C,$DE25    ;
+ $DE20 LD A,$04      ;
+*$DE22 LD ($D0AF),A  ;
+*$DE25 LD HL,($D063) ;
+ $DE28 INC HL        ;
+ $DE29 LD ($D063),HL ;
+ $DE2C LD DE,$D0B0   ;
+ $DE2F LD A,(DE)     ;
+ $DE30 RRCA          ;
+ $DE31 JR NC,$DE67   ;
+ $DE33 RRCA          ;
+ $DE34 JR NC,$DE7E   ;
+ $DE36 RRCA          ;
+ $DE37 JR NC,$DE88   ;
+; This entry point is used by the routine at #R$DE67.
+*$DE39 LD HL,$7105   ;
+ $DE3C LD A,($D09D)  ;
+ $DE3F XOR $FF       ;
+ $DE41 AND $07       ;
+ $DE43 RRA           ;
+ $DE44 CP (HL)       ;
+ $DE45 JR C,$DE4C    ;
+ $DE47 LD HL,$6065   ;
+ $DE4A RES 7,(HL)    ;
+; This entry point is used by the routines at #R$DC8E and #R$DE67.
+*$DE4C LD A,$01      ;
+ $DE4E LD ($D040),A  ;
+ $DE51 XOR A         ;
+ $DE52 LD ($70E3),A  ;
+ $DE55 LD ($70EE),A  ;
+ $DE58 LD ($711E),A  ;
+ $DE5B LD ($D047),A  ;
+ $DE5E LD ($9CB2),A  ;
+ $DE61 LD A,$A0      ;
+ $DE63 LD ($70F2),A  ;
+ $DE66 RET           ;
 
-; Message at DDFB
-t$DDFB DEFM "(O!n"
-
-; Data block at DDFF
-b$DDFF DEFB $60,$CB,$7E,$CB,$BE,$20,$DD,$21
- $DE07 DEFB $AF,$D0,$7E,$A7,$28,$18,$3D,$20
- $DE0F DEFB $03,$34,$18,$05,$FE,$03,$20,$01
- $DE17 DEFB $77,$21,$96,$D0,$CD,$37,$EF,$38
- $DE1F DEFB $05,$3E,$04,$32,$AF,$D0,$2A,$63
- $DE27 DEFB $D0,$23,$22,$63,$D0,$11,$B0,$D0
- $DE2F DEFB $1A,$0F,$30,$34,$0F,$30,$48,$0F
-
-; Message at DE37
-t$DE37 DEFM "0O!"
-
-; Data block at DE3A
-b$DE3A DEFB $05,$71,$3A,$9D,$D0,$EE,$FF,$E6
- $DE42 DEFB $07,$1F,$BE,$38,$05,$21,$65,$60
- $DE4A DEFB $CB,$BE,$3E,$01,$32,$40,$D0,$AF
- $DE52 DEFB $32,$E3,$70,$32,$EE,$70,$32,$1E
-
-; Message at DE5A
-t$DE5A DEFM "q2G"
-
-; Data block at DE5D
-b$DE5D DEFB $D0,$32,$B2,$9C,$3E,$A0,$32,$F2
- $DE65 DEFB $70,$C9,$7D,$FE,$20,$38,$CD,$EB
- $DE6D DEFB $CB,$C6,$3E,$01,$32,$81,$D0,$2E
- $DE75 DEFB $02,$CD,$F8,$6F,$CD,$97,$DE,$18
- $DE7D DEFB $CE,$7D,$FE,$80,$38,$B6,$EB,$CB
- $DE85 DEFB $CE,$18,$C4,$7D,$FE,$FE,$38,$AC
- $DE8D DEFB $EB,$CB,$D6,$3E,$01,$32,$AF,$D0
- $DE95 DEFB $18,$B5,$3A,$82,$D0,$A7,$C8,$21
- $DE9D DEFB $CF,$D0,$CB,$FE,$AF
+; Routine at DE67
+;
+; Used by the routine at #R$DDE3.
+c$DE67 LD A,L        ;
+ $DE68 CP $20        ;
+ $DE6A JR C,$DE39    ;
+ $DE6C EX DE,HL      ;
+ $DE6D SET 0,(HL)    ;
+ $DE6F LD A,$01      ;
+ $DE71 LD ($D081),A  ;
+ $DE74 LD L,$02      ;
+ $DE76 CALL $6FF8    ;
+ $DE79 CALL $DE97    ;
+ $DE7C JR $DE4C      ;
+; This entry point is used by the routine at #R$DDE3.
+*$DE7E LD A,L        ;
+ $DE7F CP $80        ;
+ $DE81 JR C,$DE39    ;
+ $DE83 EX DE,HL      ;
+ $DE84 SET 1,(HL)    ;
+ $DE86 JR $DE4C      ;
+; This entry point is used by the routine at #R$DDE3.
+*$DE88 LD A,L        ;
+ $DE89 CP $FE        ;
+ $DE8B JR C,$DE39    ;
+ $DE8D EX DE,HL      ;
+ $DE8E SET 2,(HL)    ;
+ $DE90 LD A,$01      ;
+ $DE92 LD ($D0AF),A  ;
+ $DE95 JR $DE4C      ;
+; This entry point is used by the routines at #R$D0E0 and #R$D1E9.
+*$DE97 LD A,($D082)  ;
+ $DE9A AND A         ;
+ $DE9B RET Z         ;
+ $DE9C LD HL,$D0CF   ;
+ $DE9F SET 7,(HL)    ;
+ $DEA1 XOR A         ;
 
 ; Routine at DEA2
 ;
@@ -16620,18 +16690,65 @@ t$DEED DEFM "LAVE"
 ; Data block at DEF1
 b$DEF1 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $DEF9 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $DF01 DEFB $00,$00,$21,$65,$D0,$7E,$3C,$E6
- $DF09 DEFB $07,$77,$21,$90,$D0,$CD,$1A,$DF
- $DF11 DEFB $21,$92,$D0,$CD,$1A,$DF,$21,$94
- $DF19 DEFB $D0,$5E,$CB,$03,$73,$23,$56,$CB
- $DF21 DEFB $02,$72,$C9,$CD,$26,$E1,$AF,$32
- $DF29 DEFB $00,$DF,$CD,$2E,$E1,$CD,$1C,$E0
- $DF31 DEFB $21,$D0,$DE,$11,$DB,$DE,$46,$1A
- $DF39 DEFB $B8,$20,$07,$A7,$28,$0D,$23,$13
- $DF41 DEFB $18,$F4,$21,$00,$DF,$34,$C2,$2B
- $DF49 DEFB $DF,$37,$C9,$CD,$36,$E1,$CD,$6F
- $DF51 DEFB $E4,$CD,$8C,$E0,$CD,$6F,$E4,$CD
- $DF59 DEFB $80,$E0,$C3,$B5,$DF,$00,$00
+ $DF01 DEFB $00,$00
+
+; Routine at DF03
+;
+; Used by the routine at #R$D018.
+c$DF03 LD HL,$D065   ;
+ $DF06 LD A,(HL)     ;
+ $DF07 INC A         ;
+ $DF08 AND $07       ;
+ $DF0A LD (HL),A     ;
+ $DF0B LD HL,$D090   ;
+ $DF0E CALL $DF1A    ;
+ $DF11 LD HL,$D092   ;
+ $DF14 CALL $DF1A    ;
+ $DF17 LD HL,$D094   ;
+*$DF1A LD E,(HL)     ;
+ $DF1B RLC E         ;
+ $DF1D LD (HL),E     ;
+ $DF1E INC HL        ;
+ $DF1F LD D,(HL)     ;
+ $DF20 RLC D         ;
+ $DF22 LD (HL),D     ;
+ $DF23 RET           ;
+; This entry point is used by the routine at #R$E398.
+*$DF24 CALL $E126    ;
+ $DF27 XOR A         ;
+ $DF28 LD ($DF00),A  ;
+*$DF2B CALL $E12E    ;
+ $DF2E CALL $E01C    ;
+ $DF31 LD HL,$DED0   ;
+ $DF34 LD DE,$DEDB   ;
+*$DF37 LD B,(HL)     ;
+ $DF38 LD A,(DE)     ;
+ $DF39 CP B          ;
+ $DF3A JR NZ,$DF43   ;
+ $DF3C AND A         ;
+ $DF3D JR Z,$DF4C    ;
+ $DF3F INC HL        ;
+ $DF40 INC DE        ;
+ $DF41 JR $DF37      ;
+*$DF43 LD HL,$DF00   ;
+ $DF46 INC (HL)      ;
+ $DF47 JP NZ,$DF2B   ;
+ $DF4A SCF           ;
+ $DF4B RET           ;
+
+; Routine at DF4C
+;
+; Used by the routine at #R$DF03.
+c$DF4C CALL $E136    ;
+ $DF4F CALL $E46F    ;
+ $DF52 CALL $E08C    ;
+ $DF55 CALL $E46F    ;
+ $DF58 CALL $E080    ;
+ $DF5B JP $DFB5      ;
+
+; Data block at DF5E
+@label=word_at_DF5E
+w$DF5E DEFW $0000
 
 ; Routine at DF60
 ;
@@ -16672,7 +16789,8 @@ c$DF60 LD A,($70E3)  ;
  $DFAC CALL $E08C    ;
  $DFAF CALL $E01C    ;
  $DFB2 CALL $E080    ;
- $DFB5 LD A,($D099)  ;
+; This entry point is used by the routine at #R$DF4C.
+*$DFB5 LD A,($D099)  ;
  $DFB8 LD B,A        ;
  $DFB9 LD A,($D097)  ;
  $DFBC CALL $DFCE    ;
@@ -17014,8 +17132,14 @@ c$E148 LD HL,$D09E   ;
  $E1B9 LD (HL),B     ;
  $E1BA RET           ;
 
-; Unused
-s$E1BB DEFS $2D
+; Data block at E1BB
+@label=data_at_1EBB
+b$E1BB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $E1C3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $E1CB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $E1D3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $E1DB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $E1E3 DEFB $00,$00,$00,$00,$00
 
 ; Routine at E1E8
 ;
@@ -17269,9 +17393,18 @@ c$E31E LD A,$00      ;
  $E347 LD A,$4D      ;
 *$E349 JP $D425      ;
 
-; Data block at E34C
-b$E34C DEFB $3A,$DF,$E1,$FE,$0D,$D8,$FE,$10
- $E354 DEFB $20,$02,$37,$C9,$A7,$C9
+; Routine at E34C
+;
+; Used by the routines at #R$E7DB and #R$E935.
+c$E34C LD A,($E1DF)  ;
+ $E34F CP $0D        ;
+ $E351 RET C         ;
+ $E352 CP $10        ;
+ $E354 JR NZ,$E358   ;
+ $E356 SCF           ;
+ $E357 RET           ;
+*$E358 AND A         ;
+ $E359 RET           ;
 
 ; Routine at E35A
 ;
@@ -17327,43 +17460,113 @@ c$E38D LD HL,($E1E6) ;
  $E393 RET           ;
 
 ; Data block at E394
-b$E394 DEFB $00,$00,$00,$00,$3E,$0E,$06,$08
- $E39C DEFB $21,$D0,$DE,$CD,$CC,$E3,$3A,$94
- $E3A4 DEFB $E3,$A7,$CA,$6B,$E3,$CD,$24,$DF
- $E3AC DEFB $30,$14,$21,$D0,$DE,$CD,$11,$E3
- $E3B4 DEFB $CD,$21,$D4,$08,$CD,$21,$D4,$E1
- $E3BC DEFB $CD,$E8,$E1,$C3,$05,$E2,$CD,$21
- $E3C4 DEFB $D4,$08,$C3,$5E,$E4,$00,$00,$00
-*$E3CC DEFB $32,$C9,$E3,$78,$32,$13,$E4,$22
- $E3D4 DEFB $CA,$E3,$2A,$CA,$E3,$22,$95,$E3
- $E3DC DEFB $AF,$32,$94,$E3,$CD,$6B,$E3,$CD
- $E3E4 DEFB $21,$D4,$06,$3A,$C9,$E3,$CD,$5F
- $E3EC DEFB $D4,$CD,$F7,$E1,$32,$97,$E3,$FE
- $E3F4 DEFB $0D,$28,$4F,$FE,$FE
+b$E394 DEFB $00,$00,$00,$00
 
-; Message at E3F9
-t$E3F9 DEFM "(-:"
+; Routine at E398
+;
+; Used by the routine at #R$D018.
+c$E398 LD A,$0E      ;
+ $E39A LD B,$08      ;
+ $E39C LD HL,$DED0   ;
+ $E39F CALL $E3CC    ;
+ $E3A2 LD A,($E394)  ;
+ $E3A5 AND A         ;
+ $E3A6 JP Z,$E36B    ;
+ $E3A9 CALL $DF24    ;
+ $E3AC JR NC,$E3C2   ;
+ $E3AE LD HL,$DED0   ;
+ $E3B1 CALL $E311    ;
+ $E3B4 CALL $D421    ;
+ $E3B7 EX AF,AF'     ;
+ $E3B8 CALL $D421    ;
+ $E3BB POP HL        ;
+ $E3BC CALL $E1E8    ;
+ $E3BF JP $E205      ;
+*$E3C2 CALL $D421    ;
+ $E3C5 EX AF,AF'     ;
+ $E3C6 JP $E45E      ;
 
-; Data block at E3FC
-b$E3FC DEFB $97,$E3,$FE,$30,$38,$EB,$FE,$5B
- $E404 DEFB $30,$E7,$FE,$3A,$38,$04,$FE,$40
- $E40C DEFB $38,$DF,$57,$3A,$94,$E3,$FE,$0A
+; Data block at E3C9
+b$E3C9 DEFB $00,$00,$00
 
-; Message at E414
-t$E414 DEFM "00<2"
+; Routine at E3CC
+;
+; Used by the routines at #R$DA53 and #R$E398.
+c$E3CC LD ($E3C9),A  ;
+ $E3CF LD A,B        ;
+ $E3D0 LD ($E413),A  ;
+ $E3D3 LD ($E3CA),HL ;
+ $E3D6 LD HL,($E3CA) ;
+ $E3D9 LD ($E395),HL ;
+ $E3DC XOR A         ;
+ $E3DD LD ($E394),A  ;
+ $E3E0 CALL $E36B    ;
+ $E3E3 CALL $D421    ;
+ $E3E6 LD B,$3A      ;
+ $E3E8 RET           ;
 
-; Data block at E418
-b$E418 DEFB $94,$E3,$7A,$2A,$95,$E3,$77,$23
- $E420 DEFB $22,$95,$E3,$CD,$25,$D4,$18,$C5
- $E428 DEFB $3A,$94,$E3,$A7,$28,$BF,$3D,$32
- $E430 DEFB $94,$E3,$2A,$95,$E3,$2B,$22,$95
- $E438 DEFB $E3,$CD,$D5,$E2,$06,$06,$76,$10
- $E440 DEFB $FD,$CD,$05,$E2,$18,$A7,$2A,$95
- $E448 DEFB $E3,$36,$00,$CD,$A9,$E2,$CD,$5A
- $E450 DEFB $E3,$3A,$0D,$FC,$FE,$0D,$28,$F9
- $E458 DEFB $C3,$05,$E2,$CD,$60,$DF,$CD,$6B
- $E460 DEFB $E3,$3E,$03,$CD,$F8,$E2,$CD,$A9
- $E468 DEFB $E2,$CD,$07,$E1,$C3,$E8,$E1
+; Routine at E3E9
+c$E3E9 EX (SP),HL    ;
+ $E3EA CALL $D45F    ;
+*$E3ED CALL $E1F7    ;
+ $E3F0 LD ($E397),A  ;
+ $E3F3 CP $0D        ;
+ $E3F5 JR Z,$E446    ;
+ $E3F7 CP $FE        ;
+ $E3F9 JR Z,$E428    ;
+ $E3FB LD A,($E397)  ;
+ $E3FE CP $30        ;
+ $E400 JR C,$E3ED    ;
+ $E402 CP $5B        ;
+ $E404 JR NC,$E3ED   ;
+ $E406 CP $3A        ;
+ $E408 JR C,$E40E    ;
+ $E40A CP $40        ;
+ $E40C JR C,$E3ED    ;
+*$E40E LD D,A        ;
+ $E40F LD A,($E394)  ;
+ $E412 CP $0A        ;
+ $E414 JR NC,$E446   ;
+ $E416 INC A         ;
+ $E417 LD ($E394),A  ;
+ $E41A LD A,D        ;
+ $E41B LD HL,($E395) ;
+ $E41E LD (HL),A     ;
+ $E41F INC HL        ;
+ $E420 LD ($E395),HL ;
+ $E423 CALL $D425    ;
+ $E426 JR $E3ED      ;
+*$E428 LD A,($E394)  ;
+ $E42B AND A         ;
+ $E42C JR Z,$E3ED    ;
+ $E42E DEC A         ;
+ $E42F LD ($E394),A  ;
+ $E432 LD HL,($E395) ;
+ $E435 DEC HL        ;
+ $E436 LD ($E395),HL ;
+ $E439 CALL $E2D5    ;
+ $E43C LD B,$06      ;
+*$E43E HALT          ;
+ $E43F DJNZ $E43E    ;
+ $E441 CALL $E205    ;
+ $E444 JR $E3ED      ;
+*$E446 LD HL,($E395) ;
+ $E449 LD (HL),$00   ;
+ $E44B CALL $E2A9    ;
+ $E44E CALL $E35A    ;
+*$E451 LD A,($FC0D)  ;
+ $E454 CP $0D        ;
+ $E456 JR Z,$E451    ;
+ $E458 JP $E205      ;
+; This entry point is used by the routine at #R$D018.
+*$E45B CALL $DF60    ;
+; This entry point is used by the routine at #R$E398.
+*$E45E CALL $E36B    ;
+ $E461 LD A,$03      ;
+ $E463 CALL $E2F8    ;
+ $E466 CALL $E2A9    ;
+ $E469 CALL $E107    ;
+ $E46C JP $E1E8      ;
 
 ; Routine at E46F
 ;
@@ -17428,21 +17631,55 @@ c$E46F LD A,($E52B)  ;
  $E4CE LD ($D052),A  ;
 *$E4D1 JP $E52E      ;
 
-; Data block at E4D4
+; Routine at E4D4
 ;
 ; Used by the routine at #R$D018.
-b$E4D4 DEFB $CD,$6F,$E4,$3A,$BC,$D0,$3D,$3D
- $E4DC DEFB $FE,$FE,$38,$01,$AF,$32,$BC,$D0
- $E4E4 DEFB $18,$20,$CD,$6F,$E4,$3A,$BC,$D0
- $E4EC DEFB $3C,$3C,$FE,$02,$30,$02,$3E,$FF
- $E4F4 DEFB $32,$BC,$D0,$18,$0D,$CD,$6F,$E4
- $E4FC DEFB $3A,$BB,$D0,$3D,$20,$01,$3C,$32
- $E504 DEFB $BB,$D0,$C3,$6F,$E4,$CD,$6F,$E4
- $E50C DEFB $3A,$BB,$D0,$3C,$FE,$FF,$20,$01
- $E514 DEFB $3D,$32,$BB,$D0,$18,$EC,$CD,$6F
- $E51C DEFB $E4,$3A,$99,$D0,$32,$BB,$D0,$3A
- $E524 DEFB $97,$D0,$32,$BC,$D0,$18,$DB,$00
- $E52C DEFB $00,$00
+c$E4D4 CALL $E46F    ;
+ $E4D7 LD A,($D0BC)  ;
+ $E4DA DEC A         ;
+ $E4DB DEC A         ;
+ $E4DC CP $FE        ;
+ $E4DE JR C,$E4E1    ;
+ $E4E0 XOR A         ;
+*$E4E1 LD ($D0BC),A  ;
+ $E4E4 JR $E506      ;
+; This entry point is used by the routine at #R$D018.
+*$E4E6 CALL $E46F    ;
+ $E4E9 LD A,($D0BC)  ;
+ $E4EC INC A         ;
+ $E4ED INC A         ;
+ $E4EE CP $02        ;
+ $E4F0 JR NC,$E4F4   ;
+ $E4F2 LD A,$FF      ;
+*$E4F4 LD ($D0BC),A  ;
+ $E4F7 JR $E506      ;
+; This entry point is used by the routine at #R$D018.
+*$E4F9 CALL $E46F    ;
+ $E4FC LD A,($D0BB)  ;
+ $E4FF DEC A         ;
+ $E500 JR NZ,$E503   ;
+ $E502 INC A         ;
+*$E503 LD ($D0BB),A  ;
+*$E506 JP $E46F      ;
+; This entry point is used by the routine at #R$D018.
+*$E509 CALL $E46F    ;
+ $E50C LD A,($D0BB)  ;
+ $E50F INC A         ;
+ $E510 CP $FF        ;
+ $E512 JR NZ,$E515   ;
+ $E514 DEC A         ;
+*$E515 LD ($D0BB),A  ;
+ $E518 JR $E506      ;
+; This entry point is used by the routine at #R$D018.
+*$E51A CALL $E46F    ;
+ $E51D LD A,($D099)  ;
+ $E520 LD ($D0BB),A  ;
+ $E523 LD A,($D097)  ;
+ $E526 LD ($D0BC),A  ;
+ $E529 JR $E506      ;
+
+; Data block at E52B
+b$E52B DEFB $00,$00,$00
 
 ; Routine at E52E
 ;
@@ -17722,31 +17959,45 @@ c$E6A3 LD A,L        ;
  $E6AC RET           ;
 
 ; Data block at E6AD
-b$E6AD DEFB $00,$3A,$B0,$D0,$CB
+b$E6AD DEFB $00
 
-; Message at E6B2
-t$E6B2 DEFM "o =:"
+; Routine at E6AE
+;
+; Used by the routine at #R$D000.
+c$E6AE LD A,($D0B0)  ;
+ $E6B1 BIT 5,A       ;
+ $E6B3 JR NZ,$E6F2   ;
+ $E6B5 LD A,($D081)  ;
+ $E6B8 AND A         ;
+ $E6B9 JR Z,$E707    ;
+ $E6BB LD DE,$5B17   ;
+ $E6BE LD HL,$0201   ;
+ $E6C1 CALL $D162    ;
+ $E6C4 LD A,$B6      ;
+ $E6C6 LD ($D051),A  ;
+ $E6C9 LD A,$76      ;
+ $E6CB LD ($D052),A  ;
+ $E6CE LD A,$3D      ;
+ $E6D0 LD ($D053),A  ;
+ $E6D3 CALL $7119    ;
+ $E6D6 CALL $E1F7    ;
+ $E6D9 CP $59        ;
+ $E6DB JR NZ,$E6F2   ;
+ $E6DD LD ($D084),A  ;
+ $E6E0 XOR A         ;
+ $E6E1 LD ($D07C),A  ;
+ $E6E4 LD HL,$D06B   ;
+ $E6E7 LD B,$11      ;
+*$E6E9 LD (HL),A     ;
+ $E6EA INC HL        ;
+ $E6EB DJNZ $E6E9    ;
+ $E6ED LD HL,$D0B0   ;
+ $E6F0 SET 5,(HL)    ;
+*$E6F2 CALL $E35E    ;
+ $E6F5 JP $F0B8      ;
 
-; Data block at E6B6
-b$E6B6 DEFB $81,$D0,$A7,$28,$4C,$11,$17,$5B
- $E6BE DEFB $21,$01,$02,$CD,$62,$D1,$3E,$B6
- $E6C6 DEFB $32,$51,$D0
-
-; Message at E6C9
-t$E6C9 DEFM ">v2R"
-
-; Data block at E6CD
-b$E6CD DEFB $D0
-
-; Message at E6CE
-t$E6CE DEFM ">=2S"
-
-; Data block at E6D2
-b$E6D2 DEFB $D0,$CD,$19,$71,$CD,$F7,$E1,$FE
- $E6DA DEFB $59,$20,$15,$32,$84,$D0,$AF,$32
- $E6E2 DEFB $7C,$D0,$21,$6B,$D0,$06,$11,$77
- $E6EA DEFB $23,$10,$FC,$21,$B0,$D0,$CB,$EE
- $E6F2 DEFB $CD,$5E,$E3,$C3,$B8,$F0,$F1,$F0
+; Data block at E6F8
+b$E6F8 DEFB $F1,$F0
 
 ; Routine at E6FA
 ;
@@ -17761,20 +18012,52 @@ c$E6FA LD HL,$E1D2   ;
  $E705 LD (HL),A     ;
  $E706 RET           ;
 
-; Data block at E707
-b$E707 DEFB $CD,$FA,$E6,$CD,$1D,$D6,$CD,$BC
- $E70F DEFB $E2,$10,$3E,$FF,$CD,$A6,$E2,$11
- $E717 DEFB $F8,$E6,$CD,$68,$D5,$CD,$4F,$D5
- $E71F DEFB $CD,$62,$E9,$21,$9D,$D0,$22,$E4
- $E727 DEFB $E1,$2A,$E0,$E1,$23,$22,$E0,$E1
- $E72F DEFB $CD,$12,$E2,$38,$1E,$CD,$64,$E3
- $E737 DEFB $CD,$7E,$E8,$21,$DB,$E7,$CD,$76
- $E73F DEFB $E7,$30,$0A,$FE,$01,$28,$F1,$FE
- $E747 DEFB $02,$28,$05,$18,$0F,$CD,$CF,$E7
- $E74F DEFB $CD,$8D,$E3,$21,$DF,$E1,$34,$7E
- $E757 DEFB $FE,$11,$38,$CD,$C3,$B8,$F0,$21
- $E75F DEFB $00,$58,$CD,$67,$E7,$CD,$67,$E7
- $E767 DEFB $06,$00,$77,$23,$10,$FC,$C9
+; Routine at E707
+;
+; Used by the routine at #R$E6AE.
+c$E707 CALL $E6FA    ;
+ $E70A CALL $D61D    ;
+ $E70D CALL $E2BC    ;
+ $E710 DJNZ $E750    ;
+ $E712 RST $38       ;
+ $E713 CALL $E2A6    ;
+ $E716 LD DE,$E6F8   ;
+ $E719 CALL $D568    ;
+ $E71C CALL $D54F    ;
+ $E71F CALL $E962    ;
+ $E722 LD HL,$D09D   ;
+ $E725 LD ($E1E4),HL ;
+*$E728 LD HL,($E1E0) ;
+ $E72B INC HL        ;
+ $E72C LD ($E1E0),HL ;
+ $E72F CALL $E212    ;
+ $E732 JR C,$E752    ;
+ $E734 CALL $E364    ;
+*$E737 CALL $E87E    ;
+ $E73A LD HL,$E7DB   ;
+ $E73D CALL $E776    ;
+ $E740 JR NC,$E74C   ;
+ $E742 CP $01        ;
+ $E744 JR Z,$E737    ;
+ $E746 CP $02        ;
+ $E748 JR Z,$E74F    ;
+ $E74A JR $E75B      ;
+*$E74C CALL $E7CF    ;
+*$E74F CALL $E38D    ;
+*$E752 LD HL,$E1DF   ;
+ $E755 INC (HL)      ;
+ $E756 LD A,(HL)     ;
+ $E757 CP $11        ;
+ $E759 JR C,$E728    ;
+*$E75B JP $F0B8      ;
+ $E75E LD HL,$5800   ;
+ $E761 CALL $E767    ;
+ $E764 CALL $E767    ;
+*$E767 LD B,$00      ;
+*$E769 LD (HL),A     ;
+ $E76A INC HL        ;
+ $E76B DJNZ $E769    ;
+ $E76D RET           ;
 
 ; Routine at E76E
 ;
@@ -17845,23 +18128,59 @@ c$E7CF CALL $E2BC    ;
 ; Used by the routine at #R$E776.
 c$E7DA JP (HL)       ;
 
-; Data block at E7DB
-b$E7DB DEFB $CD,$3C,$E8,$3A,$AB,$E8,$47,$2A
- $E7E3 DEFB $E4,$E1,$7E,$90
+; Routine at E7DB
+c$E7DB CALL $E83C    ;
+ $E7DE LD A,($E8AB)  ;
+ $E7E1 LD B,A        ;
+ $E7E2 LD HL,($E1E4) ;
+ $E7E5 LD A,(HL)     ;
+ $E7E6 SUB B         ;
+ $E7E7 JR C,$E818    ;
+ $E7E9 LD (HL),A     ;
+*$E7EA LD HL,($E1E2) ;
+ $E7ED LD E,(HL)     ;
+ $E7EE INC HL        ;
+ $E7EF LD D,(HL)     ;
+ $E7F0 CALL $D3FD    ;
+ $E7F3 JR C,$E81C    ;
+ $E7F5 DJNZ $E7EA    ;
+ $E7F7 CALL $E34C    ;
+ $E7FA LD A,($E8AB)  ;
+ $E7FD LD B,A        ;
+ $E7FE JR NC,$E808   ;
+ $E800 LD HL,$D07C   ;
+ $E803 LD A,(HL)     ;
+ $E804 SUB B         ;
+ $E805 JR C,$E820    ;
+ $E807 LD (HL),A     ;
+*$E808 LD HL,($E1E0) ;
+ $E80B LD A,(HL)     ;
+ $E80C ADD A,B       ;
+ $E80D JR C,$E820    ;
+ $E80F LD (HL),A     ;
+ $E810 LD A,($E1DF)  ;
+ $E813 CALL $D1AD    ;
+ $E816 AND A         ;
+ $E817 RET           ;
 
-; Message at E7E7
-t$E7E7 DEFM "8/w*"
-
-; Data block at E7EB
-b$E7EB DEFB $E2,$E1,$5E,$23,$56,$CD,$FD,$D3
- $E7F3 DEFB $38,$27,$10,$F3,$CD,$4C,$E3,$3A
- $E7FB DEFB $AB,$E8,$47,$30,$08,$21,$7C,$D0
- $E803 DEFB $7E,$90,$38,$19,$77,$2A,$E0,$E1
- $E80B DEFB $7E,$80,$38,$11,$77,$3A,$DF,$E1
- $E813 DEFB $CD,$AD,$D1,$A7,$C9,$3E,$B0,$18
- $E81B DEFB $06,$3E,$C5,$18,$02,$3E,$CE,$F5
- $E823 DEFB $CD,$BC,$E2,$03,$F1,$CD,$25,$D4
- $E82B DEFB $CD,$21,$D4,$3F,$CD,$5D,$E8
+; Routine at E818
+;
+; Used by the routines at #R$E7DB and #R$E935.
+c$E818 LD A,$B0      ;
+ $E81A JR $E822      ;
+; This entry point is used by the routines at #R$E7DB and #R$E973.
+*$E81C LD A,$C5      ;
+ $E81E JR $E822      ;
+; This entry point is used by the routine at #R$E7DB.
+*$E820 LD A,$CE      ;
+*$E822 PUSH AF       ;
+ $E823 CALL $E2BC    ;
+ $E826 INC BC        ;
+ $E827 POP AF        ;
+ $E828 CALL $D425    ;
+ $E82B CALL $D421    ;
+ $E82E CCF           ;
+ $E82F CALL $E85D    ;
 
 ; Routine at E832
 ;
@@ -17952,6 +18271,7 @@ c$E8AE LD A,($D081)  ;
  $E8D5 JP $F0B8      ;
 
 ; Data block at E8D8
+@label=byte_at_E8D8
 b$E8D8 DEFB $F0
 
 ; Routine at E8D9
@@ -18003,13 +18323,32 @@ c$E8EA CALL $E8D9    ;
  $E930 JR Z,$E917    ;
 *$E932 JP $F0B8      ;
 
-; Data block at E935
-b$E935 DEFB $CD,$3C,$E8,$3A,$AB,$E8,$47,$2A
- $E93D DEFB $E0,$E1,$7E,$90,$DA,$18,$E8,$77
- $E945 DEFB $C5,$CD,$4C,$E3,$C1,$30,$07,$3A
- $E94D DEFB $7C,$D0,$80,$32,$7C,$D0,$C5,$2A
- $E955 DEFB $E2,$E1,$5E,$23,$56,$CD,$D3,$D3
- $E95D DEFB $C1,$10,$F3,$A7,$C9
+; Routine at E935
+c$E935 CALL $E83C    ;
+ $E938 LD A,($E8AB)  ;
+ $E93B LD B,A        ;
+ $E93C LD HL,($E1E0) ;
+ $E93F LD A,(HL)     ;
+ $E940 SUB B         ;
+ $E941 JP C,$E818    ;
+ $E944 LD (HL),A     ;
+ $E945 PUSH BC       ;
+ $E946 CALL $E34C    ;
+ $E949 POP BC        ;
+ $E94A JR NC,$E953   ;
+ $E94C LD A,($D07C)  ;
+ $E94F ADD A,B       ;
+ $E950 LD ($D07C),A  ;
+*$E953 PUSH BC       ;
+ $E954 LD HL,($E1E2) ;
+ $E957 LD E,(HL)     ;
+ $E958 INC HL        ;
+ $E959 LD D,(HL)     ;
+ $E95A CALL $D3D3    ;
+ $E95D POP BC        ;
+ $E95E DJNZ $E953    ;
+ $E960 AND A         ;
+ $E961 RET           ;
 
 ; Routine at E962
 ;
@@ -18286,8 +18625,9 @@ c$EB47 LD A,$68      ;
 ; This entry point is used by the routine at #R$E973.
 *$EB5B JP $EF87      ;
 
-; Unused
-s$EB5E DEFS $05
+; Data block at EB5E
+@label=data_at_EB5E
+b$EB5E DEFB $00,$00,$00,$00,$00
 
 ; Routine at EB63
 ;
@@ -18375,8 +18715,13 @@ c$EBEE DI            ;
  $EC0F EI            ;
  $EC10 RET           ;
 
-; Unused
-s$EC11 DEFS $03
+; Data block at EC11
+@label=byte_at_EC11
+b$EC11 DEFB $00
+
+; Data block at EC12
+@label=word_at_EC12
+w$EC12 DEFW $0000
 
 ; Routine at EC14
 ;
@@ -18416,6 +18761,7 @@ c$EC3D LD A,$FF      ;
  $EC3F RET           ;
 
 ; Unused
+@label=data_at_EC40
 s$EC40 DEFS $18
 
 ; Routine at EC58
@@ -18573,7 +18919,11 @@ c$ED27 CALL $ECFD    ;
  $ED72 JP $DFC4      ;
 
 ; Unused
-s$ED75 DEFS $03
+s$ED75 DEFS $02
+
+; Data block at ED77
+@label=byte_at_ED77
+b$ED77 DEFB $00
 
 ; Routine at ED78
 c$ED78 CALL $ECFD    ;
@@ -18853,8 +19203,9 @@ c$EF48 CALL $E6FA    ;
  $EF83 JR C,$EF79    ;
  $EF85 RET           ;
 
-; Unused
-s$EF86 DEFS $01
+; Data block at EF86
+@label=byte_at_EF86
+b$EF86 DEFB $00
 
 ; Routine at EF87
 ;
@@ -20609,17 +20960,15 @@ b$FCEA DEFB $FE,$FE,$FE,$FE,$FE,$FE,$FE,$FE
  $FD22 DEFB $FE,$FE,$FE,$FE,$FE,$FE,$FE,$FE
  $FD2A DEFB $FE,$FE,$FE,$FE,$FE,$FE,$FE,$FE
  $FD32 DEFB $FE,$FE,$FE,$FE,$FE,$FE,$FE,$FE
- $FD3A DEFB $FE,$FE,$FE,$FE,$FE,$FE,$FE,$20
- $FD42 DEFB $0D
+ $FD3A DEFB $FE,$FE,$FE,$FE,$FE,$FE,$FE
 
-; Message at FD43
-t$FD43 DEFM "P01QA"
-
-; Data block at FD48
-b$FD48 DEFB $00,$01
-
-; Message at FD4A
-t$FD4A DEFM "LO92WSZMKI83EDXNJU74RFCBHY65TGV"
+; Data block at FD41
+@label=data_at_FD41
+b$FD41 DEFB $20,$0D,$50,$30,$31,$51,$41,$00
+ $FD49 DEFB $01,$4C,$4F,$39,$32,$57,$53,$5A
+ $FD51 DEFB $4D,$4B,$49,$38,$33,$45,$44,$58
+ $FD59 DEFB $4E,$4A,$55,$37,$34,$52,$46,$43
+ $FD61 DEFB $42,$48,$59,$36,$35,$54,$47,$56
 
 ; Routine at FD69
 ;
@@ -20643,26 +20992,19 @@ c$FD69 XOR A         ;
  $FD87 JP $FC10      ;
 
 ; Data block at FD8A
-b$FD8A DEFB $05,$06,$0D,$0E,$CB,$71,$89
+b$FD8A DEFB $05,$06,$0D,$0E
 
-; Message at FD91
-t$FD91 DEFM "!!a2Hz! "
-
-; Data block at FD99
-b$FD99 DEFB $40,$40
+; Data block at FD8E
+b$FD8E DEFB $CB,$71,$89,$21,$21,$61,$32,$48
+ $FD96 DEFB $7A,$21,$20,$40,$40
 
 ; Message at FD9B
 t$FD9B DEFM "ABOUSEITILETSTONLONUTHNOALLEXEGEZACEBISOUSESARMAINDIREA?ERATENBER"
  $FDDC DEFM "ALAVETIEDORQUANTEISRION"
 
 ; Data block at FDF3
-b$FDF3 DEFB $B2
-
-; Message at FDF4
-t$FDF4 DEFM "B:RRT"
-
-; Data block at FDF9
-b$FDF9 DEFB $92,$70,$DA,$F1,$F0,$FE,$FE,$FE
+b$FDF3 DEFB $B2,$42,$3A,$52,$52,$54,$92,$70
+ $FDFB DEFB $DA,$F1,$F0,$FE,$FE,$FE
 
 ; Routine at FE01
 ;
@@ -20797,8 +21139,17 @@ c$FF00 BIT 5,B       ;
  $FF04 ADD HL,DE     ;
  $FF05 JP $FF16      ;
 
-; Unused
-s$FF08 DEFS $06
+; Data block at FF08
+@label=word_at_FF08
+w$FF08 DEFW $0000
+
+; Data block at FF0A
+@label=word_at_FF0A
+w$FF0A DEFW $0000
+
+; Data block at FF0C
+@label=word_at_FF0C
+w$FF0C DEFW $0000
 
 ; Routine at FF0E
 ;
@@ -20845,32 +21196,38 @@ c$FF25 DI            ;
  $FF4A EI            ;
  $FF4B RET           ;
 
-; Data block at FF4C
-b$FF4C DEFB $3E,$FD,$ED,$47,$ED,$5E,$C9,$ED
- $FF54 DEFB $56,$C9,$00,$00,$01,$10,$00,$01
- $FF5C DEFB $00,$08,$00,$40,$02,$01,$03,$40
- $FF64 DEFB $03,$01,$02,$80,$01,$20,$00,$02
- $FF6C DEFB $00,$10,$07,$01,$02,$02,$03,$20
- $FF74 DEFB $01,$08,$00,$00,$01,$02,$00,$04
- $FF7C DEFB $00,$20,$07,$04,$02,$04,$03,$10
- $FF84 DEFB $04,$20,$01,$04,$01,$01,$02,$40
- $FF8C DEFB $03,$08,$07,$10,$02,$08,$04,$40
- $FF94 DEFB $03,$04,$03,$80,$04,$10,$02,$10
- $FF9C DEFB $00,$80,$07,$08,$07,$02,$03,$02
- $FFA4 DEFB $02,$20,$3C,$00,$07,$F3,$31,$FF
- $FFAC DEFB $FF,$ED,$5F,$F6,$80,$ED
+; Routine at FF4C
+@label=stack
+c$FF4C LD A,$FD      ;
+ $FF4E LD I,A        ;
+ $FF50 IM 2          ;
+ $FF52 RET           ;
+ $FF53 IM 1          ;
+ $FF55 RET           ;
 
-; Message at FFB2
-t$FFB2 DEFM "O7>"
+; Data block at FF56
+@label=sp_tmp
+w$FF56 DEFW $0000
 
-; Data block at FFB5
-b$FFB5 DEFB $FF,$DD,$21,$00,$40,$11,$A9,$BF
- $FFBD DEFB $CD,$56,$05,$F3,$EE,$DC,$20,$E4
- $FFC5 DEFB $3E,$18,$32,$2E,$C2,$FB,$C3,$79
- $FFCD DEFB $D0,$3C,$00,$00,$7C,$42,$42,$7C
- $FFD5 DEFB $40,$40,$00,$00,$3C,$42,$42,$52
- $FFDD DEFB $4A,$3C,$00,$00,$7C,$42,$42,$7C
- $FFE5 DEFB $44,$42,$00,$00,$3C,$40,$3C,$02
- $FFED DEFB $42,$3C,$00,$00,$FE,$10,$10,$10
- $FFF5 DEFB $10,$10,$E6,$05,$CD,$05,$82,$DC
- $FFFD DEFB $C0,$FF,$00
+; Data block at FF58
+b$FF58 DEFB $01,$10,$00,$01,$00,$08,$00,$40
+ $FF60 DEFB $02,$01,$03,$40,$03,$01,$02,$80
+ $FF68 DEFB $01,$20,$00,$02,$00,$10,$07,$01
+ $FF70 DEFB $02,$02,$03,$20,$01,$08,$00,$00
+ $FF78 DEFB $01,$02,$00,$04,$00,$20,$07,$04
+ $FF80 DEFB $02,$04,$03,$10,$04,$20,$01,$04
+ $FF88 DEFB $01,$01,$02,$40,$03,$08,$07,$10
+ $FF90 DEFB $02,$08,$04,$40,$03,$04,$03,$80
+ $FF98 DEFB $04,$10,$02,$10,$00,$80,$07,$08
+ $FFA0 DEFB $07,$02,$03,$02,$02,$20,$3C,$00
+ $FFA8 DEFB $07,$F3,$31,$FF,$FF,$ED,$5F,$F6
+ $FFB0 DEFB $80,$ED,$4F,$37,$3E,$FF,$DD,$21
+ $FFB8 DEFB $00,$40,$11,$A9,$BF,$CD,$56,$05
+ $FFC0 DEFB $F3,$EE,$DC,$20,$E4,$3E,$18,$32
+ $FFC8 DEFB $2E,$C2,$FB,$C3,$79,$D0,$3C,$00
+ $FFD0 DEFB $00,$7C,$42,$42,$7C,$40,$40,$00
+ $FFD8 DEFB $00,$3C,$42,$42,$52,$4A,$3C,$00
+ $FFE0 DEFB $00,$7C,$42,$42,$7C,$44,$42,$00
+ $FFE8 DEFB $00,$3C,$40,$3C,$02,$42,$3C,$00
+ $FFF0 DEFB $00,$FE,$10,$10,$10,$10,$10,$E6
+ $FFF8 DEFB $05,$CD,$05,$82,$DC,$C0,$FF,$00
