@@ -6216,6 +6216,7 @@ c$8E29 LD B,$0C      ;
  $8E8C RET           ;
 
 ; Data block at 8E8D
+@label=data_at_8E8D
 b$8E8D DEFB $60,$60,$80,$80,$80,$80,$80,$7F
  $8E95 DEFB $1F,$00,$00,$00,$00,$00,$80,$00
  $8E9D DEFB $FF,$00,$00,$28,$FF,$00,$00,$58
@@ -6968,11 +6969,21 @@ c$9337 LD A,($93D2)  ;
  $933E JR Z,$9369    ;
  $9340 RET           ;
 
-; Data block at 9341
-b$9341 DEFB $AF,$32,$40,$D0,$32,$3F,$D0,$3E
- $9349 DEFB $10,$47,$21,$D3,$93,$7E,$D6,$BE
- $9351 DEFB $77,$23,$10,$F9,$CD,$80,$80,$CD
- $9359 DEFB $BE,$7F,$C3,$C0,$93
+; Routine at 9341
+c$9341 XOR A         ;
+ $9342 LD ($D040),A  ;
+ $9345 LD ($D03F),A  ;
+ $9348 LD A,$10      ;
+ $934A LD B,A        ;
+ $934B LD HL,$93D3   ;
+*$934E LD A,(HL)     ;
+ $934F SUB $BE       ;
+ $9351 LD (HL),A     ;
+ $9352 INC HL        ;
+ $9353 DJNZ $934E    ;
+ $9355 CALL $8080    ;
+ $9358 CALL $7FBE    ;
+ $935B JP $93C0      ;
 
 ; Routine at 935E
 ;
@@ -7041,22 +7052,23 @@ c$93AC LD C,$FE      ;
  $93BD RET NC        ;
  $93BE JR $93AE      ;
 
-; Data block at 93C0
-b$93C0 DEFB $3A,$81,$D0,$A7,$2E,$07,$CC,$F8
- $93C8 DEFB $6F,$AF,$32,$83,$75,$C3,$32,$95
- $93D0 DEFB $08,$00,$00,$1E,$21,$23
+; Routine at 93C0
+;
+; Used by the routine at #R$9341.
+c$93C0 LD A,($D081)  ;
+ $93C3 AND A         ;
+ $93C4 LD L,$07      ;
+ $93C6 CALL Z,$6FF8  ;
+ $93C9 XOR A         ;
+ $93CA LD ($7583),A  ;
+ $93CD JP $9532      ;
 
-; Message at 93D6
-t$93D6 DEFM "&(+-0257:<?AD"
-
-; Data block at 93E3
-b$93E3 DEFB $10,$10,$10,$18
-
-; Message at 93E7
-t$93E7 DEFM " (08"
-
-; Unused
-s$93EB DEFS $02
+; Data block at 93D0
+@label=data_at_93d0
+b$93D0 DEFB $08,$00,$00,$1E,$21,$23,$26,$28
+ $93D8 DEFB $2B,$2D,$30,$32,$35,$37,$3A,$3C
+ $93E0 DEFB $3F,$41,$44,$10,$10,$10,$18,$20
+ $93E8 DEFB $28,$30,$38,$00,$00
 
 ; Routine at 93ED
 ;
@@ -7195,8 +7207,9 @@ c$9509 LD IX,$6048    ;
  $951F DJNZ $951A     ;
  $9521 RET            ;
 
-; Unused
-s$9522 DEFS $05
+; Data block at 9522
+@label=data_at_9522
+b$9522 DEFS $05
 
 ; Routine at 9527
 ;
@@ -7208,6 +7221,8 @@ c$9527 LD A,($FC0E)  ;
  $9530 JR $9551      ;
 
 ; Routine at 9532
+;
+; Used by the routine at #R$93C0.
 c$9532 LD A,($FC0E)  ;
  $9535 BIT 7,A       ;
  $9537 RET Z         ;
@@ -7237,16 +7252,16 @@ c$9551 LD A,($9522)  ;
  $955F EI            ;
  $9560 RET           ;
 
-; Data block at 9561
-b$9561 DEFB $C3,$78,$96,$C3,$74,$96,$C3,$92
- $9569 DEFB $96,$C3,$5E,$96
-
-; Routine at 956D
-c$956D JP $9641      ;
-
-; Data block at 9570
-b$9570 DEFB $C3,$48,$96,$C3,$57,$96,$C3,$57
- $9578 DEFB $96
+; Routine at 9561
+@label=jump_table
+c$9561 JP $9678      ;
+ $9564 JP $9674      ;
+ $9567 JP $9692      ;
+ $956A JP $965E      ;
+ $956D JP $9641      ;
+ $9570 JP $9648      ;
+ $9573 JP $9657      ;
+ $9576 JP $9657      ;
 
 ; Routine at 9579
 ;
@@ -7313,7 +7328,8 @@ c$9579 LD A,($FC0E)  ;
  $95E6 RET           ;
 *$95E7 LD HL,($9525) ;
  $95EA LD DE,($9523) ;
- $95EE LD C,$64      ;
+; This entry point is used by the routine at #R$9657.
+*$95EE LD C,$64      ;
 *$95F0 LD A,(HL)     ;
  $95F1 INC L         ;
  $95F2 SRL A         ;
@@ -7381,6 +7397,8 @@ c$9641 LD A,$FD      ;
  $9646 JR $964D      ;
 
 ; Data block at 9648
+;
+; Used by the routine at #R$9561.
 b$9648 DEFB $3E,$D3,$11,$00,$08
 
 ; Routine at 964D
@@ -7391,13 +7409,32 @@ c$964D LD ($962B),A  ;
  $9652 LD ($9522),A  ;
  $9655 JR $9628      ;
 
-; Data block at 9657
-b$9657 DEFB $3E,$1A,$21,$C6,$10,$18,$05,$3E
- $965F DEFB $03,$21,$CB,$3F,$11,$00,$01,$22
- $9667 DEFB $F2,$95,$67,$2E,$1A,$3E,$02,$32
- $966F DEFB $22,$95,$C3,$EE,$95,$0E,$E4,$18
- $9677 DEFB $02,$0E,$FE,$3E,$03,$32,$22,$95
- $967F DEFB $06,$40,$11,$08,$40
+; Routine at 9657
+;
+; Used by the routine at #R$9561.
+c$9657 LD A,$1A      ;
+ $9659 LD HL,$10C6   ;
+ $965C JR $9663      ;
+; This entry point is used by the routine at #R$9561.
+*$965E LD A,$03      ;
+ $9660 LD HL,$3FCB   ;
+*$9663 LD DE,$0100   ;
+ $9666 LD ($95F2),HL ;
+ $9669 LD H,A        ;
+ $966A LD L,$1A      ;
+ $966C LD A,$02      ;
+ $966E LD ($9522),A  ;
+ $9671 JP $95EE      ;
+; This entry point is used by the routine at #R$9561.
+*$9674 LD C,$E4      ;
+ $9676 JR $967A      ;
+; This entry point is used by the routine at #R$9561.
+*$9678 LD C,$FE      ;
+*$967A LD A,$03      ;
+ $967C LD ($9522),A  ;
+; This entry point is used by the routine at #R$9692.
+*$967F LD B,$40      ;
+ $9681 LD DE,$4008   ;
 
 ; Routine at 9684
 ;
@@ -7409,9 +7446,13 @@ c$9684 LD HL,$0127   ;
  $968C LD ($95AE),A  ;
  $968F JP $95AD      ;
 
-; Data block at 9692
-b$9692 DEFB $3E,$83,$32,$22,$95,$0E,$02,$18
- $969A DEFB $E4
+; Routine at 9692
+;
+; Used by the routine at #R$9561.
+c$9692 LD A,$83      ;
+ $9694 LD ($9522),A  ;
+ $9697 LD C,$02      ;
+ $9699 JR $967F      ;
 
 ; Routine at 969B
 ;
@@ -7423,13 +7464,23 @@ c$969B LD A,$03      ;
  $96A4 LD DE,$4020   ;
  $96A7 JR $9684      ;
 
-; Data block at 96A9
+; Routine at 96A9
 ;
 ; Used by the routine at #R$9532.
-b$96A9 DEFB $01,$F0,$C0,$11,$0C,$C0,$F3,$3E
- $96B1 DEFB $03,$32,$22,$95,$18,$CD,$01,$10
- $96B9 DEFB $C0,$11,$0A,$10,$18,$F0,$00,$00
- $96C1 DEFB $00,$00,$00,$00
+c$96A9 LD BC,$C0F0   ;
+ $96AC LD DE,$C00C   ;
+*$96AF DI            ;
+ $96B0 LD A,$03      ;
+ $96B2 LD ($9522),A  ;
+ $96B5 JR $9684      ;
+; This entry point is used by the routine at #R$9532.
+*$96B7 LD BC,$C010   ;
+ $96BA LD DE,$100A   ;
+ $96BD JR $96AF      ;
+
+; Data block at 96BF
+@label=data at 96BF
+b$96BF DEFB $00,$00,$00,$00,$00,$00
 
 ; Routine at 96C5
 ;
@@ -7881,8 +7932,9 @@ c$9946 CALL $9B74    ;
  $99A0 DJNZ $9997    ;
  $99A2 RET           ;
 
-; Unused
-s$99A3 DEFS $01
+; Data block at 99A3
+@data_at_99a3
+b$99A3 DEFB $00
 
 ; Routine at 99A4
 ;
@@ -8064,8 +8116,9 @@ c$9AA7 LD C,A        ;
  $9AD6 RET C         ;
  $9AD7 JP $D0F3      ;
 
-; Unused
-s$9ADA DEFS $01
+; Data block at 9ADA
+@label=data_at_9ADA
+b$9ADA DEFB $00
 
 ; Routine at 9ADB
 ;
@@ -8147,11 +8200,9 @@ c$9B57 CALL $9B5A    ;
  $9B60 INC DE        ;
  $9B61 RET           ;
 
-; Message at 9B62
-t$9B62 DEFM "&$;<=>  "
-
-; Data block at 9B6A
-b$9B6A DEFB $40,$40,$5B,$5C,$5D,$5E,$20,$5F
+; Data block at 9B62
+b$9B62 DEFB $26,$24,$3B,$3C,$3D,$3E,$20,$20
+ $9B6A DEFB $40,$40,$5B,$5C,$5D,$5E,$20,$5F
  $9B72 DEFB $40,$2B
 
 ; Routine at 9B74
@@ -8249,8 +8300,9 @@ c$9BA7 LD A,($D083)  ;
  $9C17 DEC (HL)      ;
  $9C18 JP $9B74      ;
 
-; Unused
-s$9C1B DEFS $01
+; Data block at 9C1B
+@label=data_at_9C1B
+b$9C1B DEFB $00
 
 ; Routine at 9C1C
 ;
@@ -8326,9 +8378,13 @@ c$9C86 JP $9EF1      ;
 ; Used by the routines at #R$82BB and #R$96D9.
 c$9C89 JP $AFA8      ;
 
-; Data block at 9C8C
-b$9C8C DEFB $C3,$44,$B0,$C3,$B4,$B7,$00,$00
- $9C94 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+; Routine at 9C8C
+c$9C8C JP $B044      ;
+ $9C8F JP $B7B4      ;
+
+; Data block at 9C92
+b$9C92 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $9C9A DEFB $00,$00
 
 ; Routine at 9C9C
 ;
@@ -8341,8 +8397,15 @@ c$9C9C JP $B867      ;
 c$9C9F JP $B618      ;
 
 ; Data block at 9CA2
-b$9CA2 DEFB $00,$00,$00,$C3,$C9,$AF,$C3,$82
- $9CAA DEFB $9F,$C3,$8D,$A2,$00
+b$9CA2 DEFB $00,$00,$00
+
+; Routine at 9CA5
+;
+; Used by the routine at #R$71E4.
+c$9CA5 JP $AFC9      ;
+ $9CA8 JP $9F82      ;
+ $9CAB JP $A28D      ;
+ $9CAE NOP           ;
 
 ; Routine at 9CAF
 ;
@@ -8544,28 +8607,85 @@ c$9CBB LD A,($D0AF)   ;
  $9E6F LD ($9C99),A   ;
  $9E72 RET            ;
 
-; Data block at 9E73
-b$9E73 DEFB $DD,$E5,$CD,$98,$9E,$E5,$CD,$98
- $9E7B DEFB $9E,$E5,$CD,$98,$9E,$D1,$19,$D1
- $9E83 DEFB $19,$DD,$E1,$CD,$F1,$9E,$EB,$DD
- $9E8B DEFB $E5,$CD,$CF,$9E,$CD,$CF,$9E,$CD
- $9E93 DEFB $CF,$9E,$DD,$E1,$C9,$DD,$46,$01
- $9E9B DEFB $DD,$4E,$00,$CB,$B8,$DD,$E5,$DD
- $9EA3 DEFB $21,$00,$00,$CD,$34,$AB,$AF,$57
- $9EAB DEFB $29,$CB,$12,$5C,$DD,$19,$65,$6F
- $9EB3 DEFB $E5,$26,$BE,$68,$5E
+; Routine at 9E73
+c$9E73 PUSH IX       ;
+ $9E75 CALL $9E98    ;
+ $9E78 PUSH HL       ;
+ $9E79 CALL $9E98    ;
+ $9E7C PUSH HL       ;
+ $9E7D CALL $9E98    ;
+ $9E80 POP DE        ;
+ $9E81 ADD HL,DE     ;
+ $9E82 POP DE        ;
+ $9E83 ADD HL,DE     ;
+ $9E84 POP IX        ;
+ $9E86 CALL $9EF1    ;
+ $9E89 EX DE,HL      ;
+ $9E8A PUSH IX       ;
+ $9E8C CALL $9ECF    ;
+ $9E8F CALL $9ECF    ;
+ $9E92 CALL $9ECF    ;
+ $9E95 POP IX        ;
+ $9E97 RET           ;
 
-; Message at 9EB8
-t$9EB8 DEFM "$V%"
+; Routine at 9E98
+;
+; Used by the routine at #R$9E73.
+c$9E98 LD B,(IX+$01) ;
+ $9E9B LD C,(IX+$00) ;
+ $9E9E RES 7,B       ;
+ $9EA0 PUSH IX       ;
+ $9EA2 LD IX,$0000   ;
+ $9EA6 CALL $AB34    ;
+ $9EA9 XOR A         ;
+ $9EAA LD D,A        ;
+ $9EAB ADD HL,HL     ;
+ $9EAC RL D          ;
+ $9EAE LD E,H        ;
+ $9EAF ADD IX,DE     ;
+ $9EB1 LD H,L        ;
+ $9EB2 LD L,A        ;
+ $9EB3 PUSH HL       ;
+ $9EB4 LD H,$BE      ;
+ $9EB6 LD L,B        ;
+ $9EB7 LD E,(HL)     ;
+ $9EB8 INC H         ;
+ $9EB9 LD D,(HL)     ;
+ $9EBA DEC H         ;
+ $9EBB ADD IX,DE     ;
+ $9EBD LD L,C        ;
+ $9EBE LD E,(HL)     ;
+ $9EBF INC H         ;
+ $9EC0 LD D,(HL)     ;
+ $9EC1 POP HL        ;
+ $9EC2 ADD HL,DE     ;
+ $9EC3 JR NC,$9EC7   ;
+ $9EC5 INC IX        ;
+*$9EC7 EX (SP),IX    ;
+ $9EC9 POP HL        ;
+ $9ECA INC IX        ;
+ $9ECC INC IX        ;
+ $9ECE RET           ;
 
-; Data block at 9EBB
-b$9EBB DEFB $DD,$19,$69,$5E,$24,$56,$E1,$19
- $9EC3 DEFB $30,$02,$DD,$23,$DD,$E3,$E1,$DD
- $9ECB DEFB $23,$DD,$23,$C9,$DD,$66,$01,$DD
- $9ED3 DEFB $6E,$00,$E5,$CB,$BC,$CD,$A8,$AF
- $9EDB DEFB $CB,$38,$CB,$19,$E1,$CB,$7C,$28
- $9EE3 DEFB $02,$CB,$F8,$DD,$71,$00,$DD,$70
- $9EEB DEFB $01,$DD,$23,$DD,$23,$C9
+; Routine at 9ECF
+;
+; Used by the routine at #R$9E73.
+c$9ECF LD H,(IX+$01) ;
+ $9ED2 LD L,(IX+$00) ;
+ $9ED5 PUSH HL       ;
+ $9ED6 RES 7,H       ;
+ $9ED8 CALL $AFA8    ;
+ $9EDB SRL B         ;
+ $9EDD RR C          ;
+ $9EDF POP HL        ;
+ $9EE0 BIT 7,H       ;
+ $9EE2 JR Z,$9EE6    ;
+ $9EE4 SET 7,B       ;
+*$9EE6 LD (IX+$00),C ;
+ $9EE9 LD (IX+$01),B ;
+ $9EEC INC IX        ;
+ $9EEE INC IX        ;
+ $9EF0 RET           ;
 
 ; Routine at 9EF1
 ;
@@ -8584,7 +8704,11 @@ c$9EF1 LD A,H        ;
  $9F05 SRL H         ;
  $9F07 RR L          ;
  $9F09 RET           ;
-*$9F0A LD H,L        ;
+
+; Routine at 9F0A
+;
+; Used by the routine at #R$9EF1.
+c$9F0A LD H,L        ;
  $9F0B LD L,A        ;
  $9F0C CALL $9F18    ;
  $9F0F LD B,$04      ;
@@ -8592,7 +8716,11 @@ c$9EF1 LD A,H        ;
  $9F13 RR L          ;
  $9F15 DJNZ $9F11    ;
  $9F17 RET           ;
-*$9F18 XOR A         ;
+
+; Routine at 9F18
+;
+; Used by the routines at #R$9EF1 and #R$9F0A.
+c$9F18 XOR A         ;
  $9F19 PUSH HL       ;
  $9F1A PUSH HL       ;
  $9F1B SRL H         ;
@@ -8655,8 +8783,9 @@ c$9F68 LD C,(IX+$01) ;
  $9F7D INC IX        ;
  $9F7F RET           ;
 
-; Unused
-s$9F80 DEFS $02
+; Data block at 9F80
+@label=word at 9F80
+w$9F80 DEFW $0000
 
 ; Routine at 9F82
 ;
@@ -10543,6 +10672,8 @@ c$AFA8 LD BC,$FFFE   ;
  $AFC7 JR $AFAB      ;
 
 ; Data block at AFC9
+;
+; Used by the routine at #R$9CA5.
 b$AFC9 DEFB $7A,$EE,$80,$57
 
 ; Routine at AFCD
