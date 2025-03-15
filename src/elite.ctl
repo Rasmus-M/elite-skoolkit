@@ -677,90 +677,26 @@ s $A28B Unused
 S $A28B,2,$02
 c $A28D Routine at A28D
 D $A28D Used by the routine at #R$9CAF.
-b $A2B8 Data block at A2B8
-B $A2B8,25,8*3,1
-t $A2D1 Message at A2D1
-T $A2D1,4,4
-b $A2D5 Data block at A2D5
-B $A2D5,68,8*8,4
-t $A319 Message at A319
-T $A319,3,3
-b $A31C Data block at A31C
-B $A31C,25,8*3,1
-t $A335 Message at A335
-T $A335,3,3
-b $A338 Data block at A338
-B $A338,2,2
-t $A33A Message at A33A
-T $A33A,3,3
-b $A33D Data block at A33D
-B $A33D,11,8,3
-t $A348 Message at A348
-T $A348,3,3
-b $A34B Data block at A34B
-B $A34B,89,8*11,1
-t $A3A4 Message at A3A4
-T $A3A4,5,5
-b $A3A9 Data block at A3A9
-B $A3A9,28,8*3,4
-t $A3C5 Message at A3C5
-T $A3C5,3,3
-b $A3C8 Data block at A3C8
-B $A3C8,13,8,5
-t $A3D5 Message at A3D5
-T $A3D5,5,5
-b $A3DA Data block at A3DA
-B $A3DA,10,8,2
-t $A3E4 Message at A3E4
-T $A3E4,3,3
-b $A3E7 Data block at A3E7
-B $A3E7,74,8*9,2
-t $A431 Message at A431
-T $A431,3,3
-b $A434 Data block at A434
-B $A434,22,8*2,6
-t $A44A Message at A44A
-T $A44A,3,3
-b $A44D Data block at A44D
-B $A44D,171,8*21,3
-t $A4F8 Message at A4F8
-T $A4F8,3,3
-b $A4FB Data block at A4FB
-B $A4FB,5,5
-t $A500 Message at A500
-T $A500,3,3
-b $A503 Data block at A503
-B $A503,9,8,1
-t $A50C Message at A50C
-T $A50C,3,3
-b $A50F Data block at A50F
-B $A50F,180,8*22,4
-t $A5C3 Message at A5C3
-T $A5C3,3,3
-b $A5C6 Data block at A5C6
-B $A5C6,82,8*10,2
-t $A618 Message at A618
-T $A618,3,3
-b $A61B Data block at A61B
-B $A61B,4,4
-t $A61F Message at A61F
-T $A61F,3,3
-b $A622 Data block at A622
-B $A622,71,8*8,7
-t $A669 Message at A669
-T $A669,3,3
-b $A66C Data block at A66C
-B $A66C,30,8*3,6
-t $A68A Message at A68A
-T $A68A,3,3
-b $A68D Data block at A68D
-B $A68D,16,8
+b $A2B8
+c $A2C0
+c $A361
+c $A3A2
+c $A40F
+c $A42F
+c $A4B5
+c $A4C4
+c $A532
+c $A53F
+c $A568
+c $A587
+c $A67D
+c $A686
 c $A69D Routine at A69D
 D $A69D Used by the routine at #R$A6AC.
 c $A6AC Routine at A6AC
 D $A6AC Used by the routine at #R$AE69.
-s $A6DE Unused
-S $A6DE,1,$01
+b $A6DE
+@ $A6DE label=byte_at_A6DE
 c $A6DF Routine at A6DF
 D $A6DF Used by the routines at #R$9CBB and #R$A28D.
 c $A83C Routine at A83C
@@ -774,6 +710,7 @@ c $A8DE Routine at A8DE
 D $A8DE Used by the routine at #R$A6DF.
 b $A8FA Data block at A8FA
 B $A8FA,207,8*25,7
+@ $A8FA label=data_at_A8FA
 c $A9C9 Routine at A9C9
 D $A9C9 Used by the routine at #R$A84D.
 N $A9DE This entry point is used by the routine at #R$ACA2.
@@ -800,8 +737,12 @@ D $AC01 Used by the routines at #R$AB73 and #R$BDB4.
 c $AC69 Routine at AC69
 D $AC69 Used by the routines at #R$A6DF and #R$ACA2.
 N $AC8B This entry point is used by the routine at #R$B2FE.
-s $AC9F Unused
-S $AC9F,3,$03
+b $AC9F
+@ $AC9F label=byte_at_AC9F
+b $ACA0
+@ $ACA0 label=byte_at_ACA0
+b $ACA1
+@ $ACA1 label=byte_at_ACA1
 c $ACA2 Routine at ACA2
 D $ACA2 Used by the routine at #R$A9C9.
 N $ACDF This entry point is used by the routine at #R$AB73.
@@ -818,21 +759,15 @@ c $AECC Routine at AECC
 D $AECC Used by the routine at #R$A84D.
 c $AF22 Routine at AF22
 D $AF22 Used by the routine at #R$AECC.
-b $AF64 Data block at AF64
-B $AF64,31,8*3,7
-t $AF83 Message at AF83
-T $AF83,3,3
-b $AF86 Data block at AF86
-B $AF86,34,8*4,2
+c $AF64
 c $AFA8 Routine at AFA8
 D $AFA8 Used by the routines at #R$9C89 and #R$9EF1.
-b $AFC9 Data block at AFC9
-D $AFC9 Used by the routine at #R$9CA5.
-B $AFC9,4,4
+c $AFC9
 c $AFCD Routine at AFCD
 D $AFCD Used by the routine at #R$BD5F.
 b $AFF0 Data block at AFF0
 B $AFF0,84,8*10,4
+@ $AFF0 label=data_at_AFF0
 c $B044 Routine at B044
 D $B044 Used by the routines at #R$A84D, #R$AE01, #R$B63C and #R$B7B4.
 N $B0E0 This entry point is used by the routine at #R$B362.
@@ -856,8 +791,12 @@ c $B484 Routine at B484
 N $B485 This entry point is used by the routine at #R$B044.
 c $B4AD Routine at B4AD
 N $B4B1 This entry point is used by the routine at #R$B044.
-s $B4D5 Unused
-S $B4D5,3,$03
+b $B4D5
+@ $B4D5 label=byte_at_B4D5
+b $B4D6
+@ $B4D6 label=byte_at_B4D6
+b $B4D7
+@ $B4D7 label=byte_at_B4D7
 c $B4D8 Routine at B4D8
 D $B4D8 Used by the routine at #R$9CBB.
 N $B5DF This entry point is used by the routines at #R$9CBB and #R$9F82.
@@ -867,56 +806,58 @@ c $B63C Routine at B63C
 D $B63C Used by the routine at #R$B7B4.
 c $B799 Routine at B799
 D $B799 Used by the routines at #R$A84D, #R$B4D8, #R$B63C, #R$B898 and #R$BBBA.
-b $B7AA Data block at B7AA
-B $B7AA,3,3
-t $B7AD Message at B7AD
-T $B7AD,6,6
-b $B7B3 Data block at B7B3
-B $B7B3,1,1
+w $B7AA
+@ $B7AA label=word_at_B7AA
+c $B7AC
 c $B7B4 Routine at B7B4
 D $B7B4 Used by the routine at #R$9CB5.
-b $B83D Data block at B83D
-B $B83D,32,8
-t $B85D Message at B85D
-T $B85D,3,3
-b $B860 Data block at B860
-B $B860,7,7
+b $B83D
+@ $B83D label=byte_at_B83D
+b $B83E
+@ $B83E label=data_at_B83E
+b $B85D
+@ $B85D label=data_at_B85D
 c $B867 Routine at B867
 D $B867 Used by the routines at #R$9C9C, #R$9CBB, #R$B618 and #R$B63C.
 c $B898 Routine at B898
 D $B898 Used by the routine at #R$BB75.
-b $B91E Data block at B91E
-B $B91E,375,8*46,7
-t $BA95 Message at BA95
-T $BA95,3,3
-b $BA98 Data block at BA98
-B $BA98,102,8*12,6
-t $BAFE Message at BAFE
-T $BAFE,3,3
-b $BB01 Data block at BB01
-B $BB01,2,2
-t $BB03 Message at BB03
-T $BB03,3,3
-b $BB06 Data block at BB06
-B $BB06,60,8*7,4
-t $BB42 Message at BB42
-T $BB42,3,3
-b $BB45 Data block at BB45
-B $BB45,48,8
+c $B91E
+c $B936
+c $B94A
+c $B96B
+c $B99F
+c $B9E7
+c $BA27
+c $BA3F
+c $BA58
+c $BA83
+c $BA94
+c $BAE8
+c $BB2F
+c $BB4D
 c $BB75 Routine at BB75
 D $BB75 Used by the routine at #R$B867.
 c $BBBA Routine at BBBA
 D $BBBA Used by the routine at #R$B867.
-b $BBF2 Data block at BBF2
-B $BBF2,59,8*7,3
-t $BC2D Message at BC2D
-T $BC2D,3,3
-b $BC30 Data block at BC30
-B $BC30,4,4
-t $BC34 Message at BC34
-T $BC34,3,3
-b $BC37 Data block at BC37
-B $BC37,157,8*19,5
+c $BBF2
+c $BC21
+c $BC78
+w $BCC8
+@ $BCC8 label=word_at_BCC8
+b $BCCA
+@ $BCCA label=byte_at_BCCA
+w $BCCB
+@ $BCCB label=word_at_BCCB
+w $BCCD
+@ $BCCD label=word_at_BCCD
+w $BCCF
+@ $BCCF label=word_at_BCCF
+b $BCD1
+@ $BCD1 label=byte_at_BCD1
+b $BCD2
+@ $BCD2 label=byte_at_BCD2
+b $BCD3
+@ $BCD3 label=byte_at_BCD3
 c $BCD4 Routine at BCD4
 D $BCD4 Used by the routine at #R$A84D.
 c $BD5F Routine at BD5F
@@ -925,17 +866,16 @@ c $BD95 Routine at BD95
 D $BD95 Used by the routine at #R$BD5F.
 c $BDB4 Routine at BDB4
 D $BDB4 Used by the routine at #R$BCD4.
-b $BE00 Data block at BE00
+b $BE00 Empty data block at BE00
 B $BE00,1043,8*130,3
 c $C213 lenslock
 D $C213 Used by the routine at #R$D07C.
 c $C226 Routine at C226
-b $C230 Data block at C230
-B $C230,3,3
+c $C230
 t $C233 Message at C233
 T $C233,22,22
-b $C249 Data block at C249
-B $C249,19,8*2,3
+b $C249
+c $C24A
 c $C25C Routine at C25C
 D $C25C Used by the routine at #R$C226.
 c $C25D Routine at C25D
@@ -970,17 +910,10 @@ c $C3F3 Routine at C3F3
 D $C3F3 Used by the routines at #R$C303, #R$C3B8 and #R$C608.
 c $C408 Routine at C408
 D $C408 Used by the routines at #R$C268, #R$C303 and #R$C3B8.
-b $C414 Data block at C414
-D $C414 Used by the routine at #R$C25D.
-B $C414,14,8,6
+c $C414
 t $C422 Message at C422
 T $C422,29,29
-b $C43F Data block at C43F
-B $C43F,9,8,1
-t $C448 Message at C448
-T $C448,4,4
-b $C44C Data block at C44C
-B $C44C,44,8*5,4
+c $C43F
 c $C478 Routine at C478
 c $C4B0 Routine at C4B0
 D $C4B0 Used by the routine at #R$C478.
@@ -992,14 +925,13 @@ N $C4DE This entry point is used by the routine at #R$C4B0.
 N $C4E2 This entry point is used by the routine at #R$C4B0.
 N $C4E6 This entry point is used by the routine at #R$C4B0.
 N $C4EC This entry point is used by the routine at #R$C4B0.
-b $C4FF Data block at C4FF
-B $C4FF,18,8*2,2
+c $C4FF
+c $C50B
 c $C511 Routine at C511
 D $C511 Used by the routine at #R$C478.
 c $C519 Routine at C519
 D $C519 Used by the routine at #R$C54B.
-b $C52F Data block at C52F
-B $C52F,3,3
+c $C52F
 t $C532 Message at C532
 T $C532,23,23
 b $C549 Data block at C549
@@ -1033,24 +965,9 @@ c $C727 Routine at C727
 D $C727 Used by the routines at #R$C4B0 and #R$C608.
 c $C733 Routine at C733
 D $C733 Used by the routine at #R$C6E6.
-b $C774 Data block at C774
-B $C774,57,8*7,1
-t $C7AD Message at C7AD
-T $C7AD,8,8
-b $C7B5 Data block at C7B5
-B $C7B5,27,8*3,3
-t $C7D0 Message at C7D0
-T $C7D0,3,3
-b $C7D3 Data block at C7D3
-B $C7D3,379,8*47,3
-t $C94E Message at C94E
-T $C94E,3,3
-b $C951 Data block at C951
-B $C951,544,8
-t $CB71 Message at CB71
-T $CB71,5,5
-b $CB76 Data block at CB76
-B $CB76,1165,8*145,5
+b $C774
+@ $C774 label=data_at_C774
+c $D000 Routine at D000
 c $D003 Routine at D003
 c $D006 Routine at D006
 c $D009 Routine at D009
@@ -1060,8 +977,6 @@ c $D012 Routine at D012
 c $D015 Routine at D015
 D $D015 Used by the routines at #R$7378 and #R$7471.
 c $D018 Routine at D018
-b $D01B Data block at D01B
-B $D01B,24,8
 c $D033 Routine at D033
 D $D033 Used by the routine at #R$7378.
 c $D036 Routine at D036
@@ -1074,16 +989,22 @@ s $D03F Unused
 S $D03F,3,$03
 c $D042 Routine at D042
 D $D042 Used by the routine at #R$7471.
-s $D045 Unused
-S $D045,3,$03
+w $D045
+@ $D045 label=word_at_D045
+b $D047
+@ $D047 label=byte_at_D047
 c $D048 Routine at D048
-D $D048 Used by the routines at #R$7447, #R$99A4, #R$9B01, #R$9B57 and #R$9B74.
-b $D04B Data block at D04B
-B $D04B,3,3
+w $D04B
+@ $D04B label=word_at_D04B
+b $D04D
 c $D04E Routine at D04E
 D $D04E Used by the routines at #R$7378 and #R$7471.
-s $D051 Unused
-S $D051,3,$03
+b $D051
+@ $D051 label=byte_at_D051
+b $D052
+@ $D052 label=byte_at_D052
+b $D053
+@ $D053 label=byte_at_D053
 t $D054 Message at D054
 T $D054,10,10
 b $D05E Data block at D05E
@@ -1091,34 +1012,34 @@ B $D05E,1,1
 c $D05F loader
 c $D07C call lenslock
 c $D07F after lenslock
-b $D0A7 Data block at D0A7
-B $D0A7,51,8*6,3
+b $D0A7
+@ $D0A7 label=data_at_D0A7
+b $D0BD
+@ $D0BD label=data_at_D0BD
+b $D0BF
+@ $D0BF label=data_at_D0BF
+b $D0C1
+@ $D0C1 label=data_at_D0C1
+c $D0D7
 c $D0DA Routine at D0DA
 D $D0DA Used by the routine at #R$9946.
 c $D0DD Routine at D0DD
 D $D0DD Used by the routine at #R$7278.
-b $D0E0 Data block at D0E0
-B $D0E0,306,8*38,2
-t $D212 Message at D212
-T $D212,3,3
-b $D215 Data block at D215
-B $D215,2,2
-t $D217 Message at D217
-T $D217,3,3
-b $D21A Data block at D21A
-B $D21A,24,8
+c $D0E0
+c $D0F6
+c $D138
+c $D1C7
+c $D1E9
+c $D21F
 t $D232 Message at D232
 T $D232,10,10
 b $D23C Data block at D23C
 B $D23C,50,8*6,2
-t $D26E Message at D26E
-T $D26E,3,3
-b $D271 Data block at D271
-B $D271,39,8*4,7
+b $D26E
 c $D298 Routine at D298
 D $D298 Used by the routine at #R$D033.
-s $D2DC Unused
-S $D2DC,2,$02
+w $D2DC
+@ $D2DC label=word_at_D2DC
 c $D2DE Routine at D2DE
 D $D2DE Used by the routines at #R$D837 and #R$EDDF.
 c $D2E1 Routine at D2E1
@@ -1173,21 +1094,12 @@ c $D5B4 Routine at D5B4
 D $D5B4 Used by the routine at #R$D470.
 c $D5E1 Routine at D5E1
 D $D5E1 Used by the routine at #R$D5B4.
-b $D5F5 Data block at D5F5
-B $D5F5,8,8
-t $D5FD Message at D5FD
-T $D5FD,5,5
-b $D602 Data block at D602
-B $D602,1,1
-t $D603 Message at D603
-T $D603,5,5
-b $D608 Data block at D608
-B $D608,21,8*2,5
+b $D5F5
 c $D61D Routine at D61D
 D $D61D Used by the routines at #R$D036, #R$D90A, #R$DBA2, #R$E973, #R$EB7C and #R$EC58.
 N $D646 This entry point is used by the routines at #R$EB7C and #R$EF87.
-b $D675 Data block at D675
-B $D675,68,8*8,4
+b $D675
+@ $D675 label=data_at_D675
 c $D6B9 Routine at D6B9
 D $D6B9 Used by the routine at #R$D499.
 N $D71A This entry point is used by the routine at #R$D776.
@@ -1203,43 +1115,38 @@ D $D7B0 Used by the routine at #R$D470.
 c $D7B5 Routine at D7B5
 D $D7B5 Used by the routine at #R$D421.
 N $D7B8 This entry point is used by the routine at #R$D7B0.
-b $D7C3 Data block at D7C3
-B $D7C3,95,8*11,7
+w $D7C3
+@ $D7C3 label=jump_table_at_D7C3
 c $D822 Routine at D822
 c $D82E Routine at D82E
 c $D833 Routine at D833
 c $D837 Routine at D837
 N $D848 This entry point is used by the routine at #R$D822.
 c $D84B Routine at D84B
-b $D857 Data block at D857
-B $D857,19,8*2,3
+c $D857
 c $D86A Routine at D86A
 c $D872 Routine at D872
 N $D878 This entry point is used by the routines at #R$D82E, #R$D86A and #R$D8B4.
 c $D87B Routine at D87B
 D $D87B Used by the routine at #R$D837.
 N $D87F This entry point is used by the routines at #R$D86A, #R$D872 and #R$D8B4.
-b $D885 Data block at D885
-B $D885,36,8*4,4
+c $D885
 c $D8A9 Routine at D8A9
-b $D8AD Data block at D8AD
-B $D8AD,1,1
+c $D8AD
 c $D8AE Routine at D8AE
 N $D8B0 This entry point is used by the routines at #R$D833 and #R$D8A9.
 c $D8B4 Routine at D8B4
-t $D8DC Message at D8DC
-T $D8DC,3,3
-s $D8DF Unused
-S $D8DF,1,$01
-t $D8E0 Message at D8E0
-T $D8E0,5,5
+b $D8DC
 c $D8E5 Routine at D8E5
 c $D8E9 Routine at D8E9
 N $D8EB This entry point is used by the routine at #R$D8E5.
-b $D8EF Data block at D8EF
-B $D8EF,27,8*3,3
+c $D8EF
+c $D8F3
+c $D8F8
+b $D8FF
 c $D90A Routine at D90A
 D $D90A Used by the routine at #R$D04E.
+c $D946
 N $DA13 This entry point is used by the routine at #R$DA25.
 c $DA16 Routine at DA16
 D $DA16 Used by the routine at #R$D90A.
@@ -1258,12 +1165,15 @@ c $DA7A Routine at DA7A
 D $DA7A Used by the routine at #R$D03C.
 c $DAB4 Routine at DAB4
 D $DAB4 Used by the routine at #R$DA7A.
+c $DAD7
+c $DAEF
 N $DADC This entry point is used by the routine at #R$DBA2.
 N $DAE6 This entry point is used by the routine at #R$DBA2.
+c $DB62
 c $DB91 Routine at DB91
 D $DB91 Used by the routines at #R$D0DA, #R$D298 and #R$DC29.
-s $DBA1 Unused
-S $DBA1,1,$01
+b $DBA1
+@ $DBA1 label=byte_at_DBA1
 c $DBA2 Routine at DBA2
 D $DBA2 Used by the routine at #R$D042.
 c $DC29 Routine at DC29
