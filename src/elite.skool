@@ -1,6 +1,8 @@
 @start
 @org
-; loading screen
+; #UDGTABLE
+; { #SCR(loading) | loading screen. }
+; TABLE#
 b$4000 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $4008 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $4010 DEFB $00,$00,$00,$00,$00,$00,$00,$00
@@ -17540,8 +17542,21 @@ c$F0A1 EX AF,AF'     ;
  $F116 RET           ;
 
 ; Data block at F117
-b$F117 DEFB $00,$00,$00,$1E,$F1,$F5,$F4,$6F
- $F11F DEFB $10,$00
+b$F117 DEFB $00,$00,$00
+
+; Data block at F11A
+;
+; .
+;
+; .
+;
+; Recursive tokens
+w$F11A DEFW $F11E
+ $F11C DEFW $F4F5
+
+; Recursive tokens
+@label=tokens
+b$F11E DEFB $6F,$10,$00
 
 ; Message at F121
 t$F121 DEFM " CH"
@@ -18076,7 +18091,11 @@ b$F4E4 DEFB $00,$50,$8E,$53,$92,$54,$00,$69
 t$F4EE DEFM "AK*"
 
 ; Data block at F4F1
-b$F4F1 DEFB $00,$00,$00,$00,$01,$08
+b$F4F1 DEFB $00,$00,$00,$00
+
+; Data block at F4F5
+@label=more_tokens
+b$F4F5 DEFB $01,$08
 
 ; Message at F4F7
 t$F4F7 DEFM "  AC"
@@ -18911,9 +18930,11 @@ b$FBF6 DEFB $E3,$20,$4D,$F4
 t$FBFA DEFM "CY..."
 
 ; Data block at FBFF
-b$FBFF DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $FC07 DEFB $00,$00,$00,$00,$00,$00,$FF,$8C
- $FC0F DEFB $00
+b$FBFF DEFB $00      ; Recursive tokens end
+
+; Data block at FC00
+b$FC00 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FC08 DEFB $00,$00,$00,$00,$00,$FF,$8C,$00
 
 ; Routine at FC10
 ;

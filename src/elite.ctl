@@ -1,6 +1,6 @@
 @ $4000 start
 @ $4000 org
-b $4000 loading screen
+b $4000 #UDGTABLE { #SCR(loading) | loading screen. } TABLE#
 B $4000,6144,8
 b $5800 attributes
 B $5800,768,8
@@ -1534,7 +1534,13 @@ c $F0A1 Routine at F0A1
 D $F0A1 Used by the routine at #R$EF87.
 N $F0B8 This entry point is used by the routines at #R$D018, #R$E8AE and #R$E8EA.
 b $F117 Data block at F117
-B $F117,10,8,2
+B $F117,3,3
+w $F11A Data block at F11A
+N $F11A Recursive tokens
+W $F11A,4,2
+b $F11E Recursive tokens
+@ $F11E label=tokens
+B $F11E,3,3
 t $F121 Message at F121
 T $F121,3,3
 b $F124 Data block at F124
@@ -1862,7 +1868,10 @@ B $F4E4,10,8,2
 t $F4EE Message at F4EE
 T $F4EE,3,3
 b $F4F1 Data block at F4F1
-B $F4F1,6,6
+B $F4F1,4,4
+b $F4F5 Data block at F4F5
+@ $F4F5 label=more_tokens
+B $F4F5,2,2
 t $F4F7 Message at F4F7
 T $F4F7,4,4
 b $F4FB Data block at F4FB
@@ -2350,7 +2359,9 @@ B $FBF6,4,4
 t $FBFA Message at FBFA
 T $FBFA,5,5
 b $FBFF Data block at FBFF
-B $FBFF,17,8*2,1
+B $FBFF,1,1 Recursive tokens end
+b $FC00 Data block at FC00
+B $FC00,16,8
 c $FC10 Routine at FC10
 D $FC10 Used by the routine at #R$FD69.
 c $FCBA Routine at FCBA
