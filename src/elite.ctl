@@ -5,155 +5,213 @@ B $4000,6144,8
 b $5800 attributes
 B $5800,768,8
 b $5B00 printer buffer
+@ $5B00 label=ctrl_panel_attrs
 B $5B00,256,8
 b $5C00 system variables
 B $5C00,192,8
 b $5CC0 reserved
 B $5CC0,11,8,3
 b $5CCB available
+B $5CCB,1205,8*150,5
 b $6180 Ship lookup table XX21
 @ $6180 label=ship_lookup_table
-B $6180,1
-W $6181,2
-B $6183,1
-L $6180,4,19
+B $6180,1,1
+W $6181,2,2
+B $6183,2,1
+W $6185,2,2
+B $6187,2,1
+W $6189,2,2
+B $618B,2,1
+W $618D,2,2
+B $618F,2,1
+W $6191,2,2
+B $6193,2,1
+W $6195,2,2
+B $6197,2,1
+W $6199,2,2
+B $619B,2,1
+W $619D,2,2
+B $619F,2,1
+W $61A1,2,2
+B $61A3,2,1
+W $61A5,2,2
+B $61A7,2,1
+W $61A9,2,2
+B $61AB,2,1
+W $61AD,2,2
+B $61AF,2,1
+W $61B1,2,2
+B $61B3,2,1
+W $61B5,2,2
+B $61B7,2,1
+W $61B9,2,2
+B $61BB,2,1
+W $61BD,2,2
+B $61BF,2,1
+W $61C1,2,2
+B $61C3,2,1
+W $61C5,2,2
+B $61C7,2,1
+W $61C9,2,2
+B $61CB,1,1
 b $61CC unknown ship 1
 @ $61CC label=unknown_ship_1
+B $61CC,23,8*2,7
 b $61E3 unknown ship 1 vertices
-B $61E3,,6
+B $61E3,114,6
 b $6255 unknown ship 1 edges
-B $6255,,4
+B $6255,112,4
 b $62C5 unknown ship 1 faces
-B $62C5,,4
+B $62C5,48,4
 b $62F5 unknown ship 2
 @ $62F5 label=unknown_ship_2
+B $62F5,23,8*2,7
 b $630C ship asteroid
 @ $630C label=ship_asteroid
+B $630C,23,8*2,7
 b $6323 ship asteroid vertices
-B $6323,,6
+B $6323,54,6
 b $6359 ship asteroid edges
-B $6359,,4
+B $6359,84,4
 b $63AD ship asteroid faces
-B $63AD,,4
+B $63AD,56,4
 b $63E5 ship canister
 @ $63E5 label=ship_canister
+B $63E5,23,8*2,7
 b $63FC ship canister vertices
-B $63FC,,6
+B $63FC,60,6
 b $6438 ship canister edges
-B $6438,,4
+B $6438,60,4
 b $6474 ship canister faces
-B $6474,,4
+B $6474,28,4
 b $6490 unknown ship 3
 @ $6490 label=unknown_ship_3
+B $6490,23,8*2,7
 b $64A7 ship cobra
 @ $64A7 label=ship_cobra_mk_3
+B $64A7,23,8*2,7
 b $64BE ship cobra mk 3 vertices
-B $64BE,,6
+B $64BE,168,6
 b $6566 ship cobra mk 3 edges
-B $6566,,4
+B $6566,152,4
 b $65FE ship cobra mk 3 faces
-B $65FE,,4
+B $65FE,52,4
 b $6632 ship escape pod
 @ $6632 label=ship_escapepod
+B $6632,23,8*2,7
 b $6649 ship escape pod vertices
-B $6649,,6
+B $6649,24,6
 b $6661 ship escape pod edges
-B $6661,,4
+B $6661,24,4
 b $6679 ship escape pod faces
-B $6679,,4
+B $6679,16,4
 b $6689 unknown ship 4
 @ $6689 label=unknown_ship_4
+B $6689,23,8*2,7
 b $66A0 unknown ship 4 vertices
-B $66A0,,6
+B $66A0,114,6
 b $6712 unknown ship 4 edges
-B $6712,,4
+B $6712,108,4
 b $677E unknown ship 4 faces
-B $677E,,4
+B $677E,40,4
 b $67A6 ship missile
 @ $67A6 label=ship_missile
+B $67A6,23,8*2,7
 b $67BD ship missile vertices
-B $67BD,,6
+B $67BD,102,6
 b $6823 ship missible edges
-B $6823,,4
+B $6823,96,4
 b $6883 ship missile faces
-B $6883,,4
+B $6883,36,4
 b $68A7 unknown ship 5
 @ $68A7 label=unknown_ship_5
+B $68A7,23,8*2,7
 b $68BE unknown ship 5 vertices
-B $68BE,,6
+B $68BE,24,6
 b $68D6 unknown ship 5 edges
-B $68D6,,4
+B $68D6,16,4
 b $68E6 unknown ship 6
 @ $68E6 label=unknown_ship_6
+B $68E6,23,8*2,7
 b $68FD ship python
 @ $68FD label=ship_python
+B $68FD,23,8*2,7
 b $6914 ship python vertices
-B $6914,,6
+B $6914,66,6
 b $6956 ship python edges
-B $6956,,4
+B $6956,104,4
 b $69BE ship python faces
-B $69BE,,4
+B $69BE,52,4
 b $69F2 ship sidewinder
 @ $69F2 label=ship_sidewinder
+B $69F2,23,8*2,7
 b $6A09 ship sidewinder vertices
-B $6A09,,6
+B $6A09,60,6
 b $6A45 ship sidewinder edges
-B $6A45,,4
+B $6A45,60,4
 b $6A81 ship sidewinder faces
-B $6A81,,4
+B $6A81,28,4
 b $6A9D ship coriolis
 @ $6A9D label=ship_coriolis
+B $6A9D,23,8*2,7
 b $6AB4 ship coriolis vertices
-B $6AB4,,6
+B $6AB4,96,6
 b $6B14 ship coriolis edges
-B $6B14,,4
+B $6B14,112,4
 b $6B84 ship coriolis faces
-B $6B84,,4
+B $6B84,56,4
 b $6BBC unknown ship 7
 @ $6BBC label=unknown_ship_7
+B $6BBC,23,8*2,7
 b $6BD3 unknown ship 7 vertices
-B $6BD3,,6
+B $6BD3,24,6
 b $6BEB unknown ship 7 edges
-B $6BEB,,4
+B $6BEB,24,4
 b $6C03 unknown ship 7 faces
-B $6C03,,4
+B $6C03,16,4
 b $6C13 ship thargoid
 @ $6C13 label=ship_thargoid
+B $6C13,23,8*2,7
 b $6C2A ship thargoid vertices
-B $6C2A,,6
+B $6C2A,120,6
 b $6CA2 ship thargoid edges
-B $6CA2,,4
+B $6CA2,104,4
 b $6D0A ship thargoid faces
-B $6D0A,,4
+B $6D0A,40,4
 b $6D32 unknown ship 8
 @ $6D32 label=unknown_ship_8
+B $6D32,23,8*2,7
 b $6D49 unknown ship 8 vertices
-B $6D49,,6
+B $6D49,102,6
 b $6DAF unknown ship 8 edges
-B $6DAF,,4
+B $6DAF,84,4
 b $6E03 unknown ship 8 faces
-B $6E03,,4
+B $6E03,24,4
 b $6E1B ship viper
 @ $6E1B label=ship_viper
+B $6E1B,23,8*2,7
 b $6E32 ship viper vertices
-B $6E32,,6
+B $6E32,90,6
 b $6E8C ship viper edges
-B $6E8C,,4
+B $6E8C,80,4
 b $6EDC ship viper faces
-B $6EDC,,4
+B $6EDC,28,4
 b $6EF8 ship thargon
 @ $6EF8 label=ship_thargon
+B $6EF8,23,8*2,7
 b $6F0F ship thargon vertices
-B $6F0F,,6
+B $6F0F,60,6
 b $6F4B ship thargon edges
-B $6F4B,,4
+B $6F4B,60,4
 b $6F87 ship thargon faces
-B $6F87,,4
-b $6FA3
+B $6F87,28,4
+b $6FA3 Data block at 6FA3
+B $6FA3,79,8*9,7
 c $6FF2 code start
 D $6FF2 Used by the routine at #R$9A40.
 c $6FF8 Routine at 6FF8
 D $6FF8 Used by the routines at #R$7222, #R$7471, #R$8F0D and #R$DAB4.
+@ $6FF8 label=jump_to_70B0
 b $6FFB Data block at 6FFB
 B $6FFB,142,8*17,6
 c $7089 Routine at 7089
@@ -165,8 +223,9 @@ D $70B0 Used by the routine at #R$6FF8.
 N $70BA This entry point is used by the routine at #R$70A9.
 s $70DE Unused
 S $70DE,2,$02
-c $70E0 a jump
+c $70E0 Jump to 7366
 D $70E0 Used by the routine at #R$D07F.
+@ $70E0 label=jump_to_7366
 b $70E3 Data block at 70E3
 B $70E3,54,8*6,6
 c $7119 Routine at 7119
@@ -236,6 +295,7 @@ c $7366 title screen
 D $7366 Used by the routine at #R$70E0.
 @ $7366 label=title_screen
 C $7366,4 Save the stack pointer
+C $736D,3 Draw the control panel
 N $7370 This entry point is used by the routine at #R$728D.
 c $7378 title loop
 @ $7378 label=title_loop
@@ -350,7 +410,23 @@ c $7FE3 Routine at 7FE3
 D $7FE3 Used by the routine at #R$7FBE.
 c $8042 Routine at 8042
 D $8042 Used by the routines at #R$717B, #R$728D, #R$7378, #R$7471 and #R$93ED.
+@ $8042 label=draw_ctrl_panel
+C $8047,1 Return if byte at 0,0 is not $ff
 N $804B This entry point is used by the routine at #R$7366.
+C $804B,3 Clear screen
+C $804E,3 One row - 1
+C $8051,2 23 rows
+C $8055,3 Attributes
+C $8058,1 Write 0
+C $8059,1 End of row
+C $805A,1 Write 0
+C $805B,1 Next row
+C $805C,1 Write 0
+C $805D,2 Repeat 23 times
+C $805F,1 End of last row
+C $8060,1 Write 0
+C $8061,3 Copy control panel gfx
+C $806C,3 Copy control panel attrs
 c $8080 Routine at 8080
 D $8080 Used by the routines at #R$7378, #R$7471, #R$9296 and #R$93ED.
 s $80D1 Unused
@@ -984,7 +1060,7 @@ b $B83D Data block at B83D
 @ $B83D label=byte_at_B83D
 B $B83D,1,1
 b $B83E Data block at B83E
-@ $B83E label=data_at_B83E
+@ $B83E label=ship_buffer
 B $B83E,31,8*3,7
 b $B85D Data block at B85D
 @ $B85D label=data_at_B85D
@@ -992,7 +1068,21 @@ B $B85D,10,8,2
 c $B867 Routine at B867
 D $B867 Used by the routines at #R$9C9C, #R$9CBB, #R$B618 and #R$B63C.
 c $B898 Routine at B898
-D $B898 Used by the routine at #R$BB75.
+D $B898 Used by the routines at #R$B91E, #R$B94A, #R$B96B, #R$BB75, #R$BBF2, #R$BC21 and #R$BC78.
+R $B898 A Index of ship
+R $B898 IX Destination
+C $B898,3 Table of ship blueprints
+C $B89E,1 Index x 2
+C $B89F,1 Index x 4
+C $B8A0,1 Add offset to HL
+C $B8A5,1 Skip past first byte
+C $B8A6,1 Get LSB of blueprint
+C $B8A8,1 Get MSB of blueprint
+C $B8AA,2 Copy address into IY
+C $B8AC,3 Also store in destination bytes 35-36
+C $B8B4,1 Now DE=destination
+C $B8B8,3 ship_buffer
+C $B8BB,2 Copy 31 bytes to destination
 c $B91E Routine at B91E
 D $B91E Used by the routines at #R$B99F, #R$B9E7, #R$BB2F and #R$BB4D.
 c $B936 Routine at B936
@@ -1072,8 +1162,12 @@ c $BD95 Routine at BD95
 D $BD95 Used by the routine at #R$BD5F.
 c $BDB4 Routine at BDB4
 D $BDB4 Used by the routine at #R$BCD4.
-b $BE00 Empty data block at BE00
-B $BE00,1043,8*130,3
+b $BE00 Table of squares
+@ $BE00 label=sqr_table
+B $BE00,512,8
+b $C000 2K copied from C800 to here
+@ $C000 label=ctrl_panel_gfx_copy
+B $C000,531,8*66,3
 c $C213 lenslock
 D $C213 Used by the routine at #R$D07C.
 c $C226 Routine at C226
@@ -1181,7 +1275,10 @@ c $C733 Routine at C733
 D $C733 Used by the routine at #R$C6E6.
 b $C774 Data block at C774
 @ $C774 label=data_at_C774
-B $C774,2188,8*273,4
+B $C774,140,8*17,4
+b $C800 Copied to C000 #UDGTABLE { #SCR1,0,0,32,8,$c800,$5b00(ctrl_panel) | control panel. } TABLE#
+@ $C800 label=ctrl_panel_gfx
+B $C800,2048,8
 c $D000 Routine at D000
 c $D003 Routine at D003
 c $D006 Routine at D006
@@ -1235,6 +1332,9 @@ B $D05E,1,1
 c $D05F loader
 c $D07C call lenslock
 c $D07F after lenslock
+C $D07F,3 Copy 2K from C800 to C000
+C $D08A,3 Generate table of squares
+C $D09E,2 Set interrupt mode
 b $D0A7 Data block at D0A7
 @ $D0A7 label=data_at_D0A7
 B $D0A7,22,8*2,6
@@ -1330,7 +1430,8 @@ c $D54F Routine at D54F
 D $D54F Used by the routines at #R$D90A, #R$E8D9, #R$E973 and #R$EC58.
 N $D554 This entry point is used by the routine at #R$F0A1.
 c $D55C Routine at D55C
-N $D55F This entry point is used by the routines at #R$D61D, #R$EB63 and #R$EB7C.
+N $D55F This entry point is used by the routines at #R$D61D, #R$EB63 and #R$EB7C. HL Screen address
+@ $D55F label=draw_h_line
 N $D563 This entry point is used by the routines at #R$D54F, #R$D568, #R$EB63 and #R$EB7C.
 c $D568 Routine at D568
 D $D568 Used by the routines at #R$D90A, #R$E8D9, #R$EDDF, #R$EF48, #R$EF87 and #R$F0A1.
@@ -1346,8 +1447,46 @@ D $D5E1 Used by the routine at #R$D5B4.
 b $D5F5 Data block at D5F5
 B $D5F5,40,8
 c $D61D Routine at D61D
-D $D61D Used by the routines at #R$D036, #R$D90A, #R$DBA2, #R$E973, #R$EB7C and #R$EC58.
+D $D61D Clear the screen and draw a one pixel border
+R $D61D Used by the routines at #R$D036, #R$D90A, #R$DBA2, #R$E973, #R$EB7C and
+R $D61D #R$EC58.
+@ $D61D label=clear_screen
+C $D61E,4 Store the stack pointer
+C $D622,3 Set stack to end of attributes
+C $D625,3 Attribute value
+C $D628,2 24 rows
+C $D62A,2 2x16 attributes per row
+C $D62C,1 Write two attributes
+C $D62D,2 Repeat for one row
+C $D630,3 Repeat for 24 rows
+C $D633,3 Empty bitmap pattern
+C $D636,2 192 lines
+C $D638,2 2x16 bytes per line
+C $D63A,1 Write two bytes
+C $D63B,2 Repeat for one line
+C $D63E,3 Repeat for 192 lines
+C $D641,4 Restore stack pointer
 N $D646 This entry point is used by the routines at #R$EB7C and #R$EF87.
+C $D646,2 192 lines
+C $D648,3 Increment per line
+C $D64B,3 Screen address at 0,0
+C $D64E,1 Read screen byte
+C $D64F,2 Set leftmost pixel
+C $D651,1 Write screen byte
+C $D652,1 Next line
+C $D653,2 Repeat for 192 lines
+C $D655,2 192 lines
+C $D657,3 Screen address at 255,0
+C $D65A,1 Read screen byte
+C $D65B,2 Set rightmost pixel
+C $D65D,1 Write screen byte
+C $D65E,1 Next line
+C $D65F,2 Repeat for 192 lines
+C $D661,3 Screen address at 0,0
+C $D664,3 Draw a horizontal line
+C $D667,3 Screen address at 0,191
+C $D66A,3 Draw a horizontal line
+C $D670,1 HL=$0100
 b $D675 Data block at D675
 @ $D675 label=data_at_D675
 B $D675,68,8*8,4
