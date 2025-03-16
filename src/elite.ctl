@@ -11,7 +11,145 @@ B $5C00,192,8
 b $5CC0 reserved
 B $5CC0,11,8,3
 b $5CCB available
-B $5CCB,4903,8*612,7
+b $6180 Ship lookup table XX21
+@ $6180 label=ship_lookup_table
+B $6180,1
+W $6181,2
+B $6183,1
+L $6180,4,19
+b $61CC unknown ship 1
+@ $61CC label=unknown_ship_1
+b $61E3 unknown ship 1 vertices
+B $61E3,,6
+b $6255 unknown ship 1 edges
+B $6255,,4
+b $62C5 unknown ship 1 faces
+B $62C5,,4
+b $62F5 unknown ship 2
+@ $62F5 label=unknown_ship_2
+b $630C ship asteroid
+@ $630C label=ship_asteroid
+b $6323 ship asteroid vertices
+B $6323,,6
+b $6359 ship asteroid edges
+B $6359,,4
+b $63AD ship asteroid faces
+B $63AD,,4
+b $63E5 ship canister
+@ $63E5 label=ship_canister
+b $63FC ship canister vertices
+B $63FC,,6
+b $6438 ship canister edges
+B $6438,,4
+b $6474 ship canister faces
+B $6474,,4
+b $6490 unknown ship 3
+@ $6490 label=unknown_ship_3
+b $64A7 ship cobra
+@ $64A7 label=ship_cobra_mk_3
+b $64BE ship cobra mk 3 vertices
+B $64BE,,6
+b $6566 ship cobra mk 3 edges
+B $6566,,4
+b $65FE ship cobra mk 3 faces
+B $65FE,,4
+b $6632 ship escape pod
+@ $6632 label=ship_escapepod
+b $6649 ship escape pod vertices
+B $6649,,6
+b $6661 ship escape pod edges
+B $6661,,4
+b $6679 ship escape pod faces
+B $6679,,4
+b $6689 unknown ship 4
+@ $6689 label=unknown_ship_4
+b $66A0 unknown ship 4 vertices
+B $66A0,,6
+b $6712 unknown ship 4 edges
+B $6712,,4
+b $677E unknown ship 4 faces
+B $677E,,4
+b $67A6 ship missile
+@ $67A6 label=ship_missile
+b $67BD ship missile vertices
+B $67BD,,6
+b $6823 ship missible edges
+B $6823,,4
+b $6883 ship missile faces
+B $6883,,4
+b $68A7 unknown ship 5
+@ $68A7 label=unknown_ship_5
+b $68BE unknown ship 5 vertices
+B $68BE,,6
+b $68D6 unknown ship 5 edges
+B $68D6,,4
+b $68E6 unknown ship 6
+@ $68E6 label=unknown_ship_6
+b $68FD ship python
+@ $68FD label=ship_python
+b $6914 ship python vertices
+B $6914,,6
+b $6956 ship python edges
+B $6956,,4
+b $69BE ship python faces
+B $69BE,,4
+b $69F2 ship sidewinder
+@ $69F2 label=ship_sidewinder
+b $6A09 ship sidewinder vertices
+B $6A09,,6
+b $6A45 ship sidewinder edges
+B $6A45,,4
+b $6A81 ship sidewinder faces
+B $6A81,,4
+b $6A9D ship coriolis
+@ $6A9D label=ship_coriolis
+b $6AB4 ship coriolis vertices
+B $6AB4,,6
+b $6B14 ship coriolis edges
+B $6B14,,4
+b $6B84 ship coriolis faces
+B $6B84,,4
+b $6BBC unknown ship 7
+@ $6BBC label=unknown_ship_7
+b $6BD3 unknown ship 7 vertices
+B $6BD3,,6
+b $6BEB unknown ship 7 edges
+B $6BEB,,4
+b $6C03 unknown ship 7 faces
+B $6C03,,4
+b $6C13 ship thargoid
+@ $6C13 label=ship_thargoid
+b $6C2A ship thargoid vertices
+B $6C2A,,6
+b $6CA2 ship thargoid edges
+B $6CA2,,4
+b $6D0A ship thargoid faces
+B $6D0A,,4
+b $6D32 unknown ship 8
+@ $6D32 label=unknown_ship_8
+b $6D49 unknown ship 8 vertices
+B $6D49,,6
+b $6DAF unknown ship 8 edges
+B $6DAF,,4
+b $6E03 unknown ship 8 faces
+B $6E03,,4
+b $6E1B ship viper
+@ $6E1B label=ship_viper
+b $6E32 ship viper vertices
+B $6E32,,6
+b $6E8C ship viper edges
+B $6E8C,,4
+b $6EDC ship viper faces
+B $6EDC,,4
+b $6EF8 ship thargon
+@ $6EF8 label=ship_thargon
+b $6F0F ship thargon vertices
+B $6F0F,,6
+b $6F4B ship thargon edges
+B $6F4B,,4
+b $6F87 ship thargon faces
+B $6F87,,4
+b $6FA3
 c $6FF2 code start
 D $6FF2 Used by the routine at #R$9A40.
 c $6FF8 Routine at 6FF8
