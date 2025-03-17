@@ -1999,7 +1999,7 @@ c$7378 CALL $8080    ;
 ; Routine at 7426
 ;
 ; Used by the routine at #R$7378.
-@label=draw_title_screen_text
+@label=print_title_screen_text
 c$7426 CALL $7447    ;
  $7429 LD HL,$0E01   ;
  $742C LD A,$06      ;
@@ -14179,16 +14179,17 @@ s$D03F DEFS $03
 c$D042 JP $DBA2      ;
 
 ; Data block at D045
-@label=word_at_D045
+@label=print_coord
 w$D045 DEFW $0000
 
 ; Data block at D047
 @label=byte_at_D047
 b$D047 DEFB $00
 
-; Routine at D048
+; Jump to D425
 ;
 ; Used by the routines at #R$7447, #R$99A4, #R$9B01, #R$9B57 and #R$9B74.
+@label=jump_to_D425
 c$D048 JP $D425      ;
 
 ; Data block at D04B
@@ -14283,7 +14284,11 @@ b$D0BF DEFB $07,$78
 @label=data_at_D0C1
 b$D0C1 DEFB $09,$C8,$02,$FD,$0C,$E2,$0B,$00
  $D0C9 DEFB $06,$65,$00,$01,$00,$00,$0A,$1F
- $D0D1 DEFB $00,$01,$00,$00,$08,$D5
+ $D0D1 DEFB $00,$01,$00,$00
+
+; Data block at D0D5
+@label=word_at_D0D5
+w$D0D5 DEFW $D508
 
 ; Routine at D0D7
 ;
@@ -20708,9 +20713,13 @@ b$FD8A DEFB $05,$06,$0D,$0E
 b$FD8E DEFB $CB,$71,$89,$21,$21,$61,$32,$48
  $FD96 DEFB $7A,$21,$20,$40,$40
 
-; Message at FD9B
-t$FD9B DEFM "ABOUSEITILETSTONLONUTHNOALLEXEGEZACEBISOUSESARMAINDIREA?ERATENBER"
- $FDDC DEFM "ALAVETIEDORQUANTEISRION"
+; More 2-letter tokens
+@label=more_two_letter_tokens
+t$FD9B DEFM "ABOUSEITILETSTONLONUTHNO"
+
+; Standard 2-letter tokens
+@label=two_letter_tokens
+t$FDB3 DEFM "ALLEXEGEZACEBISOUSESARMAINDIREA?ERATENBERALAVETIEDORQUANTEISRION"
 
 ; Data block at FDF3
 b$FDF3 DEFB $B2,$42,$3A,$52,$52,$54,$92,$70
@@ -20946,7 +20955,4 @@ b$FF58 DEFB $01,$10,$00,$01,$00,$08,$00,$40
  $FFE8 DEFB $00,$3C,$40,$3C,$02,$42,$3C,$00
  $FFF0 DEFB $00,$FE,$10,$10,$10,$10,$10,$E6
  $FFF8 DEFB $05,$CD,$05,$82,$DC,$C0,$FF
-
-; Data block at FFFF
-@label=stack_init
-b$FFFF DEFB $00
+ $FFFF DEFB $00

@@ -308,7 +308,7 @@ N $739E This entry point is used by the routine at #R$7471.
 C $73D6,2 Read keyboard
 c $7426 Routine at 7426
 D $7426 Used by the routine at #R$7378.
-@ $7426 label=draw_title_screen_text
+@ $7426 label=print_title_screen_text
 c $7430 Routine at 7430
 D $7430 Used by the routine at #R$7378.
 N $7438 This entry point is used by the routine at #R$7426.
@@ -1386,12 +1386,13 @@ S $D03F,3,$03
 c $D042 Routine at D042
 D $D042 Used by the routine at #R$7471.
 w $D045 Data block at D045
-@ $D045 label=word_at_D045
+@ $D045 label=print_coord
 W $D045,2,2
 b $D047 Data block at D047
 @ $D047 label=byte_at_D047
 B $D047,1,1
-c $D048 Routine at D048
+c $D048 Jump to D425
+@ $D048 label=jump_to_D425
 D $D048 Used by the routines at #R$7447, #R$99A4, #R$9B01, #R$9B57 and #R$9B74.
 w $D04B Data block at D04B
 @ $D04B label=word_at_D04B
@@ -1430,7 +1431,8 @@ b $D0BF Data block at D0BF
 B $D0BF,2,2
 b $D0C1 Data block at D0C1
 @ $D0C1 label=data_at_D0C1
-B $D0C1,22,8*2,6
+w $D0D5
+@ $D0D5 label=word_at_D0D5
 c $D0D7 Routine at D0D7
 D $D0D7 Used by the routine at #R$728D.
 c $D0DA Routine at D0DA
@@ -2849,8 +2851,10 @@ b $FD8A Data block at FD8A
 B $FD8A,4,4
 b $FD8E Data block at FD8E
 B $FD8E,13,8,5
-t $FD9B Message at FD9B
-T $FD9B,88,65,23
+t $FD9B More 2-letter tokens
+@ $FD9B label=more_two_letter_tokens
+t $FDB3 Standard 2-letter tokens
+@ $FDB3 label=two_letter_tokens
 b $FDF3 Data block at FDF3
 B $FDF3,14,8,6
 c $FE01 Routine at FE01
@@ -2884,7 +2888,4 @@ w $FF56 Word at FF56
 @ $FF56 label=save_sp_intrpt
 W $FF56,2,2
 b $FF58 Stack
-B $FF58,167,8*20,7
-b $FFFF Data block at FFFF
-@ $FFFF label=stack_init
-B $FFFF,1,1
+B $FF58,168,8*20,7
