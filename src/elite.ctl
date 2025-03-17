@@ -1,18 +1,21 @@
 @ $4000 start
 @ $4000 org
 b $4000 #UDGTABLE { #SCR(loading) | loading screen. } TABLE#
-B $4000,6144,8
+B $4000,6144,32
 b $5800 attributes
-B $5800,768,8
+B $5800,768,32
 b $5B00 printer buffer
 @ $5B00 label=ctrl_panel_attrs
-B $5B00,256,8
+B $5B00,256,32
 b $5C00 system variables
 B $5C00,192,8
 b $5CC0 reserved
 B $5CC0,11,8,3
 b $5CCB available
-B $5CCB,1205,8*150,5
+B $5CCB,1166,8*145,6
+b $6159 Data block at 6159
+@ $6159 label=title_screen_ship
+B $6159,39,8*4,7
 b $6180 Ship lookup table XX21
 @ $6180 label=ship_lookup_table
 B $6180,1,1
@@ -54,160 +57,160 @@ W $61C5,2,2
 B $61C7,2,1
 W $61C9,2,2
 B $61CB,1,1
-b $61CC unknown ship 1
+b $61CC Unknown ship 1
 @ $61CC label=unknown_ship_1
 B $61CC,23,8*2,7
-b $61E3 unknown ship 1 vertices
+b $61E3 Unknown ship 1 vertices
 B $61E3,114,6
-b $6255 unknown ship 1 edges
+b $6255 Unknown ship 1 edges
 B $6255,112,4
-b $62C5 unknown ship 1 faces
+b $62C5 Unknown ship 1 faces
 B $62C5,48,4
-b $62F5 unknown ship 2
+b $62F5 Unknown ship 2
 @ $62F5 label=unknown_ship_2
 B $62F5,23,8*2,7
-b $630C ship asteroid
+b $630C Ship asteroid
 @ $630C label=ship_asteroid
 B $630C,23,8*2,7
-b $6323 ship asteroid vertices
+b $6323 Ship asteroid vertices
 B $6323,54,6
-b $6359 ship asteroid edges
+b $6359 Ship asteroid edges
 B $6359,84,4
-b $63AD ship asteroid faces
+b $63AD Ship asteroid faces
 B $63AD,56,4
-b $63E5 ship canister
+b $63E5 Ship canister
 @ $63E5 label=ship_canister
 B $63E5,23,8*2,7
-b $63FC ship canister vertices
+b $63FC Ship canister vertices
 B $63FC,60,6
-b $6438 ship canister edges
+b $6438 Ship canister edges
 B $6438,60,4
-b $6474 ship canister faces
+b $6474 Ship canister faces
 B $6474,28,4
-b $6490 unknown ship 3
+b $6490 Unknown ship 3
 @ $6490 label=unknown_ship_3
 B $6490,23,8*2,7
-b $64A7 ship cobra
+b $64A7 Ship cobra
 @ $64A7 label=ship_cobra_mk_3
 B $64A7,23,8*2,7
-b $64BE ship cobra mk 3 vertices
+b $64BE Ship cobra mk 3 vertices
 B $64BE,168,6
-b $6566 ship cobra mk 3 edges
+b $6566 Ship cobra mk 3 edges
 B $6566,152,4
-b $65FE ship cobra mk 3 faces
+b $65FE Ship cobra mk 3 faces
 B $65FE,52,4
-b $6632 ship escape pod
+b $6632 Ship escape pod
 @ $6632 label=ship_escapepod
 B $6632,23,8*2,7
-b $6649 ship escape pod vertices
+b $6649 Ship escape pod vertices
 B $6649,24,6
-b $6661 ship escape pod edges
+b $6661 Ship escape pod edges
 B $6661,24,4
-b $6679 ship escape pod faces
+b $6679 Ship escape pod faces
 B $6679,16,4
-b $6689 unknown ship 4
+b $6689 Unknown ship 4
 @ $6689 label=unknown_ship_4
 B $6689,23,8*2,7
-b $66A0 unknown ship 4 vertices
+b $66A0 Unknown ship 4 vertices
 B $66A0,114,6
-b $6712 unknown ship 4 edges
+b $6712 Unknown ship 4 edges
 B $6712,108,4
-b $677E unknown ship 4 faces
+b $677E Unknown ship 4 faces
 B $677E,40,4
-b $67A6 ship missile
+b $67A6 Ship missile
 @ $67A6 label=ship_missile
 B $67A6,23,8*2,7
-b $67BD ship missile vertices
+b $67BD Ship missile vertices
 B $67BD,102,6
-b $6823 ship missible edges
+b $6823 Ship missible edges
 B $6823,96,4
-b $6883 ship missile faces
+b $6883 Ship missile faces
 B $6883,36,4
-b $68A7 unknown ship 5
+b $68A7 Unknown ship 5
 @ $68A7 label=unknown_ship_5
 B $68A7,23,8*2,7
-b $68BE unknown ship 5 vertices
+b $68BE Unknown ship 5 vertices
 B $68BE,24,6
-b $68D6 unknown ship 5 edges
+b $68D6 Unknown ship 5 edges
 B $68D6,16,4
-b $68E6 unknown ship 6
+b $68E6 Unknown ship 6
 @ $68E6 label=unknown_ship_6
 B $68E6,23,8*2,7
-b $68FD ship python
+b $68FD Ship python
 @ $68FD label=ship_python
 B $68FD,23,8*2,7
-b $6914 ship python vertices
+b $6914 Ship python vertices
 B $6914,66,6
-b $6956 ship python edges
+b $6956 Ship python edges
 B $6956,104,4
-b $69BE ship python faces
+b $69BE Ship python faces
 B $69BE,52,4
-b $69F2 ship sidewinder
+b $69F2 Ship sidewinder
 @ $69F2 label=ship_sidewinder
 B $69F2,23,8*2,7
-b $6A09 ship sidewinder vertices
+b $6A09 Ship sidewinder vertices
 B $6A09,60,6
-b $6A45 ship sidewinder edges
+b $6A45 Ship sidewinder edges
 B $6A45,60,4
-b $6A81 ship sidewinder faces
+b $6A81 Ship sidewinder faces
 B $6A81,28,4
-b $6A9D ship coriolis
+b $6A9D Ship coriolis
 @ $6A9D label=ship_coriolis
 B $6A9D,23,8*2,7
-b $6AB4 ship coriolis vertices
+b $6AB4 Ship coriolis vertices
 B $6AB4,96,6
-b $6B14 ship coriolis edges
+b $6B14 Ship coriolis edges
 B $6B14,112,4
-b $6B84 ship coriolis faces
+b $6B84 Ship coriolis faces
 B $6B84,56,4
-b $6BBC unknown ship 7
+b $6BBC Unknown ship 7
 @ $6BBC label=unknown_ship_7
 B $6BBC,23,8*2,7
-b $6BD3 unknown ship 7 vertices
+b $6BD3 Unknown ship 7 vertices
 B $6BD3,24,6
-b $6BEB unknown ship 7 edges
+b $6BEB Unknown ship 7 edges
 B $6BEB,24,4
-b $6C03 unknown ship 7 faces
+b $6C03 Unknown ship 7 faces
 B $6C03,16,4
-b $6C13 ship thargoid
+b $6C13 Ship thargoid
 @ $6C13 label=ship_thargoid
 B $6C13,23,8*2,7
-b $6C2A ship thargoid vertices
+b $6C2A Ship thargoid vertices
 B $6C2A,120,6
-b $6CA2 ship thargoid edges
+b $6CA2 Ship thargoid edges
 B $6CA2,104,4
-b $6D0A ship thargoid faces
+b $6D0A Ship thargoid faces
 B $6D0A,40,4
-b $6D32 unknown ship 8
+b $6D32 Unknown ship 8
 @ $6D32 label=unknown_ship_8
 B $6D32,23,8*2,7
-b $6D49 unknown ship 8 vertices
+b $6D49 Unknown ship 8 vertices
 B $6D49,102,6
-b $6DAF unknown ship 8 edges
+b $6DAF Unknown ship 8 edges
 B $6DAF,84,4
-b $6E03 unknown ship 8 faces
+b $6E03 Unknown ship 8 faces
 B $6E03,24,4
-b $6E1B ship viper
+b $6E1B Ship viper
 @ $6E1B label=ship_viper
 B $6E1B,23,8*2,7
-b $6E32 ship viper vertices
+b $6E32 Ship viper vertices
 B $6E32,90,6
-b $6E8C ship viper edges
+b $6E8C Ship viper edges
 B $6E8C,80,4
-b $6EDC ship viper faces
+b $6EDC Ship viper faces
 B $6EDC,28,4
-b $6EF8 ship thargon
+b $6EF8 Ship thargon
 @ $6EF8 label=ship_thargon
 B $6EF8,23,8*2,7
-b $6F0F ship thargon vertices
+b $6F0F Ship thargon vertices
 B $6F0F,60,6
-b $6F4B ship thargon edges
+b $6F4B Ship thargon edges
 B $6F4B,60,4
-b $6F87 ship thargon faces
+b $6F87 Ship thargon faces
 B $6F87,28,4
 b $6FA3 Data block at 6FA3
 B $6FA3,79,8*9,7
-c $6FF2 code start
+c $6FF2 Code start
 D $6FF2 Used by the routine at #R$9A40.
 c $6FF8 Routine at 6FF8
 D $6FF8 Used by the routines at #R$7222, #R$7471, #R$8F0D and #R$DAB4.
@@ -238,6 +241,7 @@ s $7124 Unused
 S $7124,1,$01
 c $7125 Routine at 7125
 D $7125 Used by the routine at #R$FF25.
+@ $7125 label=jump_to_sound
 b $7128 Data block at 7128
 B $7128,20,8*2,4
 c $713C Routine at 713C
@@ -301,16 +305,19 @@ c $7378 title loop
 @ $7378 label=title_loop
 N $7394 This entry point is used by the routine at #R$7471.
 N $739E This entry point is used by the routine at #R$7471.
+C $73D6,2 Read keyboard
 c $7426 Routine at 7426
 D $7426 Used by the routine at #R$7378.
+@ $7426 label=draw_title_screen_text
 c $7430 Routine at 7430
 D $7430 Used by the routine at #R$7378.
 N $7438 This entry point is used by the routine at #R$7426.
 c $7447 Routine at 7447
 D $7447 Used by the routines at #R$7426 and #R$7430.
 N $7459 This entry point is used by the routine at #R$7430.
-c $7461 Routine at 7461
+c $7461 Set attributes for 2/3 of the screen to white/black
 D $7461 Used by the routines at #R$7366 and #R$7378.
+@ $7461 label=clear_attributes
 b $7470 Data block at 7470
 B $7470,1,1
 c $7471 Routine at 7471
@@ -404,8 +411,9 @@ c $7EDE Routine at 7EDE
 D $7EDE Used by the routine at #R$7471.
 b $7F6F Data block at 7F6F
 B $7F6F,79,8*9,7
-c $7FBE Routine at 7FBE
+c $7FBE Copy screen buffer to screen
 D $7FBE Used by the routines at #R$7378, #R$7471, #R$9296 and #R$93ED.
+D $7FBE Looks like this is just making an exact copy.
 @ $7FBE label=draw_screen_buffer
 C $7FBE,3 Top of screen
 C $7FC1,3 Screen buffer addr at top of screen
@@ -462,11 +470,38 @@ C $805C,1 Write 0
 C $805D,2 Repeat 23 times
 C $805F,1 End of last row
 C $8060,1 Write 0
-C $8061,3 Copy control panel gfx
-C $806C,3 Copy control panel attrs
-c $8080 Routine at 8080
+C $8061,3 Copy control panel gfx from buffer to screen
+C $806C,3 Copy control panel attrs from buffer to screen
+c $8080 Clear 3D area and draw a border
 D $8080 Used by the routines at #R$7378, #R$7471, #R$9296 and #R$93ED.
-s $80D1 Unused
+@ $8080 label=clear_3d_area
+C $8080,1 Disable interrupts
+C $8081,4 Save stack pointer
+C $8085,3 Set SP just above screen buffer
+C $8088,3 For drawing empty bytes
+C $808B,3 For bottom right corner
+C $808E,4 For bottom left corner
+C $8092,3 For middle border
+C $8095,1 Draw bottom right corner
+C $8096,6 Draw 28 middle bytes of bottom border
+C $809C,2 Draw bottom left corner
+C $809E,2 For right side
+C $80A0,4 For left side
+C $80A4,2 126 lines
+C $80A6,1 Draw right side
+C $80A7,14 Draw 28 empty bytes
+C $80B5,2 Draw left side
+C $80B7,2 Repeat 126 times
+C $80B9,3 For middle border
+C $80BC,2 For top right corner
+C $80BE,4 For top left corner
+C $80C2,1 Draw top right corner
+C $80C3,6 Draw 28 middle bytes of top border
+C $80C9,2 Draw top left corner
+C $80CB,4 Restore stack pointer
+C $80CF,1 Enable interrupts
+s $80D1 For saving SP
+@ $80D1 label=save_sp
 S $80D1,2,$02
 c $80D3 Routine at 80D3
 D $80D3 Used by the routine at #R$7471.
@@ -476,8 +511,8 @@ D $813E Used by the routines at #R$71F3, #R$80D3 and #R$93ED.
 c $815D Routine at 815D
 D $815D Used by the routine at #R$80D3.
 N $817E This entry point is used by the routines at #R$7378 and #R$93ED.
-C $8183,3 Copy control panel gfx to screen
-C $818E,3 Copy control panel attrs to screen
+C $8183,3 Copy control panel gfx from screen to buffer
+C $818E,3 Copy control panel attrs from screen to buffer
 s $81A3 Unused
 S $81A3,6,$06
 c $81A9 Routine at 81A9
@@ -747,7 +782,12 @@ B $93D0,29,8*3,5
 c $93ED Routine at 93ED
 D $93ED Used by the routines at #R$717B and #R$80D3.
 N $94F4 This entry point is used by the routines at #R$7366, #R$7378 and #R$9296.
+@ $94F4 label=clear_some_bytes
+C $94F6,3 Clear 5 bytes of the 3 words at FF08
+C $94FC,2 Set the 6th byte
 N $94FE This entry point is used by the routines at #R$8042 and #R$813E.
+C $9500,3 Clear 5 bytes at FC08
+@ $9503 clear_b_bytes_at_hl
 c $9509 Routine at 9509
 D $9509 Used by the routines at #R$7471, #R$7EDE, #R$9296 and #R$93ED.
 b $9522 Data block at 9522
@@ -765,6 +805,7 @@ c $9561 Routine at 9561
 @ $9561 label=jump_table
 c $9579 Routine at 9579
 D $9579 Used by the routine at #R$7125.
+@ $9579 label=sound
 N $95A6 This entry point is used by the routine at #R$9551.
 N $95AD This entry point is used by the routine at #R$9684.
 N $95CF This entry point is used by the routine at #R$9532.
@@ -873,6 +914,7 @@ b $9C92 Data block at 9C92
 B $9C92,10,8,2
 c $9C9C Routine at 9C9C
 D $9C9C Used by the routines at #R$7366, #R$7378, #R$9296, #R$9BA7 and #R$9C1C.
+@ $9C9C label=jump_to_B867
 c $9C9F Routine at 9C9F
 D $9C9F Used by the routine at #R$7471.
 b $9CA2 Data block at 9CA2
@@ -881,6 +923,7 @@ c $9CA5 Routine at 9CA5
 D $9CA5 Used by the routine at #R$71E4.
 c $9CAF Routine at 9CAF
 D $9CAF Used by the routine at #R$7378.
+@ $9CAF label=jump_to_draw_title_ship
 s $9CB2 Unused
 S $9CB2,3,$03
 c $9CB5 Routine at 9CB5
@@ -931,6 +974,7 @@ s $A28B Unused
 S $A28B,2,$02
 c $A28D Routine at A28D
 D $A28D Used by the routine at #R$9CAF.
+@ $A28D label=draw_title_ship
 b $A2B8 Data block at A2B8
 B $A2B8,8,8
 c $A2C0 Routine at A2C0
@@ -1106,6 +1150,7 @@ b $B85D Data block at B85D
 B $B85D,10,8,2
 c $B867 Routine at B867
 D $B867 Used by the routines at #R$9C9C, #R$9CBB, #R$B618 and #R$B63C.
+R $B867 A Some value
 c $B898 Routine at B898
 D $B898 Used by the routines at #R$B91E, #R$B94A, #R$B96B, #R$BB75, #R$BBF2, #R$BC21 and #R$BC78.
 R $B898 A Index of ship
@@ -1204,63 +1249,63 @@ D $BDB4 Used by the routine at #R$BCD4.
 b $BE00 Table of squares
 @ $BE00 label=sqr_table
 B $BE00,512,8
-b $C000 2K copied from C800 to here
+b $C000 Screen buffer
 @ $C000 label=screen_buffer
 B $C000,531,8*66,3
-c $C213 lenslock
+c $C213 Lenslock
 D $C213 Used by the routine at #R$D07C.
-c $C226 Routine at C226
-c $C230 Routine at C230
-t $C233 Message at C233
+c $C226 Routine at C226 (lenslock)
+c $C230 Routine at C230 (lenslock)
+t $C233 Message at C233 (lenslock)
 T $C233,22,22
-b $C249 Data block at C249
+b $C249 Data block at C249 (lenslock)
 B $C249,1,1
-c $C24A Routine at C24A
-c $C25C Routine at C25C
+c $C24A Routine at C24A (lenslock)
+c $C25C Routine at C25C (lenslock)
 D $C25C Used by the routine at #R$C226.
-c $C25D Routine at C25D
+c $C25D Routine at C25D (lenslock)
 D $C25D Used by the routine at #R$C213.
-c $C268 Routine at C268
-c $C2BA Routine at C2BA
+c $C268 Routine at C268 (lenslock)
+c $C2BA Routine at C2BA (lenslock)
 D $C2BA Used by the routines at #R$C25D and #R$C268.
-c $C2C9 Routine at C2C9
+c $C2C9 Routine at C2C9 (lenslock)
 D $C2C9 Used by the routine at #R$C268.
-c $C2EB Routine at C2EB
+c $C2EB Routine at C2EB (lenslock)
 D $C2EB Used by the routines at #R$C3DF and #R$C4D0.
-c $C2F7 Routine at C2F7
+c $C2F7 Routine at C2F7 (lenslock)
 D $C2F7 Used by the routines at #R$C2C9 and #R$C4D0.
-c $C303 Routine at C303
+c $C303 Routine at C303 (lenslock)
 D $C303 Used by the routine at #R$C2C9.
-c $C374 Routine at C374
+c $C374 Routine at C374 (lenslock)
 D $C374 Used by the routines at #R$C303 and #R$C59C.
-c $C37C Routine at C37C
+c $C37C Routine at C37C (lenslock)
 D $C37C Used by the routine at #R$C268.
-c $C391 Routine at C391
+c $C391 Routine at C391 (lenslock)
 D $C391 Used by the routine at #R$C268.
-c $C3A8 Routine at C3A8
+c $C3A8 Routine at C3A8 (lenslock)
 D $C3A8 Used by the routines at #R$C226 and #R$C608.
-c $C3AE Routine at C3AE
+c $C3AE Routine at C3AE (lenslock)
 D $C3AE Used by the routine at #R$C4B0.
 N $C3B0 This entry point is used by the routine at #R$C3A8.
-c $C3B8 Routine at C3B8
+c $C3B8 Routine at C3B8 (lenslock)
 D $C3B8 Used by the routine at #R$C303.
-c $C3DF Routine at C3DF
+c $C3DF Routine at C3DF (lenslock)
 D $C3DF Used by the routine at #R$C303.
-c $C3F3 Routine at C3F3
+c $C3F3 Routine at C3F3 (lenslock)
 D $C3F3 Used by the routines at #R$C303, #R$C3B8 and #R$C608.
-c $C408 Routine at C408
+c $C408 Routine at C408 (lenslock)
 D $C408 Used by the routines at #R$C268, #R$C303 and #R$C3B8.
-c $C414 Routine at C414
+c $C414 Routine at C414 (lenslock)
 D $C414 Used by the routine at #R$C25D.
 N $C419 This entry point is used by the routine at #R$C478.
-t $C422 Message at C422
+t $C422 Message at C422 (lenslock)
 T $C422,29,29
-c $C43F Routine at C43F
+c $C43F Routine at C43F (lenslock)
 N $C475 This entry point is used by the routine at #R$C478.
-c $C478 Routine at C478
-c $C4B0 Routine at C4B0
+c $C478 Routine at C478 (lenslock)
+c $C4B0 Routine at C4B0 (lenslock)
 D $C4B0 Used by the routine at #R$C478.
-c $C4D0 Routine at C4D0
+c $C4D0 Routine at C4D0 (lenslock)
 D $C4D0 Used by the routine at #R$C268.
 N $C4D8 This entry point is used by the routine at #R$C4B0.
 N $C4DA This entry point is used by the routine at #R$C4B0.
@@ -1268,56 +1313,56 @@ N $C4DE This entry point is used by the routine at #R$C4B0.
 N $C4E2 This entry point is used by the routine at #R$C4B0.
 N $C4E6 This entry point is used by the routine at #R$C4B0.
 N $C4EC This entry point is used by the routine at #R$C4B0.
-c $C4FF Routine at C4FF
+c $C4FF Routine at C4FF (lenslock)
 D $C4FF Used by the routine at #R$C43F.
-c $C50B Routine at C50B
+c $C50B Routine at C50B (lenslock)
 D $C50B Used by the routine at #R$C43F.
-c $C511 Routine at C511
+c $C511 Routine at C511 (lenslock)
 D $C511 Used by the routine at #R$C478.
-c $C519 Routine at C519
+c $C519 Routine at C519 (lenslock)
 D $C519 Used by the routine at #R$C54B.
-c $C52F Routine at C52F
+c $C52F Routine at C52F (lenslock)
 D $C52F Used by the routine at #R$C43F.
-t $C532 Message at C532
+t $C532 Message at C532 (lenslock)
 T $C532,23,23
-b $C549 Data block at C549
+b $C549 Data block at C549 (lenslock)
 B $C549,2,2
-c $C54B Routine at C54B
+c $C54B Routine at C54B (lenslock)
 D $C54B Used by the routine at #R$C6A6.
-c $C59C Routine at C59C
+c $C59C Routine at C59C (lenslock)
 D $C59C Used by the routine at #R$C2C9.
-c $C5EC Routine at C5EC
+c $C5EC Routine at C5EC (lenslock)
 D $C5EC Used by the routine at #R$C59C.
-c $C5F5 Routine at C5F5
+c $C5F5 Routine at C5F5 (lenslock)
 D $C5F5 Used by the routines at #R$C303, #R$C59C and #R$C5EC.
-c $C608 Routine at C608
+c $C608 Routine at C608 (lenslock)
 D $C608 Used by the routine at #R$C268.
-c $C67D Routine at C67D
+c $C67D Routine at C67D (lenslock)
 D $C67D Used by the routine at #R$C43F.
-c $C688 Routine at C688
+c $C688 Routine at C688 (lenslock)
 D $C688 Used by the routines at #R$C608 and #R$C67D.
-c $C68E Routine at C68E
+c $C68E Routine at C68E (lenslock)
 D $C68E Used by the routines at #R$C37C and #R$C54B.
-c $C6A6 Routine at C6A6
+c $C6A6 Routine at C6A6 (lenslock)
 D $C6A6 Used by the routine at #R$C268.
-c $C6D7 Routine at C6D7
+c $C6D7 Routine at C6D7 (lenslock)
 D $C6D7 Used by the routine at #R$C6A6.
-c $C6E6 Routine at C6E6
+c $C6E6 Routine at C6E6 (lenslock)
 D $C6E6 Used by the routine at #R$C2C9.
-c $C703 Routine at C703
+c $C703 Routine at C703 (lenslock)
 D $C703 Used by the routine at #R$C6E6.
-c $C71C Routine at C71C
+c $C71C Routine at C71C (lenslock)
 D $C71C Used by the routine at #R$C6E6.
-c $C727 Routine at C727
+c $C727 Routine at C727 (lenslock)
 D $C727 Used by the routines at #R$C4B0 and #R$C608.
-c $C733 Routine at C733
+c $C733 Routine at C733 (lenslock)
 D $C733 Used by the routine at #R$C6E6.
-b $C774 Data block at C774
+b $C774 Data block at C774 (junk)
 @ $C774 label=data_at_C774
 B $C774,140,8*17,4
-b $C800 Copied to C000 #UDGTABLE { #SCR1,0,0,32,8,$c800,$5b00(ctrl_panel) | control panel. } TABLE#
+b $C800 Control panel graphics #UDGTABLE { #SCR1,0,0,32,8,$c800,$5b00(ctrl_panel) | control panel. } TABLE#
 @ $C800 label=ctrl_panel_gfx
-B $C800,2048,8
+B $C800,2048,32
 c $D000 Routine at D000
 c $D003 Routine at D003
 c $D006 Routine at D006
@@ -1369,11 +1414,11 @@ T $D054,10,10
 b $D05E Data block at D05E
 B $D05E,1,1
 c $D05F loader
-c $D07C call lenslock
-c $D07F after lenslock
-C $D07F,3 Copy 2K from C800 to C000
-C $D08A,3 Generate table of squares
-C $D09E,2 Set interrupt mode
+c $D07C Call lenslock
+c $D07F After lenslock
+C $D07F,11 Copy 2K from C800 to C000
+C $D08A,20 Generate table of squares
+C $D09E,6 Set interrupt mode
 b $D0A7 Data block at D0A7
 @ $D0A7 label=data_at_D0A7
 B $D0A7,22,8*2,6
@@ -1489,7 +1534,7 @@ c $D61D Routine at D61D
 D $D61D Clear the screen and draw a one pixel border
 R $D61D Used by the routines at #R$D036, #R$D90A, #R$DBA2, #R$E973, #R$EB7C and
 R $D61D #R$EC58.
-@ $D61D label=clear_screen
+@ $D61D label=clear_screen_border
 C $D61E,4 Store the stack pointer
 C $D622,3 Set stack to end of attributes
 C $D625,3 Attribute value
@@ -1932,6 +1977,8 @@ b $F117 Data block at F117
 B $F117,3,3
 w $F11A Data block at F11A
 N $F11A Recursive tokens
+@ $F11A label=tokens_ptr
+@ $F11C label=more_tokens_ptr
 W $F11A,4,2
 b $F11E Recursive tokens
 @ $F11E label=tokens
@@ -2756,18 +2803,47 @@ T $FBFA,5,5
 b $FBFF Data block at FBFF
 B $FBFF,1,1 Recursive tokens end
 b $FC00 Data block at FC00
-B $FC00,16,8
-c $FC10 Routine at FC10
+@ $FC00 label=data_at_FC00
+B $FC00,8,8
+b $FC08 Byte at FC08
+@ $FC08 label=byte_at_FC08
+B $FC08,1,1
+b $FC09 Byte at FC09
+@ $FC09 label=byte_at_FC09
+B $FC09,1,1
+b $FC0A Byte at FC0A
+@ $FC0A label=byte_at_FCA
+B $FC0A,1,1
+b $FC0B Byte at FC0B
+@ $FC0B label=byte_at_FC0B
+B $FC0B,1,1
+b $FC0C Byte at FC0C
+@ $FC0C label=byte_at_FC0C
+B $FC0C,1,1
+b $FC0D Byte at FC0D
+@ $FC0D label=byte_at_FC0D
+B $FC0D,1,1
+b $FC0E Byte at FC0E
+@ $FC0E label=byte_at_FC0E
+B $FC0E,1,1
+b $FC0F Byte at FC0F
+@ $FC0F label=byte_at_FC0F
+B $FC0F,1,1
+c $FC10 Scan keyboard continued
 D $FC10 Used by the routine at #R$FD69.
+@ $FC10 label=scan_keyboard_cont
 c $FCBA Routine at FCBA
 D $FCBA Used by the routine at #R$FD69.
 b $FCEA Data block at FCEA
-B $FCEA,87,8*10,7
+B $FCEA,22,8*2,6
+b $FD00 Interrupt vector table?
+B $FD00,65,8*8,1
 b $FD41 Data block at FD41
 @ $FD41 label=data_at_FD41
 B $FD41,40,8
-c $FD69 Routine at FD69
+c $FD69 Scan keyboard
 D $FD69 Used by the routine at #R$FF25.
+@ $FD69 label=scan_keyboard
 N $FD76 This entry point is used by the routine at #R$FC10.
 b $FD8A Data block at FD8A
 B $FD8A,4,4
@@ -2780,6 +2856,7 @@ B $FDF3,14,8,6
 c $FE01 Routine at FE01
 D $FE01 Used by the routine at #R$FF25.
 c $FEFE Routine at FEFE
+@ $FEFE label=interrupt_jump
 c $FF00 Routine at FF00
 D $FF00 Used by the routine at #R$FE01.
 w $FF08 Data block at FF08
@@ -2796,12 +2873,18 @@ D $FF0E Used by the routine at #R$FE01.
 c $FF16 Routine at FF16
 D $FF16 Used by the routine at #R$FF00.
 N $FF1D This entry point is used by the routines at #R$FE01, #R$FF00 and #R$FF0E.
-c $FF25 Routine at FF25
+c $FF25 Interrupt routine
 D $FF25 Used by the routine at #R$FEFE.
-c $FF4C Routine at FF4C
-@ $FF4C label=stack
-w $FF56 Data block at FF56
-@ $FF56 label=sp_tmp
+@ $FF25 label=interrupt_routine
+c $FF4C Set IM2
+@ $FF4C label=set_im2
+c $FF53 Set IM1
+@ $FF53 label=set_im1
+w $FF56 Word at FF56
+@ $FF56 label=save_sp_intrpt
 W $FF56,2,2
-b $FF58 Data block at FF58
-B $FF58,168,8
+b $FF58 Stack
+B $FF58,167,8*20,7
+b $FFFF Data block at FFFF
+@ $FFFF label=stack_init
+B $FFFF,1,1
