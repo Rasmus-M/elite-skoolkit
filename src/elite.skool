@@ -2705,9 +2705,10 @@ c$7447 LD HL,$0105   ;
  $745E RES 7,(HL)    ;
  $7460 RET           ;
 
-; Routine at 7461
+; Set attributes for 2/3 of the screen to white/black
 ;
 ; Used by the routines at #R$7366 and #R$7378.
+@label=clear_attributes
 c$7461 LD HL,$5800   ;
  $7464 CALL $7467    ;
 *$7467 LD B,$00      ;
@@ -4266,32 +4267,41 @@ b$7F6F DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $7FAF DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $7FB7 DEFB $00,$00,$00,$00,$00,$00,$00
 
-; Routine at 7FBE
+; Copy screen buffer to screen
 ;
 ; Used by the routines at #R$7378, #R$7471, #R$9296 and #R$93ED.
-c$7FBE LD DE,$4000   ;
- $7FC1 LD HL,$C000   ;
- $7FC4 CALL $7FE3    ;
- $7FC7 LD DE,$4800   ;
- $7FCA LD HL,$C800   ;
- $7FCD CALL $7FE3    ;
- $7FD0 LD DE,$4100   ;
- $7FD3 LD HL,$C100   ;
- $7FD6 CALL $7FE3    ;
- $7FD9 LD DE,$4900   ;
- $7FDC LD HL,$C900   ;
- $7FDF CALL $7FE3    ;
+; .
+; Looks like this is just making an exact copy.
+;
+@label=draw_screen_buffer
+c$7FBE LD DE,$4000   ; Top of screen
+ $7FC1 LD HL,$C000   ; Screen buffer addr at top of screen
+ $7FC4 CALL $7FE3    ; Copy even lines
+ $7FC7 LD DE,$4800   ; 2nd third of screen
+ $7FCA LD HL,$C800   ; Screen buffer addr at 2nd third of screen
+ $7FCD CALL $7FE3    ; Copy even lines
+ $7FD0 LD DE,$4100   ; 2nd line
+ $7FD3 LD HL,$C100   ; Screen buffer addr at 2nd line
+ $7FD6 CALL $7FE3    ; Copy odd lines
+ $7FD9 LD DE,$4900   ; 2nd line of 2nd third
+ $7FDC LD HL,$C900   ; Screen buffer addr at 2nd line of 2nd third
+ $7FDF CALL $7FE3    ; Copy odd lines
  $7FE2 RET           ;
 
 ; Routine at 7FE3
 ;
+; Copy every 2nd line of an area from buffer to screen
 ; Used by the routine at #R$7FBE.
-c$7FE3 LD B,$08      ;
-*$7FE5 PUSH DE       ;
+;
+; HL Source (screen buffer) address (110sslllrrrccccc)
+; DE Destination (screen) address (010sslllrrrccccc)
+@label=copy_screen_area
+c$7FE3 LD B,$08      ; Number of rows?
+*$7FE5 PUSH DE       ; Save screen address
  $7FE6 LD C,$FF      ;
- $7FE8 LD A,$04      ;
-*$7FEA PUSH DE       ;
- $7FEB LDI           ;
+ $7FE8 LD A,$04      ; Number of lines?
+*$7FEA PUSH DE       ; Save screen address
+ $7FEB LDI           ; Copy 32 bytes in unrolled loop
  $7FED LDI           ;
  $7FEF LDI           ;
  $7FF1 LDI           ;
@@ -4323,22 +4333,22 @@ c$7FE3 LD B,$08      ;
  $8025 LDI           ;
  $8027 LDI           ;
  $8029 LDI           ;
- $802B POP DE        ;
- $802C INC D         ;
- $802D INC D         ;
- $802E LD H,D        ;
- $802F SET 7,H       ;
- $8031 LD L,E        ;
- $8032 DEC A         ;
- $8033 JP NZ,$7FEA   ;
- $8036 POP DE        ;
- $8037 LD A,E        ;
- $8038 ADD A,$20     ;
- $803A LD E,A        ;
- $803B LD L,A        ;
- $803C LD H,D        ;
- $803D SET 7,H       ;
- $803F DJNZ $7FE5    ;
+ $802B POP DE        ; Restore screen address at beginning of line
+ $802C INC D         ; One line down
+ $802D INC D         ; One line down
+ $802E LD H,D        ; Source MSB = dest MSB
+ $802F SET 7,H       ; Set msb to make source $cxxx
+ $8031 LD L,E        ; Source follows destination
+ $8032 DEC A         ; Line counter
+ $8033 JP NZ,$7FEA   ; Loop for 4 lines
+ $8036 POP DE        ; Restore screen address at top of section
+ $8037 LD A,E        ; A=rrrccccc
+ $8038 ADD A,$20     ; Next row
+ $803A LD E,A        ; Update destination
+ $803B LD L,A        ; Update source
+ $803C LD H,D        ; Source MSB = dest MSB
+ $803D SET 7,H       ; Set msb to make source $cxxx
+ $803F DJNZ $7FE5    ; Loop for 8 rows
  $8041 RET           ;
 
 ; Routine at 8042
@@ -4364,11 +4374,11 @@ c$8042 LD DE,$4000   ;
  $805D DJNZ $8059    ; Repeat 23 times
  $805F ADD HL,DE     ; End of last row
  $8060 LD (HL),A     ; Write 0
- $8061 LD DE,$5000   ; Copy control panel gfx
+ $8061 LD DE,$5000   ; Copy control panel gfx from buffer to screen
  $8064 LD HL,$C000   ;
  $8067 LD BC,$0800   ;
  $806A LDIR          ;
- $806C LD DE,$5A00   ; Copy control panel attrs
+ $806C LD DE,$5A00   ; Copy control panel attrs from buffer to screen
  $806F LD HL,$5B00   ;
  $8072 LD BC,$0100   ;
  $8075 LDIR          ;
@@ -4376,27 +4386,28 @@ c$8042 LD DE,$4000   ;
  $807A CALL $7265    ;
  $807D JP $98A2      ;
 
-; Routine at 8080
+; Clear 3D area and draw a border
 ;
 ; Used by the routines at #R$7378, #R$7471, #R$9296 and #R$93ED.
-c$8080 DI            ;
- $8081 LD ($80D1),SP ;
- $8085 LD SP,$D000   ;
- $8088 LD HL,$0000   ;
- $808B LD DE,$00FF   ;
- $808E LD IX,$FF00   ;
- $8092 LD BC,$FFFF   ;
- $8095 PUSH DE       ;
- $8096 LD A,$0E      ;
+@label=clear_3d_area
+c$8080 DI            ; Disable interrupts
+ $8081 LD ($80D1),SP ; Save stack pointer
+ $8085 LD SP,$D000   ; Set SP just above screen buffer
+ $8088 LD HL,$0000   ; For drawing empty bytes
+ $808B LD DE,$00FF   ; For bottom right corner
+ $808E LD IX,$FF00   ; For bottom left corner
+ $8092 LD BC,$FFFF   ; For middle border
+ $8095 PUSH DE       ; Draw bottom right corner
+ $8096 LD A,$0E      ; {Draw 28 middle bytes of bottom border
 *$8098 PUSH BC       ;
  $8099 DEC A         ;
- $809A JR NZ,$8098   ;
- $809C PUSH IX       ;
- $809E LD E,$01      ;
- $80A0 LD IX,$8000   ;
- $80A4 LD B,$7E      ;
-*$80A6 PUSH DE       ;
- $80A7 PUSH HL       ;
+ $809A JR NZ,$8098   ; }
+ $809C PUSH IX       ; Draw bottom left corner
+ $809E LD E,$01      ; For right side
+ $80A0 LD IX,$8000   ; For left side
+ $80A4 LD B,$7E      ; 126 lines
+*$80A6 PUSH DE       ; Draw right side
+ $80A7 PUSH HL       ; {Draw 28 empty bytes
  $80A8 PUSH HL       ;
  $80A9 PUSH HL       ;
  $80AA PUSH HL       ;
@@ -4409,23 +4420,24 @@ c$8080 DI            ;
  $80B1 PUSH HL       ;
  $80B2 PUSH HL       ;
  $80B3 PUSH HL       ;
- $80B4 PUSH HL       ;
- $80B5 PUSH IX       ;
- $80B7 DJNZ $80A6    ;
- $80B9 LD BC,$FFFF   ;
- $80BC LD E,$FF      ;
- $80BE LD IX,$FF00   ;
- $80C2 PUSH DE       ;
- $80C3 LD A,$0E      ;
+ $80B4 PUSH HL       ; }
+ $80B5 PUSH IX       ; Draw left side
+ $80B7 DJNZ $80A6    ; Repeat 126 times
+ $80B9 LD BC,$FFFF   ; For middle border
+ $80BC LD E,$FF      ; For top right corner
+ $80BE LD IX,$FF00   ; For top left corner
+ $80C2 PUSH DE       ; Draw top right corner
+ $80C3 LD A,$0E      ; {Draw 28 middle bytes of top border
 *$80C5 PUSH BC       ;
  $80C6 DEC A         ;
- $80C7 JR NZ,$80C5   ;
- $80C9 PUSH IX       ;
- $80CB LD SP,($80D1) ;
- $80CF EI            ;
+ $80C7 JR NZ,$80C5   ; }
+ $80C9 PUSH IX       ; Draw top left corner
+ $80CB LD SP,($80D1) ; Restore stack pointer
+ $80CF EI            ; Enable interrupts
  $80D0 RET           ;
 
-; Unused
+; For saving SP
+@label=save_sp
 s$80D1 DEFS $02
 
 ; Routine at 80D3
@@ -4532,11 +4544,11 @@ c$815D LD A,($70E3)  ;
 *$817E PUSH AF       ;
  $817F CALL $98CD    ;
  $8182 POP AF        ;
- $8183 LD DE,$C000   ;
+ $8183 LD DE,$C000   ; Copy control panel gfx from screen to buffer
  $8186 LD HL,$5000   ;
  $8189 LD BC,$0800   ;
  $818C LDIR          ;
- $818E LD DE,$5B00   ;
+ $818E LD DE,$5B00   ; Copy control panel attrs from screen to buffer
  $8191 LD HL,$5A00   ;
  $8194 LD BC,$0100   ;
  $8197 LDIR          ;
@@ -8881,6 +8893,7 @@ b$9C92 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 ; Routine at 9C9C
 ;
 ; Used by the routines at #R$7366, #R$7378, #R$9296, #R$9BA7 and #R$9C1C.
+@label=jump_to_B867
 c$9C9C JP $B867      ;
 
 ; Routine at 9C9F
@@ -12799,6 +12812,8 @@ b$B85D DEFB $58,$44,$41,$98,$64,$CB,$5A,$A7
 ; Routine at B867
 ;
 ; Used by the routines at #R$9C9C, #R$9CBB, #R$B618 and #R$B63C.
+;
+; A Some value
 c$B867 LD C,A        ;
  $B868 SRL C         ;
  $B86A SRL C         ;
@@ -13694,7 +13709,7 @@ b$BE00 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $BFF8 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 
 ; 2K copied from C800 to here
-@label=ctrl_panel_gfx_copy
+@label=screen_buffer
 b$C000 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $C008 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $C010 DEFB $00,$00,$00,$00,$00,$00,$00,$00

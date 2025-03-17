@@ -406,8 +406,45 @@ b $7F6F Data block at 7F6F
 B $7F6F,79,8*9,7
 c $7FBE Routine at 7FBE
 D $7FBE Used by the routines at #R$7378, #R$7471, #R$9296 and #R$93ED.
+@ $7FBE label=draw_screen_buffer
+C $7FBE,3 Top of screen
+C $7FC1,3 Screen buffer addr at top of screen
+C $7FC4,3 Copy even lines
+C $7FC7,3 2nd third of screen
+C $7FCA,3 Screen buffer addr at 2nd third of screen
+C $7FCD,3 Copy even lines
+C $7FD0,3 2nd line
+C $7FD3,3 Screen buffer addr at 2nd line
+C $7FD6,3 Copy odd lines
+C $7FD9,3 2nd line of 2nd third
+C $7FDC,3 Screen buffer addr at 2nd line of 2nd third
+C $7FDF,3 Copy odd lines
 c $7FE3 Routine at 7FE3
-D $7FE3 Used by the routine at #R$7FBE.
+D $7FE3 Copy every 2nd line of an area from buffer to screen Used by the routine at #R$7FBE.
+R $7FE3 HL Source (screen buffer) address (110sslllrrrccccc)
+R $7FE3 DE Destination (screen) address (010sslllrrrccccc)
+@ $7FE3 label=copy_screen_area
+C $7FE3,2 Number of rows?
+C $7FE5,1 Save screen address
+C $7FE8,2 Number of lines?
+C $7FEA,1 Save screen address
+C $7FEB,2 Copy 32 bytes in unrolled loop
+C $802B,1 Restore screen address at beginning of line
+C $802C,1 One line down
+C $802D,1 One line down
+C $802E,1 Source MSB = dest MSB
+C $802F,2 Set msb to make source $cxxx
+C $8031,1 Source follows destination
+C $8032,1 Line counter
+C $8033,3 Loop for 4 lines
+C $8036,1 Restore screen address at top of section
+C $8037,1 A=rrrccccc
+C $8038,2 Next row
+C $803A,1 Update destination
+C $803B,1 Update source
+C $803C,1 Source MSB = dest MSB
+C $803D,2 Set msb to make source $cxxx
+C $803F,2 Loop for 8 rows
 c $8042 Routine at 8042
 D $8042 Used by the routines at #R$717B, #R$728D, #R$7378, #R$7471 and #R$93ED.
 @ $8042 label=draw_ctrl_panel
@@ -439,6 +476,8 @@ D $813E Used by the routines at #R$71F3, #R$80D3 and #R$93ED.
 c $815D Routine at 815D
 D $815D Used by the routine at #R$80D3.
 N $817E This entry point is used by the routines at #R$7378 and #R$93ED.
+C $8183,3 Copy control panel gfx to screen
+C $818E,3 Copy control panel attrs to screen
 s $81A3 Unused
 S $81A3,6,$06
 c $81A9 Routine at 81A9
@@ -1166,7 +1205,7 @@ b $BE00 Table of squares
 @ $BE00 label=sqr_table
 B $BE00,512,8
 b $C000 2K copied from C800 to here
-@ $C000 label=ctrl_panel_gfx_copy
+@ $C000 label=screen_buffer
 B $C000,531,8*66,3
 c $C213 lenslock
 D $C213 Used by the routine at #R$D07C.
