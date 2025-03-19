@@ -2153,393 +2153,410 @@ N $F11A Recursive tokens
 W $F11A,4,2
 t $F11E Recursive tokens
 @ $F11E label=tokens
-t $F121 Message at F121
-t $F130
-t $F138
-t $F141 Message at F141
-t $F147
-t $F14B
-t $F156
-t $F15D
-t $F168 Data block at F165
-t $F16d Data block at F16C
-t $F17A Message at F17A
-t $F17E Message at F17E
-t $F183 Message at F183
-t $F18A Data block at F189
-t $F196 Message at F196
-t $F19F Data block at F19F
-t $F1A3 Message at F1AB
-t $F1AA Message at F1AB
-t $F1B1 Data block at F1AE
-t $F1BA Message at F1BA
-t $F1C3 Message at F1BA
-t $F1CE Message at F1CE
-t $F1D3 Data block at F1D2
-t $F1DA Data block at F1D9
-t $F1DF Message at F1DF
-t $F1EB Message at F1EB
-t $F1F4 Data block at F1F2
-t $F1FE Data block at F1F2
-t $F203 Message at F204
-t $F20A Data block at F208
-t $F210 Message at F211
-t $F22B Message at F22B
-t $F23F Message at F23F
-t $F244 Data block at F243
-t $F24A Message at F253
-t $F250 Message at F253
-t $F259 Data block at F25F
-t $F261 Data block at F25F
-t $F268 Message at F269
-t $F26E Data block at F26D
-t $F272 Message at F27D
-t $F278 Message at F27D
-t $F27D Message at F27D
-t $F282 Data block at F281
-t $F288 Message at F28A
-t $F291 Data block at F28D
-t $F296 Data block at F28D
-t $F29F Message at F29F
-t $F2A6 Data block at F2A3
-t $F2AE Message at F2AF
-t $F2B5 Data block at F2B2
-t $F2BC Message at F2BC
-t $F2C3 Data block at F2C2
-t $F2CA Message at F2CA
-t $F2CF Data block at F2CE
-t $F2D5 Message at F2D5
-t $F2E1 Data block at F2D9
-t $F2E8 Message at F2EF
-t $F2EF Unused
-t $F2FA Message at F2FA
-t $F2FE Data block at F2FD
-t $F302 Data block at F2FD
-t $F307 Data block at F2FD
-t $F30B Data block at F2FD
-t $F30F Data block at F2FD
-t $F312 Data block at F2FD
-t $F318 Message at F318
-t $F31D Data block at F31C
-t $F322 Message at F324
-t $F32A Message at F32A
-t $F332 Data block at F330
-t $F337 Data block at F330
-t $F33B Message at F33E
-t $F33E Data block at F343
-t $F344 Data block at F343
-t $F349 Data block at F343
-t $F34D Data block at F343
-t $F353 Message at F353
-t $F359 Data block at F356
-t $F35D Message at F35D
-t $F365 Message at F365
-t $F36B Message at F36C
-t $F371 Data block at F370
-t $F376 Message at F376
-t $F37A Data block at F379
-t $F380 Data block at F379
-t $F388 Data block at F379
-t $F38B Message at F392
-t $F3A3 Data block at F39F
-t $F3A8 Data block at F39F
-t $F3AB Data block at F39F
-t $F3AF Message at F3B0
-t $F3B4 Message at F3B4
-t $F3B9 Data block at F3B8
-t $F3BE Message at F3BE
-t $F3C4 Message at F3C4
-t $F3CB Data block at F3C9
-t $F3D0 Message at F3D0
-t $F3D5 Data block at F3D4
-t $F3DB Message at F3DD
-t $F3E2 Message at F3E2
-t $F3EA Message at F3EA
-t $F3EE Message at F3EE
-t $F3F2 Message at F3F2
-t $F3FB Data block at F3FA
-t $F405 Message at F405
-t $F40B Message at F40E
-t $F40E Data block at F412
-t $F417 Data block at F412
-t $F41B Message at F41B
-t $F424 Data block at F420
-t $F42A Data block at F420
-t $F42E Message at F431
-t $F435 Data block at F434
-t $F43B Data block at F43A
-t $F442 Message at F442
-t $F447 Data block at F446
-t $F44A Message at F44A
-t $F458 Data block at F456
-t $F46B Message at F473
-t $F46F Message at F473
-t $F472 Message at F473
-t $F485 Data block at F482
-t $F489 Data block at F482
-t $F491 Message at F495
-t $F495 Message at F495
-t $F49C Message at F49C
-t $F4A3 Data block at F4A0
-t $F4AA Message at F4AD
-t $F4B2 Data block at F4B0
-t $F4B6 Message at F4B6
-t $F4BD Message at F4BE
-t $F4C4 Data block at F4C1
-t $F4CA Message at F4CA
-t $F4D1 Message at F4D1
-t $F4E5 Data block at F4E4
-t $F4F2 Data block at F4F1
-t $F4F5 Data block at F4F5
+t $F121 Token $00
+t $F127 Token $01
+t $F130 Token $02
+t $F138 Token $03
+t $F141 Token $04
+t $F147 Token $05
+t $F14B Token $06
+t $F156 Token $07
+t $F15D Token $08
+t $F168 Token $09
+t $F16d Token $0A
+t $F173 Token $0B
+t $F178 Token $0C
+t $F17E Token $0D
+t $F183 Token $0E
+t $F18A Token $0F
+t $F190 Token $10
+t $F196 Token $11
+t $F19C Token $12
+t $F1A3 Token $13
+t $F1AA Token $14
+t $F1B1 Token $15
+t $F1BA Token $16
+t $F1C3 Token $17
+t $F1CE Token $18
+t $F1D3 Token $19
+t $F1DA Token $1A
+t $F1DF Token $1B
+t $F1EB Token $1C
+t $F1F4 Token $1D
+t $F1FE Token $1E
+t $F203 Token $1F
+t $F20A Token $20
+t $F210 Token $21
+t $F22B Token $22
+t $F23F Token $23
+t $F244 Token $24
+t $F24A Token $25
+t $F250 Token $26
+t $F259 Token $27
+t $F261 Token $28
+t $F265 Token $29
+t $F268 Token $2A
+t $F26E Token $2B
+t $F272 Token $2C
+t $F278 Token $2D
+t $F27D Token $2E
+t $F282 Token $2F
+t $F288 Token $30
+t $F291 Token $31
+t $F296 Token $32
+t $F29F Token $33
+t $F2A6 Token $34
+t $F2AE Token $35
+t $F2B5 Token $36
+t $F2BC Token $37
+t $F2C3 Token $38
+t $F2CA Token $39
+t $F2CF Token $3A
+t $F2D5 Token $3B
+t $F2DA Token $3C
+t $F2E1 Token $3D
+t $F2E8 Token $3E
+t $F2EF Token $3F
+t $F2FA Token $40
+t $F2FE Token $41
+t $F302 Token $42
+t $F307 Token $43
+t $F30B Token $44
+t $F30F Token $45
+t $F312 Token $46
+t $F318 Token $47
+t $F31D Token $48
+t $F322 Token $49
+t $F324 Token $4A
+t $F32A Token $4B
+t $F332 Token $4C
+t $F337 Token $4D
+t $F33B Token $4E
+t $F33E Token $4F
+t $F344 Token $50
+t $F349 Token $51
+t $F34D Token $52
+t $F353 Token $53
+t $F359 Token $54
+t $F35D Token $55
+t $F365 Token $56
+t $F36B Token $57
+t $F371 Token $58
+t $F376 Token $59
+t $F37A Token $5A
+t $F380 Token $5B
+t $F388 Token $5C
+t $F38B Token $5D
+t $F3A3 Token $5E
+t $F3A8 Token $5F
+t $F3AB Token $60
+t $F3AF Token $61
+t $F3B4 Token $62
+t $F3B9 Token $63
+t $F3BE Token $64
+t $F3C4 Token $65
+t $F3CB Token $66
+t $F3D0 Token $67
+t $F3D5 Token $68
+t $F3DB Token $69
+t $F3E2 Token $6A
+t $F3EA Token $6B
+t $F3EE Token $6C
+t $F3F2 Token $6D
+t $F3FB Token $6E
+t $F405 Token $6F
+t $F40B Token $70
+t $F40E Token $71
+t $F417 Token $72
+t $F41B Token $73
+t $F424 Token $74
+t $F42A Token $75
+t $F42E Token $76
+t $F435 Token $77
+t $F43B Token $78
+t $F442 Token $79
+t $F447 Token $7A
+t $F44A Token $7B
+t $F458 Token $7C
+t $F46B Token $7D
+t $F46F Token $7E
+t $F472 Token $7F
+t $F485 Token $80
+t $F489 Token $81
+t $F491 Token $82
+t $F495 Token $83
+t $F49C Token $84
+t $F4A3 Token $85
+t $F4AA Token $86
+t $F4B2 Token $87
+t $F4B4 Token $88
+t $F4B6 Token $89
+t $F4BD Token $8A
+t $F4C4 Token $8B
+t $F4CA Token $8C
+t $F4D1 Token $8D
+t $F4E5 Token $8E
+t $F4EB Token $8F
+t $F4F2 Token $90
+t $F4F3 Token $91
+t $F4F4 Token $92
+t $F4F5 Token $93
 @ $F4F5 label=other_tokens
-t $F51F Data block at F51D
-t $F538 Message at F538
-t $F545 Data block at F53D
-t $F552 Message at F55F
-t $F558 Data block at F562
-t $F55D Data block at F562
-t $F569 Message at F56A
-t $F56F Message at F56F
-t $F579 Data block at F576
-t $F5CF Message at F5D0
-t $F5DE Message at F5E4
-t $F5E4 Data block at F5E8
-t $F5EB Data block at F5E8
-t $F5F1 Message at F5F3
-t $F611 Data block at F610
-t $F616 Data block at F610
-t $F61B Message at F61B
-t $F625 Message at F625
-t $F62B Data block at F629
-t $F62F Data block at F629
-t $F633 Message at F635
-t $F639 Data block at F638
-t $F63D Data block at F638
-t $F645 Data block at F638
-t $F646 Data block at F638
-t $F648 Data block at F638
-t $F64A Data block at F638
-t $F64E Data block at F638
-t $F652 Data block at F638
-t $F656 Message at F657
-t $F662 Data block at F65A
-t $F665 Data block at F65A
-t $F667 Data block at F65A
-t $F66F Data block at F65A
-t $F674 Message at F674
-t $F67B Data block at F678
-t $F682 Data block at F678
-t $F68C Data block at F678
-t $F695 Data block at F694
-t $F69D Message at F69D
-t $F6A9 Data block at F6A3
-t $F6B0 Data block at F6A3
-t $F6B6 Message at F6B7
-t $F6BC Data block at F6BB
-t $F6BE Data block at F6BB
-t $F6C4 Data block at F6BB
-t $F6C8 Data block at F6BB
-t $F6CB Data block at F6BB
-t $F6CF Data block at F6BB
-t $F6D1 Data block at F6BB
-t $F6D5 Data block at F6BB
-t $F6DB Data block at F6DF
-t $F6E1 Message at F6ED
-t $F6E6 Message at F6ED
-t $F6ED Data block at F6F2
-t $F6F7 Data block at F6F2
-t $F6FE Message at F6FE
-t $F707 Message at F707
-t $F711 Message at F715
-t $F71E Data block at F719
-t $F723 Data block at F719
-t $F72A Data block at F719
-t $F733 Data block at F732
-t $F737 Message at F738
-t $F73C Message at F73C
-t $F741 Data block at F73F
-t $F747 Data block at F746
-t $F74B Data block at F746
-t $F74F Data block at F746
-t $F75A Data block at F746
-t $F75C Data block at F746
-t $F760 Data block at F746
-t $F764 Data block at F746
-t $F768 Data block at F746
-t $F76C Data block at F746
-t $F772 Message at F772
-t $F778 Message at F778
-t $F77E Data block at F77D
-t $F784 Message at F784
-t $F78B Data block at F787
-t $F790 Message at F790
-t $F79B Message at F79B
-t $F7A2 Data block at F79F
-t $F7AA Data block at F7A9
-t $F7AE Data block at F7A9
-t $F7B0 Data block at F7A9
-t $F7B5 Data block at F7A9
-t $F7BA Data block at F7A9
-t $F7BD Data block at F7A9
-t $F7C0 Message at F7C2
-t $F7DA Data block at F7CD
-t $F7DC Data block at F7CD
-t $F7E2 Message at F7E4
-t $F7E3 Message at F7E4
-t $F7E4 Data block at F7E8
-t $F7EF Message at F7F5
-t $F7F5 Unused
-t $F7FB Message at F7FB
-t $F802 Data block at F7FE
-t $F80B Data block at F808
-t $F80D Data block at F808
-t $F80F Data block at F808
-t $F813 Data block at F808
-t $F81A Message at F81A
-t $F81F Unused
-t $F824 Message at F824
-t $F832 Message at F832
-t $F839 Data block at F835
-t $F841 Data block at F835
-t $F846 Data block at F835
-t $F84A Data block at F835
-t $F84E Data block at F835
-t $F854 Data block at F835
-t $F857 Data block at F835
-t $F859 Data block at F835
-t $F85D Message at F85F
-t $F86A Message at F86A
-t $F86E Message at F86E
-t $F873 Message at F873
-t $F878 Message at F878
-t $F880 Data block at F87E
-t $F884 Data block at F87E
-t $F887 Message at F887
-t $F890 Message at F890
-t $F898 Message at F898
-t $F89E Message at F89E
-t $F8A4 Data block at F8A3
-t $F8AA Data block at F8A3
-t $F8AF Data block at F8A3
-t $F8B6 Data block at F8A3
-t $F8BC Message at F8BC
-t $F8C5 Message at F8C5
-t $F8C8 Data block at F8C8
-t $F8CF Message at F8D1
-t $F8D7 Data block at F8D6
-t $F8D9 Message at F8DA
-t $F8E2 Data block at F8DE
-t $F8E6 Message at F8E6
-t $F8ED Data block at F8EC
-t $F8F5 Message at F8F5
-t $F8FB Data block at F8FA
-t $F900 Data block at F8FA
-t $F905 Data block at F8FA
-t $F909 Data block at F8FA
-t $F90D Data block at F8FA
-t $F913 Data block at F8FA
-t $F918 Data block at F8FA
-t $F91C Data block at F8FA
-t $F91F Data block at F8FA
-t $F922 Message at F923
-t $F92B Data block at F927
-t $F92D Data block at F927
-t $F934 Data block at F932
-t $F939 Data block at F932
-t $F93D Message at F93E
-t $F943 Data block at F941
-t $F947 Message at F947
-t $F94C Data block at F94B
-t $F94E Data block at F94B
-t $F950 Data block at F94B
-t $F956 Data block at F94B
-t $F95E Message at F961
-t $F967 Data block at F966
-t $F96D Data block at F966
-t $F96F Data block at F966
-t $F974 Message at F974
-t $F97B Data block at F97A
-t $F97F Data block at F97A
-t $F983 Message at F983
-t $F98A Data block at F988
-t $F98E Data block at F988
-t $F992 Data block at F988
-t $F996 Data block at F988
-t $F99B Data block at F988
-t $F99E Data block at F988
-t $F9A7 Message at F9A9
-t $F9B1 Data block at F9B0
-t $F9B9 Data block at F9B8
-t $F9C4 Message at F9C4
-t $F9CC Message at F9C4
-t $F9D1 Message at F9D1
-t $F9D7 Data block at F9D6
-t $F9DC Data block at F9D6
-t $F9E0 Data block at F9D6
-t $F9E5 Data block at F9D6
-t $F9EB Data block at F9D6
-t $F9EF Data block at F9D6
-t $F9F7 Data block at F9D6
-t $F9F9 Data block at F9D6
-t $F9FD Data block at F9D6
-t $FA00 Data block at F9D6
-t $FA07 Data block at F9D6
-t $FA0A Data block at F9D6
-t $FA0F Message at FA0F
-t $FA16 Message at FA16
-t $FA1B Data block at FA1A
-t $FA1F Message at FA1F
-t $FA24 Data block at FA22
-t $FA29 Data block at FA22
-t $FA2E Message at FA30
-t $FA38 Data block at FA36
-t $FA43 Message at FA43
-t $FA47 Message at FA43
-t $FA4A Message at FA4A
-t $FA50 Data block at FA4F
-t $FA53 Data block at FA4F
-t $FA5D Message at FA5F
-t $FA66 Message at FA66
-t $FA6F Data block at FA6B
-t $FA70 Data block at FA6B
-t $FA73 Data block at FA6B
-t $FA76 Data block at FA6B
-t $FA79 Data block at FA6B
-t $FA7C Data block at FA6B
-t $FA7D Data block at FA6B
-t $FA93 Data block at FA8E
-t $FACE Message at FAE6
-t $FB57 Data block at FB53
-t $FB5C Data block at FB53
-t $FB60 Data block at FB53
-t $FB64 Message at FB64
-t $FB6A Message at FB6A
-t $FB6F Data block at FB6E
-t $FB75 Data block at FB6E
-t $FB78 Data block at FB6E
-t $FB7E Data block at FB7D
-t $FB82 Data block at FB7D
-t $FB86 Message at FB86
-t $FB8A Data block at FB89
-t $FB90 Data block at FB8E
-t $FB97 Data block at FB95
-t $FB9B Message at FB9B
-t $FB9F Data block at FB9E
-t $FBA3 Data block at FB9E
-t $FBA8 Data block at FB9E
-t $FBAD Message at FBAD
-t $FBB4 Data block at FBB1
-t $FBB8 Data block at FBB1
-t $FBBB Message at FBBB
-t $FBBF Data block at FBBE
-t $FBC6 Data block at FBBE
-t $FBCC Message at FBCD
-t $FBD3 Data block at FBD1
-t $FBD9 Message at FBD9
-t $FBDF Data block at FBDC
-t $FBE4 Data block at FBDC
-t $FBE8 Data block at FBDC
-t $FBED Last recursive token
+t $F51F Token $00
+t $F538 Token $01
+t $F545 Token $02
+t $F552 Token $03
+t $F558 Token $04
+t $F55D Token $05
+t $F569 Token $06
+t $F56F Token $07
+t $F579 Token $08
+t $F5CF Token $09
+t $F5DE Token $0A
+t $F5E4 Token $0B
+t $F5EB Token $0C
+t $F5F1 Token $0D
+t $F611 Token $0E
+t $F616 Token $0F
+t $F61B Token $10
+t $F625 Token $11
+t $F62B Token $12
+t $F62F Token $13
+t $F633 Token $14
+t $F639 Token $15
+t $F63D Token $16
+t $F645 Token $17
+t $F646 Token $18
+t $F648 Token $19
+t $F64A Token $1A
+t $F64E Token $1B
+t $F652 Token $1C
+t $F656 Token $1D
+t $F662 Token $1E
+t $F665 Token $1F
+t $F667 Token $20
+t $F66F Token $21
+t $F674 Token $22
+t $F67B Token $23
+t $F682 Token $24
+t $F68C Token $25
+t $F695 Token $26
+t $F69D Token $27
+t $F6A9 Token $28
+t $F6B0 Token $29
+t $F6B6 Token $2A
+t $F6BC Token $2B
+t $F6BE Token $2C
+t $F6C4 Token $2D
+t $F6C8 Token $2E
+t $F6CB Token $2F
+t $F6CF Token $30
+t $F6D1 Token $31
+t $F6D5 Token $32
+t $F6DB Token $33
+t $F6E1 Token $34
+t $F6E6 Token $35
+t $F6ED Token $36
+t $F6F7 Token $37
+t $F6FE Token $38
+t $F707 Token $39
+t $F711 Token $3A
+t $F71E Token $3B
+t $F723 Token $3C
+t $F72A Token $3D
+t $F733 Token $3E
+t $F737 Token $3F
+t $F73C Token $40
+t $F741 Token $41
+t $F747 Token $42
+t $F74B Token $43
+t $F74F Token $44
+t $F75A Token $45
+t $F75C Token $46
+t $F760 Token $47
+t $F764 Token $48
+t $F768 Token $49
+t $F76C Token $4A
+t $F772 Token $4B
+t $F778 Token $4C
+t $F77E Token $4D
+t $F784 Token $4E
+t $F78B Token $4F
+t $F790 Token $50
+t $F79B Token $51
+t $F7A2 Token $52
+t $F7AA Token $53
+t $F7AE Token $54
+t $F7B0 Token $55
+t $F7B5 Token $56
+t $F7BA Token $57
+t $F7BD Token $58
+t $F7C0 Token $59
+t $F7DA Token $5A
+t $F7DC Token $5B
+t $F7E2 Token $5C
+t $F7E3 Token $5D
+t $F7E4 Token $5E
+t $F7EF Token $5F
+t $F7F5 Token $60
+t $F7FB Token $61
+t $F802 Token $62
+t $F80B Token $63
+t $F80D Token $64
+t $F80F Token $65
+t $F813 Token $66
+t $F81A Token $67
+t $F81F Token $68
+t $F820 Token $69
+t $F821 Token $6A
+t $F822 Token $6B
+t $F823 Token $6C
+t $F824 Token $6D
+t $F832 Token $6E
+t $F839 Token $7F
+t $F841 Token $70
+t $F846 Token $71
+t $F84A Token $72
+t $F84E Token $73
+t $F854 Token $74
+t $F857 Token $75
+t $F859 Token $76
+t $F85D Token $77
+t $F86A Token $78
+t $F86E Token $79
+t $F873 Token $7A
+t $F878 Token $7B
+t $F880 Token $7C
+t $F884 Token $7D
+t $F887 Token $7E
+t $F890 Token $7F
+t $F898 Token $80
+t $F89E Token $81
+t $F8A4 Token $82
+t $F8AA Token $83
+t $F8AF Token $84
+t $F8B6 Token $85
+t $F8BC Token $86
+t $F8C5 Token $87
+t $F8C8 Token $88
+t $F8CF Token $89
+t $F8D7 Token $8A
+t $F8D9 Token $8B
+t $F8E2 Token $8C
+t $F8E6 Token $8D
+t $F8ED Token $8E
+t $F8F5 Token $8F
+t $F8FB Token $90
+t $F900 Token $91
+t $F905 Token $92
+t $F909 Token $93
+t $F90D Token $94
+t $F913 Token $95
+t $F918 Token $96
+t $F91C Token $97
+t $F91F Token $98
+t $F922 Token $99
+t $F92B Token $9A
+t $F92D Token $9B
+t $F934 Token $9C
+t $F939 Token $9D
+t $F93D Token $9E
+t $F943 Token $9F
+t $F945 Token $A0
+t $F947 Token $A1
+t $F94C Token $A2
+t $F94E Token $A3
+t $F950 Token $A4
+t $F956 Token $A5
+t $F95E Token $A6
+t $F967 Token $A7
+t $F96D Token $A8
+t $F96F Token $A9
+t $F974 Token $AA
+t $F97B Token $AB
+t $F97F Token $AC
+t $F983 Token $AD
+t $F98A Token $AE
+t $F98E Token $AF
+t $F992 Token $B0
+t $F996 Token $B1
+t $F99B Token $B2
+t $F99E Token $B3
+t $F9A7 Token $B4
+t $F9B1 Token $B5
+t $F9B9 Token $B6
+t $F9C4 Token $B7
+t $F9CC Token $B8
+t $F9D1 Token $B9
+t $F9D7 Token $BA
+t $F9DC Token $BB
+t $F9E0 Token $BC
+t $F9E5 Token $BD
+t $F9E7 Token $BE
+t $F9EB Token $BF
+t $F9EF Token $C0
+t $F9F7 Token $C1
+t $F9F9 Token $C2
+t $F9FD Token $C3
+t $FA00 Token $C4
+t $FA07 Token $C5
+t $FA0A Token $C6
+t $FA0F Token $C7
+t $FA16 Token $C8
+t $FA1B Token $C9
+t $FA1F Token $CA
+t $FA24 Token $CB
+t $FA29 Token $CC
+t $FA2E Token $CD
+t $FA38 Token $CE
+t $FA43 Token $CF
+t $FA47 Token $D0
+t $FA4A Token $D1
+t $FA50 Token $D2
+t $FA53 Token $D3
+t $FA5A Token $D4
+t $FA5D Token $D5
+t $FA66 Token $D6
+t $FA6F Token $D7
+t $FA70 Token $D8
+t $FA73 Token $D9
+t $FA76 Token $DA
+t $FA79 Token $DB
+t $FA7C Token $DC
+t $FA7D Token $DD
+t $FA93 Token $DE
+t $FACE Token $DF
+t $FB57 Token $E0
+t $FB5C Token $E1
+t $FB60 Token $E2
+t $FB64 Token $E3
+t $FB6A Token $E4
+t $FB6F Token $E5
+t $FB75 Token $E6
+t $FB78 Token $E7
+t $FB7E Token $E8
+t $FB82 Token $E9
+t $FB86 Token $EA
+t $FB8A Token $EB
+t $FB90 Token $EC
+t $FB97 Token $ED
+t $FB9B Token $EE
+t $FB9F Token $EF
+t $FBA3 Token $F0
+t $FBA8 Token $F1
+t $FBAD Token $F2
+t $FBB4 Token $F3
+t $FBB8 Token $F4
+t $FBBB Token $F5
+t $FBBF Token $F6
+t $FBC6 Token $F7
+t $FBCC Token $F8
+t $FBD3 Token $F9
+t $FBD9 Token $FA
+t $FBDF Token $FB
+t $FBE4 Token $FC
+t $FBE8 Token $FD
+t $FBED Token $FE Last recursive token
 b $FC00 Data block at FC00
 @ $FC00 label=data_at_FC00
 B $FC00,8,8
