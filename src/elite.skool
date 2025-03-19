@@ -19563,727 +19563,751 @@ t$F4F2 DEFM $00,$00,$00
 
 ; Data block at F4F5
 @label=other_tokens
-t$F4F5 DEFM $01,$08
-
-; Message at F4F7
-t$F4F7 DEFM "  AC"
-
-; Data block at F4FB
-t$F4FB DEFM "i"+$80
-
-; Message at F4FC
-t$F4FC DEFM "SS ME"
-
-; Data block at F501
-t$F501 DEFM $E1,$02,$0C,$0C,$0C,$0C
-
-; Message at F507
-t$F507 DEFM " 1 "
-
-; Data block at F50A
-t$F50A DEFM $95,$0C,$0C," 2",$CB," ",$9A," ",$01,$04,$02,$0C,$0C
-
-; Message at F518
-t$F518 DEFM " 3 EX"
+t$F4F5 DEFM $01,$08,"  AC",$E9,"SS ME",$E1,$02,$0C,$0C,$0C,$0C," 1 ",$95,$0C,$0C," 2",$CB," ",$9A," ",$01,$04,$02,$0C,$0C," 3 EX",$DB,$00
 
 ; Data block at F51D
-t$F51D DEFM $DB,$00,$DE,$EE
-
-; Message at F521
-t$F521 DEFM "T TAPE, "
-
-; Data block at F529
-t$F529 DEFM $E2,$F6," P",$F2
-
-; Message at F52E
-t$F52E DEFM "SS "
-
-; Data block at F531
-t$F531 DEFM $FF
-
-; Message at F532
-t$F532 DEFM "Y KEY"
-
-; Unused
-t$F537 DEFM $00
+t$F51F DEFM $DE,$EE,"T TAPE, ",$E2,$F6," P",$F2,"SS ",$FF,"Y KEY",$00
 
 ; Message at F538
-t$F538 DEFM "TAPE "
+t$F538 DEFM "TAPE ",$E0,"AD",$C3,$F4,"R",$FD,$00
 
 ; Data block at F53D
-t$F53D DEFM $E0,"AD",$C3,$F4,"R",$FD,$00,$DA,$C6,"R",$DB,"Y ",$E1,"MB",$F4,": ",$00,$B0,"m",$CA,"n",$B1,$00,"  ",$95,$CE,$00,"P",$F2
+t$F545 DEFM $DA,$C6,"R",$DB,"Y ",$E1,"MB",$F4,": ",$00
 
 ; Message at F55F
-t$F55F DEFM "SS "
+t$F552 DEFM $B0,"m",$CA,"n",$B1,$00
 
 ; Data block at F562
-t$F562 DEFM $D1,"A",$E9,", ",$9A,$00,$9A
+t$F558 DEFM "  ",$95,$CE,$00
+
+; Data block at F562
+t$F55D DEFM "P",$F2,"SS ",$D1,"A",$E9,", ",$9A,$00
 
 ; Message at F56A
-t$F56A DEFM "'S "
-
-; Data block at F56D
-t$F56D DEFM $C8,$00
+t$F569 DEFM $9A,"'S ",$C8,$00
 
 ; Message at F56F
-t$F56F DEFM " GAME O"
+t$F56F DEFM " GAME O",$FA,"R",$00
 
 ; Data block at F576
-t$F576 DEFM $FA,"R",$00,$B0,$F0
-
-; Message at F57B
-t$F57B DEFM " APP"
-
-; Data block at F57F
-t$F57F DEFM "r"+$80
-
-; Message at F580
-t$F580 DEFM "CIA"
-
-; Data block at F583
-t$F583 DEFM $FB,$DF
-
-; Message at F585
-t$F585 DEFM " OF "
-
-; Data block at F589
-t$F589 DEFM $B3,"R ",$A6," C",$D9,$F8
-
-; Message at F591
-t$F591 DEFM "GE "
-
-; Data block at F594
-t$F594 DEFM $93," ",$C1
-
-; Message at F597
-t$F597 DEFM "S OF "
-
-; Data block at F59C
-t$F59C DEFM $10
-
-; Message at F59D
-t$F59D DEFM " AW"
-
-; Data block at F5A0
-t$F5A0 DEFM $EE,"D ",$B3," ",$E2
-
-; Message at F5A6
-t$F5A6 DEFM "EIR HIGHE"
-
-; Data block at F5AF
-t$F5AF DEFM $DE," H",$DF,$D9
-
-; Message at F5B4
-t$F5B4 DEFM "R - "
-
-; Data block at F5B8
-t$F5B8 DEFM $93,$12,"-",$12,$B1,$D3,$01,"LI",$FA," ",$E0,"NG",$B2
-
-; Message at F5C7
-t$F5C7 DEFM "PRO"
-
-; Data block at F5CA
-t$F5CA DEFM $D1,$F4,"*",$02,$00,$02
+t$F579 DEFM $B0,$F0," APP",$F2,"CIA",$FB,$DF," OF ",$B3,"R ",$A6," C",$D9,$F8,"GE ",$93," ",$C1,"S OF ",$10," AW",$EE,"D ",$B3," ",$E2,"EIR HIGHE",$DE," H",$DF,$D9,"R - ",$93,$12
+ $F5BA DEFM "-",$12,$B1,$D3,$01,"LI",$FA," ",$E0,"NG",$B2,"PRO",$D1,$F4,"*",$02,$00
 
 ; Message at F5D0
-t$F5D0 DEFM "SHIP BO"
-
-; Data block at F5D7
-t$F5D7 DEFM $EE,"D",$C4,"BY",$01,$00,$F2,"FU",$E7,$ED,$00
+t$F5CF DEFM $02,"SHIP BO",$EE,"D",$C4,"BY",$01,$00
 
 ; Message at F5E4
-t$F5E4 DEFM " PIR"
+t$F5DE DEFM $F2,"FU",$E7,$ED,$00
 
 ; Data block at F5E8
-t$F5E8 DEFM $F5,"E",$00,$15,$91," ",$C8,$1A,$00,$02,$B3
+t$F5E4 DEFM " PIR",$F5,"E",$00
+
+; Data block at F5E8
+t$F5EB DEFM $15,$91," ",$C8,$1A,$00
 
 ; Message at F5F3
-t$F5F3 DEFM " HA"
-
-; Data block at F5F6
-t$F5F6 DEFM $FA,$CB,"D ",$D9
-
-; Message at F5FB
-t$F5FB DEFM "R LI"
-
-; Data block at F5FF
-t$F5FF DEFM $FA,"S*",$D3,$18,$18,$E2,$FF,"K ",$B3,", ",$9A
-
-; Message at F60D
-t$F60D DEFM "..."
+t$F5F1 DEFM $02,$B3," HA",$FA,$CB,"D ",$D9,"R LI",$FA,"S*",$D3,$18,$18,$E2,$FF,"K ",$B3,", ",$9A,"...",$00
 
 ; Data block at F610
-t$F610 DEFM $00,"F",$D8,$E5,"D",$00,$E3,"T",$D8,$E5,$00
+t$F611 DEFM "F",$D8,$E5,"D",$00
+
+; Data block at F610
+t$F616 DEFM $E3,"T",$D8,$E5,$00
 
 ; Message at F61B
-t$F61B DEFM "WELL K"
-
-; Data block at F621
-t$F621 DEFM $E3,"WN",$00
+t$F61B DEFM "WELL K",$E3,"WN",$00
 
 ; Message at F625
-t$F625 DEFM "FAMO"
+t$F625 DEFM "FAMO",$EC,$00
 
 ; Data block at F629
-t$F629 DEFM $EC,$00,$E3,"T",$FC,$00,$FA,"RY",$00,"M",$DC
+t$F62B DEFM $E3,"T",$FC,$00
+
+; Data block at F629
+t$F62F DEFM $FA,"RY",$00
 
 ; Message at F635
-t$F635 DEFM "DLY"
+t$F633 DEFM "M",$DC,"DLY",$00
 
 ; Data block at F638
-t$F638 DEFM $00,"MO",$DE,$00,$F2,"AS",$DF,$D8,"LY",$00,$00,$A5,$00,"r",$00,"G",$F2,$F5,$00,"VA",$DE,$00,"P",$F0,"K",$00,$02
+t$F639 DEFM "MO",$DE,$00
+
+; Data block at F638
+t$F63D DEFM $F2,"AS",$DF,$D8,"LY",$00
+
+; Data block at F638
+t$F645 DEFM $00
+
+; Data block at F638
+t$F646 DEFM $A5,$00
+
+; Data block at F638
+t$F648 DEFM "r",$00
+
+; Data block at F638
+t$F64A DEFM "G",$F2,$F5,$00
+
+; Data block at F638
+t$F64E DEFM "VA",$DE,$00
+
+; Data block at F638
+t$F652 DEFM "P",$F0,"K",$00
 
 ; Message at F657
-t$F657 DEFM "w v"
+t$F656 DEFM $02,"w v",$0D," ",$B9,"A",$FB,$DF,"S",$00
 
 ; Data block at F65A
-t$F65A DEFM $0D," ",$B9,"A",$FB,$DF,"S",$00,$9C,"S",$00,"u",$00,$80," F",$FD,$ED,"TS",$00,"O",$E9,$FF,"S",$00
+t$F662 DEFM $9C,"S",$00
+
+; Data block at F65A
+t$F665 DEFM "u",$00
+
+; Data block at F65A
+t$F667 DEFM $80," F",$FD,$ED,"TS",$00
+
+; Data block at F65A
+t$F66F DEFM "O",$E9,$FF,"S",$00
 
 ; Message at F674
-t$F674 DEFM "SHYN"
+t$F674 DEFM "SHYN",$ED,"S",$00
 
 ; Data block at F678
-t$F678 DEFM $ED,"S",$00,"S",$DC,"L",$F0,$ED,"S",$00,$EF,"T",$C3,"T",$F8,$F1,$FB,$DF,"S",$00,$E0,$F5,"H",$C3
+t$F67B DEFM "S",$DC,"L",$F0,$ED,"S",$00
 
-; Message at F690
-t$F690 DEFM "OF d"
+; Data block at F678
+t$F682 DEFM $EF,"T",$C3,"T",$F8,$F1,$FB,$DF,"S",$00
+
+; Data block at F678
+t$F68C DEFM $E0,$F5,"H",$C3,"OF d",$00
 
 ; Data block at F694
-t$F694 DEFM $00,$E0,$FA," F",$FD," d",$00
+t$F695 DEFM $E0,$FA," F",$FD," d",$00
 
 ; Message at F69D
-t$F69D DEFM "FOOD B"
+t$F69D DEFM "FOOD B",$E5,"ND",$F4,"S",$00
 
 ; Data block at F6A3
-t$F6A3 DEFM $E5,"ND",$F4,"S",$00,"T",$D9,"RI",$DE,"S",$00,"PO",$DD,"RY",$00,$F1
+t$F6A9 DEFM "T",$D9,"RI",$DE,"S",$00
+
+; Data block at F6A3
+t$F6B0 DEFM "PO",$DD,"RY",$00
 
 ; Message at F6B7
-t$F6B7 DEFM "SCOS"
+t$F6B6 DEFM $F1,"SCOS",$00
 
 ; Data block at F6BB
-t$F6BB DEFM $00,"l",$00,"W",$E4,"K",$C3,$9E,$00,"C",$F8,"B",$00,"B",$F5,$00,$E0,"B",$DE,$00,$12,$00,$F7,"S",$DD,$00,"P",$F9,"GU",$FC,$00,$F8
+t$F6BC DEFM "l",$00
 
-; Message at F6DC
-t$F6DC DEFM "VAG"
+; Data block at F6BB
+t$F6BE DEFM "W",$E4,"K",$C3,$9E,$00
+
+; Data block at F6BB
+t$F6C4 DEFM "C",$F8,"B",$00
+
+; Data block at F6BB
+t$F6C8 DEFM "B",$F5,$00
+
+; Data block at F6BB
+t$F6CB DEFM $E0,"B",$DE,$00
+
+; Data block at F6BB
+t$F6CF DEFM $12,$00
+
+; Data block at F6BB
+t$F6D1 DEFM $F7,"S",$DD,$00
+
+; Data block at F6BB
+t$F6D5 DEFM "P",$F9,"GU",$FC,$00
 
 ; Data block at F6DF
-t$F6DF DEFM $FC,$00,$C6,"RS",$FC,$00,"SC",$D9,"RG",$FC,$00
+t$F6DB DEFM $F8,"VAG",$FC,$00
 
 ; Message at F6ED
-t$F6ED DEFM "q CIV"
+t$F6E1 DEFM $C6,"RS",$FC,$00
+
+; Message at F6ED
+t$F6E6 DEFM "SC",$D9,"RG",$FC,$00
 
 ; Data block at F6F2
-t$F6F2 DEFM $DC," W",$EE,$00,"h _ ",$60,"S",$00
+t$F6ED DEFM "q CIV",$DC," W",$EE,$00
+
+; Data block at F6F2
+t$F6F7 DEFM "h _ ",$60,"S",$00
 
 ; Message at F6FE
-t$F6FE DEFM "A h "
-
-; Data block at F702
-t$F702 DEFM $F1,$DA,"A",$DA,$00
+t$F6FE DEFM "A h ",$F1,$DA,"A",$DA,$00
 
 ; Message at F707
-t$F707 DEFM "q E"
-
-; Data block at F70A
-t$F70A DEFM $EE,$E2,$FE,"AK",$ED,$00,"q ",$EB,$F9
+t$F707 DEFM "q E",$EE,$E2,$FE,"AK",$ED,$00
 
 ; Message at F715
-t$F715 DEFM "R AC"
+t$F711 DEFM "q ",$EB,$F9,"R AC",$FB,"V",$DB,"Y",$00
 
 ; Data block at F719
-t$F719 DEFM $FB,"V",$DB,"Y",$00,$AF,"] ",$5E,$00,$93,$11," _ ",$60,$00,$AF,$C1
+t$F71E DEFM $AF,"] ",$5E,$00
 
-; Message at F72C
-t$F72C DEFM "S' b c"
+; Data block at F719
+t$F723 DEFM $93,$11," _ ",$60,$00
+
+; Data block at F719
+t$F72A DEFM $AF,$C1,"S' b c",$00
 
 ; Data block at F732
-t$F732 DEFM $00,$02,"z",$0D,$00,$AF
+t$F733 DEFM $02,"z",$0D,$00
 
 ; Message at F738
-t$F738 DEFM "k l"
-
-; Unused
-t$F73B DEFM $00
+t$F737 DEFM $AF,"k l",$00
 
 ; Message at F73C
-t$F73C DEFM "JUI"
+t$F73C DEFM "JUI",$E9,$00
 
 ; Data block at F73F
-t$F73F DEFM $E9,$00,"B",$F8
-
-; Message at F743
-t$F743 DEFM "NDY"
+t$F741 DEFM "B",$F8,"NDY",$00
 
 ; Data block at F746
-t$F746 DEFM $00,"W",$F5,$F4,$00,"B",$F2,"W",$00,"G",$EE,"G",$E5," B",$F9,$DE,$F4,"S",$00,$12,$00,$11," ",$60,$00,$11," ",$12,$00,$11," h",$00,"h ",$12,$00,"F",$D8,"U",$E0,$EC,$00
+t$F747 DEFM "W",$F5,$F4,$00
+
+; Data block at F746
+t$F74B DEFM "B",$F2,"W",$00
+
+; Data block at F746
+t$F74F DEFM "G",$EE,"G",$E5," B",$F9,$DE,$F4,"S",$00
+
+; Data block at F746
+t$F75A DEFM $12,$00
+
+; Data block at F746
+t$F75C DEFM $11," ",$60,$00
+
+; Data block at F746
+t$F760 DEFM $11," ",$12,$00
+
+; Data block at F746
+t$F764 DEFM $11," h",$00
+
+; Data block at F746
+t$F768 DEFM "h ",$12,$00
+
+; Data block at F746
+t$F76C DEFM "F",$D8,"U",$E0,$EC,$00
 
 ; Message at F772
-t$F772 DEFM "EXO"
-
-; Data block at F775
-t$F775 DEFM $FB,"C",$00
+t$F772 DEFM "EXO",$FB,"C",$00
 
 ; Message at F778
-t$F778 DEFM "HOOPY"
+t$F778 DEFM "HOOPY",$00
 
 ; Data block at F77D
-t$F77D DEFM $00,"U",$E1,"SU",$E4,$00
+t$F77E DEFM "U",$E1,"SU",$E4,$00
 
 ; Message at F784
-t$F784 DEFM "EXC"
+t$F784 DEFM "EXC",$DB,$F0,"G",$00
 
 ; Data block at F787
-t$F787 DEFM $DB,$F0,"G",$00,$C6,$98,$F0,"E",$00
+t$F78B DEFM $C6,$98,$F0,"E",$00
 
 ; Message at F790
-t$F790 DEFM "NIGHT LIFE"
-
-; Unused
-t$F79A DEFM $00
+t$F790 DEFM "NIGHT LIFE",$00
 
 ; Message at F79B
-t$F79B DEFM "CASI"
+t$F79B DEFM "CASI",$E3,"S",$00
 
 ; Data block at F79F
-t$F79F DEFM $E3,"S",$00,"S",$DB
-
-; Message at F7A4
-t$F7A4 DEFM " COMS"
+t$F7A2 DEFM "S",$DB," COMS",$00
 
 ; Data block at F7A9
-t$F7A9 DEFM $00,$02,"z",$0D,$00,$03,$00,$93,$91," ",$03,$00,$93,$92," ",$03,$00,$94,$91,$00,$94,$92,$00,$02,$93
+t$F7AA DEFM $02,"z",$0D,$00
+
+; Data block at F7A9
+t$F7AE DEFM $03,$00
+
+; Data block at F7A9
+t$F7B0 DEFM $93,$91," ",$03,$00
+
+; Data block at F7A9
+t$F7B5 DEFM $93,$92," ",$03,$00
+
+; Data block at F7A9
+t$F7BA DEFM $94,$91,$00
+
+; Data block at F7A9
+t$F7BD DEFM $94,$92,$00
 
 ; Message at F7C2
-t$F7C2 DEFM "SUN"
-
-; Data block at F7C5
-t$F7C5 DEFM $CA,"GO",$C3,$E3
-
-; Message at F7CA
-t$F7CA DEFM "VA*"
+t$F7C0 DEFM $02,$93,"SUN",$CA,"GO",$C3,$E3,"VA*",$D3," W",$DC,"L ",$B3,$CB," ",$EC," ",$CE,$00
 
 ; Data block at F7CD
-t$F7CD DEFM $D3," W",$DC,"L ",$B3,$CB," ",$EC," ",$CE,$00,$13,$00,"S",$02,"*",$18,$18,$00,$00,$00
+t$F7DA DEFM $13,$00
+
+; Data block at F7CD
+t$F7DC DEFM "S",$02,"*",$18,$18,$00
 
 ; Message at F7E4
-t$F7E4 DEFM "N UN"
+t$F7E2 DEFM $00
+
+; Message at F7E4
+t$F7E3 DEFM $00
 
 ; Data block at F7E8
-t$F7E8 DEFM $F2,$EF,"RK",$D8,$E5,$00," B",$FD,$F0,"G",$00
+t$F7E4 DEFM "N UN",$F2,$EF,"RK",$D8,$E5,$00
 
 ; Message at F7F5
-t$F7F5 DEFM " DULL"
+t$F7EF DEFM " B",$FD,$F0,"G",$00
 
 ; Unused
-t$F7FA DEFM $00
+t$F7F5 DEFM " DULL",$00
 
 ; Message at F7FB
-t$F7FB DEFM " TE"
+t$F7FB DEFM " TE",$F1,"O",$EC,$00
 
 ; Data block at F7FE
-t$F7FE DEFM $F1,"O",$EC,$00," ",$F2
-
-; Message at F804
-t$F804 DEFM "VOLT"
+t$F802 DEFM " ",$F2,"VOLT",$F0,"G",$00
 
 ; Data block at F808
-t$F808 DEFM $F0,"G",$00,$91,$00,$92,$00,"P",$F9,$E9,$00,"L",$DB,"T",$E5," ",$91,$00
+t$F80B DEFM $91,$00
+
+; Data block at F808
+t$F80D DEFM $92,$00
+
+; Data block at F808
+t$F80F DEFM "P",$F9,$E9,$00
+
+; Data block at F808
+t$F813 DEFM "L",$DB,"T",$E5," ",$91,$00
 
 ; Message at F81A
-t$F81A DEFM "DUMP"
+t$F81A DEFM "DUMP",$00
 
 ; Unused
-t$F81E DEFM $00,$00,$00,$00,$00,$00
+t$F81F DEFM $00,$00,$00,$00,$00
 
 ; Message at F824
-t$F824 DEFM "GROSS "
-
-; Data block at F82A
-t$F82A DEFM $06,$BA,$0A,"IV",$DB,"Y",$00
+t$F824 DEFM "GROSS ",$06,$BA,$0A,"IV",$DB,"Y",$00
 
 ; Message at F832
-t$F832 DEFM "ECO"
+t$F832 DEFM "ECO",$E3,"MY",$00
 
 ; Data block at F835
-t$F835 DEFM $E3,"MY",$00,$E5,"G",$E4," ",$DE,$F5,$EC,$00,$F8,$FB,"NG",$00,"WA",$D1,$00,"MO",$E2,$00,"W",$EE,$E2,"OG",$00,$FF,"T",$00,$12,$00,"PO",$DD,$00,"A",$DE
+t$F839 DEFM $E5,"G",$E4," ",$DE,$F5,$EC,$00
+
+; Data block at F835
+t$F841 DEFM $F8,$FB,"NG",$00
+
+; Data block at F835
+t$F846 DEFM "WA",$D1,$00
+
+; Data block at F835
+t$F84A DEFM "MO",$E2,$00
+
+; Data block at F835
+t$F84E DEFM "W",$EE,$E2,"OG",$00
+
+; Data block at F835
+t$F854 DEFM $FF,"T",$00
+
+; Data block at F835
+t$F857 DEFM $12,$00
+
+; Data block at F835
+t$F859 DEFM "PO",$DD,$00
 
 ; Message at F85F
-t$F85F DEFM "ROPHYSICI"
-
-; Data block at F868
-t$F868 DEFM $DE,$00
+t$F85D DEFM "A",$DE,"ROPHYSICI",$DE,$00
 
 ; Message at F86A
-t$F86A DEFM "YAK"
-
-; Unused
-t$F86D DEFM $00
+t$F86A DEFM "YAK",$00
 
 ; Message at F86E
-t$F86E DEFM "SNA"
-
-; Data block at F871
-t$F871 DEFM $DC,$00
+t$F86E DEFM "SNA",$DC,$00
 
 ; Message at F873
-t$F873 DEFM "SLUG"
-
-; Unused
-t$F877 DEFM $00
+t$F873 DEFM "SLUG",$00
 
 ; Message at F878
-t$F878 DEFM "TROPIC"
+t$F878 DEFM "TROPIC",$E4,$00
 
 ; Data block at F87E
-t$F87E DEFM $E4,$00,"D",$F6,$DA,$00,$F8,$F0,$00
+t$F880 DEFM "D",$F6,$DA,$00
+
+; Data block at F87E
+t$F884 DEFM $F8,$F0,$00
 
 ; Message at F887
-t$F887 DEFM "IMP"
-
-; Data block at F88A
-t$F88A DEFM $F6,$DD,$F8,"B",$E5,$00
+t$F887 DEFM "IMP",$F6,$DD,$F8,"B",$E5,$00
 
 ; Message at F890
-t$F890 DEFM "EXU"
-
-; Data block at F893
-t$F893 DEFM $F7,$F8,"NT",$00
+t$F890 DEFM "EXU",$F7,$F8,"NT",$00
 
 ; Message at F898
-t$F898 DEFM "FUNNY"
-
-; Unused
-t$F89D DEFM $00
+t$F898 DEFM "FUNNY",$00
 
 ; Message at F89E
-t$F89E DEFM "WEIRD"
+t$F89E DEFM "WEIRD",$00
 
 ; Data block at F8A3
-t$F8A3 DEFM $00,"U",$E1,"SU",$E4,$00,$DE,$F8,"N",$E7,$00,"PE",$C6,"LI",$EE,$00,"F",$F2,$FE,$F6,"T",$00
+t$F8A4 DEFM "U",$E1,"SU",$E4,$00
+
+; Data block at F8A3
+t$F8AA DEFM $DE,$F8,"N",$E7,$00
+
+; Data block at F8A3
+t$F8AF DEFM "PE",$C6,"LI",$EE,$00
+
+; Data block at F8A3
+t$F8B6 DEFM "F",$F2,$FE,$F6,"T",$00
 
 ; Message at F8BC
-t$F8BC DEFM "OCCASI"
-
-; Data block at F8C2
-t$F8C2 DEFM $DF,$E4,$00
+t$F8BC DEFM "OCCASI",$DF,$E4,$00
 
 ; Message at F8C5
 t$F8C5 DEFM "UNP"
 
 ; Data block at F8C8
-t$F8C8 DEFM $F2,$F1,"CT",$D8,$E5,$00,"D",$F2
+t$F8C8 DEFM $F2,$F1,"CT",$D8,$E5,$00
 
 ; Message at F8D1
-t$F8D1 DEFM "ADFUL"
+t$F8CF DEFM "D",$F2,"ADFUL",$00
 
 ; Data block at F8D6
-t$F8D6 DEFM $00,$AB,$00,"\\"
+t$F8D7 DEFM $AB,$00
 
 ; Message at F8DA
-t$F8DA DEFM " [ F"
+t$F8D9 DEFM "\\ [ F",$FD," e",$00
 
 ; Data block at F8DE
-t$F8DE DEFM $FD," e",$00,$8C,$B2,"e",$00
+t$F8E2 DEFM $8C,$B2,"e",$00
 
 ; Message at F8E6
-t$F8E6 DEFM "f BY g"
+t$F8E6 DEFM "f BY g",$00
 
 ; Data block at F8EC
-t$F8EC DEFM $00,$8C
-
-; Message at F8EE
-t$F8EE DEFM " BUT "
-
-; Data block at F8F3
-t$F8F3 DEFM $8E,$00
+t$F8ED DEFM $8C," BUT ",$8E,$00
 
 ; Message at F8F5
-t$F8F5 DEFM " Ao p"
+t$F8F5 DEFM " Ao p",$00
 
 ; Data block at F8FA
-t$F8FA DEFM $00,"PL",$FF,$DD,$00,"W",$FD,"LD",$00,$E2,"E ",$00,$E2,$98," ",$00,$E0,"AD",$D2,$9A,$00,$09,$0B,$01,$08,$00,$9A,$CB,"D",$00,"IS",$00,"I",$FF,$00,$13
+t$F8FB DEFM "PL",$FF,$DD,$00
+
+; Data block at F8FA
+t$F900 DEFM "W",$FD,"LD",$00
+
+; Data block at F8FA
+t$F905 DEFM $E2,"E ",$00
+
+; Data block at F8FA
+t$F909 DEFM $E2,$98," ",$00
+
+; Data block at F8FA
+t$F90D DEFM $E0,"AD",$D2,$9A,$00
+
+; Data block at F8FA
+t$F913 DEFM $09,$0B,$01,$08,$00
+
+; Data block at F8FA
+t$F918 DEFM $9A,$CB,"D",$00
+
+; Data block at F8FA
+t$F91C DEFM "IS",$00
+
+; Data block at F8FA
+t$F91F DEFM "I",$FF,$00
 
 ; Message at F923
-t$F923 DEFM "COMM"
+t$F922 DEFM $13,"COMM",$FF,"D",$F4,$00
 
 ; Data block at F927
-t$F927 DEFM $FF,"D",$F4,$00,"h",$00,"M",$D9
+t$F92B DEFM "h",$00
 
-; Message at F92F
-t$F92F DEFM "NTA"
+; Data block at F927
+t$F92D DEFM "M",$D9,"NTA",$F0,$00
 
 ; Data block at F932
-t$F932 DEFM $F0,$00,$FC,"IB",$E5,$00,"T",$F2,"E",$00,$D1
+t$F934 DEFM $FC,"IB",$E5,$00
+
+; Data block at F932
+t$F939 DEFM "T",$F2,"E",$00
 
 ; Message at F93E
-t$F93E DEFM "OTT"
+t$F93D DEFM $D1,"OTT",$FC,$00
 
 ; Data block at F941
-t$F941 DEFM $FC,$00,"x",$00,"y",$00
+t$F943 DEFM "x",$00,"y",$00
 
 ; Message at F947
-t$F947 DEFM "aOID"
+t$F947 DEFM "aOID",$00
 
 ; Data block at F94B
-t$F94B DEFM $00,$7F,$00,"~",$00,$FF,"CI",$F6,"T",$00,"EX",$E9,"P",$FB,$DF,$E4,$00,"EC",$E9
+t$F94C DEFM $7F,$00
+
+; Data block at F94B
+t$F94E DEFM "~",$00
+
+; Data block at F94B
+t$F950 DEFM $FF,"CI",$F6,"T",$00
+
+; Data block at F94B
+t$F956 DEFM "EX",$E9,"P",$FB,$DF,$E4,$00
 
 ; Message at F961
-t$F961 DEFM "NTRIC"
+t$F95E DEFM "EC",$E9,"NTRIC",$00
 
 ; Data block at F966
-t$F966 DEFM $00,$F0,"G",$F8,$F0,$FC,$00,"r",$00,"K",$DC,"L",$F4,$00
+t$F967 DEFM $F0,"G",$F8,$F0,$FC,$00
+
+; Data block at F966
+t$F96D DEFM "r",$00
+
+; Data block at F966
+t$F96F DEFM "K",$DC,"L",$F4,$00
 
 ; Message at F974
-t$F974 DEFM "DEADLY"
+t$F974 DEFM "DEADLY",$00
 
 ; Data block at F97A
-t$F97A DEFM $00,"EV",$DC,$00,$E5,$E2,$E4,$00
+t$F97B DEFM "EV",$DC,$00
+
+; Data block at F97A
+t$F97F DEFM $E5,$E2,$E4,$00
 
 ; Message at F983
-t$F983 DEFM "VICIO"
+t$F983 DEFM "VICIO",$EC,$00
 
 ; Data block at F988
-t$F988 DEFM $EC,$00,$DB,"S ",$00,$0D,$0E,$13,$00,".",$0C,$0F,$00," ",$FF,"D ",$00,"Y",$D9,$00,"P",$EE,"K",$C3,"M",$DD,$F4,"S",$00,"D",$EC
+t$F98A DEFM $DB,"S ",$00
+
+; Data block at F988
+t$F98E DEFM $0D,$0E,$13,$00
+
+; Data block at F988
+t$F992 DEFM ".",$0C,$0F,$00
+
+; Data block at F988
+t$F996 DEFM " ",$FF,"D ",$00
+
+; Data block at F988
+t$F99B DEFM "Y",$D9,$00
+
+; Data block at F988
+t$F99E DEFM "P",$EE,"K",$C3,"M",$DD,$F4,"S",$00
 
 ; Message at F9A9
-t$F9A9 DEFM "T C"
-
-; Data block at F9AC
-t$F9AC DEFM $E0
-
-; Message at F9AD
-t$F9AD DEFM "UDS"
+t$F9A7 DEFM "D",$EC,"T C",$E0,"UDS",$00
 
 ; Data block at F9B0
-t$F9B0 DEFM $00,"I",$E9," ",$F7
-
-; Message at F9B5
-t$F9B5 DEFM "RGS"
+t$F9B1 DEFM "I",$E9," ",$F7,"RGS",$00
 
 ; Data block at F9B8
-t$F9B8 DEFM $00,"RO",$D5," F",$FD,$EF,$FB,$DF,"S",$00
+t$F9B9 DEFM "RO",$D5," F",$FD,$EF,$FB,$DF,"S",$00
 
 ; Message at F9C4
-t$F9C4 DEFM "VOLCA"
+t$F9C4 DEFM "VOLCA",$E3,$ED,$00
 
-; Data block at F9C9
-t$F9C9 DEFM $E3,$ED,$00,"PL",$FF,"T",$00
+; Message at F9C4
+t$F9CC DEFM "PL",$FF,"T",$00
 
 ; Message at F9D1
-t$F9D1 DEFM "TULIP"
+t$F9D1 DEFM "TULIP",$00
 
 ; Data block at F9D6
-t$F9D6 DEFM $00,"B",$FF,$FF,"A",$00,"C",$FD,"N",$00,$12,"WE",$FC,$00,$12,$00,$11," ",$12,$00,$11," h",$00,$F0,"HA",$EA,"T",$FF,"T",$00,$BF,$00,$F0,"G ",$00,$FC," ",$00," M",$98,"SI",$DF,$00,"CU",$00,"B",$F2,"AK",$00
+t$F9D7 DEFM "B",$FF,$FF,"A",$00
+
+; Data block at F9D6
+t$F9DC DEFM "C",$FD,"N",$00
+
+; Data block at F9D6
+t$F9E0 DEFM $12,"WE",$FC,$00
+
+; Data block at F9D6
+t$F9E5 DEFM $12,$00,$11," ",$12,$00
+
+; Data block at F9D6
+t$F9EB DEFM $11," h",$00
+
+; Data block at F9D6
+t$F9EF DEFM $F0,"HA",$EA,"T",$FF,"T",$00
+
+; Data block at F9D6
+t$F9F7 DEFM $BF,$00
+
+; Data block at F9D6
+t$F9F9 DEFM $F0,"G ",$00
+
+; Data block at F9D6
+t$F9FD DEFM $FC," ",$00
+
+; Data block at F9D6
+t$FA00 DEFM " M",$98,"SI",$DF,$00
+
+; Data block at F9D6
+t$FA07 DEFM "CU",$00
+
+; Data block at F9D6
+t$FA0A DEFM "B",$F2,"AK",$00
 
 ; Message at FA0F
-t$FA0F DEFM "NAME? "
-
-; Unused
-t$FA15 DEFM $00
+t$FA0F DEFM "NAME? ",$00
 
 ; Message at FA16
-t$FA16 DEFM " TO "
+t$FA16 DEFM " TO ",$00
 
 ; Data block at FA1A
-t$FA1A DEFM $00," ",$98," ",$00
+t$FA1B DEFM " ",$98," ",$00
 
 ; Message at FA1F
-t$FA1F DEFM " SA"
+t$FA1F DEFM " SA",$FA,$00
 
 ; Data block at FA22
-t$FA22 DEFM $FA,$00,".",$0C," ",$13,$00,"DO",$D5,$FC,$00," ",$01
+t$FA24 DEFM ".",$0C," ",$13,$00
+
+; Data block at FA22
+t$FA29 DEFM "DO",$D5,$FC,$00
 
 ; Message at FA30
-t$FA30 DEFM "(Y/N)?"
+t$FA2E DEFM " ",$01,"(Y/N)?",$02,$00
 
 ; Data block at FA36
-t$FA36 DEFM $02,$00,$02,$06,"l",$0A
-
-; Message at FA3C
-t$FA3C DEFM " JAMM"
-
-; Data block at FA41
-t$FA41 DEFM $F4,$00
+t$FA38 DEFM $02,$06,"l",$0A," JAMM",$F4,$00
 
 ; Message at FA43
-t$FA43 DEFM " A "
+t$FA43 DEFM " A ",$00
 
-; Data block at FA46
-t$FA46 DEFM $00,"SP",$00
+; Message at FA43
+t$FA47 DEFM "SP",$00
 
 ; Message at FA4A
-t$FA4A DEFM " NEW "
+t$FA4A DEFM " NEW ",$00
 
 ; Data block at FA4F
-t$FA4F DEFM $00,$0C,$0C,$00," ",$13,$E2,$EE,"G",$DF,$00,"CK",$00,"F",$D9
+t$FA50 DEFM $0C,$0C,$00
+
+; Data block at FA4F
+t$FA53 DEFM " ",$13,$E2,$EE,"G",$DF,$00,"CK",$00
 
 ; Message at FA5F
-t$FA5F DEFM "ND "
-
-; Data block at FA62
-t$FA62 DEFM $9A," ",$04,$00
+t$FA5D DEFM "F",$D9,"ND ",$9A," ",$04,$00
 
 ; Message at FA66
-t$FA66 DEFM "POPUL"
+t$FA66 DEFM "POPUL",$F5,"I",$DF,$00
 
 ; Data block at FA6B
-t$FA6B DEFM $F5,"I",$DF,$00,$00,"  ",$00,"@@",$00," _",$00,"@+",$00,$00,$B0,$01,$03,$CA,$F2,"SI",$DE,$C3,"A",$D4," ",$F0
+t$FA6F DEFM $00
 
-; Message at FA8A
-t$FA8A DEFM "VASI"
+; Data block at FA6B
+t$FA70 DEFM "  ",$00
+
+; Data block at FA6B
+t$FA73 DEFM "@@",$00
+
+; Data block at FA6B
+t$FA76 DEFM " _",$00
+
+; Data block at FA6B
+t$FA79 DEFM "@+",$00
+
+; Data block at FA6B
+t$FA7C DEFM $00
+
+; Data block at FA6B
+t$FA7D DEFM $B0,$01,$03,$CA,$F2,"SI",$DE,$C3,"A",$D4," ",$F0,"VASI",$DF,"*",$02,$0F,$00
 
 ; Data block at FA8E
-t$FA8E DEFM $DF,"*",$02,$0F,$00,$01,"W",$FF,"T",$C4
-
-; Message at FA98
-t$FA98 DEFM "BY G"
-
-; Data block at FA9C
-t$FA9C DEFM "d"+$80
-
-; Message at FA9D
-t$FA9D DEFM "COP:"
-
-; Data block at FAA1
-t$FAA1 DEFM $0C,$D3
-
-; Message at FAA3
-t$FAA3 DEFM "    "
-
-; Data block at FAA7
-t$FAA7 DEFM $D0,"B",$F8,$FA," ",$9A," ",$D3
-
-; Message at FAAF
-t$FAAF DEFM "   F"
-
-; Data block at FAB3
-t$FAB3 DEFM $FD,$D0,$D1
-
-; Message at FAB6
-t$FAB6 DEFM "ECI"
-
-; Data block at FAB9
-t$FAB9 DEFM $E4,$C5,$02,$D3,$D3,$0D," ",$13,"A",$F2," ",$B3," ",$F0,"TE",$F2,$DE,$C4,$CE,$00,$B0,$93,$D4,"S ",$EE,"E ",$EC,$C3,$93,$D1,"A",$E9," ",$DE,$F5,"I",$DF," ",$F5," ",$13,$10
+t$FA93 DEFM $01,"W",$FF,"T",$C4,"BY G",$E4,"COP:",$0C,$D3,"    ",$D0,"B",$F8,$FA," ",$9A," ",$D3,"   F",$FD,$D0,$D1,"ECI",$E4,$C5,$02,$D3,$D3,$0D," ",$13,"A",$F2," ",$B3," ",$F0,"TE",$F2,$DE,$C4,$CE,$00
 
 ; Message at FAE6
-t$FAE6 DEFM " AS"
-
-; Data block at FAE9
-t$FAE9 DEFM $D0,"BA",$DA," F",$FD," ",$E2
-
-; Message at FAF2
-t$FAF2 DEFM "EIR "
-
-; Data block at FAF6
-t$FAF6 DEFM "p"+$80
-
-; Message at FAF7
-t$FAF7 DEFM "VASI"
-
-; Data block at FAFB
-t$FAFB DEFM $DF," F",$FD,$E9,$C9,$F5,"TA",$D5," ",$93,$91
-
-; Message at FB08
-t$FB08 DEFM " SURFA"
-
-; Data block at FB0E
-t$FB0E DEFM $E9,$B1,$0C,$02,$B3,"R",$C5,":",$D3,$01,$C9,"DE",$DE
-
-; Message at FB1C
-t$FB1C DEFM "ROY "
-
-; Data block at FB20
-t$FB20 DEFM $93,$D1,"A",$E9," ",$DE,$F5,"I",$DF,$D3," ",$F5," ",$10,$CC,$D3,$0D
-
-; Message at FB31
-t$FB31 DEFM "TAKE "
-
-; Data block at FB36
-t$FB36 DEFM $94,$CF,$D3,"(",$0D,$13,$B3," W",$DC
-
-; Message at FB40
-t$FB40 DEFM "L NE"
-
-; Data block at FB44
-t$FB44 DEFM $C4,$DB,"*)",$0A,$0A," ",$01
-
-; Message at FB4C
-t$FB4C DEFM "GOOD LU"
+t$FACE DEFM $B0,$93,$D4,"S ",$EE,"E ",$EC,$C3,$93,$D1,"A",$E9," ",$DE,$F5,"I",$DF," ",$F5," ",$13,$10," AS",$D0,"BA",$DA," F",$FD," ",$E2,"EIR ",$F0,"VASI",$DF," F",$FD,$E9,$C9,$F5,"TA",$D5," ",$93,$91," SURFA",$E9
+ $FB0F DEFM $B1,$0C,$02,$B3,"R",$C5,":",$D3,$01,$C9,"DE",$DE,"ROY ",$93,$D1,"A",$E9," ",$DE,$F5,"I",$DF,$D3," ",$F5," ",$10,$CC,$D3,$0D,"TAKE ",$94,$CF,$D3,"(",$0D,$13,$B3," W",$DC,"L NE",$C4,$DB,"*)",$0A,$0A," ",$01,"GOOD"
+ $FB50 DEFM " LU",$D5,$02,"*",$00
 
 ; Data block at FB53
-t$FB53 DEFM $D5,$02,"*",$00,"SH",$F2,"W",$00,$F7,"A",$DE,$00,$EA,"S",$DF,$00
+t$FB57 DEFM "SH",$F2,"W",$00
+
+; Data block at FB53
+t$FB5C DEFM $F7,"A",$DE,$00
+
+; Data block at FB53
+t$FB60 DEFM $EA,"S",$DF,$00
 
 ; Message at FB64
-t$FB64 DEFM "SNAKE"
-
-; Unused
-t$FB69 DEFM $00
+t$FB64 DEFM "SNAKE",$00
 
 ; Message at FB6A
-t$FB6A DEFM "WOLF"
+t$FB6A DEFM "WOLF",$00
 
 ; Data block at FB6E
-t$FB6E DEFM $00,$E5,"OP",$EE,"D",$00,"C",$F5,$00,"M",$DF
+t$FB6F DEFM $E5,"OP",$EE,"D",$00
 
-; Message at FB7A
-t$FB7A DEFM "KEY"
+; Data block at FB6E
+t$FB75 DEFM "C",$F5,$00
+
+; Data block at FB6E
+t$FB78 DEFM "M",$DF,"KEY",$00
 
 ; Data block at FB7D
-t$FB7D DEFM $00,"GO",$F5,$00,"F",$98,"H",$00
+t$FB7E DEFM "GO",$F5,$00
+
+; Data block at FB7D
+t$FB82 DEFM "F",$98,"H",$00
 
 ; Message at FB86
-t$FB86 DEFM "j i"
+t$FB86 DEFM "j i",$00
 
 ; Data block at FB89
-t$FB89 DEFM $00,$11
-
-; Message at FB8B
-t$FB8B DEFM " x "
+t$FB8A DEFM $11," x {",$00
 
 ; Data block at FB8E
-t$FB8E DEFM "{",$00,$AF
-
-; Message at FB91
-t$FB91 DEFM "k y "
+t$FB90 DEFM $AF,"k y {",$00
 
 ; Data block at FB95
-t$FB95 DEFM "{",$00,"| }",$00
+t$FB97 DEFM "| }",$00
 
 ; Message at FB9B
-t$FB9B DEFM "j i"
+t$FB9B DEFM "j i",$00
 
 ; Data block at FB9E
-t$FB9E DEFM $00,"ME",$F5,$00,$C6,"TL",$DD,$00,$DE
+t$FB9F DEFM "ME",$F5,$00
 
-; Message at FBA9
-t$FBA9 DEFM "EAK"
+; Data block at FB9E
+t$FBA3 DEFM $C6,"TL",$DD,$00
 
-; Unused
-t$FBAC DEFM $00
+; Data block at FB9E
+t$FBA8 DEFM $DE,"EAK",$00
 
 ; Message at FBAD
-t$FBAD DEFM "BURG"
+t$FBAD DEFM "BURG",$F4,"S",$00
 
 ; Data block at FBB1
-t$FBB1 DEFM $F4,"S",$00,$EB,"UP",$00,"I",$E9,$00
+t$FBB4 DEFM $EB,"UP",$00
+
+; Data block at FBB1
+t$FBB8 DEFM "I",$E9,$00
 
 ; Message at FBBB
-t$FBBB DEFM "MUD"
+t$FBBB DEFM "MUD",$00
 
 ; Data block at FBBE
-t$FBBE DEFM $00,"Z",$F4,"O-",$13,"G",$00,"VA",$C6,"UM",$00,$11
+t$FBBF DEFM "Z",$F4,"O-",$13,"G",$00
+
+; Data block at FBBE
+t$FBC6 DEFM "VA",$C6,"UM",$00
 
 ; Message at FBCD
-t$FBCD DEFM " ULT"
+t$FBCC DEFM $11," ULT",$F8,$00
 
 ; Data block at FBD1
-t$FBD1 DEFM $F8,$00,"HO",$D5,"EY",$00
+t$FBD3 DEFM "HO",$D5,"EY",$00
 
 ; Message at FBD9
-t$FBD9 DEFM "CRI"
+t$FBD9 DEFM "CRI",$D5,$DD,$00
 
 ; Data block at FBDC
-t$FBDC DEFM $D5,$DD,$00,"K",$EE,$F5,"E",$00,"PO",$E0,$00,"T",$F6,"N",$98,$00
+t$FBDF DEFM "K",$EE,$F5,"E",$00
+
+; Data block at FBDC
+t$FBE4 DEFM "PO",$E0,$00
+
+; Data block at FBDC
+t$FBE8 DEFM "T",$F6,"N",$98,$00
 
 ; Last recursive token
 t$FBED DEFM $E2,"EY SHOW ",$E3," M",$F4,"CY...",$00
