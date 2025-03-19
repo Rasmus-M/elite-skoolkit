@@ -3837,22 +3837,23 @@ c$80D3 LD A,($D040)  ;
  $813A LD ($FC08),A  ;
  $813D RET           ;
 
-; Routine at 813E
+; Jump to entry in jump table at $D000
 ;
 ; Used by the routines at #R$71F3, #R$80D3 and #R$93ED.
-c$813E LD ($80D1),SP ;
- $8142 LD SP,$D000   ;
+; A Index of jump to take
+c$813E LD ($80D1),SP ; Save stack pointer
+ $8142 LD SP,$D000   ; Set SP just above screen buffer
  $8145 LD B,A        ;
- $8146 ADD A,A       ;
- $8147 ADD A,B       ;
- $8148 LD HL,$D000   ;
- $814B ADD A,L       ;
+ $8146 ADD A,A       ; * 2
+ $8147 ADD A,B       ; * 3
+ $8148 LD HL,$D000   ; Jump table base address
+ $814B ADD A,L       ; {Add offset to base address
  $814C LD L,A        ;
  $814D JR NC,$8150   ;
- $814F INC H         ;
-*$8150 LD ($8154),HL ;
-*$8153 CALL $8153    ;
- $8156 LD SP,($80D1) ;
+ $814F INC H         ; }
+*$8150 LD ($8154),HL ; Modify next instruction
+*$8153 CALL $8153    ; Self-modified. Return address saved to screen buffer?
+ $8156 LD SP,($80D1) ; Restore stack pointer
  $815A JP $94FE      ;
 
 ; Routine at 815D
@@ -14120,6 +14121,7 @@ b$C800 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,
  $CFE0 DEFB $00,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$00
 
 ; Routine at D000
+@label=jump_table_at_D000
 c$D000 JP $E6AE      ;
 
 ; Routine at D003
@@ -15093,7 +15095,7 @@ c$D59C SUB $80       ; Offset from 128
 ; Routine at D5B4
 ;
 ; Used by the routine at #R$D470.
-label=other_token_92_to_128
+@label=other_token_92_to_128
 c$D5B4 LD D,$00      ;
  $D5B6 SUB $5B       ;
  $D5B8 LD E,A        ;

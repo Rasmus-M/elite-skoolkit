@@ -527,8 +527,17 @@ S $80D1,2,$02
 c $80D3 Routine at 80D3
 D $80D3 Used by the routine at #R$7471.
 N $8136 This entry point is used by the routine at #R$815D.
-c $813E Routine at 813E
-D $813E Used by the routines at #R$71F3, #R$80D3 and #R$93ED.
+c $813E Jump to entry in jump table at $D000
+D $813E Used by the routines at #R$71F3, #R$80D3 and #R$93ED. A Index of jump to take
+C $813E,4 Save stack pointer
+C $8142,3 Set SP just above screen buffer
+C $8146,1 * 2
+C $8147,1 * 3
+C $8148,3 Jump table base address
+C $814B,5 Add offset to base address
+C $8150,3 Modify next instruction
+C $8153,3 Self-modified. Return address saved to screen buffer?
+C $8156,4 Restore stack pointer
 c $815D Routine at 815D
 D $815D Used by the routine at #R$80D3.
 N $817E This entry point is used by the routines at #R$7378 and #R$93ED.
@@ -1385,6 +1394,7 @@ b $C800 Control panel graphics #UDGTABLE { #SCR1,0,0,32,8,$c800,$5b00(ctrl_panel
 @ $C800 label=ctrl_panel_gfx
 B $C800,2048,32
 c $D000 Routine at D000
+@ $D000 label=jump_table_at_D000
 c $D003 Routine at D003
 c $D006 Routine at D006
 c $D009 Routine at D009
@@ -1538,8 +1548,9 @@ D $D3EF Used by the routine at #R$E973.
 c $D3FD Routine at D3FD
 D $D3FD Used by the routine at #R$E973.
 b $D420 Data block at D420
+@ $D420 label=other_token_flag
 B $D420,1,1
-c $D421 Routine at D421
+c $D421 Print token
 D $D421 Used by the routines at #R$D2E1, #R$D837, #R$E107, #R$E212, #R$E2F8, #R$E31E, #R$E7CF, #R$E87E, #R$E8EA, #R$E973, #R$EB47, #R$EDDF, #R$EEA8, #R$EF87 and #R$F0A1.
 @ $D421 label=print_token
 C $D421,1 Get pointer to token number from stack
@@ -1571,7 +1582,7 @@ C $D458,3 Call routine recursively
 C $D45B,1 Restore token address
 C $D45C,1 Increment token address
 C $D45D,2 Loop to process next char code
-c $D45F Routine at D45F
+c $D45F Print other recursive token
 D $D45F Used by the routines at #R$D039, #R$D470, #R$D5B4, #R$D90A, #R$DA5A, #R$DBA2, #R$E292, #R$E8E5, #R$EDDF, #R$EF87 and #R$F0A1.
 @ $D45F label=print_other_recursive_token
 C $D45F,3 Get base address of other tokens
@@ -1581,10 +1592,17 @@ C $D464,2 Jump if we're now at the right token
 C $D466,3 Search through all memory
 C $D469,4 Look for a zero (end of token)
 C $D46D,3 And loop
-c $D470 Routine at D470
+c $D470 Print other/extra token
 D $D470 Used by the routine at #R$D48E.
 @ $D470 label_print_other_token
-c $D48E Routine at D48E
+C $D471,3 Test flag
+C $D477,2 Jump if flag is reset
+C $D479,5 Jump if token < 32
+C $D47E,4 Jump if 32 <= token < 91
+C $D482,5 Jump if 92 <= token < 129
+C $D487,4 Jump if 129 <= token < 215
+C $D48B,3 Jump if token >= 215
+c $D48E Other token loop
 D $D48E Used by the routine at #R$D45F.
 @ $D48E recursive_other_token_loop
 C $D48E,1 Get next char code of token
@@ -1594,7 +1612,7 @@ C $D492,3 Call routine recursively
 C $D495,1 Restore token address
 C $D496,1 Increment token address
 C $D497,2 Loop to process next char code
-c $D499 Routine at D499
+c $D499 Print ASCII character
 D $D499 Used by the routines at #R$D421, #R$D470 and #R$D59C.
 @ $D499 label=print_ascii_char
 C $D499,2 Char A?
@@ -1666,7 +1684,8 @@ c $D568 Routine at D568
 D $D568 Used by the routines at #R$D90A, #R$E8D9, #R$EDDF, #R$EF48, #R$EF87 and #R$F0A1.
 c $D595 Routine at D595
 D $D595 Used by the routine at #R$D470.
-c $D59C Routine at D59C
+@ $D595 label=other_token_gt_214
+c $D59C Print two-letter token
 D $D59C Used by the routine at #R$D421.
 @ $D59C label=print_two_letter_token
 C $D59C,2 Offset from 128
@@ -1686,11 +1705,12 @@ C $D5B0,1 Then return
 C $D5B1,3 Print second char
 c $D5B4 Routine at D5B4
 D $D5B4 Used by the routine at #R$D470.
+@ $D5B4 label=other_token_92_to_128
 c $D5E1 Routine at D5E1
 D $D5E1 Used by the routine at #R$D5B4.
 b $D5F5 Data block at D5F5
 B $D5F5,40,8
-c $D61D Routine at D61D
+c $D61D Clear screen with border
 D $D61D Clear the screen and draw a one pixel border
 R $D61D Used by the routines at #R$D036, #R$D90A, #R$DBA2, #R$E973, #R$EB7C and
 R $D61D #R$EC58.
@@ -1746,6 +1766,7 @@ c $D7A1 Routine at D7A1
 D $D7A1 Used by the routine at #R$D6B9.
 c $D7B0 Routine at D7B0
 D $D7B0 Used by the routine at #R$D470.
+@ $D7B0 label=other_token_lt_32
 c $D7B5 Routine at D7B5
 D $D7B5 Used by the routine at #R$D421.
 @ $D7B5 label=print_control_code
