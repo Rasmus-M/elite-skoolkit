@@ -287,6 +287,7 @@ b$5CCB DEFB $07,$5D,$FF,$FF,$FF,$FF,$FF,$FF
  $5D6B DEFB $00,$00,$00,$00,$00
 
 ; Font
+; #HTML[#FONT$5D70,96]
 @label=font
 b$5D70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $5D78 DEFB $7F,$40,$40,$20,$20,$10,$0C,$03
@@ -19134,19 +19135,17 @@ c$F0A1 EX AF,AF'     ;
 ; Data block at F117
 b$F117 DEFB $00,$00,$00
 
-; Data block at F11A
-;
-; .
-;
-; .
-;
 ; Recursive tokens
+
+; Tokens pointer
 @label=tokens_ptr
 w$F11A DEFW $F11E
-@label=other_tokens_ptr
- $F11C DEFW $F4F5
 
-; Recursive tokens
+; Other/extra tokens pointer
+@label=other_tokens_ptr
+w$F11C DEFW $F4F5
+
+; Standard recursive tokens
 @label=tokens
 t$F11E DEFM "o",$10,$00
 
@@ -19591,776 +19590,777 @@ t$F4F3 DEFM $00
 ; Token $92
 t$F4F4 DEFM $00
 
-; Token $93
+; Other/extra tokens
+; Token $00
 @label=other_tokens
 t$F4F5 DEFM $01,$08,"  AC",$E9,"SS ME",$E1,$02,$0C,$0C,$0C,$0C," 1 ",$95,$0C,$0C," 2",$CB," ",$9A," ",$01,$04,$02,$0C,$0C," 3 EX",$DB,$00
 
-; Token $00
+; Token $01
 t$F51F DEFM $DE,$EE,"T TAPE, ",$E2,$F6," P",$F2,"SS ",$FF,"Y KEY",$00
 
-; Token $01
+; Token $02
 t$F538 DEFM "TAPE ",$E0,"AD",$C3,$F4,"R",$FD,$00
 
-; Token $02
+; Token $03
 t$F545 DEFM $DA,$C6,"R",$DB,"Y ",$E1,"MB",$F4,": ",$00
 
-; Token $03
+; Token $04
 t$F552 DEFM $B0,"m",$CA,"n",$B1,$00
 
-; Token $04
+; Token $05
 t$F558 DEFM "  ",$95,$CE,$00
 
-; Token $05
+; Token $06
 t$F55D DEFM "P",$F2,"SS ",$D1,"A",$E9,", ",$9A,$00
 
-; Token $06
+; Token $07
 t$F569 DEFM $9A,"'S ",$C8,$00
 
-; Token $07
+; Token $08
 t$F56F DEFM " GAME O",$FA,"R",$00
 
-; Token $08
+; Token $09
 t$F579 DEFM $B0,$F0," APP",$F2,"CIA",$FB,$DF," OF ",$B3,"R ",$A6," C",$D9,$F8,"GE ",$93," ",$C1,"S OF ",$10," AW",$EE,"D ",$B3," ",$E2,"EIR HIGHE",$DE," H",$DF,$D9,"R - ",$93,$12
  $F5BA DEFM "-",$12,$B1,$D3,$01,"LI",$FA," ",$E0,"NG",$B2,"PRO",$D1,$F4,"*",$02,$00
 
-; Token $09
+; Token $0A
 t$F5CF DEFM $02,"SHIP BO",$EE,"D",$C4,"BY",$01,$00
 
-; Token $0A
+; Token $0B
 t$F5DE DEFM $F2,"FU",$E7,$ED,$00
 
-; Token $0B
+; Token $0C
 t$F5E4 DEFM " PIR",$F5,"E",$00
 
-; Token $0C
+; Token $0D
 t$F5EB DEFM $15,$91," ",$C8,$1A,$00
 
-; Token $0D
+; Token $0E
 t$F5F1 DEFM $02,$B3," HA",$FA,$CB,"D ",$D9,"R LI",$FA,"S*",$D3,$18,$18,$E2,$FF,"K ",$B3,", ",$9A,"...",$00
 
-; Token $0E
+; Token $0F
 t$F611 DEFM "F",$D8,$E5,"D",$00
 
-; Token $0F
+; Token $10
 t$F616 DEFM $E3,"T",$D8,$E5,$00
 
-; Token $10
+; Token $11
 t$F61B DEFM "WELL K",$E3,"WN",$00
 
-; Token $11
+; Token $12
 t$F625 DEFM "FAMO",$EC,$00
 
-; Token $12
+; Token $13
 t$F62B DEFM $E3,"T",$FC,$00
 
-; Token $13
+; Token $14
 t$F62F DEFM $FA,"RY",$00
 
-; Token $14
+; Token $15
 t$F633 DEFM "M",$DC,"DLY",$00
 
-; Token $15
+; Token $16
 t$F639 DEFM "MO",$DE,$00
 
-; Token $16
+; Token $17
 t$F63D DEFM $F2,"AS",$DF,$D8,"LY",$00
 
-; Token $17
+; Token $18
 t$F645 DEFM $00
 
-; Token $18
+; Token $19
 t$F646 DEFM $A5,$00
 
-; Token $19
+; Token $1A
 t$F648 DEFM "r",$00
 
-; Token $1A
+; Token $1B
 t$F64A DEFM "G",$F2,$F5,$00
 
-; Token $1B
+; Token $1C
 t$F64E DEFM "VA",$DE,$00
 
-; Token $1C
+; Token $1D
 t$F652 DEFM "P",$F0,"K",$00
 
-; Token $1D
+; Token $1E
 t$F656 DEFM $02,"w v",$0D," ",$B9,"A",$FB,$DF,"S",$00
 
-; Token $1E
+; Token $1F
 t$F662 DEFM $9C,"S",$00
 
-; Token $1F
+; Token $20
 t$F665 DEFM "u",$00
 
-; Token $20
+; Token $21
 t$F667 DEFM $80," F",$FD,$ED,"TS",$00
 
-; Token $21
+; Token $22
 t$F66F DEFM "O",$E9,$FF,"S",$00
 
-; Token $22
+; Token $23
 t$F674 DEFM "SHYN",$ED,"S",$00
 
-; Token $23
+; Token $24
 t$F67B DEFM "S",$DC,"L",$F0,$ED,"S",$00
 
-; Token $24
+; Token $25
 t$F682 DEFM $EF,"T",$C3,"T",$F8,$F1,$FB,$DF,"S",$00
 
-; Token $25
+; Token $26
 t$F68C DEFM $E0,$F5,"H",$C3,"OF d",$00
 
-; Token $26
+; Token $27
 t$F695 DEFM $E0,$FA," F",$FD," d",$00
 
-; Token $27
+; Token $28
 t$F69D DEFM "FOOD B",$E5,"ND",$F4,"S",$00
 
-; Token $28
+; Token $29
 t$F6A9 DEFM "T",$D9,"RI",$DE,"S",$00
 
-; Token $29
+; Token $2A
 t$F6B0 DEFM "PO",$DD,"RY",$00
 
-; Token $2A
+; Token $2B
 t$F6B6 DEFM $F1,"SCOS",$00
 
-; Token $2B
+; Token $2C
 t$F6BC DEFM "l",$00
 
-; Token $2C
+; Token $2D
 t$F6BE DEFM "W",$E4,"K",$C3,$9E,$00
 
-; Token $2D
+; Token $2E
 t$F6C4 DEFM "C",$F8,"B",$00
 
-; Token $2E
+; Token $2F
 t$F6C8 DEFM "B",$F5,$00
 
-; Token $2F
+; Token $30
 t$F6CB DEFM $E0,"B",$DE,$00
 
-; Token $30
+; Token $31
 t$F6CF DEFM $12,$00
 
-; Token $31
+; Token $32
 t$F6D1 DEFM $F7,"S",$DD,$00
 
-; Token $32
+; Token $33
 t$F6D5 DEFM "P",$F9,"GU",$FC,$00
 
-; Token $33
+; Token $34
 t$F6DB DEFM $F8,"VAG",$FC,$00
 
-; Token $34
+; Token $35
 t$F6E1 DEFM $C6,"RS",$FC,$00
 
-; Token $35
+; Token $36
 t$F6E6 DEFM "SC",$D9,"RG",$FC,$00
 
-; Token $36
+; Token $37
 t$F6ED DEFM "q CIV",$DC," W",$EE,$00
 
-; Token $37
+; Token $38
 t$F6F7 DEFM "h _ ",$60,"S",$00
 
-; Token $38
+; Token $39
 t$F6FE DEFM "A h ",$F1,$DA,"A",$DA,$00
 
-; Token $39
+; Token $3A
 t$F707 DEFM "q E",$EE,$E2,$FE,"AK",$ED,$00
 
-; Token $3A
+; Token $3B
 t$F711 DEFM "q ",$EB,$F9,"R AC",$FB,"V",$DB,"Y",$00
 
-; Token $3B
+; Token $3C
 t$F71E DEFM $AF,"] ",$5E,$00
 
-; Token $3C
+; Token $3D
 t$F723 DEFM $93,$11," _ ",$60,$00
 
-; Token $3D
+; Token $3E
 t$F72A DEFM $AF,$C1,"S' b c",$00
 
-; Token $3E
+; Token $3F
 t$F733 DEFM $02,"z",$0D,$00
 
-; Token $3F
+; Token $40
 t$F737 DEFM $AF,"k l",$00
 
-; Token $40
+; Token $41
 t$F73C DEFM "JUI",$E9,$00
 
-; Token $41
+; Token $42
 t$F741 DEFM "B",$F8,"NDY",$00
 
-; Token $42
+; Token $43
 t$F747 DEFM "W",$F5,$F4,$00
 
-; Token $43
+; Token $44
 t$F74B DEFM "B",$F2,"W",$00
 
-; Token $44
+; Token $45
 t$F74F DEFM "G",$EE,"G",$E5," B",$F9,$DE,$F4,"S",$00
 
-; Token $45
+; Token $46
 t$F75A DEFM $12,$00
 
-; Token $46
+; Token $47
 t$F75C DEFM $11," ",$60,$00
 
-; Token $47
+; Token $48
 t$F760 DEFM $11," ",$12,$00
 
-; Token $48
+; Token $49
 t$F764 DEFM $11," h",$00
 
-; Token $49
+; Token $4A
 t$F768 DEFM "h ",$12,$00
 
-; Token $4A
+; Token $4B
 t$F76C DEFM "F",$D8,"U",$E0,$EC,$00
 
-; Token $4B
+; Token $4C
 t$F772 DEFM "EXO",$FB,"C",$00
 
-; Token $4C
+; Token $4D
 t$F778 DEFM "HOOPY",$00
 
-; Token $4D
+; Token $4E
 t$F77E DEFM "U",$E1,"SU",$E4,$00
 
-; Token $4E
+; Token $4F
 t$F784 DEFM "EXC",$DB,$F0,"G",$00
 
-; Token $4F
+; Token $50
 t$F78B DEFM $C6,$98,$F0,"E",$00
 
-; Token $50
+; Token $51
 t$F790 DEFM "NIGHT LIFE",$00
 
-; Token $51
+; Token $52
 t$F79B DEFM "CASI",$E3,"S",$00
 
-; Token $52
+; Token $53
 t$F7A2 DEFM "S",$DB," COMS",$00
 
-; Token $53
+; Token $54
 t$F7AA DEFM $02,"z",$0D,$00
 
-; Token $54
+; Token $55
 t$F7AE DEFM $03,$00
 
-; Token $55
+; Token $56
 t$F7B0 DEFM $93,$91," ",$03,$00
 
-; Token $56
+; Token $57
 t$F7B5 DEFM $93,$92," ",$03,$00
 
-; Token $57
+; Token $58
 t$F7BA DEFM $94,$91,$00
 
-; Token $58
+; Token $59
 t$F7BD DEFM $94,$92,$00
 
-; Token $59
+; Token $5A
 t$F7C0 DEFM $02,$93,"SUN",$CA,"GO",$C3,$E3,"VA*",$D3," W",$DC,"L ",$B3,$CB," ",$EC," ",$CE,$00
 
-; Token $5A
+; Token $5B
 t$F7DA DEFM $13,$00
 
-; Token $5B
+; Token $5C
 t$F7DC DEFM "S",$02,"*",$18,$18,$00
 
-; Token $5C
+; Token $5D
 t$F7E2 DEFM $00
 
-; Token $5D
+; Token $5E
 t$F7E3 DEFM $00
 
-; Token $5E
+; Token $5F
 t$F7E4 DEFM "N UN",$F2,$EF,"RK",$D8,$E5,$00
 
-; Token $5F
+; Token $60
 t$F7EF DEFM " B",$FD,$F0,"G",$00
 
-; Token $60
+; Token $61
 t$F7F5 DEFM " DULL",$00
 
-; Token $61
+; Token $62
 t$F7FB DEFM " TE",$F1,"O",$EC,$00
 
-; Token $62
+; Token $63
 t$F802 DEFM " ",$F2,"VOLT",$F0,"G",$00
 
-; Token $63
+; Token $64
 t$F80B DEFM $91,$00
 
-; Token $64
+; Token $65
 t$F80D DEFM $92,$00
 
-; Token $65
+; Token $66
 t$F80F DEFM "P",$F9,$E9,$00
 
-; Token $66
+; Token $67
 t$F813 DEFM "L",$DB,"T",$E5," ",$91,$00
 
-; Token $67
+; Token $68
 t$F81A DEFM "DUMP",$00
 
-; Token $68
+; Token $69
 t$F81F DEFM $00
 
-; Token $69
+; Token $6A
 t$F820 DEFM $00
 
-; Token $6A
+; Token $6B
 t$F821 DEFM $00
 
-; Token $6B
+; Token $6C
 t$F822 DEFM $00
 
-; Token $6C
+; Token $6D
 t$F823 DEFM $00
 
-; Token $6D
+; Token $6E
 t$F824 DEFM "GROSS ",$06,$BA,$0A,"IV",$DB,"Y",$00
 
-; Token $6E
+; Token $6F
 t$F832 DEFM "ECO",$E3,"MY",$00
 
-; Token $7F
+; Token $70
 t$F839 DEFM $E5,"G",$E4," ",$DE,$F5,$EC,$00
 
-; Token $70
+; Token $71
 t$F841 DEFM $F8,$FB,"NG",$00
 
-; Token $71
+; Token $72
 t$F846 DEFM "WA",$D1,$00
 
-; Token $72
+; Token $73
 t$F84A DEFM "MO",$E2,$00
 
-; Token $73
+; Token $74
 t$F84E DEFM "W",$EE,$E2,"OG",$00
 
-; Token $74
+; Token $75
 t$F854 DEFM $FF,"T",$00
 
-; Token $75
+; Token $76
 t$F857 DEFM $12,$00
 
-; Token $76
+; Token $77
 t$F859 DEFM "PO",$DD,$00
 
-; Token $77
+; Token $78
 t$F85D DEFM "A",$DE,"ROPHYSICI",$DE,$00
 
-; Token $78
+; Token $79
 t$F86A DEFM "YAK",$00
 
-; Token $79
+; Token $7A
 t$F86E DEFM "SNA",$DC,$00
 
-; Token $7A
+; Token $7B
 t$F873 DEFM "SLUG",$00
 
-; Token $7B
+; Token $7C
 t$F878 DEFM "TROPIC",$E4,$00
 
-; Token $7C
+; Token $7D
 t$F880 DEFM "D",$F6,$DA,$00
 
-; Token $7D
+; Token $7E
 t$F884 DEFM $F8,$F0,$00
 
-; Token $7E
+; Token $7F
 t$F887 DEFM "IMP",$F6,$DD,$F8,"B",$E5,$00
 
-; Token $7F
+; Token $80
 t$F890 DEFM "EXU",$F7,$F8,"NT",$00
 
-; Token $80
+; Token $81
 t$F898 DEFM "FUNNY",$00
 
-; Token $81
+; Token $82
 t$F89E DEFM "WEIRD",$00
 
-; Token $82
+; Token $83
 t$F8A4 DEFM "U",$E1,"SU",$E4,$00
 
-; Token $83
+; Token $84
 t$F8AA DEFM $DE,$F8,"N",$E7,$00
 
-; Token $84
+; Token $85
 t$F8AF DEFM "PE",$C6,"LI",$EE,$00
 
-; Token $85
+; Token $86
 t$F8B6 DEFM "F",$F2,$FE,$F6,"T",$00
 
-; Token $86
+; Token $87
 t$F8BC DEFM "OCCASI",$DF,$E4,$00
 
-; Token $87
+; Token $88
 t$F8C5 DEFM "UNP"
 
-; Token $88
+; Token $89
 t$F8C8 DEFM $F2,$F1,"CT",$D8,$E5,$00
 
-; Token $89
+; Token $8A
 t$F8CF DEFM "D",$F2,"ADFUL",$00
 
-; Token $8A
+; Token $8B
 t$F8D7 DEFM $AB,$00
 
-; Token $8B
+; Token $8C
 t$F8D9 DEFM "\\ [ F",$FD," e",$00
 
-; Token $8C
+; Token $8D
 t$F8E2 DEFM $8C,$B2,"e",$00
 
-; Token $8D
+; Token $8E
 t$F8E6 DEFM "f BY g",$00
 
-; Token $8E
+; Token $8F
 t$F8ED DEFM $8C," BUT ",$8E,$00
 
-; Token $8F
+; Token $90
 t$F8F5 DEFM " Ao p",$00
 
-; Token $90
+; Token $91
 t$F8FB DEFM "PL",$FF,$DD,$00
 
-; Token $91
+; Token $92
 t$F900 DEFM "W",$FD,"LD",$00
 
-; Token $92
+; Token $93
 t$F905 DEFM $E2,"E ",$00
 
-; Token $93
+; Token $94
 t$F909 DEFM $E2,$98," ",$00
 
-; Token $94
+; Token $95
 t$F90D DEFM $E0,"AD",$D2,$9A,$00
 
-; Token $95
+; Token $96
 t$F913 DEFM $09,$0B,$01,$08,$00
 
-; Token $96
+; Token $97
 t$F918 DEFM $9A,$CB,"D",$00
 
-; Token $97
+; Token $98
 t$F91C DEFM "IS",$00
 
-; Token $98
+; Token $99
 t$F91F DEFM "I",$FF,$00
 
-; Token $99
+; Token $9A
 t$F922 DEFM $13,"COMM",$FF,"D",$F4,$00
 
-; Token $9A
+; Token $9B
 t$F92B DEFM "h",$00
 
-; Token $9B
+; Token $9C
 t$F92D DEFM "M",$D9,"NTA",$F0,$00
 
-; Token $9C
+; Token $9D
 t$F934 DEFM $FC,"IB",$E5,$00
 
-; Token $9D
+; Token $9E
 t$F939 DEFM "T",$F2,"E",$00
 
-; Token $9E
+; Token $9F
 t$F93D DEFM $D1,"OTT",$FC,$00
 
-; Token $9F
+; Token $A0
 t$F943 DEFM "x",$00
 
-; Token $A0
+; Token $A1
 t$F945 DEFM "y",$00
 
-; Token $A1
+; Token $A2
 t$F947 DEFM "aOID",$00
 
-; Token $A2
+; Token $A3
 t$F94C DEFM $7F,$00
 
-; Token $A3
+; Token $A4
 t$F94E DEFM "~",$00
 
-; Token $A4
+; Token $A5
 t$F950 DEFM $FF,"CI",$F6,"T",$00
 
-; Token $A5
+; Token $A6
 t$F956 DEFM "EX",$E9,"P",$FB,$DF,$E4,$00
 
-; Token $A6
+; Token $A7
 t$F95E DEFM "EC",$E9,"NTRIC",$00
 
-; Token $A7
+; Token $A8
 t$F967 DEFM $F0,"G",$F8,$F0,$FC,$00
 
-; Token $A8
+; Token $A9
 t$F96D DEFM "r",$00
 
-; Token $A9
+; Token $AA
 t$F96F DEFM "K",$DC,"L",$F4,$00
 
-; Token $AA
+; Token $AB
 t$F974 DEFM "DEADLY",$00
 
-; Token $AB
+; Token $AC
 t$F97B DEFM "EV",$DC,$00
 
-; Token $AC
+; Token $AD
 t$F97F DEFM $E5,$E2,$E4,$00
 
-; Token $AD
+; Token $AE
 t$F983 DEFM "VICIO",$EC,$00
 
-; Token $AE
+; Token $AF
 t$F98A DEFM $DB,"S ",$00
 
-; Token $AF
+; Token $B0
 t$F98E DEFM $0D,$0E,$13,$00
 
-; Token $B0
+; Token $B1
 t$F992 DEFM ".",$0C,$0F,$00
 
-; Token $B1
+; Token $B2
 t$F996 DEFM " ",$FF,"D ",$00
 
-; Token $B2
+; Token $B3
 t$F99B DEFM "Y",$D9,$00
 
-; Token $B3
+; Token $B4
 t$F99E DEFM "P",$EE,"K",$C3,"M",$DD,$F4,"S",$00
 
-; Token $B4
+; Token $B5
 t$F9A7 DEFM "D",$EC,"T C",$E0,"UDS",$00
 
-; Token $B5
+; Token $B6
 t$F9B1 DEFM "I",$E9," ",$F7,"RGS",$00
 
-; Token $B6
+; Token $B7
 t$F9B9 DEFM "RO",$D5," F",$FD,$EF,$FB,$DF,"S",$00
 
-; Token $B7
+; Token $B8
 t$F9C4 DEFM "VOLCA",$E3,$ED,$00
 
-; Token $B8
+; Token $B9
 t$F9CC DEFM "PL",$FF,"T",$00
 
-; Token $B9
+; Token $BA
 t$F9D1 DEFM "TULIP",$00
 
-; Token $BA
+; Token $BB
 t$F9D7 DEFM "B",$FF,$FF,"A",$00
 
-; Token $BB
+; Token $BC
 t$F9DC DEFM "C",$FD,"N",$00
 
-; Token $BC
+; Token $BD
 t$F9E0 DEFM $12,"WE",$FC,$00
 
-; Token $BD
+; Token $BE
 t$F9E5 DEFM $12,$00
 
-; Token $BE
+; Token $BF
 t$F9E7 DEFM $11," ",$12,$00
 
-; Token $BF
+; Token $C0
 t$F9EB DEFM $11," h",$00
 
-; Token $C0
+; Token $C1
 t$F9EF DEFM $F0,"HA",$EA,"T",$FF,"T",$00
 
-; Token $C1
+; Token $C2
 t$F9F7 DEFM $BF,$00
 
-; Token $C2
+; Token $C3
 t$F9F9 DEFM $F0,"G ",$00
 
-; Token $C3
+; Token $C4
 t$F9FD DEFM $FC," ",$00
 
-; Token $C4
+; Token $C5
 t$FA00 DEFM " M",$98,"SI",$DF,$00
 
-; Token $C5
+; Token $C6
 t$FA07 DEFM "CU",$00
 
-; Token $C6
+; Token $C7
 t$FA0A DEFM "B",$F2,"AK",$00
 
-; Token $C7
+; Token $C8
 t$FA0F DEFM "NAME? ",$00
 
-; Token $C8
+; Token $C9
 t$FA16 DEFM " TO ",$00
 
-; Token $C9
+; Token $CA
 t$FA1B DEFM " ",$98," ",$00
 
-; Token $CA
-t$FA1F DEFM " SA",$FA,$00
-
 ; Token $CB
-t$FA24 DEFM ".",$0C," ",$13,$00
+t$FA1F DEFM " SA",$FA,$00C
 
 ; Token $CC
-t$FA29 DEFM "DO",$D5,$FC,$00
+t$FA24 DEFM ".",$0C," ",$13,$00
 
 ; Token $CD
-t$FA2E DEFM " ",$01,"(Y/N)?",$02,$00
+t$FA29 DEFM "DO",$D5,$FC,$00
 
 ; Token $CE
-t$FA38 DEFM $02,$06,"l",$0A," JAMM",$F4,$00
+t$FA2E DEFM " ",$01,"(Y/N)?",$02,$00
 
 ; Token $CF
-t$FA43 DEFM " A ",$00
+t$FA38 DEFM $02,$06,"l",$0A," JAMM",$F4,$00
 
 ; Token $D0
-t$FA47 DEFM "SP",$00
+t$FA43 DEFM " A ",$00
 
 ; Token $D1
-t$FA4A DEFM " NEW ",$00
+t$FA47 DEFM "SP",$00
 
 ; Token $D2
-t$FA50 DEFM $0C,$0C,$00
+t$FA4A DEFM " NEW ",$00
 
 ; Token $D3
-t$FA53 DEFM " ",$13,$E2,$EE,"G",$DF,$00
+t$FA50 DEFM $0C,$0C,$00
 
 ; Token $D4
-t$FA5A DEFM "CK",$00
+t$FA53 DEFM " ",$13,$E2,$EE,"G",$DF,$00
 
 ; Token $D5
-t$FA5D DEFM "F",$D9,"ND ",$9A," ",$04,$00
+t$FA5A DEFM "CK",$00
 
 ; Token $D6
-t$FA66 DEFM "POPUL",$F5,"I",$DF,$00
+t$FA5D DEFM "F",$D9,"ND ",$9A," ",$04,$00
 
 ; Token $D7
-t$FA6F DEFM $00
+t$FA66 DEFM "POPUL",$F5,"I",$DF,$00
 
 ; Token $D8
-t$FA70 DEFM "  ",$00
+t$FA6F DEFM $00
 
 ; Token $D9
-t$FA73 DEFM "@@",$00
+t$FA70 DEFM "  ",$00
 
 ; Token $DA
-t$FA76 DEFM " _",$00
+t$FA73 DEFM "@@",$00
 
 ; Token $DB
-t$FA79 DEFM "@+",$00
+t$FA76 DEFM " _",$00
 
 ; Token $DC
-t$FA7C DEFM $00
+t$FA79 DEFM "@+",$00
 
 ; Token $DD
-t$FA7D DEFM $B0,$01,$03,$CA,$F2,"SI",$DE,$C3,"A",$D4," ",$F0,"VASI",$DF,"*",$02,$0F,$00
+t$FA7C DEFM $00
 
 ; Token $DE
-t$FA93 DEFM $01,"W",$FF,"T",$C4,"BY G",$E4,"COP:",$0C,$D3,"    ",$D0,"B",$F8,$FA," ",$9A," ",$D3,"   F",$FD,$D0,$D1,"ECI",$E4,$C5,$02,$D3,$D3,$0D," ",$13,"A",$F2," ",$B3," ",$F0,"TE",$F2,$DE,$C4,$CE,$00
+t$FA7D DEFM $B0,$01,$03,$CA,$F2,"SI",$DE,$C3,"A",$D4," ",$F0,"VASI",$DF,"*",$02,$0F,$00
 
 ; Token $DF
+t$FA93 DEFM $01,"W",$FF,"T",$C4,"BY G",$E4,"COP:",$0C,$D3,"    ",$D0,"B",$F8,$FA," ",$9A," ",$D3,"   F",$FD,$D0,$D1,"ECI",$E4,$C5,$02,$D3,$D3,$0D," ",$13,"A",$F2," ",$B3," ",$F0,"TE",$F2,$DE,$C4,$CE,$00
+
+; Token $E0
 t$FACE DEFM $B0,$93,$D4,"S ",$EE,"E ",$EC,$C3,$93,$D1,"A",$E9," ",$DE,$F5,"I",$DF," ",$F5," ",$13,$10," AS",$D0,"BA",$DA," F",$FD," ",$E2,"EIR ",$F0,"VASI",$DF," F",$FD,$E9,$C9,$F5,"TA",$D5," ",$93,$91," SURFA",$E9
  $FB0F DEFM $B1,$0C,$02,$B3,"R",$C5,":",$D3,$01,$C9,"DE",$DE,"ROY ",$93,$D1,"A",$E9," ",$DE,$F5,"I",$DF,$D3," ",$F5," ",$10,$CC,$D3,$0D,"TAKE ",$94,$CF,$D3,"(",$0D,$13,$B3," W",$DC,"L NE",$C4,$DB,"*)",$0A,$0A," ",$01,"GOOD"
  $FB50 DEFM " LU",$D5,$02,"*",$00
 
-; Token $E0
+; Token $E1
 t$FB57 DEFM "SH",$F2,"W",$00
 
-; Token $E1
+; Token $E2
 t$FB5C DEFM $F7,"A",$DE,$00
 
-; Token $E2
+; Token $E3
 t$FB60 DEFM $EA,"S",$DF,$00
 
-; Token $E3
+; Token $E4
 t$FB64 DEFM "SNAKE",$00
 
-; Token $E4
+; Token $E5
 t$FB6A DEFM "WOLF",$00
 
-; Token $E5
+; Token $E6
 t$FB6F DEFM $E5,"OP",$EE,"D",$00
 
-; Token $E6
+; Token $E7
 t$FB75 DEFM "C",$F5,$00
 
-; Token $E7
+; Token $E8
 t$FB78 DEFM "M",$DF,"KEY",$00
 
-; Token $E8
+; Token $E9
 t$FB7E DEFM "GO",$F5,$00
 
-; Token $E9
+; Token $EA
 t$FB82 DEFM "F",$98,"H",$00
 
-; Token $EA
+; Token $EB
 t$FB86 DEFM "j i",$00
 
-; Token $EB
+; Token $EC
 t$FB8A DEFM $11," x {",$00
 
-; Token $EC
+; Token $ED
 t$FB90 DEFM $AF,"k y {",$00
 
-; Token $ED
+; Token $EE
 t$FB97 DEFM "| }",$00
 
-; Token $EE
+; Token $EF
 t$FB9B DEFM "j i",$00
 
-; Token $EF
+; Token $F0
 t$FB9F DEFM "ME",$F5,$00
 
-; Token $F0
+; Token $F1
 t$FBA3 DEFM $C6,"TL",$DD,$00
 
-; Token $F1
+; Token $F2
 t$FBA8 DEFM $DE,"EAK",$00
 
-; Token $F2
+; Token $F3
 t$FBAD DEFM "BURG",$F4,"S",$00
 
-; Token $F3
+; Token $F4
 t$FBB4 DEFM $EB,"UP",$00
 
-; Token $F4
+; Token $F5
 t$FBB8 DEFM "I",$E9,$00
 
-; Token $F5
+; Token $F6
 t$FBBB DEFM "MUD",$00
 
-; Token $F6
+; Token $F7
 t$FBBF DEFM "Z",$F4,"O-",$13,"G",$00
 
-; Token $F7
+; Token $F8
 t$FBC6 DEFM "VA",$C6,"UM",$00
 
-; Token $F8
+; Token $F9
 t$FBCC DEFM $11," ULT",$F8,$00
 
-; Token $F9
+; Token $FA
 t$FBD3 DEFM "HO",$D5,"EY",$00
 
-; Token $FA
+; Token $FB
 t$FBD9 DEFM "CRI",$D5,$DD,$00
 
-; Token $FB
+; Token $FC
 t$FBDF DEFM "K",$EE,$F5,"E",$00
 
-; Token $FC
+; Token $FD
 t$FBE4 DEFM "PO",$E0,$00
 
-; Token $FD
+; Token $FE
 t$FBE8 DEFM "T",$F6,"N",$98,$00
 
-; Token $FE Last recursive token
+; Token $FF Last recursive token
 t$FBED DEFM $E2,"EY SHOW ",$E3," M",$F4,"CY...",$00
 
 ; Data block at FC00

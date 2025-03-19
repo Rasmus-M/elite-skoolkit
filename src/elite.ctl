@@ -13,7 +13,7 @@ b $5CC0 reserved
 B $5CC0,11,8,3
 b $5CCB available
 B $5CCB,165,8*20,5
-b $5D70 Font
+b $5D70 Font #HTML[#FONT$5D70,96]
 @ $5D70 label=font
 B $5D70,1001,8*125,1
 b $6159 Data block at 6159
@@ -1456,15 +1456,20 @@ b $D0BF Data block at D0BF
 B $D0BF,2,2
 b $D0C1 Data block at D0C1
 @ $D0C1 label=data_at_D0C1
-b $D0D1
+B $D0C1,16,8
+b $D0D1 Data block at D0D1
 @ $D0D1 label=byte_at_D0D1
-b $D0D2
+B $D0D1,1,1
+b $D0D2 Data block at D0D2
 @ $D0D2 label=byte_at_D0D2
-b $D0D3
+B $D0D2,1,1
+b $D0D3 Data block at D0D3
 @ $D0D3 label=byte_at_D0D3
-b $D0D4
-@ $D0D5 label=byte_at_D0D4
+B $D0D3,1,1
+b $D0D4 Data block at D0D4
+B $D0D4,1,1
 w $D0D5 Pointer to LD HL,$4000 instruction
+@ $D0D5 label=byte_at_D0D4
 @ $D0D5 label=ptr_to_ld_hl
 W $D0D5,2,2
 c $D0D7 Routine at D0D7
@@ -2146,417 +2151,823 @@ D $F0A1 Used by the routine at #R$EF87.
 N $F0B8 This entry point is used by the routines at #R$D018, #R$E8AE and #R$E8EA.
 b $F117 Data block at F117
 B $F117,3,3
-w $F11A Data block at F11A
-N $F11A Recursive tokens
+> $F11A ; Recursive tokens
+w $F11A Tokens pointer
 @ $F11A label=tokens_ptr
+W $F11A,2,2
+w $F11C Other/extra tokens pointer
 @ $F11C label=other_tokens_ptr
-W $F11A,4,2
-t $F11E Recursive tokens
+W $F11C,2,2
+t $F11E Standard recursive tokens
 @ $F11E label=tokens
+T $F11E,3,1:n2
 t $F121 Token $00
+T $F121,6,3:n1:1:n1
 t $F127 Token $01
+T $F127,9,2:n1:3:n1:1:n1
 t $F130 Token $02
+T $F130,8,n1:1:n1:1:n4
 t $F138 Token $03
+T $F138,9,n3:2:n1:1:n2
 t $F141 Token $04
+T $F141,6,3:n1:1:n1
 t $F147 Token $05
+T $F147,4,1:n3
 t $F14B Token $06
+T $F14B,11,n1:1:n1:5:n1:1:n1
 t $F156 Token $07
+T $F156,7,n1:1:n1:1:n3
 t $F15D Token $08
+T $F15D,11,2:n1:5:n1:1:n1
 t $F168 Token $09
-t $F16d Token $0A
+T $F168,5,n1:3:n1
+t $F16D Token $0A
+T $F16D,6,1:n3:1:n1
 t $F173 Token $0B
+T $F173,5,2:n1:1:n1
 t $F178 Token $0C
+T $F178,6,n2:3:n1
 t $F17E Token $0D
+T $F17E,5,4:n1
 t $F183 Token $0E
+T $F183,7,6:n1
 t $F18A Token $0F
+T $F18A,6,n3:2:n1
 t $F190 Token $10
+T $F190,6,n2:3:n1
 t $F196 Token $11
+T $F196,6,4:n2
 t $F19C Token $12
+T $F19C,7,3:n1:1:n2
 t $F1A3 Token $13
+T $F1A3,7,n1:2:n4
 t $F1AA Token $14
+T $F1AA,7,n1:3:n1:1:n1
 t $F1B1 Token $15
+T $F1B1,9,1:n1:1:n2:3:n1
 t $F1BA Token $16
+T $F1BA,9,5:n1:2:n1
 t $F1C3 Token $17
+T $F1C3,11,1:n1:1:n2:2:n2:1:n1
 t $F1CE Token $18
+T $F1CE,5,4:n1
 t $F1D3 Token $19
+T $F1D3,7,1:n1:4:n1
 t $F1DA Token $1A
+T $F1DA,5,1:n1:1:n2
 t $F1DF Token $1B
+T $F1DF,12,3:n1:4:n1:1:n2
 t $F1EB Token $1C
+T $F1EB,9,3:n1:3:n2
 t $F1F4 Token $1D
+T $F1F4,10,n1:2:n1:2:n4
 t $F1FE Token $1E
+T $F1FE,5,n5
 t $F203 Token $1F
+T $F203,7,n1:4:n2
 t $F20A Token $20
+T $F20A,6,n1:1:n1:2:n1
 t $F210 Token $21
+T $F210,27,n1:6:n1:3:n1:6:n1:4:n1:2:n1
 t $F22B Token $22
+T $F22B,20,9:n1:1:n2:3:n2:1:n1
 t $F23F Token $23
+T $F23F,5,4:n1
 t $F244 Token $24
+T $F244,6,1:n2:1:n2
 t $F24A Token $25
+T $F24A,6,n1:1:n4
 t $F250 Token $26
+T $F250,9,1:n2:4:n2
 t $F259 Token $27
+T $F259,8,6:n2
 t $F261 Token $28
+T $F261,4,1:n3
 t $F265 Token $29
+T $F265,3,2:n1
 t $F268 Token $2A
+T $F268,6,n1:4:n1
 t $F26E Token $2B
+T $F26E,4,2:n2
 t $F272 Token $2C
+T $F272,6,2:n1:2:n1
 t $F278 Token $2D
+T $F278,5,1:n1:2:n1
 t $F27D Token $2E
+T $F27D,5,4:n1
 t $F282 Token $2F
+T $F282,6,n1:1:n1:1:n2
 t $F288 Token $30
+T $F288,9,n2:3:n2:1:n1
 t $F291 Token $31
+T $F291,5,1:n2:1:n1
 t $F296 Token $32
+T $F296,9,2:n2:2:n3
 t $F29F Token $33
+T $F29F,7,4:n3
 t $F2A6 Token $34
+T $F2A6,8,1:n1:2:n1:2:n1
 t $F2AE Token $35
+T $F2AE,7,n1:3:n1:1:n1
 t $F2B5 Token $36
+T $F2B5,7,n1:2:n2:1:n1
 t $F2BC Token $37
+T $F2BC,7,6:n1
 t $F2C3 Token $38
+T $F2C3,7,2:n2:2:n1
 t $F2CA Token $39
+T $F2CA,5,4:n1
 t $F2CF Token $3A
+T $F2CF,6,1:n3:1:n1
 t $F2D5 Token $3B
+T $F2D5,5,4:n1
 t $F2DA Token $3C
+T $F2DA,7,2:n2:2:n1
 t $F2E1 Token $3D
+T $F2E1,7,n1:2:n4
 t $F2E8 Token $3E
+T $F2E8,7,n1:1:n1:1:n1:1:n1
 t $F2EF Token $3F
+T $F2EF,11,10:n1
 t $F2FA Token $40
+T $F2FA,4,3:n1
 t $F2FE Token $41
+T $F2FE,4,1:n3
 t $F302 Token $42
+T $F302,5,2:n3
 t $F307 Token $43
+T $F307,4,1:n3
 t $F30B Token $44
+T $F30B,4,1:n3
 t $F30F Token $45
+T $F30F,3,1:n2
 t $F312 Token $46
+T $F312,6,2:n1:2:n1
 t $F318 Token $47
+T $F318,5,4:n1
 t $F31D Token $48
+T $F31D,5,1:n1:2:n1
 t $F322 Token $49
+T $F322,2,n2
 t $F324 Token $4A
+T $F324,6,5:n1
 t $F32A Token $4B
+T $F32A,8,6:n2
 t $F332 Token $4C
+T $F332,5,1:n1:1:n2
 t $F337 Token $4D
+T $F337,4,1:n1:1:n1
 t $F33B Token $4E
+T $F33B,3,1:n2
 t $F33E Token $4F
+T $F33E,6,5:n1
 t $F344 Token $50
+T $F344,5,n1:1:n1:1:n1
 t $F349 Token $51
+T $F349,4,1:n1:1:n1
 t $F34D Token $52
+T $F34D,6,2:n1:2:n1
 t $F353 Token $53
+T $F353,6,3:n3
 t $F359 Token $54
+T $F359,4,n1:2:n1
 t $F35D Token $55
+T $F35D,8,3:n1:3:n1
 t $F365 Token $56
+T $F365,6,3:n1:1:n1
 t $F36B Token $57
+T $F36B,6,n1:4:n1
 t $F371 Token $58
+T $F371,5,n5
 t $F376 Token $59
+T $F376,4,3:n1
 t $F37A Token $5A
+T $F37A,6,n1:1:n1:1:n2
 t $F380 Token $5B
+T $F380,8,2:n1:1:n1:1:n2
 t $F388 Token $5C
+T $F388,3,2:n1
 t $F38B Token $5D
+T $F38B,24,n2:2:n3:4:n1:1:n1:2:n1:3:n4
 t $F3A3 Token $5E
+T $F3A3,5,2:n1:1:n1
 t $F3A8 Token $5F
+T $F3A8,3,n3
 t $F3AB Token $60
+T $F3AB,4,n1:2:n1
 t $F3AF Token $61
+T $F3AF,5,n1:3:n1
 t $F3B4 Token $62
+T $F3B4,5,4:n1
 t $F3B9 Token $63
+T $F3B9,5,1:n2:1:n1
 t $F3BE Token $64
+T $F3BE,6,3:n1:1:n1
 t $F3C4 Token $65
+T $F3C4,7,5:n2
 t $F3CB Token $66
+T $F3CB,5,n1:2:n2
 t $F3D0 Token $67
+T $F3D0,5,4:n1
 t $F3D5 Token $68
+T $F3D5,6,1:n1:2:n2
 t $F3DB Token $69
+T $F3DB,7,n2:4:n1
 t $F3E2 Token $6A
+T $F3E2,8,6:n2
 t $F3EA Token $6B
+T $F3EA,4,3:n1
 t $F3EE Token $6C
+T $F3EE,4,3:n1
 t $F3F2 Token $6D
+T $F3F2,9,8:n1
 t $F3FB Token $6E
+T $F3FB,10,n1:8:n1
 t $F405 Token $6F
+T $F405,6,5:n1
 t $F40B Token $70
+T $F40B,3,1:n2
 t $F40E Token $71
+T $F40E,9,4:n1:2:n2
 t $F417 Token $72
+T $F417,4,2:n2
 t $F41B Token $73
+T $F41B,9,5:n1:1:n2
 t $F424 Token $74
+T $F424,6,1:n2:1:n2
 t $F42A Token $75
+T $F42A,4,n4
 t $F42E Token $76
+T $F42E,7,n3:3:n1
 t $F435 Token $77
+T $F435,6,n2:3:n1
 t $F43B Token $78
+T $F43B,7,2:n1:1:n1:1:n1
 t $F442 Token $79
+T $F442,5,4:n1
 t $F447 Token $7A
+T $F447,3,1:n2
 t $F44A Token $7B
+T $F44A,14,5:n1:6:n2
 t $F458 Token $7C
+T $F458,19,n2:1:n2:2:n1:1:n1:2:n3:1:n3
 t $F46B Token $7D
+T $F46B,4,1:n1:1:n1
 t $F46F Token $7E
+T $F46F,3,2:n1
 t $F472 Token $7F
+T $F472,19,n1:6:n1:2:n1:1:n1:3:n1:1:n1
 t $F485 Token $80
+T $F485,4,1:n1:1:n1
 t $F489 Token $81
+T $F489,8,n2:1:n1:1:n1:1:n1
 t $F491 Token $82
+T $F491,4,1:n3
 t $F495 Token $83
+T $F495,7,3:n1:1:n2
 t $F49C Token $84
+T $F49C,7,4:n3
 t $F4A3 Token $85
+T $F4A3,7,1:n1:1:n1:2:n1
 t $F4AA Token $86
+T $F4AA,8,2:n1:3:n2
 t $F4B2 Token $87
+T $F4B2,2,n2
 t $F4B4 Token $88
+T $F4B4,2,n2
 t $F4B6 Token $89
+T $F4B6,7,3:n1:1:n2
 t $F4BD Token $8A
+T $F4BD,7,n1:3:n1:1:n1
 t $F4C4 Token $8B
+T $F4C4,6,1:n5
 t $F4CA Token $8C
+T $F4CA,7,6:n1
 t $F4D1 Token $8D
+T $F4D1,20,19:n1
 t $F4E5 Token $8E
+T $F4E5,6,1:n1:1:n1:1:n1
 t $F4EB Token $8F
+T $F4EB,7,2:n1:3:n1
 t $F4F2 Token $90
+T $F4F2,1,n1
 t $F4F3 Token $91
+T $F4F3,1,n1
 t $F4F4 Token $92
-t $F4F5 Token $93
+T $F4F4,1,n1
+t $F4F5 Other/extra tokens Token $00
 @ $F4F5 label=other_tokens
-t $F51F Token $00
-t $F538 Token $01
-t $F545 Token $02
-t $F552 Token $03
-t $F558 Token $04
-t $F55D Token $05
-t $F569 Token $06
-t $F56F Token $07
-t $F579 Token $08
-t $F5CF Token $09
-t $F5DE Token $0A
-t $F5E4 Token $0B
-t $F5EB Token $0C
-t $F5F1 Token $0D
-t $F611 Token $0E
-t $F616 Token $0F
-t $F61B Token $10
-t $F625 Token $11
-t $F62B Token $12
-t $F62F Token $13
-t $F633 Token $14
-t $F639 Token $15
-t $F63D Token $16
-t $F645 Token $17
-t $F646 Token $18
-t $F648 Token $19
-t $F64A Token $1A
-t $F64E Token $1B
-t $F652 Token $1C
-t $F656 Token $1D
-t $F662 Token $1E
-t $F665 Token $1F
-t $F667 Token $20
-t $F66F Token $21
-t $F674 Token $22
-t $F67B Token $23
-t $F682 Token $24
-t $F68C Token $25
-t $F695 Token $26
-t $F69D Token $27
-t $F6A9 Token $28
-t $F6B0 Token $29
-t $F6B6 Token $2A
-t $F6BC Token $2B
-t $F6BE Token $2C
-t $F6C4 Token $2D
-t $F6C8 Token $2E
-t $F6CB Token $2F
-t $F6CF Token $30
-t $F6D1 Token $31
-t $F6D5 Token $32
-t $F6DB Token $33
-t $F6E1 Token $34
-t $F6E6 Token $35
-t $F6ED Token $36
-t $F6F7 Token $37
-t $F6FE Token $38
-t $F707 Token $39
-t $F711 Token $3A
-t $F71E Token $3B
-t $F723 Token $3C
-t $F72A Token $3D
-t $F733 Token $3E
-t $F737 Token $3F
-t $F73C Token $40
-t $F741 Token $41
-t $F747 Token $42
-t $F74B Token $43
-t $F74F Token $44
-t $F75A Token $45
-t $F75C Token $46
-t $F760 Token $47
-t $F764 Token $48
-t $F768 Token $49
-t $F76C Token $4A
-t $F772 Token $4B
-t $F778 Token $4C
-t $F77E Token $4D
-t $F784 Token $4E
-t $F78B Token $4F
-t $F790 Token $50
-t $F79B Token $51
-t $F7A2 Token $52
-t $F7AA Token $53
-t $F7AE Token $54
-t $F7B0 Token $55
-t $F7B5 Token $56
-t $F7BA Token $57
-t $F7BD Token $58
-t $F7C0 Token $59
-t $F7DA Token $5A
-t $F7DC Token $5B
-t $F7E2 Token $5C
-t $F7E3 Token $5D
-t $F7E4 Token $5E
-t $F7EF Token $5F
-t $F7F5 Token $60
-t $F7FB Token $61
-t $F802 Token $62
-t $F80B Token $63
-t $F80D Token $64
-t $F80F Token $65
-t $F813 Token $66
-t $F81A Token $67
-t $F81F Token $68
-t $F820 Token $69
-t $F821 Token $6A
-t $F822 Token $6B
-t $F823 Token $6C
-t $F824 Token $6D
-t $F832 Token $6E
-t $F839 Token $7F
-t $F841 Token $70
-t $F846 Token $71
-t $F84A Token $72
-t $F84E Token $73
-t $F854 Token $74
-t $F857 Token $75
-t $F859 Token $76
-t $F85D Token $77
-t $F86A Token $78
-t $F86E Token $79
-t $F873 Token $7A
-t $F878 Token $7B
-t $F880 Token $7C
-t $F884 Token $7D
-t $F887 Token $7E
-t $F890 Token $7F
-t $F898 Token $80
-t $F89E Token $81
-t $F8A4 Token $82
-t $F8AA Token $83
-t $F8AF Token $84
-t $F8B6 Token $85
-t $F8BC Token $86
-t $F8C5 Token $87
-t $F8C8 Token $88
-t $F8CF Token $89
-t $F8D7 Token $8A
-t $F8D9 Token $8B
-t $F8E2 Token $8C
-t $F8E6 Token $8D
-t $F8ED Token $8E
-t $F8F5 Token $8F
-t $F8FB Token $90
-t $F900 Token $91
-t $F905 Token $92
-t $F909 Token $93
-t $F90D Token $94
-t $F913 Token $95
-t $F918 Token $96
-t $F91C Token $97
-t $F91F Token $98
-t $F922 Token $99
-t $F92B Token $9A
-t $F92D Token $9B
-t $F934 Token $9C
-t $F939 Token $9D
-t $F93D Token $9E
-t $F943 Token $9F
-t $F945 Token $A0
-t $F947 Token $A1
-t $F94C Token $A2
-t $F94E Token $A3
-t $F950 Token $A4
-t $F956 Token $A5
-t $F95E Token $A6
-t $F967 Token $A7
-t $F96D Token $A8
-t $F96F Token $A9
-t $F974 Token $AA
-t $F97B Token $AB
-t $F97F Token $AC
-t $F983 Token $AD
-t $F98A Token $AE
-t $F98E Token $AF
-t $F992 Token $B0
-t $F996 Token $B1
-t $F99B Token $B2
-t $F99E Token $B3
-t $F9A7 Token $B4
-t $F9B1 Token $B5
-t $F9B9 Token $B6
-t $F9C4 Token $B7
-t $F9CC Token $B8
-t $F9D1 Token $B9
-t $F9D7 Token $BA
-t $F9DC Token $BB
-t $F9E0 Token $BC
-t $F9E5 Token $BD
-t $F9E7 Token $BE
-t $F9EB Token $BF
-t $F9EF Token $C0
-t $F9F7 Token $C1
-t $F9F9 Token $C2
-t $F9FD Token $C3
-t $FA00 Token $C4
-t $FA07 Token $C5
-t $FA0A Token $C6
-t $FA0F Token $C7
-t $FA16 Token $C8
-t $FA1B Token $C9
-t $FA1F Token $CA
-t $FA24 Token $CB
-t $FA29 Token $CC
-t $FA2E Token $CD
-t $FA38 Token $CE
-t $FA43 Token $CF
-t $FA47 Token $D0
-t $FA4A Token $D1
-t $FA50 Token $D2
-t $FA53 Token $D3
-t $FA5A Token $D4
-t $FA5D Token $D5
-t $FA66 Token $D6
-t $FA6F Token $D7
-t $FA70 Token $D8
-t $FA73 Token $D9
-t $FA76 Token $DA
-t $FA79 Token $DB
-t $FA7C Token $DC
-t $FA7D Token $DD
-t $FA93 Token $DE
-t $FACE Token $DF
-t $FB57 Token $E0
-t $FB5C Token $E1
-t $FB60 Token $E2
-t $FB64 Token $E3
-t $FB6A Token $E4
-t $FB6F Token $E5
-t $FB75 Token $E6
-t $FB78 Token $E7
-t $FB7E Token $E8
-t $FB82 Token $E9
-t $FB86 Token $EA
-t $FB8A Token $EB
-t $FB90 Token $EC
-t $FB97 Token $ED
-t $FB9B Token $EE
-t $FB9F Token $EF
-t $FBA3 Token $F0
-t $FBA8 Token $F1
-t $FBAD Token $F2
-t $FBB4 Token $F3
-t $FBB8 Token $F4
-t $FBBB Token $F5
-t $FBBF Token $F6
-t $FBC6 Token $F7
-t $FBCC Token $F8
-t $FBD3 Token $F9
-t $FBD9 Token $FA
-t $FBDF Token $FB
-t $FBE4 Token $FC
-t $FBE8 Token $FD
-t $FBED Token $FE Last recursive token
+T $F4F5,42,n2:4:n1:5:n6:3:n3:2:n1:1:n1:1:n5:5:n2
+t $F51F Token $01
+T $F51F,25,n2:8:n2:2:n1:3:n1:5:n1
+t $F538 Token $02
+T $F538,13,5:n1:2:n2:1:n2
+t $F545 Token $03
+T $F545,13,n2:1:n1:2:n1:2:n1:2:n1
+t $F552 Token $04
+T $F552,6,n1:1:n1:1:n2
+t $F558 Token $05
+T $F558,5,2:n3
+t $F55D Token $06
+T $F55D,12,1:n1:3:n1:1:n1:2:n2
+t $F569 Token $07
+T $F569,6,n1:3:n2
+t $F56F Token $08
+T $F56F,10,7:n1:1:n1
+t $F579 Token $09
+T $F579,86,n2:4:n1:3:n2:4:n1:2:n1:2:n2:3:n1:1:n1:5:n1:3:n1:2:n1:1:n1:9:n1:2:n2:4:n2,1:n4:2:n1:1:n1:2:n1:3:n2:1:n2
+t $F5CF Token $0A
+T $F5CF,15,n1:7:n1:1:n1:2:n2
+t $F5DE Token $0B
+T $F5DE,6,n1:2:n3
+t $F5E4 Token $0C
+T $F5E4,7,4:n1:1:n1
+t $F5EB Token $0D
+T $F5EB,6,n2:1:n3
+t $F5F1 Token $0E
+T $F5F1,32,n2:3:n2:2:n1:4:n1:2:n5:2:n1:2:n1:3:n1
+t $F611 Token $0F
+T $F611,5,1:n2:1:n1
+t $F616 Token $10
+T $F616,5,n1:1:n3
+t $F61B Token $11
+T $F61B,10,6:n1:2:n1
+t $F625 Token $12
+T $F625,6,4:n2
+t $F62B Token $13
+T $F62B,4,n1:1:n2
+t $F62F Token $14
+T $F62F,4,n1:2:n1
+t $F633 Token $15
+T $F633,6,1:n1:3:n1
+t $F639 Token $16
+T $F639,4,2:n2
+t $F63D Token $17
+T $F63D,8,n1:2:n2:2:n1
+t $F645 Token $18
+T $F645,1,n1
+t $F646 Token $19
+T $F646,2,n2
+t $F648 Token $1A
+T $F648,2,1:n1
+t $F64A Token $1B
+T $F64A,4,1:n3
+t $F64E Token $1C
+T $F64E,4,2:n2
+t $F652 Token $1D
+T $F652,4,1:n1:1:n1
+t $F656 Token $1E
+T $F656,12,n1:3:n1:1:n1:1:n2:1:n1
+t $F662 Token $1F
+T $F662,3,n1:1:n1
+t $F665 Token $20
+T $F665,2,1:n1
+t $F667 Token $21
+T $F667,8,n1:2:n2:2:n1
+t $F66F Token $22
+T $F66F,5,1:n2:1:n1
+t $F674 Token $23
+T $F674,7,4:n1:1:n1
+t $F67B Token $24
+T $F67B,7,1:n1:1:n2:1:n1
+t $F682 Token $25
+T $F682,10,n1:1:n1:1:n4:1:n1
+t $F68C Token $26
+T $F68C,9,n2:1:n1:4:n1
+t $F695 Token $27
+T $F695,8,n2:2:n1:2:n1
+t $F69D Token $28
+T $F69D,12,6:n1:2:n1:1:n1
+t $F6A9 Token $29
+T $F6A9,7,1:n1:2:n1:1:n1
+t $F6B0 Token $2A
+T $F6B0,6,2:n1:2:n1
+t $F6B6 Token $2B
+T $F6B6,6,n1:4:n1
+t $F6BC Token $2C
+T $F6BC,2,1:n1
+t $F6BE Token $2D
+T $F6BE,6,1:n1:1:n3
+t $F6C4 Token $2E
+T $F6C4,4,1:n1:1:n1
+t $F6C8 Token $2F
+T $F6C8,3,1:n2
+t $F6CB Token $30
+T $F6CB,4,n1:1:n2
+t $F6CF Token $31
+T $F6CF,2,n2
+t $F6D1 Token $32
+T $F6D1,4,n1:1:n2
+t $F6D5 Token $33
+T $F6D5,6,1:n1:2:n2
+t $F6DB Token $34
+T $F6DB,6,n1:3:n2
+t $F6E1 Token $35
+T $F6E1,5,n1:2:n2
+t $F6E6 Token $36
+T $F6E6,7,2:n1:2:n2
+t $F6ED Token $37
+T $F6ED,10,5:n1:2:n2
+t $F6F7 Token $38
+T $F6F7,7,4:n1:1:n1
+t $F6FE Token $39
+T $F6FE,9,4:n2:1:n2
+t $F707 Token $3A
+T $F707,10,3:n3:2:n2
+t $F711 Token $3B
+T $F711,13,2:n2:4:n1:1:n1:1:n1
+t $F71E Token $3C
+T $F71E,5,n1:2:n2
+t $F723 Token $3D
+T $F723,7,n2:3:n2
+t $F72A Token $3E
+T $F72A,9,n2:6:n1
+t $F733 Token $3F
+T $F733,4,n1:1:n2
+t $F737 Token $40
+T $F737,5,n1:3:n1
+t $F73C Token $41
+T $F73C,5,3:n2
+t $F741 Token $42
+T $F741,6,1:n1:3:n1
+t $F747 Token $43
+T $F747,4,1:n3
+t $F74B Token $44
+T $F74B,4,1:n1:1:n1
+t $F74F Token $45
+T $F74F,11,1:n1:1:n1:2:n3:1:n1
+t $F75A Token $46
+T $F75A,2,n2
+t $F75C Token $47
+T $F75C,4,n1:1:n2
+t $F760 Token $48
+T $F760,4,n1:1:n2
+t $F764 Token $49
+T $F764,4,n1:2:n1
+t $F768 Token $4A
+T $F768,4,2:n2
+t $F76C Token $4B
+T $F76C,6,1:n1:1:n3
+t $F772 Token $4C
+T $F772,6,3:n1:1:n1
+t $F778 Token $4D
+T $F778,6,5:n1
+t $F77E Token $4E
+T $F77E,6,1:n1:2:n2
+t $F784 Token $4F
+T $F784,7,3:n2:1:n1
+t $F78B Token $50
+T $F78B,5,n3:1:n1
+t $F790 Token $51
+T $F790,11,10:n1
+t $F79B Token $52
+T $F79B,7,4:n1:1:n1
+t $F7A2 Token $53
+T $F7A2,8,1:n1:5:n1
+t $F7AA Token $54
+T $F7AA,4,n1:1:n2
+t $F7AE Token $55
+T $F7AE,2,n2
+t $F7B0 Token $56
+T $F7B0,5,n2:1:n2
+t $F7B5 Token $57
+T $F7B5,5,n2:1:n2
+t $F7BA Token $58
+T $F7BA,3,n3
+t $F7BD Token $59
+T $F7BD,3,n3
+t $F7C0 Token $5A
+T $F7C0,26,n2:3:n1:2:n2:3:n1:2:n1:2:n2:1:n1:1:n2
+t $F7DA Token $5B
+T $F7DA,2,n2
+t $F7DC Token $5C
+T $F7DC,6,1:n1:1:n3
+t $F7E2 Token $5D
+T $F7E2,1,n1
+t $F7E3 Token $5E
+T $F7E3,1,n1
+t $F7E4 Token $5F
+T $F7E4,11,4:n2:2:n3
+t $F7EF Token $60
+T $F7EF,6,2:n2:1:n1
+t $F7F5 Token $61
+T $F7F5,6,5:n1
+t $F7FB Token $62
+T $F7FB,7,3:n1:1:n2
+t $F802 Token $63
+T $F802,9,1:n1:4:n1:1:n1
+t $F80B Token $64
+T $F80B,2,n2
+t $F80D Token $65
+T $F80D,2,n2
+t $F80F Token $66
+T $F80F,4,1:n3
+t $F813 Token $67
+T $F813,7,1:n1:1:n1:1:n2
+t $F81A Token $68
+T $F81A,5,4:n1
+t $F81F Token $69
+T $F81F,1,n1
+t $F820 Token $6A
+T $F820,1,n1
+t $F821 Token $6B
+T $F821,1,n1
+t $F822 Token $6C
+T $F822,1,n1
+t $F823 Token $6D
+T $F823,1,n1
+t $F824 Token $6E
+T $F824,14,6:n3:2:n1:1:n1
+t $F832 Token $6F
+T $F832,7,3:n1:2:n1
+t $F839 Token $70
+T $F839,8,n1:1:n1:1:n4
+t $F841 Token $71
+T $F841,5,n2:2:n1
+t $F846 Token $72
+T $F846,4,2:n2
+t $F84A Token $73
+T $F84A,4,2:n2
+t $F84E Token $74
+T $F84E,6,1:n2:2:n1
+t $F854 Token $75
+T $F854,3,n1:1:n1
+t $F857 Token $76
+T $F857,2,n2
+t $F859 Token $77
+T $F859,4,2:n2
+t $F85D Token $78
+T $F85D,13,1:n1:9:n2
+t $F86A Token $79
+T $F86A,4,3:n1
+t $F86E Token $7A
+T $F86E,5,3:n2
+t $F873 Token $7B
+T $F873,5,4:n1
+t $F878 Token $7C
+T $F878,8,6:n2
+t $F880 Token $7D
+T $F880,4,1:n3
+t $F884 Token $7E
+T $F884,3,n3
+t $F887 Token $7F
+T $F887,9,3:n3:1:n2
+t $F890 Token $80
+T $F890,8,3:n2:2:n1
+t $F898 Token $81
+T $F898,6,5:n1
+t $F89E Token $82
+T $F89E,6,5:n1
+t $F8A4 Token $83
+T $F8A4,6,1:n1:2:n2
+t $F8AA Token $84
+T $F8AA,5,n2:1:n2
+t $F8AF Token $85
+T $F8AF,7,2:n1:2:n2
+t $F8B6 Token $86
+T $F8B6,6,1:n3:1:n1
+t $F8BC Token $87
+T $F8BC,9,6:n3
+t $F8C5 Token $88
+T $F8C5,3,3
+t $F8C8 Token $89
+T $F8C8,7,n2:2:n3
+t $F8CF Token $8A
+T $F8CF,8,1:n1:5:n1
+t $F8D7 Token $8B
+T $F8D7,2,n2
+t $F8D9 Token $8C
+T $F8D9,9,5:n1:2:n1
+t $F8E2 Token $8D
+T $F8E2,4,n2:1:n1
+t $F8E6 Token $8E
+T $F8E6,7,6:n1
+t $F8ED Token $8F
+T $F8ED,8,n1:5:n2
+t $F8F5 Token $90
+T $F8F5,6,5:n1
+t $F8FB Token $91
+T $F8FB,5,2:n3
+t $F900 Token $92
+T $F900,5,1:n1:2:n1
+t $F905 Token $93
+T $F905,4,n1:2:n1
+t $F909 Token $94
+T $F909,4,n2:1:n1
+t $F90D Token $95
+T $F90D,6,n1:2:n3
+t $F913 Token $96
+T $F913,5,n5
+t $F918 Token $97
+T $F918,4,n2:1:n1
+t $F91C Token $98
+T $F91C,3,2:n1
+t $F91F Token $99
+T $F91F,3,1:n2
+t $F922 Token $9A
+T $F922,9,n1:4:n1:1:n2
+t $F92B Token $9B
+T $F92B,2,1:n1
+t $F92D Token $9C
+T $F92D,7,1:n1:3:n2
+t $F934 Token $9D
+T $F934,5,n1:2:n2
+t $F939 Token $9E
+T $F939,4,1:n1:1:n1
+t $F93D Token $9F
+T $F93D,6,n1:3:n2
+t $F943 Token $A0
+T $F943,2,1:n1
+t $F945 Token $A1
+T $F945,2,1:n1
+t $F947 Token $A2
+T $F947,5,4:n1
+t $F94C Token $A3
+T $F94C,2,n2
+t $F94E Token $A4
+T $F94E,2,1:n1
+t $F950 Token $A5
+T $F950,6,n1:2:n1:1:n1
+t $F956 Token $A6
+T $F956,8,2:n1:1:n4
+t $F95E Token $A7
+T $F95E,9,2:n1:5:n1
+t $F967 Token $A8
+T $F967,6,n1:1:n4
+t $F96D Token $A9
+T $F96D,2,1:n1
+t $F96F Token $AA
+T $F96F,5,1:n1:1:n2
+t $F974 Token $AB
+T $F974,7,6:n1
+t $F97B Token $AC
+T $F97B,4,2:n2
+t $F97F Token $AD
+T $F97F,4,n4
+t $F983 Token $AE
+T $F983,7,5:n2
+t $F98A Token $AF
+T $F98A,4,n1:2:n1
+t $F98E Token $B0
+T $F98E,4,n4
+t $F992 Token $B1
+T $F992,4,1:n3
+t $F996 Token $B2
+T $F996,5,1:n1:2:n1
+t $F99B Token $B3
+T $F99B,3,1:n2
+t $F99E Token $B4
+T $F99E,9,1:n1:1:n1:1:n2:1:n1
+t $F9A7 Token $B5
+T $F9A7,10,1:n1:3:n1:3:n1
+t $F9B1 Token $B6
+T $F9B1,8,1:n1:1:n1:3:n1
+t $F9B9 Token $B7
+T $F9B9,11,2:n1:2:n4:1:n1
+t $F9C4 Token $B8
+T $F9C4,8,5:n3
+t $F9CC Token $B9
+T $F9CC,5,2:n1:1:n1
+t $F9D1 Token $BA
+T $F9D1,6,5:n1
+t $F9D7 Token $BB
+T $F9D7,5,1:n2:1:n1
+t $F9DC Token $BC
+T $F9DC,4,1:n1:1:n1
+t $F9E0 Token $BD
+T $F9E0,5,n1:2:n2
+t $F9E5 Token $BE
+T $F9E5,2,n2
+t $F9E7 Token $BF
+T $F9E7,4,n1:1:n2
+t $F9EB Token $C0
+T $F9EB,4,n1:2:n1
+t $F9EF Token $C1
+T $F9EF,8,n1:2:n1:1:n1:1:n1
+t $F9F7 Token $C2
+T $F9F7,2,n2
+t $F9F9 Token $C3
+T $F9F9,4,n1:2:n1
+t $F9FD Token $C4
+T $F9FD,3,n1:1:n1
+t $FA00 Token $C5
+T $FA00,7,2:n1:2:n2
+t $FA07 Token $C6
+T $FA07,3,2:n1
+t $FA0A Token $C7
+T $FA0A,5,1:n1:2:n1
+t $FA0F Token $C8
+T $FA0F,7,6:n1
+t $FA16 Token $C9
+T $FA16,5,4:n1
+t $FA1B Token $CA
+T $FA1B,4,1:n1:1:n1
+t $FA1F Token $CB
+T $FA1F,5,3:n2
+t $FA24 Token $CC
+T $FA24,5,1:n1:1:n2
+t $FA29 Token $CD
+T $FA29,5,2:n3
+t $FA2E Token $CE
+T $FA2E,10,1:n1:6:n2
+t $FA38 Token $CF
+T $FA38,11,n2:1:n1:5:n2
+t $FA43 Token $D0
+T $FA43,4,3:n1
+t $FA47 Token $D1
+T $FA47,3,2:n1
+t $FA4A Token $D2
+T $FA4A,6,5:n1
+t $FA50 Token $D3
+T $FA50,3,n3
+t $FA53 Token $D4
+T $FA53,7,1:n3:1:n2
+t $FA5A Token $D5
+T $FA5A,3,2:n1
+t $FA5D Token $D6
+T $FA5D,9,1:n1:3:n1:1:n2
+t $FA66 Token $D7
+T $FA66,9,5:n1:1:n2
+t $FA6F Token $D8
+T $FA6F,1,n1
+t $FA70 Token $D9
+T $FA70,3,2:n1
+t $FA73 Token $DA
+T $FA73,3,2:n1
+t $FA76 Token $DB
+T $FA76,3,2:n1
+t $FA79 Token $DC
+T $FA79,3,2:n1
+t $FA7C Token $DD
+T $FA7C,1,n1
+t $FA7D Token $DE
+T $FA7D,22,n5:2:n2:1:n1:1:n1:4:n1:1:n3
+t $FA93 Token $DF
+T $FA93,59,n1:1:n1:1:n1:4:n1:4:n2:4:n1:1:n2:1:n1:1:n1:4:n3:3:n6:1:n1:1:n1:1:n1:1:n1:2:n5
+t $FACE Token $E0
+T $FACE,137,n3:2:n1:2:n4:1:n1:1:n2:1:n1:1:n1:1:n2:3:n1:2:n1:2:n1:1:n1:4:n1:4:n1:2:n4:2:n1:1:n2:6:n1,n4:1:n1:1:n3:2:n1:4:n2:1:n1:1:n2:1:n2:1:n1:1:n4:5:n3:1:n3:2:n1:4:n2:2:n2:1:n1:4,3:n2:1:n1
+t $FB57 Token $E1
+T $FB57,5,2:n1:1:n1
+t $FB5C Token $E2
+T $FB5C,4,n1:1:n2
+t $FB60 Token $E3
+T $FB60,4,n1:1:n2
+t $FB64 Token $E4
+T $FB64,6,5:n1
+t $FB6A Token $E5
+T $FB6A,5,4:n1
+t $FB6F Token $E6
+T $FB6F,6,n1:2:n1:1:n1
+t $FB75 Token $E7
+T $FB75,3,1:n2
+t $FB78 Token $E8
+T $FB78,6,1:n1:3:n1
+t $FB7E Token $E9
+T $FB7E,4,2:n2
+t $FB82 Token $EA
+T $FB82,4,1:n1:1:n1
+t $FB86 Token $EB
+T $FB86,4,3:n1
+t $FB8A Token $EC
+T $FB8A,6,n1:4:n1
+t $FB90 Token $ED
+T $FB90,7,n1:5:n1
+t $FB97 Token $EE
+T $FB97,4,3:n1
+t $FB9B Token $EF
+T $FB9B,4,3:n1
+t $FB9F Token $F0
+T $FB9F,4,2:n2
+t $FBA3 Token $F1
+T $FBA3,5,n1:2:n2
+t $FBA8 Token $F2
+T $FBA8,5,n1:3:n1
+t $FBAD Token $F3
+T $FBAD,7,4:n1:1:n1
+t $FBB4 Token $F4
+T $FBB4,4,n1:2:n1
+t $FBB8 Token $F5
+T $FBB8,3,1:n2
+t $FBBB Token $F6
+T $FBBB,4,3:n1
+t $FBBF Token $F7
+T $FBBF,7,1:n1:2:n1:1:n1
+t $FBC6 Token $F8
+T $FBC6,6,2:n1:2:n1
+t $FBCC Token $F9
+T $FBCC,7,n1:4:n2
+t $FBD3 Token $FA
+T $FBD3,6,2:n1:2:n1
+t $FBD9 Token $FB
+T $FBD9,6,3:n3
+t $FBDF Token $FC
+T $FBDF,5,1:n2:1:n1
+t $FBE4 Token $FD
+T $FBE4,4,2:n2
+t $FBE8 Token $FE
+T $FBE8,5,1:n1:1:n2
+t $FBED Token $FF Last recursive token
+T $FBED,19,n1:8:n1:2:n1:5:n1
 b $FC00 Data block at FC00
 @ $FC00 label=data_at_FC00
 B $FC00,8,8
