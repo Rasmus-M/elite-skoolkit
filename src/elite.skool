@@ -284,132 +284,136 @@ b$5CCB DEFB $07,$5D,$FF,$FF,$FF,$FF,$FF,$FF
  $5D53 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $5D5B DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $5D63 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $5D6B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $5D73 DEFB $00,$00,$00,$00,$00,$7F,$40,$40
- $5D7B DEFB $20,$20,$10,$0C,$03,$FE,$02,$02
- $5D83 DEFB $04,$04,$08,$30,$C0,$7F,$7F,$7F
- $5D8B DEFB $3F,$3F,$1F,$0F,$03,$FE,$FE,$FE
- $5D93 DEFB $FC,$FC,$F8,$F0,$C0,$00,$7E,$42
- $5D9B DEFB $42,$42,$7E,$00,$FF,$00,$C0,$F0
- $5DA3 DEFB $F8,$FC,$FC,$FE,$FE,$00,$08,$10
- $5DAB DEFB $00,$00,$00,$00,$00,$00,$10,$20
- $5DB3 DEFB $20,$20,$20,$10,$00,$00,$08,$04
- $5DBB DEFB $04,$04,$04,$08,$00,$00,$10,$10
- $5DC3 DEFB $10,$10,$00,$10,$00,$01,$01,$01
- $5DCB DEFB $01,$01,$01,$01,$FF,$00,$00,$00
- $5DD3 DEFB $00,$00,$08,$08,$10,$00,$00,$00
- $5DDB DEFB $00,$3E,$00,$00,$00,$00,$00,$00
- $5DE3 DEFB $00,$00,$18,$18,$00,$00,$00,$02
- $5DEB DEFB $04,$08,$10,$20,$00,$00,$3C,$62
- $5DF3 DEFB $42,$42,$46,$3C,$00,$00,$18,$08
- $5DFB DEFB $08,$08,$08,$1C,$00,$00,$7C,$02
- $5E03 DEFB $3C,$40,$40,$7E,$00,$00,$7C,$02
- $5E0B DEFB $1C,$02,$02,$7C,$00,$00,$44,$44
- $5E13 DEFB $7E,$04,$04,$04,$00,$00,$7E,$40
- $5E1B DEFB $7C,$02,$02,$7C,$00,$00,$3C,$40
- $5E23 DEFB $40,$7C,$42,$3C,$00,$00,$7C,$02
- $5E2B DEFB $02,$04,$04,$04,$00,$00,$3C,$42
- $5E33 DEFB $3C,$42,$42,$3C,$00,$00,$7C,$42
- $5E3B DEFB $3E,$02,$02,$02,$00,$00,$00,$00
- $5E43 DEFB $10,$00,$00,$10,$00,$00,$00,$1F
- $5E4B DEFB $1F,$18,$18,$18,$1F,$00,$00,$E0
- $5E53 DEFB $E0,$00,$00,$00,$C0,$18,$18,$18
- $5E5B DEFB $1F,$1F,$00,$00,$FF,$00,$00,$00
- $5E63 DEFB $E0,$E0,$00,$00,$FF,$00,$7E,$42
- $5E6B DEFB $06,$08,$00,$08,$00,$00,$00,$00
- $5E73 DEFB $00,$00,$00,$00,$FF,$00,$1E,$22
- $5E7B DEFB $42,$7E,$42,$42,$00,$00,$7C,$42
- $5E83 DEFB $42,$7C,$42,$7C,$00,$00,$7E,$42
- $5E8B DEFB $40,$40,$42,$7E,$00,$00,$78,$44
- $5E93 DEFB $42,$42,$42,$7E,$00,$00,$7E,$40
- $5E9B DEFB $40,$7C,$40,$7E,$00,$00,$7E,$40
- $5EA3 DEFB $40,$7C,$40,$40,$00,$00,$7E,$42
- $5EAB DEFB $40,$4E,$42,$7E,$00,$00,$42,$42
- $5EB3 DEFB $42,$7E,$42,$42,$00,$00,$7E,$10
- $5EBB DEFB $10,$10,$10,$7E,$00,$00,$02,$02
- $5EC3 DEFB $02,$42,$42,$7E,$00,$00,$42,$42
- $5ECB DEFB $44,$78,$44,$42,$00,$00,$40,$40
- $5ED3 DEFB $40,$40,$40,$7E,$00,$00,$42,$42
- $5EDB DEFB $66,$5A,$42,$42,$00,$00,$42,$42
- $5EE3 DEFB $62,$52,$4A,$46,$00,$00,$7E,$42
- $5EEB DEFB $42,$42,$42,$7E,$00,$00,$7E,$42
- $5EF3 DEFB $42,$7C,$40,$40,$00,$00,$7E,$42
- $5EFB DEFB $42,$4A,$44,$7A,$00,$00,$7E,$42
- $5F03 DEFB $44,$78,$44,$42,$00,$00,$7E,$42
- $5F0B DEFB $40,$7E,$02,$7E,$00,$00,$7E,$10
- $5F13 DEFB $10,$10,$10,$10,$00,$00,$42,$42
- $5F1B DEFB $42,$42,$42,$7E,$00,$00,$42,$42
- $5F23 DEFB $42,$42,$24,$18,$00,$00,$42,$42
- $5F2B DEFB $42,$42,$5A,$66,$00,$00,$42,$24
- $5F33 DEFB $18,$18,$24,$42,$00,$00,$42,$42
- $5F3B DEFB $42,$24,$18,$18,$00,$00,$7E,$04
- $5F43 DEFB $08,$10,$20,$7E,$00,$00,$00,$07
- $5F4B DEFB $07,$06,$06,$06,$07,$01,$01,$F1
- $5F53 DEFB $F1,$31,$01,$01,$F1,$00,$00,$06
- $5F5B DEFB $07,$07,$00,$00,$FF,$31,$31,$31
- $5F63 DEFB $F1,$F1,$01,$01,$FF,$01,$01,$01
- $5F6B DEFB $01,$01,$01,$01,$01,$00,$00,$00
- $5F73 DEFB $00,$00,$00,$00,$00,$00,$00,$38
- $5F7B DEFB $04,$3C,$44,$7C,$00,$00,$20,$20
- $5F83 DEFB $2E,$32,$22,$3C,$00,$00,$00,$1C
- $5F8B DEFB $20,$20,$20,$3C,$00,$00,$04,$04
- $5F93 DEFB $74,$4C,$44,$3C,$00,$00,$00,$3C
- $5F9B DEFB $44,$78,$40,$3C,$00,$00,$1C,$20
- $5FA3 DEFB $38,$20,$20,$20,$00,$00,$00,$3C
- $5FAB DEFB $44,$4C,$74,$04,$78,$00,$40,$40
- $5FB3 DEFB $5C,$64,$44,$44,$00,$00,$10,$00
- $5FBB DEFB $30,$10,$10,$08,$00,$00,$04,$00
- $5FC3 DEFB $0C,$04,$04,$24,$38,$00,$20,$20
- $5FCB DEFB $2C,$30,$28,$24,$00,$00,$10,$10
- $5FD3 DEFB $10,$10,$10,$0C,$00,$00,$00,$78
- $5FDB DEFB $54,$54,$54,$54,$00,$00,$00,$70
- $5FE3 DEFB $48,$44,$44,$44,$00,$00,$00,$38
- $5FEB DEFB $44,$44,$44,$38,$00,$00,$00,$78
- $5FF3 DEFB $44,$64,$5C,$40,$40,$00,$00,$3C
- $5FFB DEFB $44,$4C,$74,$04,$04,$00,$00,$1C
- $6003 DEFB $24,$20,$20,$20,$00,$00,$00,$3C
- $600B DEFB $40,$7C,$04,$78,$00,$00,$20,$38
- $6013 DEFB $20,$20,$20,$18,$00,$00,$00,$44
- $601B DEFB $44,$44,$44,$78,$00,$00,$00,$44
- $6023 DEFB $44,$48,$50,$60,$00,$00,$00,$44
- $602B DEFB $54,$54,$54,$68,$00,$00,$00,$44
- $6033 DEFB $28,$10,$28,$44,$00,$00,$00,$44
- $603B DEFB $44,$24,$1C,$04,$38,$00,$00,$7C
- $6043 DEFB $08,$10,$20,$7C,$00,$20,$2A,$2A
- $604B DEFB $2A,$2D,$2D,$2D,$22,$0D,$80,$EC
- $6053 DEFB $33,$30,$30,$30,$0E,$00,$00,$B8
- $605B DEFB $0B,$00,$0D,$80,$00,$00,$22,$5B
- $6063 DEFB $00,$00,$00,$70,$00,$00,$00,$F0
- $606B DEFB $9D,$6A,$7F,$0C,$00,$00,$00,$00
- $6073 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $607B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6083 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $608B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6093 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $609B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60A3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60AB DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60B3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60BB DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60C3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60CB DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60D3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60DB DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60E3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60EB DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60F3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $60FB DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6103 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $610B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6113 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $611B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6123 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $612B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6133 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $613B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6143 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $614B DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6153 DEFB $00,$00,$00,$00,$00,$00
+ $5D6B DEFB $00,$00,$00,$00,$00
+
+; Font
+@label=font
+b$5D70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $5D78 DEFB $7F,$40,$40,$20,$20,$10,$0C,$03
+ $5D80 DEFB $FE,$02,$02,$04,$04,$08,$30,$C0
+ $5D88 DEFB $7F,$7F,$7F,$3F,$3F,$1F,$0F,$03
+ $5D90 DEFB $FE,$FE,$FE,$FC,$FC,$F8,$F0,$C0
+ $5D98 DEFB $00,$7E,$42,$42,$42,$7E,$00,$FF
+ $5DA0 DEFB $00,$C0,$F0,$F8,$FC,$FC,$FE,$FE
+ $5DA8 DEFB $00,$08,$10,$00,$00,$00,$00,$00
+ $5DB0 DEFB $00,$10,$20,$20,$20,$20,$10,$00
+ $5DB8 DEFB $00,$08,$04,$04,$04,$04,$08,$00
+ $5DC0 DEFB $00,$10,$10,$10,$10,$00,$10,$00
+ $5DC8 DEFB $01,$01,$01,$01,$01,$01,$01,$FF
+ $5DD0 DEFB $00,$00,$00,$00,$00,$08,$08,$10
+ $5DD8 DEFB $00,$00,$00,$00,$3E,$00,$00,$00
+ $5DE0 DEFB $00,$00,$00,$00,$00,$18,$18,$00
+ $5DE8 DEFB $00,$00,$02,$04,$08,$10,$20,$00
+ $5DF0 DEFB $00,$3C,$62,$42,$42,$46,$3C,$00
+ $5DF8 DEFB $00,$18,$08,$08,$08,$08,$1C,$00
+ $5E00 DEFB $00,$7C,$02,$3C,$40,$40,$7E,$00
+ $5E08 DEFB $00,$7C,$02,$1C,$02,$02,$7C,$00
+ $5E10 DEFB $00,$44,$44,$7E,$04,$04,$04,$00
+ $5E18 DEFB $00,$7E,$40,$7C,$02,$02,$7C,$00
+ $5E20 DEFB $00,$3C,$40,$40,$7C,$42,$3C,$00
+ $5E28 DEFB $00,$7C,$02,$02,$04,$04,$04,$00
+ $5E30 DEFB $00,$3C,$42,$3C,$42,$42,$3C,$00
+ $5E38 DEFB $00,$7C,$42,$3E,$02,$02,$02,$00
+ $5E40 DEFB $00,$00,$00,$10,$00,$00,$10,$00
+ $5E48 DEFB $00,$00,$1F,$1F,$18,$18,$18,$1F
+ $5E50 DEFB $00,$00,$E0,$E0,$00,$00,$00,$C0
+ $5E58 DEFB $18,$18,$18,$1F,$1F,$00,$00,$FF
+ $5E60 DEFB $00,$00,$00,$E0,$E0,$00,$00,$FF
+ $5E68 DEFB $00,$7E,$42,$06,$08,$00,$08,$00
+ $5E70 DEFB $00,$00,$00,$00,$00,$00,$00,$FF
+ $5E78 DEFB $00,$1E,$22,$42,$7E,$42,$42,$00
+ $5E80 DEFB $00,$7C,$42,$42,$7C,$42,$7C,$00
+ $5E88 DEFB $00,$7E,$42,$40,$40,$42,$7E,$00
+ $5E90 DEFB $00,$78,$44,$42,$42,$42,$7E,$00
+ $5E98 DEFB $00,$7E,$40,$40,$7C,$40,$7E,$00
+ $5EA0 DEFB $00,$7E,$40,$40,$7C,$40,$40,$00
+ $5EA8 DEFB $00,$7E,$42,$40,$4E,$42,$7E,$00
+ $5EB0 DEFB $00,$42,$42,$42,$7E,$42,$42,$00
+ $5EB8 DEFB $00,$7E,$10,$10,$10,$10,$7E,$00
+ $5EC0 DEFB $00,$02,$02,$02,$42,$42,$7E,$00
+ $5EC8 DEFB $00,$42,$42,$44,$78,$44,$42,$00
+ $5ED0 DEFB $00,$40,$40,$40,$40,$40,$7E,$00
+ $5ED8 DEFB $00,$42,$42,$66,$5A,$42,$42,$00
+ $5EE0 DEFB $00,$42,$42,$62,$52,$4A,$46,$00
+ $5EE8 DEFB $00,$7E,$42,$42,$42,$42,$7E,$00
+ $5EF0 DEFB $00,$7E,$42,$42,$7C,$40,$40,$00
+ $5EF8 DEFB $00,$7E,$42,$42,$4A,$44,$7A,$00
+ $5F00 DEFB $00,$7E,$42,$44,$78,$44,$42,$00
+ $5F08 DEFB $00,$7E,$42,$40,$7E,$02,$7E,$00
+ $5F10 DEFB $00,$7E,$10,$10,$10,$10,$10,$00
+ $5F18 DEFB $00,$42,$42,$42,$42,$42,$7E,$00
+ $5F20 DEFB $00,$42,$42,$42,$42,$24,$18,$00
+ $5F28 DEFB $00,$42,$42,$42,$42,$5A,$66,$00
+ $5F30 DEFB $00,$42,$24,$18,$18,$24,$42,$00
+ $5F38 DEFB $00,$42,$42,$42,$24,$18,$18,$00
+ $5F40 DEFB $00,$7E,$04,$08,$10,$20,$7E,$00
+ $5F48 DEFB $00,$00,$07,$07,$06,$06,$06,$07
+ $5F50 DEFB $01,$01,$F1,$F1,$31,$01,$01,$F1
+ $5F58 DEFB $00,$00,$06,$07,$07,$00,$00,$FF
+ $5F60 DEFB $31,$31,$31,$F1,$F1,$01,$01,$FF
+ $5F68 DEFB $01,$01,$01,$01,$01,$01,$01,$01
+ $5F70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $5F78 DEFB $00,$00,$38,$04,$3C,$44,$7C,$00
+ $5F80 DEFB $00,$20,$20,$2E,$32,$22,$3C,$00
+ $5F88 DEFB $00,$00,$1C,$20,$20,$20,$3C,$00
+ $5F90 DEFB $00,$04,$04,$74,$4C,$44,$3C,$00
+ $5F98 DEFB $00,$00,$3C,$44,$78,$40,$3C,$00
+ $5FA0 DEFB $00,$1C,$20,$38,$20,$20,$20,$00
+ $5FA8 DEFB $00,$00,$3C,$44,$4C,$74,$04,$78
+ $5FB0 DEFB $00,$40,$40,$5C,$64,$44,$44,$00
+ $5FB8 DEFB $00,$10,$00,$30,$10,$10,$08,$00
+ $5FC0 DEFB $00,$04,$00,$0C,$04,$04,$24,$38
+ $5FC8 DEFB $00,$20,$20,$2C,$30,$28,$24,$00
+ $5FD0 DEFB $00,$10,$10,$10,$10,$10,$0C,$00
+ $5FD8 DEFB $00,$00,$78,$54,$54,$54,$54,$00
+ $5FE0 DEFB $00,$00,$70,$48,$44,$44,$44,$00
+ $5FE8 DEFB $00,$00,$38,$44,$44,$44,$38,$00
+ $5FF0 DEFB $00,$00,$78,$44,$64,$5C,$40,$40
+ $5FF8 DEFB $00,$00,$3C,$44,$4C,$74,$04,$04
+ $6000 DEFB $00,$00,$1C,$24,$20,$20,$20,$00
+ $6008 DEFB $00,$00,$3C,$40,$7C,$04,$78,$00
+ $6010 DEFB $00,$20,$38,$20,$20,$20,$18,$00
+ $6018 DEFB $00,$00,$44,$44,$44,$44,$78,$00
+ $6020 DEFB $00,$00,$44,$44,$48,$50,$60,$00
+ $6028 DEFB $00,$00,$44,$54,$54,$54,$68,$00
+ $6030 DEFB $00,$00,$44,$28,$10,$28,$44,$00
+ $6038 DEFB $00,$00,$44,$44,$24,$1C,$04,$38
+ $6040 DEFB $00,$00,$7C,$08,$10,$20,$7C,$00
+ $6048 DEFB $20,$2A,$2A,$2A,$2D,$2D,$2D,$22
+ $6050 DEFB $0D,$80,$EC,$33,$30,$30,$30,$0E
+ $6058 DEFB $00,$00,$B8,$0B,$00,$0D,$80,$00
+ $6060 DEFB $00,$22,$5B,$00,$00,$00,$70,$00
+ $6068 DEFB $00,$00,$F0,$9D,$6A,$7F,$0C,$00
+ $6070 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6078 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6080 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6088 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6090 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6098 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60A0 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60A8 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60B0 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60B8 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60C0 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60C8 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60D0 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60D8 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60E0 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60E8 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60F0 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $60F8 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6100 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6108 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6110 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6118 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6120 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6128 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6130 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6138 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6140 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6148 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6150 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $6158 DEFB $00
 
 ; Data block at 6159
 @label=title_screen_ship
@@ -1996,46 +2000,46 @@ c$7378 CALL $8080    ;
  $7421 CALL $94F4    ;
  $7424 JR $7471      ;
 
-; Routine at 7426
+; Print title screen text
 ;
 ; Used by the routine at #R$7378.
 @label=print_title_screen_text
-c$7426 CALL $7447    ;
- $7429 LD HL,$0E01   ;
- $742C LD A,$06      ;
- $742E JR $7438      ;
+c$7426 CALL $7447    ; Print ELITE line
+ $7429 LD HL,$0E01   ; Coordinates for LOAD NEW COMMANDER
+ $742C LD A,$06      ; Token number
+ $742E JR $7438      ; To printing code
 
-; Routine at 7430
+; Print PRESS SPACE, COMMANDER line
 ;
 ; Used by the routine at #R$7378.
-c$7430 CALL $7447    ;
- $7433 LD HL,$0E04   ;
- $7436 LD A,$07      ;
+c$7430 CALL $7447    ; Print ELITE line
+ $7433 LD HL,$0E04   ; Coordinates for PRESS SPACE, COMMANDER
+ $7436 LD A,$07      ; Token number
 ; This entry point is used by the routine at #R$7426.
-*$7438 LD ($D045),HL ;
- $743B LD HL,($D0D5) ;
+*$7438 LD ($D045),HL ; Store coordinates
+ $743B LD HL,($D0D5) ; {Set to print in buffer
  $743E INC HL        ;
  $743F INC HL        ;
- $7440 SET 7,(HL)    ;
- $7442 CALL $D039    ;
- $7445 JR $7459      ;
+ $7440 SET 7,(HL)    ; }
+ $7442 CALL $D039    ; Print token
+ $7445 JR $7459      ; Set to print on screen and return
 
-; Routine at 7447
+; Print ELITE line
 ;
 ; Used by the routines at #R$7426 and #R$7430.
-c$7447 LD HL,$0105   ;
- $744A LD ($D045),HL ;
- $744D LD A,$1D      ;
- $744F LD HL,($D0D5) ;
+c$7447 LD HL,$0105   ; Coordinates for ELITE
+ $744A LD ($D045),HL ; Store coordinates
+ $744D LD A,$1D      ; Token number
+ $744F LD HL,($D0D5) ; {Set to print in buffer
  $7452 INC HL        ;
  $7453 INC HL        ;
- $7454 SET 7,(HL)    ;
- $7456 CALL $D048    ;
+ $7454 SET 7,(HL)    ; }
+ $7456 CALL $D048    ; Print token
 ; This entry point is used by the routine at #R$7430.
-*$7459 LD HL,($D0D5) ;
+*$7459 LD HL,($D0D5) ; {Set to print on screen
  $745C INC HL        ;
  $745D INC HL        ;
- $745E RES 7,(HL)    ;
+ $745E RES 7,(HL)    ; }
  $7460 RET           ;
 
 ; Set attributes for 2/3 of the screen to white/black
@@ -2052,6 +2056,7 @@ c$7461 LD HL,$5800   ;
  $746F RET           ;
 
 ; Data block at 7470
+@label=title_loop_count
 b$7470 DEFB $06
 
 ; Routine at 7471
@@ -14160,9 +14165,10 @@ c$D033 JP $D298      ;
 ; Used by the routines at #R$7378 and #R$8042.
 c$D036 JP $D61D      ;
 
-; Routine at D039
+; Jump to print other token
 ;
 ; Used by the routines at #R$7430 and #R$7471.
+@label=jump_to_print_other_token
 c$D039 JP $D45F      ;
 
 ; Routine at D03C
@@ -14178,18 +14184,22 @@ s$D03F DEFS $03
 ; Used by the routine at #R$7471.
 c$D042 JP $DBA2      ;
 
-; Data block at D045
-@label=print_coord
-w$D045 DEFW $0000
+; Print x
+@label=print_x
+b$D045 DEFB $00
+
+; Print y
+@label=print_y
+b$D046 DEFB $00
 
 ; Data block at D047
 @label=byte_at_D047
 b$D047 DEFB $00
 
-; Jump to D425
+; Jump to print token
 ;
 ; Used by the routines at #R$7447, #R$99A4, #R$9B01, #R$9B57 and #R$9B74.
-@label=jump_to_D425
+@label=jump_to_print_token
 c$D048 JP $D425      ;
 
 ; Data block at D04B
@@ -14284,10 +14294,25 @@ b$D0BF DEFB $07,$78
 @label=data_at_D0C1
 b$D0C1 DEFB $09,$C8,$02,$FD,$0C,$E2,$0B,$00
  $D0C9 DEFB $06,$65,$00,$01,$00,$00,$0A,$1F
- $D0D1 DEFB $00,$01,$00,$00
 
-; Data block at D0D5
-@label=word_at_D0D5
+; Data block at D0D1
+@label=byte_at_D0D1
+b$D0D1 DEFB $00
+
+; Data block at D0D2
+@label=byte_at_D0D2
+b$D0D2 DEFB $01
+
+; Data block at D0D3
+@label=byte_at_D0D3
+b$D0D3 DEFB $00
+
+; Data block at D0D4
+b$D0D4 DEFB $00
+
+; Pointer to LD HL,$4000 instruction
+@label=byte_at_D0D4
+@label=ptr_to_ld_hl
 w$D0D5 DEFW $D508
 
 ; Routine at D0D7
@@ -14780,61 +14805,66 @@ b$D420 DEFB $01
 ; Used by the routines at #R$D2E1, #R$D837, #R$E107, #R$E212, #R$E2F8, #R$E31E,
 ; #R$E7CF, #R$E87E, #R$E8EA, #R$E973, #R$EB47, #R$EDDF, #R$EEA8, #R$EF87 and
 ; #R$F0A1.
-c$D421 POP HL        ;
- $D422 LD A,(HL)     ;
- $D423 INC HL        ;
- $D424 PUSH HL       ;
+@label=print_token
+c$D421 POP HL        ; Get pointer to token number from stack
+ $D422 LD A,(HL)     ; Get the token number
+ $D423 INC HL        ; Point to next token number
+ $D424 PUSH HL       ; Save on stack
 ; This entry point is used by the routines at #R$D048, #R$D357, #R$D37D,
 ; #R$D470, #R$DA7A, #R$DAB4, #R$E212, #R$E268, #R$E297, #R$E29E, #R$E2A6,
 ; #R$E2F8, #R$E306, #R$E311, #R$E31E, #R$E776, #R$E87E, #R$E973, #R$EEA8,
 ; #R$EECE, #R$F068 and #R$F07A.
-*$D425 CP $0E        ;
- $D427 JP C,$D7B5    ;
- $D42A CP $20        ;
- $D42C JP C,$D441    ;
- $D42F CP $60        ;
- $D431 JP C,$D499    ;
- $D434 CP $80        ;
- $D436 JR C,$D443    ;
- $D438 CP $A0        ;
- $D43A JP C,$D59C    ;
- $D43D SUB $A0       ;
+*$D425 CP $0E        ; {Jump if token < 14
+ $D427 JP C,$D7B5    ; }
+ $D42A CP $20        ; {Jump if 14 <= token < 32
+ $D42C JP C,$D441    ; }
+ $D42F CP $60        ; {Jump if 32 <= token < 96
+ $D431 JP C,$D499    ; }
+ $D434 CP $80        ; {Jump if 96 <= token < 128
+ $D436 JR C,$D443    ; }
+ $D438 CP $A0        ; {Jump if 128 <= token < 160
+ $D43A JP C,$D59C    ; }
+ $D43D SUB $A0       ; If token >= 160, subtract 160, so now 0 <= token < 96
  $D43F JR $D443      ;
-*$D441 ADD A,$72     ;
-*$D443 LD HL,($F11A) ;
- $D446 LD D,A        ;
- $D447 INC D         ;
-*$D448 DEC D         ;
- $D449 JP Z,$D454    ;
- $D44C LD BC,$FFFF   ;
- $D44F XOR A         ;
- $D450 CPIR          ;
- $D452 JR $D448      ;
-*$D454 LD A,(HL)     ;
- $D455 AND A         ;
- $D456 RET Z         ;
- $D457 PUSH HL       ;
- $D458 CALL $D425    ;
- $D45B POP HL        ;
- $D45C INC HL        ;
- $D45D JR $D454      ;
+*$D441 ADD A,$72     ; If 14 <= token < 32, add 114, so now 128 <= token < 146
+@label=print_recursive_token
+*$D443 LD HL,($F11A) ; Get base address of tokens
+ $D446 LD D,A        ; D=number of tokens to search through
+ $D447 INC D         ; Start one higher
+*$D448 DEC D         ; One less token to search through
+ $D449 JP Z,$D454    ; Jump if we're now at the right token
+ $D44C LD BC,$FFFF   ; Search through all memory
+ $D44F XOR A         ; {Look for a zero (end of token)
+ $D450 CPIR          ; }
+ $D452 JR $D448      ; And loop
+@recursive_token_loop
+*$D454 LD A,(HL)     ; Get next char code of token
+ $D455 AND A         ; {Return if we're at the end
+ $D456 RET Z         ; }
+ $D457 PUSH HL       ; Save token address
+ $D458 CALL $D425    ; Call routine recursively
+ $D45B POP HL        ; Restore token address
+ $D45C INC HL        ; Increment token address
+ $D45D JR $D454      ; Loop to process next char code
 
 ; Routine at D45F
 ;
 ; Used by the routines at #R$D039, #R$D470, #R$D5B4, #R$D90A, #R$DA5A, #R$DBA2,
 ; #R$E292, #R$E8E5, #R$EDDF, #R$EF87 and #R$F0A1.
-c$D45F LD HL,($F11C) ;
- $D462 LD D,A        ;
-*$D463 DEC D         ;
- $D464 JR Z,$D48E    ;
- $D466 LD BC,$FFFF   ;
- $D469 LD A,$00      ;
- $D46B CPIR          ;
- $D46D JP $D463      ;
+@label=print_other_recursive_token
+c$D45F LD HL,($F11C) ; Get base address of other tokens
+ $D462 LD D,A        ; D=number of tokens to search through
+*$D463 DEC D         ; One less token to search through
+ $D464 JR Z,$D48E    ; Jump if we're now at the right token
+ $D466 LD BC,$FFFF   ; Search through all memory
+ $D469 LD A,$00      ; {Look for a zero (end of token)
+ $D46B CPIR          ; }
+ $D46D JP $D463      ; And loop
 
 ; Routine at D470
 ;
 ; Used by the routine at #R$D48E.
+@label_print_other_token
 c$D470 LD B,A        ;
  $D471 LD A,($D420)  ;
  $D474 CP $00        ;
@@ -14853,23 +14883,25 @@ c$D470 LD B,A        ;
 ; Routine at D48E
 ;
 ; Used by the routine at #R$D45F.
-c$D48E LD A,(HL)     ;
- $D48F AND A         ;
- $D490 RET Z         ;
- $D491 PUSH HL       ;
- $D492 CALL $D470    ;
- $D495 POP HL        ;
- $D496 INC HL        ;
- $D497 JR $D48E      ;
+@recursive_other_token_loop
+c$D48E LD A,(HL)     ; Get next char code of token
+ $D48F AND A         ; {Return if we're at the end
+ $D490 RET Z         ; }
+ $D491 PUSH HL       ; Save token address
+ $D492 CALL $D470    ; Call routine recursively
+ $D495 POP HL        ; Restore token address
+ $D496 INC HL        ; Increment token address
+ $D497 JR $D48E      ; Loop to process next char code
 
 ; Routine at D499
 ;
 ; Used by the routines at #R$D421, #R$D470 and #R$D59C.
-c$D499 CP $41        ;
- $D49B JR C,$D4D2    ;
- $D49D CP $5B        ;
- $D49F JR NC,$D4D2   ;
- $D4A1 PUSH AF       ;
+@label=print_ascii_char
+c$D499 CP $41        ; Char A?
+ $D49B JR C,$D4D2    ; Jump if < A
+ $D49D CP $5B        ; Char [ (after Z)?
+ $D49F JR NC,$D4D2   ; Jump if > Z
+ $D4A1 PUSH AF       ; Save ASCII code
  $D4A2 LD A,($D0D1)  ;
  $D4A5 CP $01        ;
  $D4A7 JR Z,$D4D8    ;
@@ -14889,9 +14921,9 @@ c$D499 CP $41        ;
  $D4C6 CP $02        ;
  $D4C8 JR Z,$D4CC    ;
  $D4CA JR $D4D8      ;
-*$D4CC POP AF        ;
- $D4CD ADD A,$20     ;
- $D4CF PUSH AF       ;
+*$D4CC POP AF        ; Restore ASCII code
+ $D4CD ADD A,$20     ; Add 32
+ $D4CF PUSH AF       ; Save new code
  $D4D0 JR $D4D8      ;
 *$D4D2 PUSH AF       ;
  $D4D3 LD A,$01      ;
@@ -14901,66 +14933,69 @@ c$D499 CP $41        ;
  $D4DD JP Z,$D6B9    ;
  $D4E0 POP AF        ;
 ; This entry point is used by the routine at #R$D6B9.
-*$D4E1 PUSH AF       ;
- $D4E2 LD HL,$D045   ;
- $D4E5 INC (HL)      ;
- $D4E6 LD A,(HL)     ;
- $D4E7 CP $20        ;
- $D4E9 JR C,$D4F1    ;
- $D4EB LD A,$01      ;
- $D4ED LD (HL),A     ;
- $D4EE CALL $E2B1    ;
-*$D4F1 POP AF        ;
- $D4F2 LD HL,$5D70   ;
- $D4F5 SUB $20       ;
+@label=inc_print_char
+*$D4E1 PUSH AF       ; Save ASCII code
+ $D4E2 LD HL,$D045   ; X coord
+ $D4E5 INC (HL)      ; Increment x
+ $D4E6 LD A,(HL)     ; Get new x
+ $D4E7 CP $20        ; {Jump if not at end of row
+ $D4E9 JR C,$D4F1    ; }
+ $D4EB LD A,$01      ; {Set x to 1
+ $D4ED LD (HL),A     ; }
+ $D4EE CALL $E2B1    ; Increment y
+@label=print_char
+*$D4F1 POP AF        ; ASCII code
+ $D4F2 LD HL,$5D70   ; Font base address
+ $D4F5 SUB $20       ; Code - 32
  $D4F7 LD C,A        ;
- $D4F8 LD B,$00      ;
- $D4FA SLA C         ;
+ $D4F8 LD B,$00      ; BC = 0A
+ $D4FA SLA C         ; * 2
  $D4FC RL B          ;
- $D4FE SLA C         ;
+ $D4FE SLA C         ; * 4
  $D500 RL B          ;
- $D502 SLA C         ;
+ $D502 SLA C         ; * 8
  $D504 RL B          ;
- $D506 ADD HL,BC     ;
- $D507 PUSH HL       ;
- $D508 LD HL,$4000   ;
- $D50B LD A,($D046)  ;
- $D50E CP $10        ;
- $D510 JP NC,$D51C   ;
- $D513 CP $08        ;
- $D515 JP NC,$D526   ;
- $D518 LD B,A        ;
+ $D506 ADD HL,BC     ; Add to font base address
+ $D507 PUSH HL       ; Push character source address
+@label=ld_hl_4000_instr
+ $D508 LD HL,$4000   ; Self-modified (screen or buffer)
+ $D50B LD A,($D046)  ; Y coord
+ $D50E CP $10        ; {Jump if >= 16
+ $D510 JP NC,$D51C   ; }
+ $D513 CP $08        ; {Jump if >= 8
+ $D515 JP NC,$D526   ; }
+ $D518 LD B,A        ; Y coord within 3rd
  $D519 JP $D52D      ;
-*$D51C SUB $10       ;
- $D51E LD B,A        ;
- $D51F LD DE,$1000   ;
- $D522 ADD HL,DE     ;
+*$D51C SUB $10       ; Bottom 3rd of screen
+ $D51E LD B,A        ; Y coord within 3rd
+ $D51F LD DE,$1000   ; Offset to bottom 3rd
+ $D522 ADD HL,DE     ; Add offset to destination
  $D523 JP $D52D      ;
-*$D526 SUB $08       ;
- $D528 LD B,A        ;
- $D529 LD DE,$0800   ;
- $D52C ADD HL,DE     ;
-*$D52D LD C,$00      ;
- $D52F SRL B         ;
+*$D526 SUB $08       ; Middle 3rd of screen
+ $D528 LD B,A        ; Y coord within 3rd
+ $D529 LD DE,$0800   ; Offset to middle 3rd
+ $D52C ADD HL,DE     ; Add offset to destination
+*$D52D LD C,$00      ; BC = 00000rrr00000000
+ $D52F SRL B         ; >> 1
  $D531 RR C          ;
- $D533 SRL B         ;
+ $D533 SRL B         ; >> 2
  $D535 RR C          ;
- $D537 SRL B         ;
- $D539 RR C          ;
- $D53B ADD HL,BC     ;
+ $D537 SRL B         ; >> 3
+ $D539 RR C          ; BC = 00000000rrr00000
+ $D53B ADD HL,BC     ; HL = xxxss000rrr00000
  $D53C LD B,$00      ;
- $D53E LD A,($D045)  ;
+ $D53E LD A,($D045)  ; X coord
  $D541 LD C,A        ;
- $D542 ADD HL,BC     ;
- $D543 POP DE        ;
- $D544 LD B,$08      ;
-*$D546 LD A,(DE)     ;
- $D547 LD C,(HL)     ;
- $D548 XOR C         ;
- $D549 LD (HL),A     ;
- $D54A INC H         ;
- $D54B INC DE        ;
- $D54C DJNZ $D546    ;
+ $D542 ADD HL,BC     ; HL = xxxss000rrrccccc
+ $D543 POP DE        ; DE = source
+ $D544 LD B,$08      ; 8 bytes in character
+*$D546 LD A,(DE)     ; Get source byte
+ $D547 LD C,(HL)     ; Get destination byte
+ $D548 XOR C         ; XOR source with destination
+ $D549 LD (HL),A     ; Write destination byte
+ $D54A INC H         ; Next pixel line
+ $D54B INC DE        ; Next source byte
+ $D54C DJNZ $D546    ; Repeat 8 times
  $D54E RET           ;
 
 ; Routine at D54F
@@ -15034,22 +15069,23 @@ c$D595 SUB $D7       ;
 ; Routine at D59C
 ;
 ; Used by the routine at #R$D421.
-c$D59C SUB $80       ;
- $D59E LD HL,$FDB3   ;
+@label=print_two_letter_token
+c$D59C SUB $80       ; Offset from 128
+ $D59E LD HL,$FDB3   ; Two letter tokens base address
 ; This entry point is used by the routine at #R$D595.
-*$D5A1 ADD A,A       ;
- $D5A2 LD D,$00      ;
- $D5A4 LD E,A        ;
- $D5A5 ADD HL,DE     ;
- $D5A6 LD A,(HL)     ;
- $D5A7 PUSH HL       ;
- $D5A8 CALL $D499    ;
- $D5AB POP HL        ;
- $D5AC INC HL        ;
- $D5AD LD A,(HL)     ;
- $D5AE CP $3F        ;
- $D5B0 RET Z         ;
- $D5B1 JP $D499      ;
+*$D5A1 ADD A,A       ; * 2
+ $D5A2 LD D,$00      ; {DE=0A
+ $D5A4 LD E,A        ; }
+ $D5A5 ADD HL,DE     ; Add to base address
+ $D5A6 LD A,(HL)     ; Get char
+ $D5A7 PUSH HL       ; Push char address
+ $D5A8 CALL $D499    ; Print first char
+ $D5AB POP HL        ; Pop char address
+ $D5AC INC HL        ; Point to next char
+ $D5AD LD A,(HL)     ; Get char
+ $D5AE CP $3F        ; Question mark?
+ $D5B0 RET Z         ; Then return
+ $D5B1 JP $D499      ; Print second char
 
 ; Routine at D5B4
 ;
@@ -15317,6 +15353,7 @@ c$D7B0 LD HL,$D7DF   ;
 ; Routine at D7B5
 ;
 ; Used by the routine at #R$D421.
+@label=print_control_code
 c$D7B5 LD HL,$D7C3   ;
 ; This entry point is used by the routine at #R$D7B0.
 *$D7B8 LD D,$00      ;
@@ -16951,18 +16988,20 @@ c$E2A6 CALL $D425    ;
 ; This entry point is used by the routines at #R$D6B9, #R$DA5A, #R$E212,
 ; #R$E2BC, #R$E8EA, #R$E973, #R$EDDF, #R$EEA2, #R$F068 and #R$F0A1.
 *$E2A9 LD A,$01      ;
- $E2AB LD ($D0D2),A  ;
- $E2AE CALL $E2B7    ;
+ $E2AB LD ($D0D2),A  ; Set something to 1
+ $E2AE CALL $E2B7    ; Set x to zero
 ; This entry point is used by the routine at #R$D499.
-*$E2B1 LD A,($D046)  ;
- $E2B4 INC A         ;
+@label=increment_y
+*$E2B1 LD A,($D046)  ; Get y
+ $E2B4 INC A         ; Add one
  $E2B5 JR $E2C8      ;
 
 ; Routine at E2B7
 ;
 ; Used by the routines at #R$E2A6, #R$E2C8 and #R$E36B.
-c$E2B7 XOR A         ;
- $E2B8 LD ($D045),A  ;
+@label=set_x_to_zero
+c$E2B7 XOR A         ; {Set x to 0
+ $E2B8 LD ($D045),A  ; }
  $E2BB RET           ;
 
 ; Routine at E2BC
@@ -16974,20 +17013,21 @@ c$E2BC POP HL        ;
  $E2BE INC HL        ;
  $E2BF PUSH HL       ;
 ; This entry point is used by the routines at #R$E973 and #R$F068.
-*$E2C0 LD ($D045),A  ;
- $E2C3 CP $20        ;
- $E2C5 RET C         ;
+*$E2C0 LD ($D045),A  ; Get x
+ $E2C3 CP $20        ; End of row?
+ $E2C5 RET C         ; Return if not
  $E2C6 JR $E2A9      ;
 
 ; Routine at E2C8
 ;
 ; Used by the routines at #R$E2A6, #R$E36B, #R$E973, #R$EDDF, #R$EF87 and
 ; #R$F0A1.
-c$E2C8 LD ($D046),A  ;
- $E2CB CP $18        ;
- $E2CD RET C         ;
- $E2CE LD A,$01      ;
- $E2D0 LD ($D046),A  ;
+@label=save_and_wrap_y
+c$E2C8 LD ($D046),A  ; Save y
+ $E2CB CP $18        ; Last row?
+ $E2CD RET C         ; Return of not
+ $E2CE LD A,$01      ; {Set y to 1
+ $E2D0 LD ($D046),A  ; }
  $E2D3 JR $E2B7      ;
 
 ; Routine at E2D5
@@ -19103,1386 +19143,1168 @@ b$F117 DEFB $00,$00,$00
 ; Recursive tokens
 @label=tokens_ptr
 w$F11A DEFW $F11E
-@label=more_tokens_ptr
+@label=other_tokens_ptr
  $F11C DEFW $F4F5
 
 ; Recursive tokens
 @label=tokens
-b$F11E DEFB $6F,$10,$00
+t$F11E DEFM "o",$10,$00
 
 ; Message at F121
-t$F121 DEFM " CH"
+t$F121 DEFM " CH",$8A,"T",$00,"GO",$96,"RNM",$92,"T",$00
 
-; Data block at F124
-b$F124 DEFB $8A,$54,$00,$47,$4F,$96
+; Message at F130
+t$F130 DEFM $06,"D",$91,"A",$10,$03,$08,$00
 
-; Message at F12A
-t$F12A DEFM "RNM"
-
-; Data block at F12D
-b$F12D DEFB $92,$54,$00,$06,$44,$91,$41,$10
- $F135 DEFB $03,$08,$00,$06,$8C,$96,$4E,$54
- $F13D DEFB $99,$59,$08,$00
+; Message at F138
+t$F138 DEFM $06,$8C,$96,"NT",$99,"Y",$08,$00
 
 ; Message at F141
-t$F141 DEFM "SYS"
+t$F141 DEFM "SYS",$9C,"M",$00
 
-; Data block at F144
-b$F144 DEFB $9C,$4D,$00,$50,$9E,$85,$00,$02
- $F14C DEFB $20,$8B
+; Message at F147
+t$F147 DEFM "P",$9E,$85,$00
 
-; Message at F14E
-t$F14E DEFM "RKET "
+; Message at F14B
+t$F14B DEFM $02," ",$8B,"RKET ",$A6,"S",$00
 
-; Data block at F153
-b$F153 DEFB $A6,$53,$00,$8C,$44,$88,$54,$9E
- $F15B DEFB $80,$00,$41,$47,$9E
+; Message at F156
+t$F156 DEFM $8C,"D",$88,"T",$9E,$80,$00
 
-; Message at F160
-t$F160 DEFM "CULTU"
+; Message at F15D
+t$F15D DEFM "AG",$9E,"CULTU",$94,"L",$00
 
 ; Data block at F165
-b$F165 DEFB $94,$4C,$00,$9E
-
-; Message at F169
-t$F169 DEFM "CH "
+t$F168 DEFM $9E,"CH ",$00
 
 ; Data block at F16C
-b$F16C DEFB $00,$41,$96,$94,$83,$20,$00,$50
- $F174 DEFB $4F,$99,$20,$00,$8B,$8C
+t$F16D DEFM "A",$96,$94,$83," ",$00,"PO",$99," ",$00,$8B,$8C
 
 ; Message at F17A
-t$F17A DEFM "LY "
-
-; Unused
-s$F17D DEFS $01
+t$F17A DEFM "LY ",$00
 
 ; Message at F17E
-t$F17E DEFM "UNIT"
-
-; Unused
-s$F182 DEFS $01
+t$F17E DEFM "UNIT",$00
 
 ; Message at F183
-t$F183 DEFM " VIEW "
+t$F183 DEFM " VIEW ",$00
 
 ; Data block at F189
-b$F189 DEFB $00,$9A,$9B,$97,$54,$59,$00,$9B
- $F191 DEFB $8A
-
-; Message at F192
-t$F192 DEFM "CHY"
-
-; Unused
-s$F195 DEFS $01
+t$F18A DEFM $9A,$9B,$97,"TY",$00,$9B,$8A,"CHY",$00
 
 ; Message at F196
-t$F196 DEFM "FEUD"
-
-; Data block at F19A
-b$F19A DEFB $80,$00
-
-; Message at F19C
-t$F19C DEFM "MUL"
+t$F196 DEFM "FEUD",$80,$00,"MUL"
 
 ; Data block at F19F
-b$F19F DEFB $97,$2D,$A2,$00,$8D,$43,$54,$91
- $F1A7 DEFB $99,$B9,$00,$FB
+t$F19F DEFM $97,"-",$A2,$00
 
 ; Message at F1AB
-t$F1AB DEFM "MUN"
+t$F1A3 DEFM $8D,"CT",$91,$99,$B9,$00
+
+; Message at F1AB
+t$F1AA DEFM $FB,"MUN",$9D,"T",$00
 
 ; Data block at F1AE
-b$F1AE DEFB $9D,$54,$00,$43,$9F,$46,$98,$90
-
-; Message at F1B6
-t$F1B6 DEFM "ACY"
-
-; Unused
-s$F1B9 DEFS $01
+t$F1B1 DEFM "C",$9F,"F",$98,$90,"ACY",$00
 
 ; Message at F1BA
-t$F1BA DEFM "DEMOC"
+t$F1BA DEFM "DEMOC",$94,"CY",$00
 
-; Data block at F1BF
-b$F1BF DEFB $94,$43,$59,$00,$43,$99,$50,$99
- $F1C7 DEFB $91,$45,$20,$CB,$91,$45,$00
+; Message at F1BA
+t$F1C3 DEFM "C",$99,"P",$99,$91,"E ",$CB,$91,"E",$00
 
 ; Message at F1CE
-t$F1CE DEFM "SHIP"
+t$F1CE DEFM "SHIP",$00
 
 ; Data block at F1D2
-b$F1D2 DEFB $00,$50,$FE
-
-; Message at F1D5
-t$F1D5 DEFM "DUCT"
+t$F1D3 DEFM "P",$FE,"DUCT",$00
 
 ; Data block at F1D9
-b$F1D9 DEFB $00,$20,$95,$53,$90,$00
+t$F1DA DEFM " ",$95,"S",$90,$00
 
 ; Message at F1DF
-t$F1DF DEFM "HUM"
-
-; Data block at F1E2
-b$F1E2 DEFB $9B
-
-; Message at F1E3
-t$F1E3 DEFM " COL"
-
-; Data block at F1E7
-b$F1E7 DEFB $9F,$49,$80,$00
+t$F1DF DEFM "HUM",$9B," COL",$9F,"I",$80,$00
 
 ; Message at F1EB
-t$F1EB DEFM "HYP"
-
-; Data block at F1EE
-b$F1EE DEFB $90
-
-; Message at F1EF
-t$F1EF DEFM "SPA"
+t$F1EB DEFM "HYP",$90,"SPA",$85,$00
 
 ; Data block at F1F2
-b$F1F2 DEFB $85,$00,$06,$53,$48,$99,$54,$20
- $F1FA DEFB $CA,$A1,$08,$00,$8D,$CB,$9B,$85
- $F202 DEFB $00,$BD
+t$F1F4 DEFM $06,"SH",$99,"T ",$CA,$A1,$08,$00
+
+; Data block at F1F2
+t$F1FE DEFM $8D,$CB,$9B,$85,$00
 
 ; Message at F204
-t$F204 DEFM " -- "
+t$F203 DEFM $BD," -- ",$03,$00
 
 ; Data block at F208
-b$F208 DEFB $03,$00,$BD,$20,$CA,$20,$3F,$00
- $F210 DEFB $06
+t$F20A DEFM $BD," ",$CA," ?",$00
 
 ; Message at F211
-t$F211 DEFM "MAYDAY"
-
-; Data block at F217
-b$F217 DEFB $08
-
-; Message at F218
-t$F218 DEFM "* C"
-
-; Data block at F21B
-b$F21B DEFB $99
-
-; Message at F21C
-t$F21C DEFM "IOLIS "
-
-; Data block at F222
-b$F222 DEFB $8C
-
-; Message at F223
-t$F223 DEFM " DAN"
-
-; Data block at F227
-b$F227 DEFB $83,$52,$2A,$00
+t$F210 DEFM $06,"MAYDAY",$08,"* C",$99,"IOLIS ",$8C," DAN",$83,"R*",$00
 
 ; Message at F22B
-t$F22B DEFM " LIGHT YE"
-
-; Data block at F234
-b$F234 DEFB $8A,$53,$00,$9C
-
-; Message at F238
-t$F238 DEFM "CH."
-
-; Data block at F23B
-b$F23B DEFB $81,$96,$4C,$00
+t$F22B DEFM " LIGHT YE",$8A,"S",$00,$9C,"CH.",$81,$96,"L",$00
 
 ; Message at F23F
-t$F23F DEFM "CASH"
+t$F23F DEFM "CASH",$00
 
 ; Data block at F243
-b$F243 DEFB $00,$20,$86,$0E,$49,$9F,$00,$06
- $F24B DEFB $7A,$A1,$08,$01,$00,$54,$8A,$83
+t$F244 DEFM " ",$86,$0E,"I",$9F,$00
 
 ; Message at F253
-t$F253 DEFM "T LO"
+t$F24A DEFM $06,"z",$A1,$08,$01,$00
 
-; Data block at F257
-b$F257 DEFB $CB,$00
-
-; Message at F259
-t$F259 DEFM "j JAMM"
+; Message at F253
+t$F250 DEFM "T",$8A,$83,"T LO",$CB,$00
 
 ; Data block at F25F
-b$F25F DEFB $98,$00,$52,$9B,$83,$00,$53,$54
- $F267 DEFB $00,$B0
+t$F259 DEFM "j JAMM",$98,$00
+
+; Data block at F25F
+t$F261 DEFM "R",$9B,$83,$00,"ST",$00
 
 ; Message at F269
-t$F269 DEFM " OF "
+t$F268 DEFM $B0," OF ",$00
 
 ; Data block at F26D
-b$F26D DEFB $00,$53,$45,$0E,$00,$20,$43,$8A
- $F275 DEFB $47,$4F,$00,$45,$9A,$49,$50,$00
+t$F26E DEFM "SE",$0E,$00
 
 ; Message at F27D
-t$F27D DEFM "FOOD"
+t$F272 DEFM " C",$8A,"GO",$00
+
+; Message at F27D
+t$F278 DEFM "E",$9A,"IP",$00
+
+; Message at F27D
+t$F27D DEFM "FOOD",$00
 
 ; Data block at F281
-b$F281 DEFB $00,$9C,$58,$97,$4C,$89,$00,$94
- $F289 DEFB $8D
+t$F282 DEFM $9C,"X",$97,"L",$89,$00
 
 ; Message at F28A
-t$F28A DEFM "OAC"
+t$F288 DEFM $94,$8D,"OAC",$97,$96,"S",$00
 
 ; Data block at F28D
-b$F28D DEFB $97,$96,$53,$00,$53,$95,$96,$53
- $F295 DEFB $00,$4C,$49,$9A,$99,$2F,$57,$8C
- $F29D DEFB $89,$00
+t$F291 DEFM "S",$95,$96,"S",$00
+
+; Data block at F28D
+t$F296 DEFM "LI",$9A,$99,"/W",$8C,$89,$00
 
 ; Message at F29F
-t$F29F DEFM "LUXU"
+t$F29F DEFM "LUXU",$9E,$89,$00
 
 ; Data block at F2A3
-b$F2A3 DEFB $9E,$89,$00,$4E,$8A,$43,$4F,$97
- $F2AB DEFB $43,$53,$00,$FB
+t$F2A6 DEFM "N",$8A,"CO",$97,"CS",$00
 
 ; Message at F2AF
-t$F2AF DEFM "PUT"
+t$F2AE DEFM $FB,"PUT",$90,"S",$00
 
 ; Data block at F2B2
-b$F2B2 DEFB $90,$53,$00,$8B,$43,$48,$8C,$90
- $F2BA DEFB $59,$00
+t$F2B5 DEFM $8B,"CH",$8C,$90,"Y",$00
 
 ; Message at F2BC
-t$F2BC DEFM "ALLOYS"
+t$F2BC DEFM "ALLOYS",$00
 
 ; Data block at F2C2
-b$F2C2 DEFB $00,$46,$49,$8E,$8A,$4D,$53,$00
+t$F2C3 DEFM "FI",$8E,$8A,"MS",$00
 
 ; Message at F2CA
-t$F2CA DEFM "FURS"
+t$F2CA DEFM "FURS",$00
 
 ; Data block at F2CE
-b$F2CE DEFB $00,$4D,$8C,$90,$80,$53,$00
+t$F2CF DEFM "M",$8C,$90,$80,"S",$00
 
 ; Message at F2D5
-t$F2D5 DEFM "GOLD"
+t$F2D5 DEFM "GOLD",$00
 
 ; Data block at F2D9
-b$F2D9 DEFB $00,$50,$4C,$91,$8C,$55,$4D,$00
- $F2E1 DEFB $83,$4D,$2D,$CB,$9F,$89,$00,$80
- $F2E9 DEFB $49,$92,$20,$7F,$53,$00
+t$F2DA DEFM "PL",$91,$8C,"UM",$00,$83,"M-",$CB,$9F,$89,$00,$80,"I",$92," ",$7F,"S",$00
 
 ; Message at F2EF
 t$F2EF DEFM " NOT FOUND"
 
 ; Unused
-s$F2F9 DEFS $01
+t$F2F9 DEFM $00
 
 ; Message at F2FA
 t$F2FA DEFM " CR"
 
 ; Data block at F2FD
-b$F2FD DEFB $00,$4C,$8A,$83,$00,$46,$49,$90
- $F305 DEFB $85,$00,$53,$8B,$0E,$00,$47,$8E
- $F30D DEFB $92,$00,$52,$98,$00,$59,$45,$0E
- $F315 DEFB $4F,$57,$00
+t$F2FD DEFM $00,"L",$8A,$83,$00,"FI",$90,$85,$00,"S",$8B,$0E,$00,"G",$8E,$92,$00,"R",$98,$00,"YE",$0E,"OW",$00
 
 ; Message at F318
 t$F318 DEFM "BLUE"
 
 ; Data block at F31C
-b$F31C DEFB $00,$42,$95,$43,$4B,$00,$15,$00
+t$F31C DEFM $00,"B",$95,"CK",$00,$15,$00
 
 ; Message at F324
 t$F324 DEFM "SLIMY"
 
 ; Unused
-s$F329 DEFS $01
+t$F329 DEFM $00
 
 ; Message at F32A
 t$F32A DEFM "BUG-EY"
 
 ; Data block at F330
-b$F330 DEFB $98,$00,$48,$99,$4E,$98,$00,$42
- $F338 DEFB $9F,$59,$00,$46,$91,$00
+t$F330 DEFM $98,$00,"H",$99,"N",$98,$00,"B",$9F,"Y",$00,"F",$91,$00
 
 ; Message at F33E
 t$F33E DEFM "FURRY"
 
 ; Data block at F343
-b$F343 DEFB $00,$FE,$44,$92,$54,$00,$46,$FE
- $F34B DEFB $47,$00,$4C,$49,$84,$52,$44,$00
+t$F343 DEFM $00,$FE,"D",$92,"T",$00,"F",$FE,"G",$00,"LI",$84,"RD",$00
 
 ; Message at F353
 t$F353 DEFM "LOB"
 
 ; Data block at F356
-b$F356 DEFB $CB,$90,$00,$86,$52,$44,$00
+t$F356 DEFM $CB,$90,$00,$86,"RD",$00
 
 ; Message at F35D
 t$F35D DEFM "HUM"
 
 ; Data block at F360
-b$F360 DEFB $9B
+t$F360 DEFM $9B
 
 ; Message at F361
 t$F361 DEFM "OID"
 
 ; Unused
-s$F364 DEFS $01
+t$F364 DEFM $00
 
 ; Message at F365
 t$F365 DEFM "FEL"
 
 ; Data block at F368
-b$F368 DEFB $8C,$45,$00,$8C
+t$F368 DEFM $8C,"E",$00,$8C
 
 ; Message at F36C
 t$F36C DEFM "SECT"
 
 ; Data block at F370
-b$F370 DEFB $00,$AB,$94,$8D,$88,$00
+t$F370 DEFM $00,$AB,$94,$8D,$88,$00
 
 ; Message at F376
 t$F376 DEFM "COM"
 
 ; Data block at F379
-b$F379 DEFB $00,$FB,$4D,$9B,$44,$90,$00,$20
- $F381 DEFB $44,$89,$54,$FE,$59,$98,$00,$52
- $F389 DEFB $4F,$00,$06,$AE,$20,$20,$B0,$09
- $F391 DEFB $BA
+t$F379 DEFM $00,$FB,"M",$9B,"D",$90,$00," D",$89,"T",$FE,"Y",$98,$00,"RO",$00,$06,$AE,"  ",$B0,$09,$BA
 
 ; Message at F392
 t$F392 DEFM "    "
 
 ; Data block at F396
-b$F396 DEFB $AE,$20,$A6,$20,$46,$99
+t$F396 DEFM $AE," ",$A6," F",$99
 
 ; Message at F39C
 t$F39C DEFM " SA"
 
 ; Data block at F39F
-b$F39F DEFB $81,$08,$09,$00,$46,$52,$9F,$54
- $F3A7 DEFB $00,$8E,$8A,$00,$81,$46,$54,$00
- $F3AF DEFB $9E
+t$F39F DEFM $81,$08,$09,$00,"FR",$9F,"T",$00,$8E,$8A,$00,$81,"FT",$00,$9E
 
 ; Message at F3B0
 t$F3B0 DEFM "GHT"
 
 ; Unused
-s$F3B3 DEFS $01
+t$F3B3 DEFM $00
 
 ; Message at F3B4
 t$F3B4 DEFM "yLOW"
 
 ; Data block at F3B8
-b$F3B8 DEFB $00,$63,$10,$FC,$2A,$00
+t$F3B8 DEFM $00,"c",$10,$FC,"*",$00
 
 ; Message at F3BE
 t$F3BE DEFM "EXT"
 
 ; Data block at F3C1
-b$F3C1 DEFB $94,$20,$00
+t$F3C1 DEFM $94," ",$00
 
 ; Message at F3C4
 t$F3C4 DEFM "PULSE"
 
 ; Data block at F3C9
-b$F3C9 DEFB $BB,$00,$93,$41,$4D,$BB,$00
+t$F3C9 DEFM $BB,$00,$93,"AM",$BB,$00
 
 ; Message at F3D0
 t$F3D0 DEFM "FUEL"
 
 ; Data block at F3D4
-b$F3D4 DEFB $00,$4D,$9D,$53,$49,$81,$00,$E3
- $F3DC DEFB $CE
+t$F3D4 DEFM $00,"M",$9D,"SI",$81,$00,$E3,$CE
 
 ; Message at F3DD
 t$F3DD DEFM " BAY"
 
 ; Unused
-s$F3E1 DEFS $01
+t$F3E1 DEFM $00
 
 ; Message at F3E2
 t$F3E2 DEFM "E.C.M."
 
 ; Data block at F3E8
-b$F3E8 DEFB $A5,$00
+t$F3E8 DEFM $A5,$00
 
 ; Message at F3EA
 t$F3EA DEFM "fgS"
 
 ; Unused
-s$F3ED DEFS $01
+t$F3ED DEFM $00
 
 ; Message at F3EE
 t$F3EE DEFM "fhS"
 
 ; Unused
-s$F3F1 DEFS $01
+t$F3F1 DEFM $00
 
 ; Message at F3F2
 t$F3F2 DEFM "i SCOOPS"
 
 ; Data block at F3FA
-b$F3FA DEFB $00,$89
+t$F3FA DEFM $00,$89
 
 ; Message at F3FC
 t$F3FC DEFM "CAPE POD"
 
 ; Unused
-s$F404 DEFS $01
+t$F404 DEFM $00
 
 ; Message at F405
 t$F405 DEFM "yBOMB"
 
 ; Data block at F40A
-b$F40A DEFB $00,$79,$AE,$00
+t$F40A DEFM $00,"y",$AE,$00
 
 ; Message at F40E
 t$F40E DEFM "DOCK"
 
 ; Data block at F412
-b$F412 DEFB $8C,$47,$20,$D7,$00,$7A,$20,$BD
- $F41A DEFB $00
+t$F412 DEFM $8C,"G ",$D7,$00,"z ",$BD,$00
 
 ; Message at F41B
 t$F41B DEFM "MILIT"
 
 ; Data block at F420
-b$F420 DEFB $8A,$59,$BB,$00,$4D,$8C,$8C,$47
- $F428 DEFB $BB,$00,$09,$09,$09,$00,$8C,$FB
- $F430 DEFB $8C
+t$F420 DEFM $8A,"Y",$BB,$00,"M",$8C,$8C,"G",$BB,$00,$09,$09,$09,$00,$8C,$FB,$8C
 
 ; Message at F431
 t$F431 DEFM "G j"
 
 ; Data block at F434
-b$F434 DEFB $00,$92,$90
+t$F434 DEFM $00,$92,$90
 
 ; Message at F437
 t$F437 DEFM "GY "
 
 ; Data block at F43A
-b$F43A DEFB $00,$47,$41,$95,$43,$97,$43,$00
+t$F43A DEFM $00,"GA",$95,"C",$97,"C",$00
 
 ; Message at F442
 t$F442 DEFM "s ON"
 
 ; Data block at F446
-b$F446 DEFB $00,$41,$0E,$00
+t$F446 DEFM $00,"A",$0E,$00
 
 ; Message at F44A
 t$F44A DEFM "CLOAK"
 
 ; Data block at F44F
-b$F44F DEFB $8C
+t$F44F DEFM $8C
 
 ; Message at F450
 t$F450 DEFM "G DEVI"
 
 ; Data block at F456
-b$F456 DEFB $85,$00,$06,$FC,$20,$04,$08,$77
- $F45E DEFB $50,$8E,$53,$92,$54,$20,$A5,$09
- $F466 DEFB $BD,$20,$A5,$09,$00,$49,$9C,$4D
- $F46E DEFB $00,$4C,$4C,$00,$06
+t$F456 DEFM $85,$00,$06,$FC," ",$04,$08,"wP",$8E,"S",$92,"T ",$A5,$09,$BD," ",$A5,$09,$00,"I",$9C,"M",$00,"LL",$00,$06
 
 ; Message at F473
 t$F473 DEFM "MAYDAY"
 
 ; Data block at F479
-b$F479 DEFB $08,$2A,$20,$0B,$20,$8C
+t$F479 DEFM $08,"* ",$0B," ",$8C
 
 ; Message at F47F
 t$F47F DEFM "VAD"
 
 ; Data block at F482
-b$F482 DEFB $98,$2A,$00,$20,$9F,$20,$00,$06
- $F48A DEFB $CF,$4D,$92,$54,$08,$3A,$00,$43
- $F492 DEFB $81,$9B,$00
+t$F482 DEFM $98,"*",$00," ",$9F," ",$00,$06,$CF,"M",$92,"T",$08,":",$00,"C",$81,$9B,$00
 
 ; Message at F495
 t$F495 DEFM "OFF"
 
 ; Data block at F498
-b$F498 DEFB $92,$44,$90,$00
+t$F498 DEFM $92,"D",$90,$00
 
 ; Message at F49C
 t$F49C DEFM "FUGI"
 
 ; Data block at F4A0
-b$F4A0 DEFB $97,$96,$00,$48,$8A,$4D,$81,$53
- $F4A8 DEFB $53,$00,$4D,$4F,$CB
+t$F4A0 DEFM $97,$96,$00,"H",$8A,"M",$81,"SS",$00,"MO",$CB
 
 ; Message at F4AD
 t$F4AD DEFM "LY "
 
 ; Data block at F4B0
-b$F4B0 DEFB $15,$00,$AC,$00,$AB,$00
+t$F4B0 DEFM $15,$00,$AC,$00,$AB,$00
 
 ; Message at F4B6
 t$F4B6 DEFM "ABO"
 
 ; Data block at F4B9
-b$F4B9 DEFB $96,$20,$AB,$00,$FB
+t$F4B9 DEFM $96," ",$AB,$00,$FB
 
 ; Message at F4BE
 t$F4BE DEFM "PET"
 
 ; Data block at F4C1
-b$F4C1 DEFB $92,$54,$00,$44,$9B,$83,$FE,$88
- $F4C9 DEFB $00
+t$F4C1 DEFM $92,"T",$00,"D",$9B,$83,$FE,$88,$00
 
 ; Message at F4CA
 t$F4CA DEFM "DEADLY"
 
 ; Unused
-s$F4D0 DEFS $01
+t$F4D0 DEFM $00
 
 ; Message at F4D1
 t$F4D1 DEFM "---- E L I T E ----"
 
 ; Data block at F4E4
-b$F4E4 DEFB $00,$50,$8E,$53,$92,$54,$00,$69
- $F4EC DEFB $20,$81
+t$F4E4 DEFM $00,"P",$8E,"S",$92,"T",$00,"i ",$81
 
 ; Message at F4EE
 t$F4EE DEFM "AK*"
 
 ; Data block at F4F1
-b$F4F1 DEFB $00,$00,$00,$00
+t$F4F1 DEFM $00,$00,$00,$00
 
 ; Data block at F4F5
-@label=more_tokens
-b$F4F5 DEFB $01,$08
+@label=other_tokens
+t$F4F5 DEFM $01,$08
 
 ; Message at F4F7
 t$F4F7 DEFM "  AC"
 
 ; Data block at F4FB
-b$F4FB DEFB $E9
+t$F4FB DEFM "i"+$80
 
 ; Message at F4FC
 t$F4FC DEFM "SS ME"
 
 ; Data block at F501
-b$F501 DEFB $E1,$02,$0C,$0C,$0C,$0C
+t$F501 DEFM $E1,$02,$0C,$0C,$0C,$0C
 
 ; Message at F507
 t$F507 DEFM " 1 "
 
 ; Data block at F50A
-b$F50A DEFB $95,$0C,$0C,$20,$32,$CB,$20,$9A
- $F512 DEFB $20,$01,$04,$02,$0C,$0C
+t$F50A DEFM $95,$0C,$0C," 2",$CB," ",$9A," ",$01,$04,$02,$0C,$0C
 
 ; Message at F518
 t$F518 DEFM " 3 EX"
 
 ; Data block at F51D
-b$F51D DEFB $DB,$00,$DE,$EE
+t$F51D DEFM $DB,$00,$DE,$EE
 
 ; Message at F521
 t$F521 DEFM "T TAPE, "
 
 ; Data block at F529
-b$F529 DEFB $E2,$F6,$20,$50,$F2
+t$F529 DEFM $E2,$F6," P",$F2
 
 ; Message at F52E
 t$F52E DEFM "SS "
 
 ; Data block at F531
-b$F531 DEFB $FF
+t$F531 DEFM $FF
 
 ; Message at F532
 t$F532 DEFM "Y KEY"
 
 ; Unused
-s$F537 DEFS $01
+t$F537 DEFM $00
 
 ; Message at F538
 t$F538 DEFM "TAPE "
 
 ; Data block at F53D
-b$F53D DEFB $E0,$41,$44,$C3,$F4,$52,$FD,$00
- $F545 DEFB $DA,$C6,$52,$DB,$59,$20,$E1,$4D
- $F54D DEFB $42,$F4,$3A,$20,$00,$B0,$6D,$CA
- $F555 DEFB $6E,$B1,$00,$20,$20,$95,$CE,$00
- $F55D DEFB $50,$F2
+t$F53D DEFM $E0,"AD",$C3,$F4,"R",$FD,$00,$DA,$C6,"R",$DB,"Y ",$E1,"MB",$F4,": ",$00,$B0,"m",$CA,"n",$B1,$00,"  ",$95,$CE,$00,"P",$F2
 
 ; Message at F55F
 t$F55F DEFM "SS "
 
 ; Data block at F562
-b$F562 DEFB $D1,$41,$E9,$2C,$20,$9A,$00,$9A
+t$F562 DEFM $D1,"A",$E9,", ",$9A,$00,$9A
 
 ; Message at F56A
 t$F56A DEFM "'S "
 
 ; Data block at F56D
-b$F56D DEFB $C8,$00
+t$F56D DEFM $C8,$00
 
 ; Message at F56F
 t$F56F DEFM " GAME O"
 
 ; Data block at F576
-b$F576 DEFB $FA,$52,$00,$B0,$F0
+t$F576 DEFM $FA,"R",$00,$B0,$F0
 
 ; Message at F57B
 t$F57B DEFM " APP"
 
 ; Data block at F57F
-b$F57F DEFB $F2
+t$F57F DEFM "r"+$80
 
 ; Message at F580
 t$F580 DEFM "CIA"
 
 ; Data block at F583
-b$F583 DEFB $FB,$DF
+t$F583 DEFM $FB,$DF
 
 ; Message at F585
 t$F585 DEFM " OF "
 
 ; Data block at F589
-b$F589 DEFB $B3,$52,$20,$A6,$20,$43,$D9,$F8
+t$F589 DEFM $B3,"R ",$A6," C",$D9,$F8
 
 ; Message at F591
 t$F591 DEFM "GE "
 
 ; Data block at F594
-b$F594 DEFB $93,$20,$C1
+t$F594 DEFM $93," ",$C1
 
 ; Message at F597
 t$F597 DEFM "S OF "
 
 ; Data block at F59C
-b$F59C DEFB $10
+t$F59C DEFM $10
 
 ; Message at F59D
 t$F59D DEFM " AW"
 
 ; Data block at F5A0
-b$F5A0 DEFB $EE,$44,$20,$B3,$20,$E2
+t$F5A0 DEFM $EE,"D ",$B3," ",$E2
 
 ; Message at F5A6
 t$F5A6 DEFM "EIR HIGHE"
 
 ; Data block at F5AF
-b$F5AF DEFB $DE,$20,$48,$DF,$D9
+t$F5AF DEFM $DE," H",$DF,$D9
 
 ; Message at F5B4
 t$F5B4 DEFM "R - "
 
 ; Data block at F5B8
-b$F5B8 DEFB $93,$12,$2D,$12,$B1,$D3,$01,$4C
- $F5C0 DEFB $49,$FA,$20,$E0,$4E,$47,$B2
+t$F5B8 DEFM $93,$12,"-",$12,$B1,$D3,$01,"LI",$FA," ",$E0,"NG",$B2
 
 ; Message at F5C7
 t$F5C7 DEFM "PRO"
 
 ; Data block at F5CA
-b$F5CA DEFB $D1,$F4,$2A,$02,$00,$02
+t$F5CA DEFM $D1,$F4,"*",$02,$00,$02
 
 ; Message at F5D0
 t$F5D0 DEFM "SHIP BO"
 
 ; Data block at F5D7
-b$F5D7 DEFB $EE,$44,$C4,$42,$59,$01,$00,$F2
- $F5DF DEFB $46,$55,$E7,$ED,$00
+t$F5D7 DEFM $EE,"D",$C4,"BY",$01,$00,$F2,"FU",$E7,$ED,$00
 
 ; Message at F5E4
 t$F5E4 DEFM " PIR"
 
 ; Data block at F5E8
-b$F5E8 DEFB $F5,$45,$00,$15,$91,$20,$C8,$1A
- $F5F0 DEFB $00,$02,$B3
+t$F5E8 DEFM $F5,"E",$00,$15,$91," ",$C8,$1A,$00,$02,$B3
 
 ; Message at F5F3
 t$F5F3 DEFM " HA"
 
 ; Data block at F5F6
-b$F5F6 DEFB $FA,$CB,$44,$20,$D9
+t$F5F6 DEFM $FA,$CB,"D ",$D9
 
 ; Message at F5FB
 t$F5FB DEFM "R LI"
 
 ; Data block at F5FF
-b$F5FF DEFB $FA,$53,$2A,$D3,$18,$18,$E2,$FF
- $F607 DEFB $4B,$20,$B3,$2C,$20,$9A
+t$F5FF DEFM $FA,"S*",$D3,$18,$18,$E2,$FF,"K ",$B3,", ",$9A
 
 ; Message at F60D
 t$F60D DEFM "..."
 
 ; Data block at F610
-b$F610 DEFB $00,$46,$D8,$E5,$44,$00,$E3,$54
- $F618 DEFB $D8,$E5,$00
+t$F610 DEFM $00,"F",$D8,$E5,"D",$00,$E3,"T",$D8,$E5,$00
 
 ; Message at F61B
 t$F61B DEFM "WELL K"
 
 ; Data block at F621
-b$F621 DEFB $E3,$57,$4E,$00
+t$F621 DEFM $E3,"WN",$00
 
 ; Message at F625
 t$F625 DEFM "FAMO"
 
 ; Data block at F629
-b$F629 DEFB $EC,$00,$E3,$54,$FC,$00,$FA,$52
- $F631 DEFB $59,$00,$4D,$DC
+t$F629 DEFM $EC,$00,$E3,"T",$FC,$00,$FA,"RY",$00,"M",$DC
 
 ; Message at F635
 t$F635 DEFM "DLY"
 
 ; Data block at F638
-b$F638 DEFB $00,$4D,$4F,$DE,$00,$F2,$41,$53
- $F640 DEFB $DF,$D8,$4C,$59,$00,$00,$A5,$00
- $F648 DEFB $72,$00,$47,$F2,$F5,$00,$56,$41
- $F650 DEFB $DE,$00,$50,$F0,$4B,$00,$02
+t$F638 DEFM $00,"MO",$DE,$00,$F2,"AS",$DF,$D8,"LY",$00,$00,$A5,$00,"r",$00,"G",$F2,$F5,$00,"VA",$DE,$00,"P",$F0,"K",$00,$02
 
 ; Message at F657
 t$F657 DEFM "w v"
 
 ; Data block at F65A
-b$F65A DEFB $0D,$20,$B9,$41,$FB,$DF,$53,$00
- $F662 DEFB $9C,$53,$00,$75,$00,$80,$20,$46
- $F66A DEFB $FD,$ED,$54,$53,$00,$4F,$E9,$FF
- $F672 DEFB $53,$00
+t$F65A DEFM $0D," ",$B9,"A",$FB,$DF,"S",$00,$9C,"S",$00,"u",$00,$80," F",$FD,$ED,"TS",$00,"O",$E9,$FF,"S",$00
 
 ; Message at F674
 t$F674 DEFM "SHYN"
 
 ; Data block at F678
-b$F678 DEFB $ED,$53,$00,$53,$DC,$4C,$F0,$ED
- $F680 DEFB $53,$00,$EF,$54,$C3,$54,$F8,$F1
- $F688 DEFB $FB,$DF,$53,$00,$E0,$F5,$48,$C3
+t$F678 DEFM $ED,"S",$00,"S",$DC,"L",$F0,$ED,"S",$00,$EF,"T",$C3,"T",$F8,$F1,$FB,$DF,"S",$00,$E0,$F5,"H",$C3
 
 ; Message at F690
 t$F690 DEFM "OF d"
 
 ; Data block at F694
-b$F694 DEFB $00,$E0,$FA,$20,$46,$FD,$20,$64
- $F69C DEFB $00
+t$F694 DEFM $00,$E0,$FA," F",$FD," d",$00
 
 ; Message at F69D
 t$F69D DEFM "FOOD B"
 
 ; Data block at F6A3
-b$F6A3 DEFB $E5,$4E,$44,$F4,$53,$00,$54,$D9
- $F6AB DEFB $52,$49,$DE,$53,$00,$50,$4F,$DD
- $F6B3 DEFB $52,$59,$00,$F1
+t$F6A3 DEFM $E5,"ND",$F4,"S",$00,"T",$D9,"RI",$DE,"S",$00,"PO",$DD,"RY",$00,$F1
 
 ; Message at F6B7
 t$F6B7 DEFM "SCOS"
 
 ; Data block at F6BB
-b$F6BB DEFB $00,$6C,$00,$57,$E4,$4B,$C3,$9E
- $F6C3 DEFB $00,$43,$F8,$42,$00,$42,$F5,$00
- $F6CB DEFB $E0,$42,$DE,$00,$12,$00,$F7,$53
- $F6D3 DEFB $DD,$00,$50,$F9,$47,$55,$FC,$00
- $F6DB DEFB $F8
+t$F6BB DEFM $00,"l",$00,"W",$E4,"K",$C3,$9E,$00,"C",$F8,"B",$00,"B",$F5,$00,$E0,"B",$DE,$00,$12,$00,$F7,"S",$DD,$00,"P",$F9,"GU",$FC,$00,$F8
 
 ; Message at F6DC
 t$F6DC DEFM "VAG"
 
 ; Data block at F6DF
-b$F6DF DEFB $FC,$00,$C6,$52,$53,$FC,$00,$53
- $F6E7 DEFB $43,$D9,$52,$47,$FC,$00
+t$F6DF DEFM $FC,$00,$C6,"RS",$FC,$00,"SC",$D9,"RG",$FC,$00
 
 ; Message at F6ED
 t$F6ED DEFM "q CIV"
 
 ; Data block at F6F2
-b$F6F2 DEFB $DC,$20,$57,$EE,$00,$68,$20,$5F
- $F6FA DEFB $20,$60,$53,$00
+t$F6F2 DEFM $DC," W",$EE,$00,"h _ ",$60,"S",$00
 
 ; Message at F6FE
 t$F6FE DEFM "A h "
 
 ; Data block at F702
-b$F702 DEFB $F1,$DA,$41,$DA,$00
+t$F702 DEFM $F1,$DA,"A",$DA,$00
 
 ; Message at F707
 t$F707 DEFM "q E"
 
 ; Data block at F70A
-b$F70A DEFB $EE,$E2,$FE,$41,$4B,$ED,$00,$71
- $F712 DEFB $20,$EB,$F9
+t$F70A DEFM $EE,$E2,$FE,"AK",$ED,$00,"q ",$EB,$F9
 
 ; Message at F715
 t$F715 DEFM "R AC"
 
 ; Data block at F719
-b$F719 DEFB $FB,$56,$DB,$59,$00,$AF,$5D,$20
- $F721 DEFB $5E,$00,$93,$11,$20,$5F,$20,$60
- $F729 DEFB $00,$AF,$C1
+t$F719 DEFM $FB,"V",$DB,"Y",$00,$AF,"] ",$5E,$00,$93,$11," _ ",$60,$00,$AF,$C1
 
 ; Message at F72C
 t$F72C DEFM "S' b c"
 
 ; Data block at F732
-b$F732 DEFB $00,$02,$7A,$0D,$00,$AF
+t$F732 DEFM $00,$02,"z",$0D,$00,$AF
 
 ; Message at F738
 t$F738 DEFM "k l"
 
 ; Unused
-s$F73B DEFS $01
+t$F73B DEFM $00
 
 ; Message at F73C
 t$F73C DEFM "JUI"
 
 ; Data block at F73F
-b$F73F DEFB $E9,$00,$42,$F8
+t$F73F DEFM $E9,$00,"B",$F8
 
 ; Message at F743
 t$F743 DEFM "NDY"
 
 ; Data block at F746
-b$F746 DEFB $00,$57,$F5,$F4,$00,$42,$F2,$57
- $F74E DEFB $00,$47,$EE,$47,$E5,$20,$42,$F9
- $F756 DEFB $DE,$F4,$53,$00,$12,$00,$11,$20
- $F75E DEFB $60,$00,$11,$20,$12,$00,$11,$20
- $F766 DEFB $68,$00,$68,$20,$12,$00,$46,$D8
- $F76E DEFB $55,$E0,$EC,$00
+t$F746 DEFM $00,"W",$F5,$F4,$00,"B",$F2,"W",$00,"G",$EE,"G",$E5," B",$F9,$DE,$F4,"S",$00,$12,$00,$11," ",$60,$00,$11," ",$12,$00,$11," h",$00,"h ",$12,$00,"F",$D8,"U",$E0,$EC,$00
 
 ; Message at F772
 t$F772 DEFM "EXO"
 
 ; Data block at F775
-b$F775 DEFB $FB,$43,$00
+t$F775 DEFM $FB,"C",$00
 
 ; Message at F778
 t$F778 DEFM "HOOPY"
 
 ; Data block at F77D
-b$F77D DEFB $00,$55,$E1,$53,$55,$E4,$00
+t$F77D DEFM $00,"U",$E1,"SU",$E4,$00
 
 ; Message at F784
 t$F784 DEFM "EXC"
 
 ; Data block at F787
-b$F787 DEFB $DB,$F0,$47,$00,$C6,$98,$F0,$45
- $F78F DEFB $00
+t$F787 DEFM $DB,$F0,"G",$00,$C6,$98,$F0,"E",$00
 
 ; Message at F790
 t$F790 DEFM "NIGHT LIFE"
 
 ; Unused
-s$F79A DEFS $01
+t$F79A DEFM $00
 
 ; Message at F79B
 t$F79B DEFM "CASI"
 
 ; Data block at F79F
-b$F79F DEFB $E3,$53,$00,$53,$DB
+t$F79F DEFM $E3,"S",$00,"S",$DB
 
 ; Message at F7A4
 t$F7A4 DEFM " COMS"
 
 ; Data block at F7A9
-b$F7A9 DEFB $00,$02,$7A,$0D,$00,$03,$00,$93
- $F7B1 DEFB $91,$20,$03,$00,$93,$92,$20,$03
- $F7B9 DEFB $00,$94,$91,$00,$94,$92,$00,$02
- $F7C1 DEFB $93
+t$F7A9 DEFM $00,$02,"z",$0D,$00,$03,$00,$93,$91," ",$03,$00,$93,$92," ",$03,$00,$94,$91,$00,$94,$92,$00,$02,$93
 
 ; Message at F7C2
 t$F7C2 DEFM "SUN"
 
 ; Data block at F7C5
-b$F7C5 DEFB $CA,$47,$4F,$C3,$E3
+t$F7C5 DEFM $CA,"GO",$C3,$E3
 
 ; Message at F7CA
 t$F7CA DEFM "VA*"
 
 ; Data block at F7CD
-b$F7CD DEFB $D3,$20,$57,$DC,$4C,$20,$B3,$CB
- $F7D5 DEFB $20,$EC,$20,$CE,$00,$13,$00,$53
- $F7DD DEFB $02,$2A,$18,$18,$00,$00,$00
+t$F7CD DEFM $D3," W",$DC,"L ",$B3,$CB," ",$EC," ",$CE,$00,$13,$00,"S",$02,"*",$18,$18,$00,$00,$00
 
 ; Message at F7E4
 t$F7E4 DEFM "N UN"
 
 ; Data block at F7E8
-b$F7E8 DEFB $F2,$EF,$52,$4B,$D8,$E5,$00,$20
- $F7F0 DEFB $42,$FD,$F0,$47,$00
+t$F7E8 DEFM $F2,$EF,"RK",$D8,$E5,$00," B",$FD,$F0,"G",$00
 
 ; Message at F7F5
 t$F7F5 DEFM " DULL"
 
 ; Unused
-s$F7FA DEFS $01
+t$F7FA DEFM $00
 
 ; Message at F7FB
 t$F7FB DEFM " TE"
 
 ; Data block at F7FE
-b$F7FE DEFB $F1,$4F,$EC,$00,$20,$F2
+t$F7FE DEFM $F1,"O",$EC,$00," ",$F2
 
 ; Message at F804
 t$F804 DEFM "VOLT"
 
 ; Data block at F808
-b$F808 DEFB $F0,$47,$00,$91,$00,$92,$00,$50
- $F810 DEFB $F9,$E9,$00,$4C,$DB,$54,$E5,$20
- $F818 DEFB $91,$00
+t$F808 DEFM $F0,"G",$00,$91,$00,$92,$00,"P",$F9,$E9,$00,"L",$DB,"T",$E5," ",$91,$00
 
 ; Message at F81A
 t$F81A DEFM "DUMP"
 
 ; Unused
-s$F81E DEFS $06
+t$F81E DEFM $00,$00,$00,$00,$00,$00
 
 ; Message at F824
 t$F824 DEFM "GROSS "
 
 ; Data block at F82A
-b$F82A DEFB $06,$BA,$0A,$49,$56,$DB,$59,$00
+t$F82A DEFM $06,$BA,$0A,"IV",$DB,"Y",$00
 
 ; Message at F832
 t$F832 DEFM "ECO"
 
 ; Data block at F835
-b$F835 DEFB $E3,$4D,$59,$00,$E5,$47,$E4,$20
- $F83D DEFB $DE,$F5,$EC,$00,$F8,$FB,$4E,$47
- $F845 DEFB $00,$57,$41,$D1,$00,$4D,$4F,$E2
- $F84D DEFB $00,$57,$EE,$E2,$4F,$47,$00,$FF
- $F855 DEFB $54,$00,$12,$00,$50,$4F,$DD,$00
- $F85D DEFB $41,$DE
+t$F835 DEFM $E3,"MY",$00,$E5,"G",$E4," ",$DE,$F5,$EC,$00,$F8,$FB,"NG",$00,"WA",$D1,$00,"MO",$E2,$00,"W",$EE,$E2,"OG",$00,$FF,"T",$00,$12,$00,"PO",$DD,$00,"A",$DE
 
 ; Message at F85F
 t$F85F DEFM "ROPHYSICI"
 
 ; Data block at F868
-b$F868 DEFB $DE,$00
+t$F868 DEFM $DE,$00
 
 ; Message at F86A
 t$F86A DEFM "YAK"
 
 ; Unused
-s$F86D DEFS $01
+t$F86D DEFM $00
 
 ; Message at F86E
 t$F86E DEFM "SNA"
 
 ; Data block at F871
-b$F871 DEFB $DC,$00
+t$F871 DEFM $DC,$00
 
 ; Message at F873
 t$F873 DEFM "SLUG"
 
 ; Unused
-s$F877 DEFS $01
+t$F877 DEFM $00
 
 ; Message at F878
 t$F878 DEFM "TROPIC"
 
 ; Data block at F87E
-b$F87E DEFB $E4,$00,$44,$F6,$DA,$00,$F8,$F0
- $F886 DEFB $00
+t$F87E DEFM $E4,$00,"D",$F6,$DA,$00,$F8,$F0,$00
 
 ; Message at F887
 t$F887 DEFM "IMP"
 
 ; Data block at F88A
-b$F88A DEFB $F6,$DD,$F8,$42,$E5,$00
+t$F88A DEFM $F6,$DD,$F8,"B",$E5,$00
 
 ; Message at F890
 t$F890 DEFM "EXU"
 
 ; Data block at F893
-b$F893 DEFB $F7,$F8,$4E,$54,$00
+t$F893 DEFM $F7,$F8,"NT",$00
 
 ; Message at F898
 t$F898 DEFM "FUNNY"
 
 ; Unused
-s$F89D DEFS $01
+t$F89D DEFM $00
 
 ; Message at F89E
 t$F89E DEFM "WEIRD"
 
 ; Data block at F8A3
-b$F8A3 DEFB $00,$55,$E1,$53,$55,$E4,$00,$DE
- $F8AB DEFB $F8,$4E,$E7,$00,$50,$45,$C6,$4C
- $F8B3 DEFB $49,$EE,$00,$46,$F2,$FE,$F6,$54
- $F8BB DEFB $00
+t$F8A3 DEFM $00,"U",$E1,"SU",$E4,$00,$DE,$F8,"N",$E7,$00,"PE",$C6,"LI",$EE,$00,"F",$F2,$FE,$F6,"T",$00
 
 ; Message at F8BC
 t$F8BC DEFM "OCCASI"
 
 ; Data block at F8C2
-b$F8C2 DEFB $DF,$E4,$00
+t$F8C2 DEFM $DF,$E4,$00
 
 ; Message at F8C5
 t$F8C5 DEFM "UNP"
 
 ; Data block at F8C8
-b$F8C8 DEFB $F2,$F1,$43,$54,$D8,$E5,$00,$44
- $F8D0 DEFB $F2
+t$F8C8 DEFM $F2,$F1,"CT",$D8,$E5,$00,"D",$F2
 
 ; Message at F8D1
 t$F8D1 DEFM "ADFUL"
 
 ; Data block at F8D6
-b$F8D6 DEFB $00,$AB,$00,$5C
+t$F8D6 DEFM $00,$AB,$00,"\\"
 
 ; Message at F8DA
 t$F8DA DEFM " [ F"
 
 ; Data block at F8DE
-b$F8DE DEFB $FD,$20,$65,$00,$8C,$B2,$65,$00
+t$F8DE DEFM $FD," e",$00,$8C,$B2,"e",$00
 
 ; Message at F8E6
 t$F8E6 DEFM "f BY g"
 
 ; Data block at F8EC
-b$F8EC DEFB $00,$8C
+t$F8EC DEFM $00,$8C
 
 ; Message at F8EE
 t$F8EE DEFM " BUT "
 
 ; Data block at F8F3
-b$F8F3 DEFB $8E,$00
+t$F8F3 DEFM $8E,$00
 
 ; Message at F8F5
 t$F8F5 DEFM " Ao p"
 
 ; Data block at F8FA
-b$F8FA DEFB $00,$50,$4C,$FF,$DD,$00,$57,$FD
- $F902 DEFB $4C,$44,$00,$E2,$45,$20,$00,$E2
- $F90A DEFB $98,$20,$00,$E0,$41,$44,$D2,$9A
- $F912 DEFB $00,$09,$0B,$01,$08,$00,$9A,$CB
- $F91A DEFB $44,$00,$49,$53,$00,$49,$FF,$00
- $F922 DEFB $13
+t$F8FA DEFM $00,"PL",$FF,$DD,$00,"W",$FD,"LD",$00,$E2,"E ",$00,$E2,$98," ",$00,$E0,"AD",$D2,$9A,$00,$09,$0B,$01,$08,$00,$9A,$CB,"D",$00,"IS",$00,"I",$FF,$00,$13
 
 ; Message at F923
 t$F923 DEFM "COMM"
 
 ; Data block at F927
-b$F927 DEFB $FF,$44,$F4,$00,$68,$00,$4D,$D9
+t$F927 DEFM $FF,"D",$F4,$00,"h",$00,"M",$D9
 
 ; Message at F92F
 t$F92F DEFM "NTA"
 
 ; Data block at F932
-b$F932 DEFB $F0,$00,$FC,$49,$42,$E5,$00,$54
- $F93A DEFB $F2,$45,$00,$D1
+t$F932 DEFM $F0,$00,$FC,"IB",$E5,$00,"T",$F2,"E",$00,$D1
 
 ; Message at F93E
 t$F93E DEFM "OTT"
 
 ; Data block at F941
-b$F941 DEFB $FC,$00,$78,$00,$79,$00
+t$F941 DEFM $FC,$00,"x",$00,"y",$00
 
 ; Message at F947
 t$F947 DEFM "aOID"
 
 ; Data block at F94B
-b$F94B DEFB $00,$7F,$00,$7E,$00,$FF,$43,$49
- $F953 DEFB $F6,$54,$00,$45,$58,$E9,$50,$FB
- $F95B DEFB $DF,$E4,$00,$45,$43,$E9
+t$F94B DEFM $00,$7F,$00,"~",$00,$FF,"CI",$F6,"T",$00,"EX",$E9,"P",$FB,$DF,$E4,$00,"EC",$E9
 
 ; Message at F961
 t$F961 DEFM "NTRIC"
 
 ; Data block at F966
-b$F966 DEFB $00,$F0,$47,$F8,$F0,$FC,$00,$72
- $F96E DEFB $00,$4B,$DC,$4C,$F4,$00
+t$F966 DEFM $00,$F0,"G",$F8,$F0,$FC,$00,"r",$00,"K",$DC,"L",$F4,$00
 
 ; Message at F974
 t$F974 DEFM "DEADLY"
 
 ; Data block at F97A
-b$F97A DEFB $00,$45,$56,$DC,$00,$E5,$E2,$E4
- $F982 DEFB $00
+t$F97A DEFM $00,"EV",$DC,$00,$E5,$E2,$E4,$00
 
 ; Message at F983
 t$F983 DEFM "VICIO"
 
 ; Data block at F988
-b$F988 DEFB $EC,$00,$DB,$53,$20,$00,$0D,$0E
- $F990 DEFB $13,$00,$2E,$0C,$0F,$00,$20,$FF
- $F998 DEFB $44,$20,$00,$59,$D9,$00,$50,$EE
- $F9A0 DEFB $4B,$C3,$4D,$DD,$F4,$53,$00,$44
- $F9A8 DEFB $EC
+t$F988 DEFM $EC,$00,$DB,"S ",$00,$0D,$0E,$13,$00,".",$0C,$0F,$00," ",$FF,"D ",$00,"Y",$D9,$00,"P",$EE,"K",$C3,"M",$DD,$F4,"S",$00,"D",$EC
 
 ; Message at F9A9
 t$F9A9 DEFM "T C"
 
 ; Data block at F9AC
-b$F9AC DEFB $E0
+t$F9AC DEFM $E0
 
 ; Message at F9AD
 t$F9AD DEFM "UDS"
 
 ; Data block at F9B0
-b$F9B0 DEFB $00,$49,$E9,$20,$F7
+t$F9B0 DEFM $00,"I",$E9," ",$F7
 
 ; Message at F9B5
 t$F9B5 DEFM "RGS"
 
 ; Data block at F9B8
-b$F9B8 DEFB $00,$52,$4F,$D5,$20,$46,$FD,$EF
- $F9C0 DEFB $FB,$DF,$53,$00
+t$F9B8 DEFM $00,"RO",$D5," F",$FD,$EF,$FB,$DF,"S",$00
 
 ; Message at F9C4
 t$F9C4 DEFM "VOLCA"
 
 ; Data block at F9C9
-b$F9C9 DEFB $E3,$ED,$00,$50,$4C,$FF,$54,$00
+t$F9C9 DEFM $E3,$ED,$00,"PL",$FF,"T",$00
 
 ; Message at F9D1
 t$F9D1 DEFM "TULIP"
 
 ; Data block at F9D6
-b$F9D6 DEFB $00,$42,$FF,$FF,$41,$00,$43,$FD
- $F9DE DEFB $4E,$00,$12,$57,$45,$FC,$00,$12
- $F9E6 DEFB $00,$11,$20,$12,$00,$11,$20,$68
- $F9EE DEFB $00,$F0,$48,$41,$EA,$54,$FF,$54
- $F9F6 DEFB $00,$BF,$00,$F0,$47,$20,$00,$FC
- $F9FE DEFB $20,$00,$20,$4D,$98,$53,$49,$DF
- $FA06 DEFB $00,$43,$55,$00,$42,$F2,$41,$4B
- $FA0E DEFB $00
+t$F9D6 DEFM $00,"B",$FF,$FF,"A",$00,"C",$FD,"N",$00,$12,"WE",$FC,$00,$12,$00,$11," ",$12,$00,$11," h",$00,$F0,"HA",$EA,"T",$FF,"T",$00,$BF,$00,$F0,"G ",$00,$FC," ",$00," M",$98,"SI",$DF,$00,"CU",$00,"B",$F2,"AK",$00
 
 ; Message at FA0F
 t$FA0F DEFM "NAME? "
 
 ; Unused
-s$FA15 DEFS $01
+t$FA15 DEFM $00
 
 ; Message at FA16
 t$FA16 DEFM " TO "
 
 ; Data block at FA1A
-b$FA1A DEFB $00,$20,$98,$20,$00
+t$FA1A DEFM $00," ",$98," ",$00
 
 ; Message at FA1F
 t$FA1F DEFM " SA"
 
 ; Data block at FA22
-b$FA22 DEFB $FA,$00,$2E,$0C,$20,$13,$00,$44
- $FA2A DEFB $4F,$D5,$FC,$00,$20,$01
+t$FA22 DEFM $FA,$00,".",$0C," ",$13,$00,"DO",$D5,$FC,$00," ",$01
 
 ; Message at FA30
 t$FA30 DEFM "(Y/N)?"
 
 ; Data block at FA36
-b$FA36 DEFB $02,$00,$02,$06,$6C,$0A
+t$FA36 DEFM $02,$00,$02,$06,"l",$0A
 
 ; Message at FA3C
 t$FA3C DEFM " JAMM"
 
 ; Data block at FA41
-b$FA41 DEFB $F4,$00
+t$FA41 DEFM $F4,$00
 
 ; Message at FA43
 t$FA43 DEFM " A "
 
 ; Data block at FA46
-b$FA46 DEFB $00,$53,$50,$00
+t$FA46 DEFM $00,"SP",$00
 
 ; Message at FA4A
 t$FA4A DEFM " NEW "
 
 ; Data block at FA4F
-b$FA4F DEFB $00,$0C,$0C,$00,$20,$13,$E2,$EE
- $FA57 DEFB $47,$DF,$00,$43,$4B,$00,$46,$D9
+t$FA4F DEFM $00,$0C,$0C,$00," ",$13,$E2,$EE,"G",$DF,$00,"CK",$00,"F",$D9
 
 ; Message at FA5F
 t$FA5F DEFM "ND "
 
 ; Data block at FA62
-b$FA62 DEFB $9A,$20,$04,$00
+t$FA62 DEFM $9A," ",$04,$00
 
 ; Message at FA66
 t$FA66 DEFM "POPUL"
 
 ; Data block at FA6B
-b$FA6B DEFB $F5,$49,$DF,$00,$00,$20,$20,$00
- $FA73 DEFB $40,$40,$00,$20,$5F,$00,$40,$2B
- $FA7B DEFB $00,$00,$B0,$01,$03,$CA,$F2,$53
- $FA83 DEFB $49,$DE,$C3,$41,$D4,$20,$F0
+t$FA6B DEFM $F5,"I",$DF,$00,$00,"  ",$00,"@@",$00," _",$00,"@+",$00,$00,$B0,$01,$03,$CA,$F2,"SI",$DE,$C3,"A",$D4," ",$F0
 
 ; Message at FA8A
 t$FA8A DEFM "VASI"
 
 ; Data block at FA8E
-b$FA8E DEFB $DF,$2A,$02,$0F,$00,$01,$57,$FF
- $FA96 DEFB $54,$C4
+t$FA8E DEFM $DF,"*",$02,$0F,$00,$01,"W",$FF,"T",$C4
 
 ; Message at FA98
 t$FA98 DEFM "BY G"
 
 ; Data block at FA9C
-b$FA9C DEFB $E4
+t$FA9C DEFM "d"+$80
 
 ; Message at FA9D
 t$FA9D DEFM "COP:"
 
 ; Data block at FAA1
-b$FAA1 DEFB $0C,$D3
+t$FAA1 DEFM $0C,$D3
 
 ; Message at FAA3
 t$FAA3 DEFM "    "
 
 ; Data block at FAA7
-b$FAA7 DEFB $D0,$42,$F8,$FA,$20,$9A,$20,$D3
+t$FAA7 DEFM $D0,"B",$F8,$FA," ",$9A," ",$D3
 
 ; Message at FAAF
 t$FAAF DEFM "   F"
 
 ; Data block at FAB3
-b$FAB3 DEFB $FD,$D0,$D1
+t$FAB3 DEFM $FD,$D0,$D1
 
 ; Message at FAB6
 t$FAB6 DEFM "ECI"
 
 ; Data block at FAB9
-b$FAB9 DEFB $E4,$C5,$02,$D3,$D3,$0D,$20,$13
- $FAC1 DEFB $41,$F2,$20,$B3,$20,$F0,$54,$45
- $FAC9 DEFB $F2,$DE,$C4,$CE,$00,$B0,$93,$D4
- $FAD1 DEFB $53,$20,$EE,$45,$20,$EC,$C3,$93
- $FAD9 DEFB $D1,$41,$E9,$20,$DE,$F5,$49,$DF
- $FAE1 DEFB $20,$F5,$20,$13,$10
+t$FAB9 DEFM $E4,$C5,$02,$D3,$D3,$0D," ",$13,"A",$F2," ",$B3," ",$F0,"TE",$F2,$DE,$C4,$CE,$00,$B0,$93,$D4,"S ",$EE,"E ",$EC,$C3,$93,$D1,"A",$E9," ",$DE,$F5,"I",$DF," ",$F5," ",$13,$10
 
 ; Message at FAE6
 t$FAE6 DEFM " AS"
 
 ; Data block at FAE9
-b$FAE9 DEFB $D0,$42,$41,$DA,$20,$46,$FD,$20
- $FAF1 DEFB $E2
+t$FAE9 DEFM $D0,"BA",$DA," F",$FD," ",$E2
 
 ; Message at FAF2
 t$FAF2 DEFM "EIR "
 
 ; Data block at FAF6
-b$FAF6 DEFB $F0
+t$FAF6 DEFM "p"+$80
 
 ; Message at FAF7
 t$FAF7 DEFM "VASI"
 
 ; Data block at FAFB
-b$FAFB DEFB $DF,$20,$46,$FD,$E9,$C9,$F5,$54
- $FB03 DEFB $41,$D5,$20,$93,$91
+t$FAFB DEFM $DF," F",$FD,$E9,$C9,$F5,"TA",$D5," ",$93,$91
 
 ; Message at FB08
 t$FB08 DEFM " SURFA"
 
 ; Data block at FB0E
-b$FB0E DEFB $E9,$B1,$0C,$02,$B3,$52,$C5,$3A
- $FB16 DEFB $D3,$01,$C9,$44,$45,$DE
+t$FB0E DEFM $E9,$B1,$0C,$02,$B3,"R",$C5,":",$D3,$01,$C9,"DE",$DE
 
 ; Message at FB1C
 t$FB1C DEFM "ROY "
 
 ; Data block at FB20
-b$FB20 DEFB $93,$D1,$41,$E9,$20,$DE,$F5,$49
- $FB28 DEFB $DF,$D3,$20,$F5,$20,$10,$CC,$D3
- $FB30 DEFB $0D
+t$FB20 DEFM $93,$D1,"A",$E9," ",$DE,$F5,"I",$DF,$D3," ",$F5," ",$10,$CC,$D3,$0D
 
 ; Message at FB31
 t$FB31 DEFM "TAKE "
 
 ; Data block at FB36
-b$FB36 DEFB $94,$CF,$D3,$28,$0D,$13,$B3,$20
- $FB3E DEFB $57,$DC
+t$FB36 DEFM $94,$CF,$D3,"(",$0D,$13,$B3," W",$DC
 
 ; Message at FB40
 t$FB40 DEFM "L NE"
 
 ; Data block at FB44
-b$FB44 DEFB $C4,$DB,$2A,$29,$0A,$0A,$20,$01
+t$FB44 DEFM $C4,$DB,"*)",$0A,$0A," ",$01
 
 ; Message at FB4C
 t$FB4C DEFM "GOOD LU"
 
 ; Data block at FB53
-b$FB53 DEFB $D5,$02,$2A,$00,$53,$48,$F2,$57
- $FB5B DEFB $00,$F7,$41,$DE,$00,$EA,$53,$DF
- $FB63 DEFB $00
+t$FB53 DEFM $D5,$02,"*",$00,"SH",$F2,"W",$00,$F7,"A",$DE,$00,$EA,"S",$DF,$00
 
 ; Message at FB64
 t$FB64 DEFM "SNAKE"
 
 ; Unused
-s$FB69 DEFS $01
+t$FB69 DEFM $00
 
 ; Message at FB6A
 t$FB6A DEFM "WOLF"
 
 ; Data block at FB6E
-b$FB6E DEFB $00,$E5,$4F,$50,$EE,$44,$00,$43
- $FB76 DEFB $F5,$00,$4D,$DF
+t$FB6E DEFM $00,$E5,"OP",$EE,"D",$00,"C",$F5,$00,"M",$DF
 
 ; Message at FB7A
 t$FB7A DEFM "KEY"
 
 ; Data block at FB7D
-b$FB7D DEFB $00,$47,$4F,$F5,$00,$46,$98,$48
- $FB85 DEFB $00
+t$FB7D DEFM $00,"GO",$F5,$00,"F",$98,"H",$00
 
 ; Message at FB86
 t$FB86 DEFM "j i"
 
 ; Data block at FB89
-b$FB89 DEFB $00,$11
+t$FB89 DEFM $00,$11
 
 ; Message at FB8B
 t$FB8B DEFM " x "
 
 ; Data block at FB8E
-b$FB8E DEFB $7B,$00,$AF
+t$FB8E DEFM "{",$00,$AF
 
 ; Message at FB91
 t$FB91 DEFM "k y "
 
 ; Data block at FB95
-b$FB95 DEFB $7B,$00,$7C,$20,$7D,$00
+t$FB95 DEFM "{",$00,"| }",$00
 
 ; Message at FB9B
 t$FB9B DEFM "j i"
 
 ; Data block at FB9E
-b$FB9E DEFB $00,$4D,$45,$F5,$00,$C6,$54,$4C
- $FBA6 DEFB $DD,$00,$DE
+t$FB9E DEFM $00,"ME",$F5,$00,$C6,"TL",$DD,$00,$DE
 
 ; Message at FBA9
 t$FBA9 DEFM "EAK"
 
 ; Unused
-s$FBAC DEFS $01
+t$FBAC DEFM $00
 
 ; Message at FBAD
 t$FBAD DEFM "BURG"
 
 ; Data block at FBB1
-b$FBB1 DEFB $F4,$53,$00,$EB,$55,$50,$00,$49
- $FBB9 DEFB $E9,$00
+t$FBB1 DEFM $F4,"S",$00,$EB,"UP",$00,"I",$E9,$00
 
 ; Message at FBBB
 t$FBBB DEFM "MUD"
 
 ; Data block at FBBE
-b$FBBE DEFB $00,$5A,$F4,$4F,$2D,$13,$47,$00
- $FBC6 DEFB $56,$41,$C6,$55,$4D,$00,$11
+t$FBBE DEFM $00,"Z",$F4,"O-",$13,"G",$00,"VA",$C6,"UM",$00,$11
 
 ; Message at FBCD
 t$FBCD DEFM " ULT"
 
 ; Data block at FBD1
-b$FBD1 DEFB $F8,$00,$48,$4F,$D5,$45,$59,$00
+t$FBD1 DEFM $F8,$00,"HO",$D5,"EY",$00
 
 ; Message at FBD9
 t$FBD9 DEFM "CRI"
 
 ; Data block at FBDC
-b$FBDC DEFB $D5,$DD,$00,$4B,$EE,$F5,$45,$00
- $FBE4 DEFB $50,$4F,$E0,$00,$54,$F6,$4E,$98
- $FBEC DEFB $00,$E2
+t$FBDC DEFM $D5,$DD,$00,"K",$EE,$F5,"E",$00,"PO",$E0,$00,"T",$F6,"N",$98,$00
 
-; Message at FBEE
-t$FBEE DEFM "EY SHOW "
-
-; Data block at FBF6
-b$FBF6 DEFB $E3,$20,$4D,$F4
-
-; Message at FBFA
-t$FBFA DEFM "CY..."
-
-; Data block at FBFF
-b$FBFF DEFB $00      ; Recursive tokens end
+; Last recursive token
+t$FBED DEFM $E2,"EY SHOW ",$E3," M",$F4,"CY...",$00
 
 ; Data block at FC00
 @label=data_at_FC00

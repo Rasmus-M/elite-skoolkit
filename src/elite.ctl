@@ -12,7 +12,10 @@ B $5C00,192,8
 b $5CC0 reserved
 B $5CC0,11,8,3
 b $5CCB available
-B $5CCB,1166,8*145,6
+B $5CCB,165,8*20,5
+b $5D70 Font
+@ $5D70 label=font
+B $5D70,1001,8*125,1
 b $6159 Data block at 6159
 @ $6159 label=title_screen_ship
 B $6159,39,8*4,7
@@ -306,19 +309,37 @@ c $7378 title loop
 N $7394 This entry point is used by the routine at #R$7471.
 N $739E This entry point is used by the routine at #R$7471.
 C $73D6,2 Read keyboard
-c $7426 Routine at 7426
+c $7426 Print title screen text
 D $7426 Used by the routine at #R$7378.
 @ $7426 label=print_title_screen_text
-c $7430 Routine at 7430
+C $7426,3 Print ELITE line
+C $7429,3 Coordinates for LOAD NEW COMMANDER
+C $742C,2 Token number
+C $742E,2 To printing code
+c $7430 Print PRESS SPACE, COMMANDER line
 D $7430 Used by the routine at #R$7378.
+C $7430,3 Print ELITE line
+C $7433,3 Coordinates for PRESS SPACE, COMMANDER
+C $7436,2 Token number
 N $7438 This entry point is used by the routine at #R$7426.
-c $7447 Routine at 7447
+C $7438,3 Store coordinates
+C $743B,7 Set to print in buffer
+C $7442,3 Print token
+C $7445,2 Set to print on screen and return
+c $7447 Print ELITE line
 D $7447 Used by the routines at #R$7426 and #R$7430.
+C $7447,3 Coordinates for ELITE
+C $744A,3 Store coordinates
+C $744D,2 Token number
+C $744F,7 Set to print in buffer
+C $7456,3 Print token
 N $7459 This entry point is used by the routine at #R$7430.
+C $7459,7 Set to print on screen
 c $7461 Set attributes for 2/3 of the screen to white/black
 D $7461 Used by the routines at #R$7366 and #R$7378.
 @ $7461 label=clear_attributes
 b $7470 Data block at 7470
+@ $7470 label=title_loop_count
 B $7470,1,1
 c $7471 Routine at 7471
 D $7471 Used by the routine at #R$7378.
@@ -1377,23 +1398,27 @@ c $D033 Routine at D033
 D $D033 Used by the routine at #R$7378.
 c $D036 Routine at D036
 D $D036 Used by the routines at #R$7378 and #R$8042.
-c $D039 Routine at D039
+c $D039 Jump to print other token
 D $D039 Used by the routines at #R$7430 and #R$7471.
+@ $D039 label=jump_to_print_other_token
 c $D03C Routine at D03C
 D $D03C Used by the routines at #R$7471 and #R$928C.
 s $D03F Unused
 S $D03F,3,$03
 c $D042 Routine at D042
 D $D042 Used by the routine at #R$7471.
-w $D045 Data block at D045
-@ $D045 label=print_coord
-W $D045,2,2
+b $D045 Print x
+@ $D045 label=print_x
+B $D045,1,1
+b $D046 Print y
+@ $D046 label=print_y
+B $D046,1,1
 b $D047 Data block at D047
 @ $D047 label=byte_at_D047
 B $D047,1,1
-c $D048 Jump to D425
-@ $D048 label=jump_to_D425
+c $D048 Jump to print token
 D $D048 Used by the routines at #R$7447, #R$99A4, #R$9B01, #R$9B57 and #R$9B74.
+@ $D048 label=jump_to_print_token
 w $D04B Data block at D04B
 @ $D04B label=word_at_D04B
 W $D04B,2,2
@@ -1431,8 +1456,17 @@ b $D0BF Data block at D0BF
 B $D0BF,2,2
 b $D0C1 Data block at D0C1
 @ $D0C1 label=data_at_D0C1
-w $D0D5
-@ $D0D5 label=word_at_D0D5
+b $D0D1
+@ $D0D1 label=byte_at_D0D1
+b $D0D2
+@ $D0D2 label=byte_at_D0D2
+b $D0D3
+@ $D0D3 label=byte_at_D0D3
+b $D0D4
+@ $D0D5 label=byte_at_D0D4
+w $D0D5 Pointer to LD HL,$4000 instruction
+@ $D0D5 label=ptr_to_ld_hl
+W $D0D5,2,2
 c $D0D7 Routine at D0D7
 D $D0D7 Used by the routine at #R$728D.
 c $D0DA Routine at D0DA
@@ -1502,16 +1536,120 @@ b $D420 Data block at D420
 B $D420,1,1
 c $D421 Routine at D421
 D $D421 Used by the routines at #R$D2E1, #R$D837, #R$E107, #R$E212, #R$E2F8, #R$E31E, #R$E7CF, #R$E87E, #R$E8EA, #R$E973, #R$EB47, #R$EDDF, #R$EEA8, #R$EF87 and #R$F0A1.
+@ $D421 label=print_token
+C $D421,1 Get pointer to token number from stack
+C $D422,1 Get the token number
+C $D423,1 Point to next token number
+C $D424,1 Save on stack
 N $D425 This entry point is used by the routines at #R$D048, #R$D357, #R$D37D, #R$D470, #R$DA7A, #R$DAB4, #R$E212, #R$E268, #R$E297, #R$E29E, #R$E2A6, #R$E2F8, #R$E306, #R$E311, #R$E31E, #R$E776, #R$E87E, #R$E973, #R$EEA8, #R$EECE, #R$F068 and #R$F07A.
+C $D425,5 Jump if token < 14
+C $D42A,5 Jump if 14 <= token < 32
+C $D42F,5 Jump if 32 <= token < 96
+C $D434,4 Jump if 96 <= token < 128
+C $D438,5 Jump if 128 <= token < 160
+C $D43D,2 If token >= 160, subtract 160, so now 0 <= token < 96
+C $D441,2 If 14 <= token < 32, add 114, so now 128 <= token < 146
+@ $D443 label=print_recursive_token
+C $D443,3 Get base address of tokens
+C $D446,1 D=number of tokens to search through
+C $D447,1 Start one higher
+C $D448,1 One less token to search through
+C $D449,3 Jump if we're now at the right token
+C $D44C,3 Search through all memory
+C $D44F,3 Look for a zero (end of token)
+C $D452,2 And loop
+@ $D454 recursive_token_loop
+C $D454,1 Get next char code of token
+C $D455,2 Return if we're at the end
+C $D457,1 Save token address
+C $D458,3 Call routine recursively
+C $D45B,1 Restore token address
+C $D45C,1 Increment token address
+C $D45D,2 Loop to process next char code
 c $D45F Routine at D45F
 D $D45F Used by the routines at #R$D039, #R$D470, #R$D5B4, #R$D90A, #R$DA5A, #R$DBA2, #R$E292, #R$E8E5, #R$EDDF, #R$EF87 and #R$F0A1.
+@ $D45F label=print_other_recursive_token
+C $D45F,3 Get base address of other tokens
+C $D462,1 D=number of tokens to search through
+C $D463,1 One less token to search through
+C $D464,2 Jump if we're now at the right token
+C $D466,3 Search through all memory
+C $D469,4 Look for a zero (end of token)
+C $D46D,3 And loop
 c $D470 Routine at D470
 D $D470 Used by the routine at #R$D48E.
+@ $D470 label_print_other_token
 c $D48E Routine at D48E
 D $D48E Used by the routine at #R$D45F.
+@ $D48E recursive_other_token_loop
+C $D48E,1 Get next char code of token
+C $D48F,2 Return if we're at the end
+C $D491,1 Save token address
+C $D492,3 Call routine recursively
+C $D495,1 Restore token address
+C $D496,1 Increment token address
+C $D497,2 Loop to process next char code
 c $D499 Routine at D499
 D $D499 Used by the routines at #R$D421, #R$D470 and #R$D59C.
+@ $D499 label=print_ascii_char
+C $D499,2 Char A?
+C $D49B,2 Jump if < A
+C $D49D,2 Char [ (after Z)?
+C $D49F,2 Jump if > Z
+C $D4A1,1 Save ASCII code
+C $D4CC,1 Restore ASCII code
+C $D4CD,2 Add 32
+C $D4CF,1 Save new code
 N $D4E1 This entry point is used by the routine at #R$D6B9.
+@ $D4E1 label=inc_print_char
+C $D4E1,1 Save ASCII code
+C $D4E2,3 X coord
+C $D4E5,1 Increment x
+C $D4E6,1 Get new x
+C $D4E7,4 Jump if not at end of row
+C $D4EB,3 Set x to 1
+C $D4EE,3 Increment y
+@ $D4F1 label=print_char
+C $D4F1,1 ASCII code
+C $D4F2,3 Font base address
+C $D4F5,2 Code - 32
+C $D4F8,2 BC = 0A
+C $D4FA,2 * 2
+C $D4FE,2 * 4
+C $D502,2 * 8
+C $D506,1 Add to font base address
+C $D507,1 Push character source address
+@ $D508 label=ld_hl_4000_instr
+C $D508,3 Self-modified (screen or buffer)
+C $D50B,3 Y coord
+C $D50E,5 Jump if >= 16
+C $D513,5 Jump if >= 8
+C $D518,1 Y coord within 3rd
+C $D51C,2 Bottom 3rd of screen
+C $D51E,1 Y coord within 3rd
+C $D51F,3 Offset to bottom 3rd
+C $D522,1 Add offset to destination
+C $D526,2 Middle 3rd of screen
+C $D528,1 Y coord within 3rd
+C $D529,3 Offset to middle 3rd
+C $D52C,1 Add offset to destination
+C $D52D,2 BC = 00000rrr00000000
+C $D52F,2 >> 1
+C $D533,2 >> 2
+C $D537,2 >> 3
+C $D539,2 BC = 00000000rrr00000
+C $D53B,1 HL = xxxss000rrr00000
+C $D53E,3 X coord
+C $D542,1 HL = xxxss000rrrccccc
+C $D543,1 DE = source
+C $D544,2 8 bytes in character
+C $D546,1 Get source byte
+C $D547,1 Get destination byte
+C $D548,1 XOR source with destination
+C $D549,1 Write destination byte
+C $D54A,1 Next pixel line
+C $D54B,1 Next source byte
+C $D54C,2 Repeat 8 times
 c $D54F Routine at D54F
 D $D54F Used by the routines at #R$D90A, #R$E8D9, #R$E973 and #R$EC58.
 N $D554 This entry point is used by the routine at #R$F0A1.
@@ -1525,7 +1663,22 @@ c $D595 Routine at D595
 D $D595 Used by the routine at #R$D470.
 c $D59C Routine at D59C
 D $D59C Used by the routine at #R$D421.
+@ $D59C label=print_two_letter_token
+C $D59C,2 Offset from 128
+C $D59E,3 Two letter tokens base address
 N $D5A1 This entry point is used by the routine at #R$D595.
+C $D5A1,1 * 2
+C $D5A2,3 DE=0A
+C $D5A5,1 Add to base address
+C $D5A6,1 Get char
+C $D5A7,1 Push char address
+C $D5A8,3 Print first char
+C $D5AB,1 Pop char address
+C $D5AC,1 Point to next char
+C $D5AD,1 Get char
+C $D5AE,2 Question mark?
+C $D5B0,1 Then return
+C $D5B1,3 Print second char
 c $D5B4 Routine at D5B4
 D $D5B4 Used by the routine at #R$D470.
 c $D5E1 Routine at D5E1
@@ -1590,6 +1743,7 @@ c $D7B0 Routine at D7B0
 D $D7B0 Used by the routine at #R$D470.
 c $D7B5 Routine at D7B5
 D $D7B5 Used by the routine at #R$D421.
+@ $D7B5 label=print_control_code
 N $D7B8 This entry point is used by the routine at #R$D7B0.
 w $D7C3 Data block at D7C3
 @ $D7C3 label=jump_table_at_D7C3
@@ -1775,14 +1929,29 @@ N $E2A3 This entry point is used by the routine at #R$E297.
 c $E2A6 Routine at E2A6
 D $E2A6 Used by the routines at #R$D837, #R$DA7A, #R$DAB4, #R$E212, #R$E87E, #R$E973, #R$EE9D, #R$EF48, #R$EF87 and #R$F0A1.
 N $E2A9 This entry point is used by the routines at #R$D6B9, #R$DA5A, #R$E212, #R$E2BC, #R$E8EA, #R$E973, #R$EDDF, #R$EEA2, #R$F068 and #R$F0A1.
+C $E2AB,3 Set something to 1
+C $E2AE,3 Set x to zero
 N $E2B1 This entry point is used by the routine at #R$D499.
+@ $E2B1 label=increment_y
+C $E2B1,3 Get y
+C $E2B4,1 Add one
 c $E2B7 Routine at E2B7
 D $E2B7 Used by the routines at #R$E2A6, #R$E2C8 and #R$E36B.
+@ $E2B7 label=set_x_to_zero
+C $E2B7,4 Set x to 0
 c $E2BC Routine at E2BC
 D $E2BC Used by the routines at #R$D87B, #R$E212, #R$E268, #R$E7CF, #R$E973, #R$EB63, #R$EF87 and #R$F0A1.
 N $E2C0 This entry point is used by the routines at #R$E973 and #R$F068.
+C $E2C0,3 Get x
+C $E2C3,2 End of row?
+C $E2C5,1 Return if not
 c $E2C8 Routine at E2C8
 D $E2C8 Used by the routines at #R$E2A6, #R$E36B, #R$E973, #R$EDDF, #R$EF87 and #R$F0A1.
+@ $E2C8 label=save_and_wrap_y
+C $E2C8,3 Save y
+C $E2CB,2 Last row?
+C $E2CD,1 Return of not
+C $E2CE,5 Set y to 1
 c $E2D5 Routine at E2D5
 D $E2D5 Used by the routine at #R$E76E.
 c $E2F8 Routine at E2F8
@@ -1980,830 +2149,396 @@ B $F117,3,3
 w $F11A Data block at F11A
 N $F11A Recursive tokens
 @ $F11A label=tokens_ptr
-@ $F11C label=more_tokens_ptr
+@ $F11C label=other_tokens_ptr
 W $F11A,4,2
-b $F11E Recursive tokens
+t $F11E Recursive tokens
 @ $F11E label=tokens
-B $F11E,3,3
 t $F121 Message at F121
-T $F121,3,3
-b $F124 Data block at F124
-B $F124,6,6
-t $F12A Message at F12A
-T $F12A,3,3
-b $F12D Data block at F12D
-B $F12D,20,8*2,4
+t $F130
+t $F138
 t $F141 Message at F141
-T $F141,3,3
-b $F144 Data block at F144
-B $F144,10,8,2
-t $F14E Message at F14E
-T $F14E,5,5
-b $F153 Data block at F153
-B $F153,13,8,5
-t $F160 Message at F160
-T $F160,5,5
-b $F165 Data block at F165
-B $F165,4,4
-t $F169 Message at F169
-T $F169,3,3
-b $F16C Data block at F16C
-B $F16C,14,8,6
+t $F147
+t $F14B
+t $F156
+t $F15D
+t $F168 Data block at F165
+t $F16d Data block at F16C
 t $F17A Message at F17A
-T $F17A,3,3
-s $F17D Unused
-S $F17D,1,$01
 t $F17E Message at F17E
-T $F17E,4,4
-s $F182 Unused
-S $F182,1,$01
 t $F183 Message at F183
-T $F183,6,6
-b $F189 Data block at F189
-B $F189,9,8,1
-t $F192 Message at F192
-T $F192,3,3
-s $F195 Unused
-S $F195,1,$01
+t $F18A Data block at F189
 t $F196 Message at F196
-T $F196,4,4
-b $F19A Data block at F19A
-B $F19A,2,2
-t $F19C Message at F19C
-T $F19C,3,3
-b $F19F Data block at F19F
-B $F19F,12,8,4
-t $F1AB Message at F1AB
-T $F1AB,3,3
-b $F1AE Data block at F1AE
-B $F1AE,8,8
-t $F1B6 Message at F1B6
-T $F1B6,3,3
-s $F1B9 Unused
-S $F1B9,1,$01
+t $F19F Data block at F19F
+t $F1A3 Message at F1AB
+t $F1AA Message at F1AB
+t $F1B1 Data block at F1AE
 t $F1BA Message at F1BA
-T $F1BA,5,5
-b $F1BF Data block at F1BF
-B $F1BF,15,8,7
+t $F1C3 Message at F1BA
 t $F1CE Message at F1CE
-T $F1CE,4,4
-b $F1D2 Data block at F1D2
-B $F1D2,3,3
-t $F1D5 Message at F1D5
-T $F1D5,4,4
-b $F1D9 Data block at F1D9
-B $F1D9,6,6
+t $F1D3 Data block at F1D2
+t $F1DA Data block at F1D9
 t $F1DF Message at F1DF
-T $F1DF,3,3
-b $F1E2 Data block at F1E2
-B $F1E2,1,1
-t $F1E3 Message at F1E3
-T $F1E3,4,4
-b $F1E7 Data block at F1E7
-B $F1E7,4,4
 t $F1EB Message at F1EB
-T $F1EB,3,3
-b $F1EE Data block at F1EE
-B $F1EE,1,1
-t $F1EF Message at F1EF
-T $F1EF,3,3
-b $F1F2 Data block at F1F2
-B $F1F2,18,8*2,2
-t $F204 Message at F204
-T $F204,4,4
-b $F208 Data block at F208
-B $F208,9,8,1
-t $F211 Message at F211
-T $F211,6,6
-b $F217 Data block at F217
-B $F217,1,1
-t $F218 Message at F218
-T $F218,3,3
-b $F21B Data block at F21B
-B $F21B,1,1
-t $F21C Message at F21C
-T $F21C,6,6
-b $F222 Data block at F222
-B $F222,1,1
-t $F223 Message at F223
-T $F223,4,4
-b $F227 Data block at F227
-B $F227,4,4
+t $F1F4 Data block at F1F2
+t $F1FE Data block at F1F2
+t $F203 Message at F204
+t $F20A Data block at F208
+t $F210 Message at F211
 t $F22B Message at F22B
-T $F22B,9,9
-b $F234 Data block at F234
-B $F234,4,4
-t $F238 Message at F238
-T $F238,3,3
-b $F23B Data block at F23B
-B $F23B,4,4
 t $F23F Message at F23F
-T $F23F,4,4
-b $F243 Data block at F243
-B $F243,16,8
-t $F253 Message at F253
-T $F253,4,4
-b $F257 Data block at F257
-B $F257,2,2
-t $F259 Message at F259
-T $F259,6,6
-b $F25F Data block at F25F
-B $F25F,10,8,2
-t $F269 Message at F269
-T $F269,4,4
-b $F26D Data block at F26D
-B $F26D,16,8
+t $F244 Data block at F243
+t $F24A Message at F253
+t $F250 Message at F253
+t $F259 Data block at F25F
+t $F261 Data block at F25F
+t $F268 Message at F269
+t $F26E Data block at F26D
+t $F272 Message at F27D
+t $F278 Message at F27D
 t $F27D Message at F27D
-T $F27D,4,4
-b $F281 Data block at F281
-B $F281,9,8,1
-t $F28A Message at F28A
-T $F28A,3,3
-b $F28D Data block at F28D
-B $F28D,18,8*2,2
+t $F282 Data block at F281
+t $F288 Message at F28A
+t $F291 Data block at F28D
+t $F296 Data block at F28D
 t $F29F Message at F29F
-T $F29F,4,4
-b $F2A3 Data block at F2A3
-B $F2A3,12,8,4
-t $F2AF Message at F2AF
-T $F2AF,3,3
-b $F2B2 Data block at F2B2
-B $F2B2,10,8,2
+t $F2A6 Data block at F2A3
+t $F2AE Message at F2AF
+t $F2B5 Data block at F2B2
 t $F2BC Message at F2BC
-T $F2BC,6,6
-b $F2C2 Data block at F2C2
-B $F2C2,8,8
+t $F2C3 Data block at F2C2
 t $F2CA Message at F2CA
-T $F2CA,4,4
-b $F2CE Data block at F2CE
-B $F2CE,7,7
+t $F2CF Data block at F2CE
 t $F2D5 Message at F2D5
-T $F2D5,4,4
-b $F2D9 Data block at F2D9
-B $F2D9,22,8*2,6
+t $F2DA Data block at F2D9
 t $F2EF Message at F2EF
-T $F2EF,10,10
-s $F2F9 Unused
-S $F2F9,1,$01
+t $F2F9 Unused
 t $F2FA Message at F2FA
-T $F2FA,3,3
-b $F2FD Data block at F2FD
-B $F2FD,27,8*3,3
+t $F2FD Data block at F2FD
 t $F318 Message at F318
-T $F318,4,4
-b $F31C Data block at F31C
-B $F31C,8,8
+t $F31C Data block at F31C
 t $F324 Message at F324
-T $F324,5,5
-s $F329 Unused
-S $F329,1,$01
+t $F329 Unused
 t $F32A Message at F32A
-T $F32A,6,6
-b $F330 Data block at F330
-B $F330,14,8,6
+t $F330 Data block at F330
 t $F33E Message at F33E
-T $F33E,5,5
-b $F343 Data block at F343
-B $F343,16,8
+t $F343 Data block at F343
 t $F353 Message at F353
-T $F353,3,3
-b $F356 Data block at F356
-B $F356,7,7
+t $F356 Data block at F356
 t $F35D Message at F35D
-T $F35D,3,3
-b $F360 Data block at F360
-B $F360,1,1
+t $F360 Data block at F360
 t $F361 Message at F361
-T $F361,3,3
-s $F364 Unused
-S $F364,1,$01
+t $F364 Unused
 t $F365 Message at F365
-T $F365,3,3
-b $F368 Data block at F368
-B $F368,4,4
+t $F368 Data block at F368
 t $F36C Message at F36C
-T $F36C,4,4
-b $F370 Data block at F370
-B $F370,6,6
+t $F370 Data block at F370
 t $F376 Message at F376
-T $F376,3,3
-b $F379 Data block at F379
-B $F379,25,8*3,1
+t $F379 Data block at F379
 t $F392 Message at F392
-T $F392,4,4
-b $F396 Data block at F396
-B $F396,6,6
+t $F396 Data block at F396
 t $F39C Message at F39C
-T $F39C,3,3
-b $F39F Data block at F39F
-B $F39F,17,8*2,1
+t $F39F Data block at F39F
 t $F3B0 Message at F3B0
-T $F3B0,3,3
-s $F3B3 Unused
-S $F3B3,1,$01
+t $F3B3 Unused
 t $F3B4 Message at F3B4
-T $F3B4,4,4
-b $F3B8 Data block at F3B8
-B $F3B8,6,6
+t $F3B8 Data block at F3B8
 t $F3BE Message at F3BE
-T $F3BE,3,3
-b $F3C1 Data block at F3C1
-B $F3C1,3,3
+t $F3C1 Data block at F3C1
 t $F3C4 Message at F3C4
-T $F3C4,5,5
-b $F3C9 Data block at F3C9
-B $F3C9,7,7
+t $F3C9 Data block at F3C9
 t $F3D0 Message at F3D0
-T $F3D0,4,4
-b $F3D4 Data block at F3D4
-B $F3D4,9,8,1
+t $F3D4 Data block at F3D4
 t $F3DD Message at F3DD
-T $F3DD,4,4
-s $F3E1 Unused
-S $F3E1,1,$01
+t $F3E1 Unused
 t $F3E2 Message at F3E2
-T $F3E2,6,6
-b $F3E8 Data block at F3E8
-B $F3E8,2,2
+t $F3E8 Data block at F3E8
 t $F3EA Message at F3EA
-T $F3EA,3,3
-s $F3ED Unused
-S $F3ED,1,$01
+t $F3ED Unused
 t $F3EE Message at F3EE
-T $F3EE,3,3
-s $F3F1 Unused
-S $F3F1,1,$01
+t $F3F1 Unused
 t $F3F2 Message at F3F2
-T $F3F2,8,8
-b $F3FA Data block at F3FA
-B $F3FA,2,2
+t $F3FA Data block at F3FA
 t $F3FC Message at F3FC
-T $F3FC,8,8
-s $F404 Unused
-S $F404,1,$01
+t $F404 Unused
 t $F405 Message at F405
-T $F405,5,5
-b $F40A Data block at F40A
-B $F40A,4,4
+t $F40A Data block at F40A
 t $F40E Message at F40E
-T $F40E,4,4
-b $F412 Data block at F412
-B $F412,9,8,1
+t $F412 Data block at F412
 t $F41B Message at F41B
-T $F41B,5,5
-b $F420 Data block at F420
-B $F420,17,8*2,1
+t $F420 Data block at F420
 t $F431 Message at F431
-T $F431,3,3
-b $F434 Data block at F434
-B $F434,3,3
+t $F434 Data block at F434
 t $F437 Message at F437
-T $F437,3,3
-b $F43A Data block at F43A
-B $F43A,8,8
+t $F43A Data block at F43A
 t $F442 Message at F442
-T $F442,4,4
-b $F446 Data block at F446
-B $F446,4,4
+t $F446 Data block at F446
 t $F44A Message at F44A
-T $F44A,5,5
-b $F44F Data block at F44F
-B $F44F,1,1
+t $F44F Data block at F44F
 t $F450 Message at F450
-T $F450,6,6
-b $F456 Data block at F456
-B $F456,29,8*3,5
+t $F456 Data block at F456
 t $F473 Message at F473
-T $F473,6,6
-b $F479 Data block at F479
-B $F479,6,6
+t $F479 Data block at F479
 t $F47F Message at F47F
-T $F47F,3,3
-b $F482 Data block at F482
-B $F482,19,8*2,3
+t $F482 Data block at F482
 t $F495 Message at F495
-T $F495,3,3
-b $F498 Data block at F498
-B $F498,4,4
+t $F498 Data block at F498
 t $F49C Message at F49C
-T $F49C,4,4
-b $F4A0 Data block at F4A0
-B $F4A0,13,8,5
+t $F4A0 Data block at F4A0
 t $F4AD Message at F4AD
-T $F4AD,3,3
-b $F4B0 Data block at F4B0
-B $F4B0,6,6
+t $F4B0 Data block at F4B0
 t $F4B6 Message at F4B6
-T $F4B6,3,3
-b $F4B9 Data block at F4B9
-B $F4B9,5,5
+t $F4B9 Data block at F4B9
 t $F4BE Message at F4BE
-T $F4BE,3,3
-b $F4C1 Data block at F4C1
-B $F4C1,9,8,1
+t $F4C1 Data block at F4C1
 t $F4CA Message at F4CA
-T $F4CA,6,6
-s $F4D0 Unused
-S $F4D0,1,$01
+t $F4D0 Unused
 t $F4D1 Message at F4D1
-T $F4D1,19,19
-b $F4E4 Data block at F4E4
-B $F4E4,10,8,2
+t $F4E4 Data block at F4E4
 t $F4EE Message at F4EE
-T $F4EE,3,3
-b $F4F1 Data block at F4F1
-B $F4F1,4,4
-b $F4F5 Data block at F4F5
-@ $F4F5 label=more_tokens
-B $F4F5,2,2
+t $F4F1 Data block at F4F1
+t $F4F5 Data block at F4F5
+@ $F4F5 label=other_tokens
 t $F4F7 Message at F4F7
-T $F4F7,4,4
-b $F4FB Data block at F4FB
-B $F4FB,1,1
+t $F4FB Data block at F4FB
 t $F4FC Message at F4FC
-T $F4FC,5,5
-b $F501 Data block at F501
-B $F501,6,6
+t $F501 Data block at F501
 t $F507 Message at F507
-T $F507,3,3
-b $F50A Data block at F50A
-B $F50A,14,8,6
+t $F50A Data block at F50A
 t $F518 Message at F518
-T $F518,5,5
-b $F51D Data block at F51D
-B $F51D,4,4
+t $F51D Data block at F51D
 t $F521 Message at F521
-T $F521,8,8
-b $F529 Data block at F529
-B $F529,5,5
+t $F529 Data block at F529
 t $F52E Message at F52E
-T $F52E,3,3
-b $F531 Data block at F531
-B $F531,1,1
+t $F531 Data block at F531
 t $F532 Message at F532
-T $F532,5,5
-s $F537 Unused
-S $F537,1,$01
+t $F537 Unused
 t $F538 Message at F538
-T $F538,5,5
-b $F53D Data block at F53D
-B $F53D,34,8*4,2
+t $F53D Data block at F53D
 t $F55F Message at F55F
-T $F55F,3,3
-b $F562 Data block at F562
-B $F562,8,8
+t $F562 Data block at F562
 t $F56A Message at F56A
-T $F56A,3,3
-b $F56D Data block at F56D
-B $F56D,2,2
+t $F56D Data block at F56D
 t $F56F Message at F56F
-T $F56F,7,7
-b $F576 Data block at F576
-B $F576,5,5
+t $F576 Data block at F576
 t $F57B Message at F57B
-T $F57B,4,4
-b $F57F Data block at F57F
-B $F57F,1,1
+t $F57F Data block at F57F
 t $F580 Message at F580
-T $F580,3,3
-b $F583 Data block at F583
-B $F583,2,2
+t $F583 Data block at F583
 t $F585 Message at F585
-T $F585,4,4
-b $F589 Data block at F589
-B $F589,8,8
+t $F589 Data block at F589
 t $F591 Message at F591
-T $F591,3,3
-b $F594 Data block at F594
-B $F594,3,3
+t $F594 Data block at F594
 t $F597 Message at F597
-T $F597,5,5
-b $F59C Data block at F59C
-B $F59C,1,1
+t $F59C Data block at F59C
 t $F59D Message at F59D
-T $F59D,3,3
-b $F5A0 Data block at F5A0
-B $F5A0,6,6
+t $F5A0 Data block at F5A0
 t $F5A6 Message at F5A6
-T $F5A6,9,9
-b $F5AF Data block at F5AF
-B $F5AF,5,5
+t $F5AF Data block at F5AF
 t $F5B4 Message at F5B4
-T $F5B4,4,4
-b $F5B8 Data block at F5B8
-B $F5B8,15,8,7
+t $F5B8 Data block at F5B8
 t $F5C7 Message at F5C7
-T $F5C7,3,3
-b $F5CA Data block at F5CA
-B $F5CA,6,6
+t $F5CA Data block at F5CA
 t $F5D0 Message at F5D0
-T $F5D0,7,7
-b $F5D7 Data block at F5D7
-B $F5D7,13,8,5
+t $F5D7 Data block at F5D7
 t $F5E4 Message at F5E4
-T $F5E4,4,4
-b $F5E8 Data block at F5E8
-B $F5E8,11,8,3
+t $F5E8 Data block at F5E8
 t $F5F3 Message at F5F3
-T $F5F3,3,3
-b $F5F6 Data block at F5F6
-B $F5F6,5,5
+t $F5F6 Data block at F5F6
 t $F5FB Message at F5FB
-T $F5FB,4,4
-b $F5FF Data block at F5FF
-B $F5FF,14,8,6
+t $F5FF Data block at F5FF
 t $F60D Message at F60D
-T $F60D,3,3
-b $F610 Data block at F610
-B $F610,11,8,3
+t $F610 Data block at F610
 t $F61B Message at F61B
-T $F61B,6,6
-b $F621 Data block at F621
-B $F621,4,4
+t $F621 Data block at F621
 t $F625 Message at F625
-T $F625,4,4
-b $F629 Data block at F629
-B $F629,12,8,4
+t $F629 Data block at F629
 t $F635 Message at F635
-T $F635,3,3
-b $F638 Data block at F638
-B $F638,31,8*3,7
+t $F638 Data block at F638
 t $F657 Message at F657
-T $F657,3,3
-b $F65A Data block at F65A
-B $F65A,26,8*3,2
+t $F65A Data block at F65A
 t $F674 Message at F674
-T $F674,4,4
-b $F678 Data block at F678
-B $F678,24,8
+t $F678 Data block at F678
 t $F690 Message at F690
-T $F690,4,4
-b $F694 Data block at F694
-B $F694,9,8,1
+t $F694 Data block at F694
 t $F69D Message at F69D
-T $F69D,6,6
-b $F6A3 Data block at F6A3
-B $F6A3,20,8*2,4
+t $F6A3 Data block at F6A3
 t $F6B7 Message at F6B7
-T $F6B7,4,4
-b $F6BB Data block at F6BB
-B $F6BB,33,8*4,1
+t $F6BB Data block at F6BB
 t $F6DC Message at F6DC
-T $F6DC,3,3
-b $F6DF Data block at F6DF
-B $F6DF,14,8,6
+t $F6DF Data block at F6DF
 t $F6ED Message at F6ED
-T $F6ED,5,5
-b $F6F2 Data block at F6F2
-B $F6F2,12,8,4
+t $F6F2 Data block at F6F2
 t $F6FE Message at F6FE
-T $F6FE,4,4
-b $F702 Data block at F702
-B $F702,5,5
+t $F702 Data block at F702
 t $F707 Message at F707
-T $F707,3,3
-b $F70A Data block at F70A
-B $F70A,11,8,3
+t $F70A Data block at F70A
 t $F715 Message at F715
-T $F715,4,4
-b $F719 Data block at F719
-B $F719,19,8*2,3
+t $F719 Data block at F719
 t $F72C Message at F72C
-T $F72C,6,6
-b $F732 Data block at F732
-B $F732,6,6
+t $F732 Data block at F732
 t $F738 Message at F738
-T $F738,3,3
-s $F73B Unused
-S $F73B,1,$01
+t $F73B Unused
 t $F73C Message at F73C
-T $F73C,3,3
-b $F73F Data block at F73F
-B $F73F,4,4
+t $F73F Data block at F73F
 t $F743 Message at F743
-T $F743,3,3
-b $F746 Data block at F746
-B $F746,44,8*5,4
+t $F746 Data block at F746
 t $F772 Message at F772
-T $F772,3,3
-b $F775 Data block at F775
-B $F775,3,3
+t $F775 Data block at F775
 t $F778 Message at F778
-T $F778,5,5
-b $F77D Data block at F77D
-B $F77D,7,7
+t $F77D Data block at F77D
 t $F784 Message at F784
-T $F784,3,3
-b $F787 Data block at F787
-B $F787,9,8,1
+t $F787 Data block at F787
 t $F790 Message at F790
-T $F790,10,10
-s $F79A Unused
-S $F79A,1,$01
+t $F79A Unused
 t $F79B Message at F79B
-T $F79B,4,4
-b $F79F Data block at F79F
-B $F79F,5,5
+t $F79F Data block at F79F
 t $F7A4 Message at F7A4
-T $F7A4,5,5
-b $F7A9 Data block at F7A9
-B $F7A9,25,8*3,1
+t $F7A9 Data block at F7A9
 t $F7C2 Message at F7C2
-T $F7C2,3,3
-b $F7C5 Data block at F7C5
-B $F7C5,5,5
+t $F7C5 Data block at F7C5
 t $F7CA Message at F7CA
-T $F7CA,3,3
-b $F7CD Data block at F7CD
-B $F7CD,23,8*2,7
+t $F7CD Data block at F7CD
 t $F7E4 Message at F7E4
-T $F7E4,4,4
-b $F7E8 Data block at F7E8
-B $F7E8,13,8,5
+t $F7E8 Data block at F7E8
 t $F7F5 Message at F7F5
-T $F7F5,5,5
-s $F7FA Unused
-S $F7FA,1,$01
+t $F7FA Unused
 t $F7FB Message at F7FB
-T $F7FB,3,3
-b $F7FE Data block at F7FE
-B $F7FE,6,6
+t $F7FE Data block at F7FE
 t $F804 Message at F804
-T $F804,4,4
-b $F808 Data block at F808
-B $F808,18,8*2,2
+t $F808 Data block at F808
 t $F81A Message at F81A
-T $F81A,4,4
-s $F81E Unused
-S $F81E,6,$06
+t $F81E Unused
 t $F824 Message at F824
-T $F824,6,6
-b $F82A Data block at F82A
-B $F82A,8,8
+t $F82A Data block at F82A
 t $F832 Message at F832
-T $F832,3,3
-b $F835 Data block at F835
-B $F835,42,8*5,2
+t $F835 Data block at F835
 t $F85F Message at F85F
-T $F85F,9,9
-b $F868 Data block at F868
-B $F868,2,2
+t $F868 Data block at F868
 t $F86A Message at F86A
-T $F86A,3,3
-s $F86D Unused
-S $F86D,1,$01
+t $F86D Unused
 t $F86E Message at F86E
-T $F86E,3,3
-b $F871 Data block at F871
-B $F871,2,2
+t $F871 Data block at F871
 t $F873 Message at F873
-T $F873,4,4
-s $F877 Unused
-S $F877,1,$01
+t $F877 Unused
 t $F878 Message at F878
-T $F878,6,6
-b $F87E Data block at F87E
-B $F87E,9,8,1
+t $F87E Data block at F87E
 t $F887 Message at F887
-T $F887,3,3
-b $F88A Data block at F88A
-B $F88A,6,6
+t $F88A Data block at F88A
 t $F890 Message at F890
-T $F890,3,3
-b $F893 Data block at F893
-B $F893,5,5
+t $F893 Data block at F893
 t $F898 Message at F898
-T $F898,5,5
-s $F89D Unused
-S $F89D,1,$01
+t $F89D Unused
 t $F89E Message at F89E
-T $F89E,5,5
-b $F8A3 Data block at F8A3
-B $F8A3,25,8*3,1
+t $F8A3 Data block at F8A3
 t $F8BC Message at F8BC
-T $F8BC,6,6
-b $F8C2 Data block at F8C2
-B $F8C2,3,3
+t $F8C2 Data block at F8C2
 t $F8C5 Message at F8C5
-T $F8C5,3,3
-b $F8C8 Data block at F8C8
-B $F8C8,9,8,1
+t $F8C8 Data block at F8C8
 t $F8D1 Message at F8D1
-T $F8D1,5,5
-b $F8D6 Data block at F8D6
-B $F8D6,4,4
+t $F8D6 Data block at F8D6
 t $F8DA Message at F8DA
-T $F8DA,4,4
-b $F8DE Data block at F8DE
-B $F8DE,8,8
+t $F8DE Data block at F8DE
 t $F8E6 Message at F8E6
-T $F8E6,6,6
-b $F8EC Data block at F8EC
-B $F8EC,2,2
+t $F8EC Data block at F8EC
 t $F8EE Message at F8EE
-T $F8EE,5,5
-b $F8F3 Data block at F8F3
-B $F8F3,2,2
+t $F8F3 Data block at F8F3
 t $F8F5 Message at F8F5
-T $F8F5,5,5
-b $F8FA Data block at F8FA
-B $F8FA,41,8*5,1
+t $F8FA Data block at F8FA
 t $F923 Message at F923
-T $F923,4,4
-b $F927 Data block at F927
-B $F927,8,8
+t $F927 Data block at F927
 t $F92F Message at F92F
-T $F92F,3,3
-b $F932 Data block at F932
-B $F932,12,8,4
+t $F932 Data block at F932
 t $F93E Message at F93E
-T $F93E,3,3
-b $F941 Data block at F941
-B $F941,6,6
+t $F941 Data block at F941
 t $F947 Message at F947
-T $F947,4,4
-b $F94B Data block at F94B
-B $F94B,22,8*2,6
+t $F94B Data block at F94B
 t $F961 Message at F961
-T $F961,5,5
-b $F966 Data block at F966
-B $F966,14,8,6
+t $F966 Data block at F966
 t $F974 Message at F974
-T $F974,6,6
-b $F97A Data block at F97A
-B $F97A,9,8,1
+t $F97A Data block at F97A
 t $F983 Message at F983
-T $F983,5,5
-b $F988 Data block at F988
-B $F988,33,8*4,1
+t $F988 Data block at F988
 t $F9A9 Message at F9A9
-T $F9A9,3,3
-b $F9AC Data block at F9AC
-B $F9AC,1,1
+t $F9AC Data block at F9AC
 t $F9AD Message at F9AD
-T $F9AD,3,3
-b $F9B0 Data block at F9B0
-B $F9B0,5,5
+t $F9B0 Data block at F9B0
 t $F9B5 Message at F9B5
-T $F9B5,3,3
-b $F9B8 Data block at F9B8
-B $F9B8,12,8,4
+t $F9B8 Data block at F9B8
 t $F9C4 Message at F9C4
-T $F9C4,5,5
-b $F9C9 Data block at F9C9
-B $F9C9,8,8
+t $F9C9 Data block at F9C9
 t $F9D1 Message at F9D1
-T $F9D1,5,5
-b $F9D6 Data block at F9D6
-B $F9D6,57,8*7,1
+t $F9D6 Data block at F9D6
 t $FA0F Message at FA0F
-T $FA0F,6,6
-s $FA15 Unused
-S $FA15,1,$01
+t $FA15 Unused
 t $FA16 Message at FA16
-T $FA16,4,4
-b $FA1A Data block at FA1A
-B $FA1A,5,5
+t $FA1A Data block at FA1A
 t $FA1F Message at FA1F
-T $FA1F,3,3
-b $FA22 Data block at FA22
-B $FA22,14,8,6
+t $FA22 Data block at FA22
 t $FA30 Message at FA30
-T $FA30,6,6
-b $FA36 Data block at FA36
-B $FA36,6,6
+t $FA36 Data block at FA36
 t $FA3C Message at FA3C
-T $FA3C,5,5
-b $FA41 Data block at FA41
-B $FA41,2,2
+t $FA41 Data block at FA41
 t $FA43 Message at FA43
-T $FA43,3,3
-b $FA46 Data block at FA46
-B $FA46,4,4
+t $FA46 Data block at FA46
 t $FA4A Message at FA4A
-T $FA4A,5,5
-b $FA4F Data block at FA4F
-B $FA4F,16,8
+t $FA4F Data block at FA4F
 t $FA5F Message at FA5F
-T $FA5F,3,3
-b $FA62 Data block at FA62
-B $FA62,4,4
+t $FA62 Data block at FA62
 t $FA66 Message at FA66
-T $FA66,5,5
-b $FA6B Data block at FA6B
-B $FA6B,31,8*3,7
+t $FA6B Data block at FA6B
 t $FA8A Message at FA8A
-T $FA8A,4,4
-b $FA8E Data block at FA8E
-B $FA8E,10,8,2
+t $FA8E Data block at FA8E
 t $FA98 Message at FA98
-T $FA98,4,4
-b $FA9C Data block at FA9C
-B $FA9C,1,1
+t $FA9C Data block at FA9C
 t $FA9D Message at FA9D
-T $FA9D,4,4
-b $FAA1 Data block at FAA1
-B $FAA1,2,2
+t $FAA1 Data block at FAA1
 t $FAA3 Message at FAA3
-T $FAA3,4,4
-b $FAA7 Data block at FAA7
-B $FAA7,8,8
+t $FAA7 Data block at FAA7
 t $FAAF Message at FAAF
-T $FAAF,4,4
-b $FAB3 Data block at FAB3
-B $FAB3,3,3
+t $FAB3 Data block at FAB3
 t $FAB6 Message at FAB6
-T $FAB6,3,3
-b $FAB9 Data block at FAB9
-B $FAB9,45,8*5,5
+t $FAB9 Data block at FAB9
 t $FAE6 Message at FAE6
-T $FAE6,3,3
-b $FAE9 Data block at FAE9
-B $FAE9,9,8,1
+t $FAE9 Data block at FAE9
 t $FAF2 Message at FAF2
-T $FAF2,4,4
-b $FAF6 Data block at FAF6
-B $FAF6,1,1
+t $FAF6 Data block at FAF6
 t $FAF7 Message at FAF7
-T $FAF7,4,4
-b $FAFB Data block at FAFB
-B $FAFB,13,8,5
+t $FAFB Data block at FAFB
 t $FB08 Message at FB08
-T $FB08,6,6
-b $FB0E Data block at FB0E
-B $FB0E,14,8,6
+t $FB0E Data block at FB0E
 t $FB1C Message at FB1C
-T $FB1C,4,4
-b $FB20 Data block at FB20
-B $FB20,17,8*2,1
+t $FB20 Data block at FB20
 t $FB31 Message at FB31
-T $FB31,5,5
-b $FB36 Data block at FB36
-B $FB36,10,8,2
+t $FB36 Data block at FB36
 t $FB40 Message at FB40
-T $FB40,4,4
-b $FB44 Data block at FB44
-B $FB44,8,8
+t $FB44 Data block at FB44
 t $FB4C Message at FB4C
-T $FB4C,7,7
-b $FB53 Data block at FB53
-B $FB53,17,8*2,1
+t $FB53 Data block at FB53
 t $FB64 Message at FB64
-T $FB64,5,5
-s $FB69 Unused
-S $FB69,1,$01
+t $FB69 Unused
 t $FB6A Message at FB6A
-T $FB6A,4,4
-b $FB6E Data block at FB6E
-B $FB6E,12,8,4
+t $FB6E Data block at FB6E
 t $FB7A Message at FB7A
-T $FB7A,3,3
-b $FB7D Data block at FB7D
-B $FB7D,9,8,1
+t $FB7D Data block at FB7D
 t $FB86 Message at FB86
-T $FB86,3,3
-b $FB89 Data block at FB89
-B $FB89,2,2
+t $FB89 Data block at FB89
 t $FB8B Message at FB8B
-T $FB8B,3,3
-b $FB8E Data block at FB8E
-B $FB8E,3,3
+t $FB8E Data block at FB8E
 t $FB91 Message at FB91
-T $FB91,4,4
-b $FB95 Data block at FB95
-B $FB95,6,6
+t $FB95 Data block at FB95
 t $FB9B Message at FB9B
-T $FB9B,3,3
-b $FB9E Data block at FB9E
-B $FB9E,11,8,3
+t $FB9E Data block at FB9E
 t $FBA9 Message at FBA9
-T $FBA9,3,3
-s $FBAC Unused
-S $FBAC,1,$01
+t $FBAC Unused
 t $FBAD Message at FBAD
-T $FBAD,4,4
-b $FBB1 Data block at FBB1
-B $FBB1,10,8,2
+t $FBB1 Data block at FBB1
 t $FBBB Message at FBBB
-T $FBBB,3,3
-b $FBBE Data block at FBBE
-B $FBBE,15,8,7
+t $FBBE Data block at FBBE
 t $FBCD Message at FBCD
-T $FBCD,4,4
-b $FBD1 Data block at FBD1
-B $FBD1,8,8
+t $FBD1 Data block at FBD1
 t $FBD9 Message at FBD9
-T $FBD9,3,3
-b $FBDC Data block at FBDC
-B $FBDC,18,8*2,2
-t $FBEE Message at FBEE
-T $FBEE,8,8
-b $FBF6 Data block at FBF6
-B $FBF6,4,4
-t $FBFA Message at FBFA
-T $FBFA,5,5
-b $FBFF Data block at FBFF
-B $FBFF,1,1 Recursive tokens end
+t $FBDC Data block at FBDC
+t $FBED Last recursive token
 b $FC00 Data block at FC00
 @ $FC00 label=data_at_FC00
 B $FC00,8,8
@@ -2853,8 +2588,10 @@ b $FD8E Data block at FD8E
 B $FD8E,13,8,5
 t $FD9B More 2-letter tokens
 @ $FD9B label=more_two_letter_tokens
+T $FD9B,24,24
 t $FDB3 Standard 2-letter tokens
 @ $FDB3 label=two_letter_tokens
+T $FDB3,64,64
 b $FDF3 Data block at FDF3
 B $FDF3,14,8,6
 c $FE01 Routine at FE01
@@ -2888,4 +2625,4 @@ w $FF56 Word at FF56
 @ $FF56 label=save_sp_intrpt
 W $FF56,2,2
 b $FF58 Stack
-B $FF58,168,8*20,7
+B $FF58,168,8*20,7,1
