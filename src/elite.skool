@@ -14799,9 +14799,10 @@ c$D3FD LD HL,($D068) ;
  $D41F RET           ;
 
 ; Data block at D420
+@label=other_token_flag
 b$D420 DEFB $01
 
-; Routine at D421
+; Print token
 ;
 ; Used by the routines at #R$D2E1, #R$D837, #R$E107, #R$E212, #R$E2F8, #R$E31E,
 ; #R$E7CF, #R$E87E, #R$E8EA, #R$E973, #R$EB47, #R$EDDF, #R$EEA8, #R$EF87 and
@@ -14848,7 +14849,7 @@ c$D421 POP HL        ; Get pointer to token number from stack
  $D45C INC HL        ; Increment token address
  $D45D JR $D454      ; Loop to process next char code
 
-; Routine at D45F
+; Print other recursive token
 ;
 ; Used by the routines at #R$D039, #R$D470, #R$D5B4, #R$D90A, #R$DA5A, #R$DBA2,
 ; #R$E292, #R$E8E5, #R$EDDF, #R$EF87 and #R$F0A1.
@@ -14862,26 +14863,26 @@ c$D45F LD HL,($F11C) ; Get base address of other tokens
  $D46B CPIR          ; }
  $D46D JP $D463      ; And loop
 
-; Routine at D470
+; Print other/extra token
 ;
 ; Used by the routine at #R$D48E.
 @label_print_other_token
 c$D470 LD B,A        ;
- $D471 LD A,($D420)  ;
+ $D471 LD A,($D420)  ; Test flag
  $D474 CP $00        ;
  $D476 LD A,B        ;
- $D477 JR Z,$D425    ;
- $D479 CP $20        ;
- $D47B JP C,$D7B0    ;
- $D47E CP $5B        ;
- $D480 JR C,$D499    ;
- $D482 CP $81        ;
- $D484 JP C,$D5B4    ;
- $D487 CP $D7        ;
- $D489 JR C,$D45F    ;
- $D48B JP $D595      ;
+ $D477 JR Z,$D425    ; Jump if flag is reset
+ $D479 CP $20        ; {Jump if token < 32
+ $D47B JP C,$D7B0    ; }
+ $D47E CP $5B        ; {Jump if 32 <= token < 91
+ $D480 JR C,$D499    ; }
+ $D482 CP $81        ; {Jump if 92 <= token < 129
+ $D484 JP C,$D5B4    ; }
+ $D487 CP $D7        ; {Jump if 129 <= token < 215
+ $D489 JR C,$D45F    ; }
+ $D48B JP $D595      ; Jump if token >= 215
 
-; Routine at D48E
+; Other token loop
 ;
 ; Used by the routine at #R$D45F.
 @recursive_other_token_loop
@@ -14894,7 +14895,7 @@ c$D48E LD A,(HL)     ; Get next char code of token
  $D496 INC HL        ; Increment token address
  $D497 JR $D48E      ; Loop to process next char code
 
-; Routine at D499
+; Print ASCII character
 ;
 ; Used by the routines at #R$D421, #R$D470 and #R$D59C.
 @label=print_ascii_char
@@ -15063,11 +15064,12 @@ c$D568 LD HL,$5821   ;
 ; Routine at D595
 ;
 ; Used by the routine at #R$D470.
+@label=other_token_gt_214
 c$D595 SUB $D7       ;
  $D597 LD HL,$FD99   ;
  $D59A JR $D5A1      ;
 
-; Routine at D59C
+; Print two-letter token
 ;
 ; Used by the routine at #R$D421.
 @label=print_two_letter_token
@@ -15091,6 +15093,7 @@ c$D59C SUB $80       ; Offset from 128
 ; Routine at D5B4
 ;
 ; Used by the routine at #R$D470.
+label=other_token_92_to_128
 c$D5B4 LD D,$00      ;
  $D5B6 SUB $5B       ;
  $D5B8 LD E,A        ;
@@ -15137,7 +15140,7 @@ b$D5F5 DEFB $10,$15,$1A,$1F,$9B,$A0,$2E,$A5
  $D60D DEFB $5B,$6A,$B4,$B9,$BE,$E1,$E6,$EB
  $D615 DEFB $F0,$F5,$FA,$73,$78,$7D,$00,$00
 
-; Routine at D61D
+; Clear screen with border
 ;
 ; Clear the screen and draw a one pixel border
 ;
@@ -15348,6 +15351,7 @@ c$D7A1 LD B,$20      ;
 ; Routine at D7B0
 ;
 ; Used by the routine at #R$D470.
+@label=other_token_lt_32
 c$D7B0 LD HL,$D7DF   ;
  $D7B3 JR $D7B8      ;
 
