@@ -18,33 +18,17 @@ B $5CCB,165,8*20,5
 b $5D70 Font #HTML[#FONT$5D70,96]
 @ $5D70 label=font
 B $5D70,1001,8*125,1
-b $6159 Current ship ($26 bytes)
+b $6159 Structure of a ship ($26 bytes)
+D $6159 #TABLE { =h Type | =h Offset | =h Content } { byte | $00 | x_lo } { byte | $01 | x_hi } { byte | $02 | x_sign } { byte | $03 | y_lo } { byte | $04 | y_hi } { byte | $05 | y_sign } { byte | $06 | z_lo } { byte | $07 | z_hi } { byte | $08 | z_sign } { byte | $09 | nosev_x_lo } { byte | $0A | nosev_x_hi } { byte | $0B | nosev_y_lo } { byte | $0C | nosev_y_hi } { byte | $0D | nosev_z_lo } { byte | $0E | nosev_z_hi } { byte | $0F | roofv_x_lo } { byte | $10 | roofv_x_hi } { byte | $11 | roofv_y_lo } { byte | $12 | roofv_y_hi } { byte | $13 | roofv_z_lo } { byte | $14 | roofv_z_hi } { byte | $15 | sidev_x_lo } { byte | $16 | sidev_x_hi } { byte | $17 | sidev_y_lo } { byte | $18 | sidev_y_hi } { byte | $19 | sidev_z_lo } { byte | $1A | sidev_z_hi } { byte | $1B | Speed } { byte | $1C | Acceleration? } { byte | $1D | Roll counter? } { byte | $1E | Pitch counter? } { byte | $1F | Unknown } { byte | $20 | From blueprint byte $0A - bit field } { byte | $21 | From blueprint byte $12 } { byte | $22 | Energy } { word | $23 | Address of blueprint } { byte | $25 | Unknown, set to $7E } { byte | $26 | Unknown, set to $00 } TABLE#
+N $6159 Current ship
 @ $6159 label=current_ship
 B $6159,34,8*4,2
 b $617B Data block at 617B
 B $617B,4,4
 s $617F Unused
+S $617F,1,$01
 b $6180 Ship blueprint lookup table
-D $6180 Structure of a blueprint:
-D $6180 byte $00: Max canisters released
-D $6180 byte $01: Targetable area?
-D $6180 byte $02: Targetable area?
-D $6180 byte $03: Number of vertices
-D $6180 byte $04: Number of edges
-D $6180 byte $05: Number of faces
-D $6180 byte $06: Max speed
-D $6180 byte $07: Max energy
-D $6180 word $08: Bounty
-D $6180 byte $0A: Unknown
-D $6180 byte $0B: Visibility distance
-D $6180 word $0C: Offset to vertices from byte 0
-D $6180 word $0E: Offset to edges
-D $6180 word $10: Offset to faces
-D $6180 byte $12: Unknown
-D $6180 byte $13: Normals scaled by
-D $6180 byte $14: Gun vertex
-D $6180 byte $15: Unknown
-D $6180 byte $16: Unknown
+D $6180 Structure of a blueprint ($17 bytes): #TABLE { =h Type | =h Offset | =h Content } { byte | $00 | Max canisters released } { byte | $01 | Targetable area? } { byte | $02 | Targetable area? } { byte | $03 | Number of vertices } { byte | $04 | Number of edges } { byte | $05 | Number of faces } { byte | $06 | Max speed } { byte | $07 | Max energy } { word | $08 | Bounty } { byte | $0A | Unknown } { byte | $0B | Visibility distance } { word | $0C | Offset to vertices from byte 0 } { word | $0E | Offset to edges } { word | $10 | Offset to faces } { byte | $12 | Unknown } { byte | $13 | Normals scaled by } { byte | $14 | Gun vertex } { byte | $15 | Unknown } { byte | $16 | Unknown } TABLE#
 D $6180 Unknown could be: Max. edge count, Explosion count, Laser power/missiles
 @ $6180 label=ship_blueprints
 B $6180,1,1
@@ -324,13 +308,14 @@ c $7331 Routine at 7331
 D $7331 Used by the routine at #R$72A3.
 c $7344 Routine at 7344
 D $7344 Used by the routine at #R$72A3.
-c $7366 title screen
+c $7366 Title screen
 D $7366 Used by the routine at #R$70E0.
 @ $7366 label=title_screen
 C $7366,4 Save the stack pointer
 C $736D,3 Draw the control panel
 N $7370 This entry point is used by the routine at #R$728D.
-c $7378 title loop
+C $7372,3 Create the ship
+c $7378 Title screen loop
 @ $7378 label=title_loop
 N $7394 This entry point is used by the routine at #R$7471.
 N $739E This entry point is used by the routine at #R$7471.
@@ -970,7 +955,7 @@ b $9C92 Data block at 9C92
 B $9C92,10,8,2
 c $9C9C Routine at 9C9C
 D $9C9C Used by the routines at #R$7366, #R$7378, #R$9296, #R$9BA7 and #R$9C1C.
-@ $9C9C label=jump_to_B867
+@ $9C9C label=jump_to_ship_action
 c $9C9F Routine at 9C9F
 D $9C9F Used by the routine at #R$7471.
 b $9CA2 Data block at 9CA2
@@ -1031,6 +1016,12 @@ S $A28B,2,$02
 c $A28D Routine at A28D
 D $A28D Used by the routine at #R$9CAF.
 @ $A28D label=draw_title_ship
+C $A28D,4 Ship data structure
+C $A291,3 Get blueprint MSB
+C $A294,3 Get blueprint LSB
+C $A297,3 Copy blueprint addr to IY
+@ $A2A7 ssub=LD IX,$6159+$09
+C $A2A7,4 Orientation vectors
 b $A2B8 Data block at A2B8
 B $A2B8,8,8
 c $A2C0 Routine at A2C0
@@ -1212,13 +1203,26 @@ b $B83E Data block at B83E
 @ $B83E label=ship_init_data
 B $B83E,31,8*3,7
 b $B85D Data block at B85D
-@ $B85D label=data_at_B85D
+@ $B85D label=orient_vectors_init
 B $B85D,9,8,1
 b $B866 Byte at B866
 B $B866,1,1
 c $B867 Routine at B867
 D $B867 Used by the routines at #R$9C9C, #R$9CBB, #R$B618 and #R$B63C.
-R $B867 A Some value
+R $B867 A Some value, e.g. $79, lower nybble is action, upper nybble is ship
+@ $B867 label=ship_action
+C $B867,9 Set C to upper nybble shifted down
+C $B870,2 Isolate lower nybble in A
+C $B872,3 Jump if lower nybble is 0
+C $B876,3 Jump if lower nybble was 1
+C $B87A,3 Jump if lower nybble was 2
+C $B87E,1 Return if lower nybble was 3
+C $B880,3 Jump if lower nybble was 4
+C $B884,3 Jump if lower nybble was 5
+C $B888,3 Jump if lower nybble was 6
+C $B88C,3 Jump if lower nybble was 7
+C $B890,3 Jump if lower nybble was 8
+C $B894,3 Jump if lower nybble was 9
 c $B898 Create a ship from a blueprint
 D $B898 Used by the routines at #R$B91E, #R$B94A, #R$B96B, #R$BB75, #R$BBF2, #R$BC21 and #R$BC78.
 R $B898 A Index of ship blueprint
@@ -1241,7 +1245,7 @@ C $B8B5,3 Number of bytes to copy
 C $B8B8,3 Ship init data
 C $B8BB,2 Copy $1F bytes to ship buffer
 C $B8BD,3 Max energy from blueprint
-C $B8C0,3 Copy into ship buffer byte $22
+C $B8C0,3 Copy into ship buffer byte $22 -> energy
 C $B8C3,3 Unknown blueprint property
 C $B8C9,3 Store in ship buffer byte $21
 C $B8CC,3 Unknown blueprint property
@@ -1252,14 +1256,20 @@ C $B8D4,1 Roll A right, getting bit 7 from C
 C $B8D5,3 Store in ship buffer byte $20
 C $B8D8,3 Max speed
 C $B8DB,2 Divide by 2
-C $B8DD,3 Store in ship buffer byte $1B
+C $B8DD,3 Store in ship buffer byte $1B -> speed
 C $B8E0,5 Store $7E in ship buffer byte $25
 C $B8E5,4 Store $00 in ship buffer byte $26
 C $B8F3,3 Random number
+C $B8F8,3 x hi ?
 C $B8FB,3 Random number
+C $B900,3 y hi ?
 C $B903,3 Random number
+C $B906,3 x lo ?
 C $B909,3 Random number
+C $B90C,3 y lo ?
 C $B90F,3 Random number
+C $B913,4 x sign?
+C $B918,4 y sign?
 c $B91E Routine at B91E
 D $B91E Used by the routines at #R$B99F, #R$B9E7, #R$BB2F and #R$BB4D.
 c $B936 Routine at B936
@@ -1295,6 +1305,26 @@ D $BB4D Used by the routine at #R$B867.
 N $BB55 This entry point is used by the routine at #R$BAE8.
 c $BB75 Routine at BB75
 D $BB75 Used by the routine at #R$B867.
+@ $BB75 label=create_current_ship
+C $BB75,4 Ship structure
+C $BB79,1 Upper nybble from action
+C $BB7A,5 Add 2, and use as index of blueprint for creating ship
+C $BB81,3 Probably not roll counter and pitch counter
+C $BB88,3 z_lo = 0
+C $BB8B,3 x_lo = 0
+C $BB8E,3 x_hi = 0
+C $BB91,3 y_lo = 0
+C $BB94,3 y_hi = 0
+C $BB97,3 z_sign = 0
+C $BB9A,3 Speed
+C $BBA3,3 z_hi = 2
+C $BBA6,3 HL = Ship structure
+C $BBA9,3 DE = 9
+C $BBAC,2 BC = 9
+C $BBAE,1 HL = Orientation vectors
+C $BBAF,1 DE = Orientation vectors
+C $BBB0,3 Init data for orientation vectors
+C $BBB3,6 Skip low byte Copy init data to ship structure High bytes only
 c $BBBA Routine at BBBA
 D $BBBA Used by the routine at #R$B867.
 c $BBF2 Routine at BBF2

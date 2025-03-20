@@ -453,7 +453,7 @@ b$5D70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 ; { byte | $1D | Roll counter? }
 ; { byte | $1E | Pitch counter? }
 ; { byte | $1F | Unknown }
-; { byte | $20 | From blueprint byte $0A }
+; { byte | $20 | From blueprint byte $0A - bit field }
 ; { byte | $21 | From blueprint byte $12 }
 ; { byte | $22 | Energy }
 ; { word | $23 | Address of blueprint }
@@ -1984,7 +1984,7 @@ c$7344 LD B,$06      ;
  $7363 DJNZ $7348    ;
  $7365 RET           ;
 
-; title screen
+; Title screen
 ;
 ; Used by the routine at #R$70E0.
 @label=title_screen
@@ -1993,10 +1993,10 @@ c$7366 LD ($7578),SP ; Save the stack pointer
  $736D CALL $804B    ; Draw the control panel
 ; This entry point is used by the routine at #R$728D.
 *$7370 LD A,$79      ;
- $7372 CALL $9C9C    ;
+ $7372 CALL $9C9C    ; Create the ship
  $7375 CALL $7461    ;
 
-; title loop
+; Title screen loop
 @label=title_loop
 c$7378 CALL $8080    ;
  $737B CALL $7426    ;
@@ -8313,7 +8313,7 @@ b$9C92 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 ; Routine at 9C9C
 ;
 ; Used by the routines at #R$7366, #R$7378, #R$9296, #R$9BA7 and #R$9C1C.
-@label=jump_to_B867
+@label=jump_to_ship_action
 c$9C9C JP $B867      ;
 
 ; Routine at 9C9F
@@ -9153,17 +9153,18 @@ s$A28B DEFS $02
 ;
 ; Used by the routine at #R$9CAF.
 @label=draw_title_ship
-c$A28D LD IX,$6159   ;
- $A291 LD H,(IX+$24) ;
- $A294 LD L,(IX+$23) ;
- $A297 PUSH HL       ;
- $A298 POP IY        ;
+c$A28D LD IX,$6159   ; Ship data structure
+ $A291 LD H,(IX+$24) ; Get blueprint MSB
+ $A294 LD L,(IX+$23) ; Get blueprint LSB
+ $A297 PUSH HL       ; {Copy blueprint addr to IY
+ $A298 POP IY        ; }
  $A29A LD A,$94      ;
  $A29C LD ($9F80),A  ;
  $A29F LD A,$8C      ;
  $A2A1 CALL $9FFD    ;
  $A2A4 CALL $AE69    ;
- $A2A7 LD IX,$6162   ;
+@ssub=LD IX,$6159+$09
+ $A2A7 LD IX,$6162   ; Orientation vectors
  $A2AB CALL $9F41    ;
  $A2AE CALL $9F41    ;
  $A2B1 LD IX,$6159   ;
@@ -12230,7 +12231,7 @@ b$B83E DEFB $00,$32,$00,$00,$32,$00,$00,$32
  $B856 DEFB $00,$00,$00,$00,$00,$00,$00
 
 ; Data block at B85D
-@label=data_at_B85D
+@label=orient_vectors_init
 b$B85D DEFB $58,$44,$41,$98,$64,$CB,$5A,$A7
  $B865 DEFB $D1
 
@@ -12241,32 +12242,33 @@ b$B866 DEFB $00
 ;
 ; Used by the routines at #R$9C9C, #R$9CBB, #R$B618 and #R$B63C.
 ;
-; A Some value
-c$B867 LD C,A        ;
- $B868 SRL C         ;
+; A Some value, e.g. $79, lower nybble is action, upper nybble is ship
+@label=ship_action
+c$B867 LD C,A        ; {Set C to upper nybble
+ $B868 SRL C         ; shifted down
  $B86A SRL C         ;
  $B86C SRL C         ;
- $B86E SRL C         ;
- $B870 AND $0F       ;
- $B872 JP Z,$BBBA    ;
+ $B86E SRL C         ; }
+ $B870 AND $0F       ; Isolate lower nybble in A
+ $B872 JP Z,$BBBA    ; Jump if lower nybble is 0
  $B875 DEC A         ;
- $B876 JP Z,$B96B    ;
+ $B876 JP Z,$B96B    ; Jump if lower nybble was 1
  $B879 DEC A         ;
- $B87A JP Z,$B99F    ;
+ $B87A JP Z,$B99F    ; Jump if lower nybble was 2
  $B87D DEC A         ;
- $B87E RET Z         ;
+ $B87E RET Z         ; Return if lower nybble was 3
  $B87F DEC A         ;
- $B880 JP Z,$B9E7    ;
+ $B880 JP Z,$B9E7    ; Jump if lower nybble was 4
  $B883 DEC A         ;
- $B884 JP Z,$BA94    ;
+ $B884 JP Z,$BA94    ; Jump if lower nybble was 5
  $B887 DEC A         ;
- $B888 JP Z,$BAF2    ;
+ $B888 JP Z,$BAF2    ; Jump if lower nybble was 6
  $B88B DEC A         ;
- $B88C JP Z,$BAFA    ;
+ $B88C JP Z,$BAFA    ; Jump if lower nybble was 7
  $B88F DEC A         ;
- $B890 JP Z,$BB4D    ;
+ $B890 JP Z,$BB4D    ; Jump if lower nybble was 8
  $B893 DEC A         ;
- $B894 JP Z,$BB75    ;
+ $B894 JP Z,$BB75    ; Jump if lower nybble was 9
  $B897 RET           ;
 
 ; Create a ship from a blueprint
@@ -12675,36 +12677,37 @@ c$BB4D LD A,$05       ;
 ; Routine at BB75
 ;
 ; Used by the routine at #R$B867.
-c$BB75 LD IX,$6159    ;
- $BB79 LD A,C         ;
- $BB7A ADD A,$02      ;
- $BB7C CALL $B898     ;
+@label=create_current_ship
+c$BB75 LD IX,$6159    ; Ship structure
+ $BB79 LD A,C         ; Upper nybble from action
+ $BB7A ADD A,$02      ; {Add 2, and use as index of blueprint for
+ $BB7C CALL $B898     ; creating ship}
  $BB7F LD A,$C0       ;
- $BB81 LD (IX+$1D),A  ;
+ $BB81 LD (IX+$1D),A  ; Probably not roll counter and pitch counter
  $BB84 LD (IX+$1E),A  ;
  $BB87 XOR A          ;
- $BB88 LD (IX+$06),A  ;
- $BB8B LD (IX+$00),A  ;
- $BB8E LD (IX+$01),A  ;
- $BB91 LD (IX+$03),A  ;
- $BB94 LD (IX+$04),A  ;
- $BB97 LD (IX+$08),A  ;
- $BB9A LD (IX+$1B),A  ;
+ $BB88 LD (IX+$06),A  ; z_lo = 0
+ $BB8B LD (IX+$00),A  ; x_lo = 0
+ $BB8E LD (IX+$01),A  ; x_hi = 0
+ $BB91 LD (IX+$03),A  ; y_lo = 0
+ $BB94 LD (IX+$04),A  ; y_hi = 0
+ $BB97 LD (IX+$08),A  ; z_sign = 0
+ $BB9A LD (IX+$1B),A  ; Speed
  $BB9D RES 6,(IX+$20) ;
  $BBA1 INC A          ;
  $BBA2 INC A          ;
- $BBA3 LD (IX+$07),A  ;
- $BBA6 PUSH IX        ;
- $BBA8 POP HL         ;
- $BBA9 LD DE,$0009    ;
- $BBAC LD B,D         ;
- $BBAD LD C,E         ;
- $BBAE ADD HL,DE      ;
- $BBAF EX DE,HL       ;
- $BBB0 LD HL,$B85D    ;
-*$BBB3 INC DE         ;
- $BBB4 LDI            ;
- $BBB6 JP PE,$BBB3    ;
+ $BBA3 LD (IX+$07),A  ; z_hi = 2
+ $BBA6 PUSH IX        ; { HL = Ship structure
+ $BBA8 POP HL         ; }
+ $BBA9 LD DE,$0009    ; DE = 9
+ $BBAC LD B,D         ; {BC = 9
+ $BBAD LD C,E         ; }
+ $BBAE ADD HL,DE      ; HL = Orientation vectors
+ $BBAF EX DE,HL       ; DE = Orientation vectors
+ $BBB0 LD HL,$B85D    ; Init data for orientation vectors
+*$BBB3 INC DE         ; {Skip low byte
+ $BBB4 LDI            ; Copy init data to ship structure
+ $BBB6 JP PE,$BBB3    ; High bytes only}
  $BBB9 RET            ;
 
 ; Routine at BBBA
