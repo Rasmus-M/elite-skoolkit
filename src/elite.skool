@@ -3,6 +3,7 @@
 ; #UDGTABLE
 ; { #SCR(loading) | loading screen. }
 ; TABLE#
+@label=zx_screen
 b$4000 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
  $4020 DEFB $00,$00,$2A,$A0,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$1F,$F8,$00,$00,$A0,$B0,$D2,$82,$4A,$05,$28,$14
  $4040 DEFB $01,$EF,$CA,$AA,$A0,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$1F,$FF,$CF,$FE,$00,$A1,$40,$2A,$84,$8A,$05,$10,$14
@@ -197,6 +198,7 @@ b$4000 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,
  $57E0 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 ; attributes
+@label=zx_attrs
 b$5800 DEFB $06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07
  $5820 DEFB $06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$07,$07,$07,$07,$07,$07,$07,$07,$07
  $5840 DEFB $06,$36,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$07,$07,$07,$07,$07,$07,$07,$07,$07
@@ -286,8 +288,7 @@ b$5CCB DEFB $07,$5D,$FF,$FF,$FF,$FF,$FF,$FF
  $5D63 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $5D6B DEFB $00,$00,$00,$00,$00
 
-; Font
-; #HTML[#FONT$5D70,96]
+; Font #HTML[#FONT$5D70,96]
 @label=font
 b$5D70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $5D78 DEFB $7F,$40,$40,$20,$20,$10,$0C,$03
@@ -416,16 +417,94 @@ b$5D70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $6150 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $6158 DEFB $00
 
-; Data block at 6159
-@label=title_screen_ship
+; Structure of a ship ($26 bytes)
+;
+; #TABLE
+; { =h Type | =h Offset | =h Content }
+; { byte | $00 | x_lo }
+; { byte | $01 | x_hi }
+; { byte | $02 | x_sign }
+; { byte | $03 | y_lo }
+; { byte | $04 | y_hi }
+; { byte | $05 | y_sign }
+; { byte | $06 | z_lo }
+; { byte | $07 | z_hi }
+; { byte | $08 | z_sign }
+; { byte | $09 | nosev_x_lo }
+; { byte | $0A | nosev_x_hi }
+; { byte | $0B | nosev_y_lo }
+; { byte | $0C | nosev_y_hi }
+; { byte | $0D | nosev_z_lo }
+; { byte | $0E | nosev_z_hi }
+; { byte | $0F | roofv_x_lo }
+; { byte | $10 | roofv_x_hi }
+; { byte | $11 | roofv_y_lo }
+; { byte | $12 | roofv_y_hi }
+; { byte | $13 | roofv_z_lo }
+; { byte | $14 | roofv_z_hi }
+; { byte | $15 | sidev_x_lo }
+; { byte | $16 | sidev_x_hi }
+; { byte | $17 | sidev_y_lo }
+; { byte | $18 | sidev_y_hi }
+; { byte | $19 | sidev_z_lo }
+; { byte | $1A | sidev_z_hi }
+; { byte | $1B | Speed }
+; { byte | $1C | Acceleration? }
+; { byte | $1D | Roll counter? }
+; { byte | $1E | Pitch counter? }
+; { byte | $1F | Unknown }
+; { byte | $20 | From blueprint byte $0A }
+; { byte | $21 | From blueprint byte $12 }
+; { byte | $22 | Energy }
+; { word | $23 | Address of blueprint }
+; { byte | $25 | Unknown, set to $7E }
+; { byte | $26 | Unknown, set to $00 }
+; TABLE#
+;
+; .
+;
+; Current ship
+@label=current_ship
 b$6159 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $6161 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $6169 DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $6171 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $6179 DEFB $00,$00,$00,$00,$00,$00,$00
+ $6179 DEFB $00,$00
 
-; Ship lookup table XX21
-@label=ship_lookup_table
+; Data block at 617B
+b$617B DEFB $00,$00,$00,$00
+
+; Unused
+s$617F DEFS $01
+
+; Ship blueprint lookup table
+;
+; Structure of a blueprint ($17 bytes):
+; #TABLE
+; { =h Type | =h Offset | =h Content }
+; { byte | $00 | Max canisters released }
+; { byte | $01 | Targetable area? }
+; { byte | $02 | Targetable area? }
+; { byte | $03 | Number of vertices }
+; { byte | $04 | Number of edges }
+; { byte | $05 | Number of faces }
+; { byte | $06 | Max speed }
+; { byte | $07 | Max energy }
+; { word | $08 | Bounty }
+; { byte | $0A | Unknown }
+; { byte | $0B | Visibility distance }
+; { word | $0C | Offset to vertices from byte 0 }
+; { word | $0E | Offset to edges }
+; { word | $10 | Offset to faces }
+; { byte | $12 | Unknown }
+; { byte | $13 | Normals scaled by }
+; { byte | $14 | Gun vertex }
+; { byte | $15 | Unknown }
+; { byte | $16 | Unknown }
+; TABLE#
+; .
+; Unknown could be: Max. edge count, Explosion count, Laser power/missiles
+@label=ship_blueprints
 b$6180 DEFB $C3
  $6181 DEFW $6A9D
  $6183 DEFB $00
@@ -661,14 +740,14 @@ b$6474 DEFB $60,$00,$00,$1F
  $6488 DEFB $00,$29,$1E,$3F
  $648C DEFB $60,$00,$00,$9F
 
-; Unknown ship 3
-@label=unknown_ship_3
+; Ship cobra mk 3 v1
+@label=ship_cobra_mk_3_v1
 b$6490 DEFB $03,$5F,$8C,$1C,$26,$0D,$1C,$96
  $6498 DEFB $00,$00,$04,$32,$2E,$00,$D6,$00
  $64A0 DEFB $6E,$01,$A0,$01,$15,$00,$02
 
-; Ship cobra
-@label=ship_cobra_mk_3
+; Ship cobra mk 3 v2
+@label=ship_cobra_mk_3_v2
 b$64A7 DEFB $01,$5F,$A0,$1C,$26,$0D,$1C,$96
  $64AF DEFB $AF,$00,$02,$32,$17,$00,$BF,$00
  $64B7 DEFB $57,$01,$8C,$01,$15,$80,$03
@@ -3839,8 +3918,7 @@ c$80D3 LD A,($D040)  ;
 
 ; Jump to entry in jump table at $D000
 ;
-; Used by the routines at #R$71F3, #R$80D3 and #R$93ED.
-; A Index of jump to take
+; Used by the routines at #R$71F3, #R$80D3 and #R$93ED. A Index of jump to take
 c$813E LD ($80D1),SP ; Save stack pointer
  $8142 LD SP,$D000   ; Set SP just above screen buffer
  $8145 LD B,A        ;
@@ -12034,17 +12112,20 @@ c$B63C LD A,($B4D7)   ;
 
 ; Routine at B799
 ;
+; Is this some kind of random number generator?
+;
 ; Used by the routines at #R$A84D, #R$B4D8, #R$B63C, #R$B898 and #R$BBBA.
+@label=rand_no
 c$B799 PUSH HL       ;
  $B79A PUSH BC       ;
- $B79B LD HL,($B7AA) ;
- $B79E LD A,H        ;
- $B79F ADC A,A       ;
- $B7A0 LD B,A        ;
- $B7A1 ADC A,L       ;
- $B7A2 LD H,A        ;
- $B7A3 LD L,B        ;
- $B7A4 LD ($B7AA),HL ;
+ $B79B LD HL,($B7AA) ; Get old value
+ $B79E LD A,H        ; A=H
+ $B79F ADC A,A       ; A=2*H
+ $B7A0 LD B,A        ; B=2*H
+ $B7A1 ADC A,L       ; A=2*H+L
+ $B7A2 LD H,A        ; H=2*H+L
+ $B7A3 LD L,B        ; L=2*H
+ $B7A4 LD ($B7AA),HL ; Save new value
  $B7A7 POP BC        ;
  $B7A8 POP HL        ;
  $B7A9 RET           ;
@@ -12142,7 +12223,7 @@ c$B7B4 LD A,($711F)  ;
 b$B83D DEFB $00
 
 ; Data block at B83E
-@label=ship_buffer
+@label=ship_init_data
 b$B83E DEFB $00,$32,$00,$00,$32,$00,$00,$32
  $B846 DEFB $00,$00,$00,$00,$00,$FF,$FF,$00
  $B84E DEFB $00,$FF,$7F,$00,$00,$FF,$FF,$00
@@ -12151,7 +12232,10 @@ b$B83E DEFB $00,$32,$00,$00,$32,$00,$00,$32
 ; Data block at B85D
 @label=data_at_B85D
 b$B85D DEFB $58,$44,$41,$98,$64,$CB,$5A,$A7
- $B865 DEFB $D1,$00
+ $B865 DEFB $D1
+
+; Byte at B866
+b$B866 DEFB $00
 
 ; Routine at B867
 ;
@@ -12185,72 +12269,73 @@ c$B867 LD C,A        ;
  $B894 JP Z,$BB75    ;
  $B897 RET           ;
 
-; Routine at B898
+; Create a ship from a blueprint
 ;
 ; Used by the routines at #R$B91E, #R$B94A, #R$B96B, #R$BB75, #R$BBF2, #R$BC21
 ; and #R$BC78.
 ;
-; A Index of ship
-; IX Destination
+; A Index of ship blueprint
+; IX Address of ship buffer, e.g. current_ship
+@label=create_ship
 c$B898 LD HL,$6180    ; Table of ship blueprints
- $B89B LD B,A         ;
- $B89C AND $3F        ;
+ $B89B LD B,A         ; Copy index to B
+ $B89C AND $3F        ; Cap at 63
  $B89E ADD A,A        ; Index x 2
  $B89F ADD A,A        ; Index x 4
- $B8A0 ADD A,L        ; Add offset to HL
+ $B8A0 ADD A,L        ; {Add offset to HL
  $B8A1 LD L,A         ;
  $B8A2 JR NC,$B8A5    ;
- $B8A4 INC H          ;
+ $B8A4 INC H          ; }
 *$B8A5 INC HL         ; Skip past first byte
  $B8A6 LD E,(HL)      ; Get LSB of blueprint
- $B8A7 INC HL         ;
+ $B8A7 INC HL         ; Skip past LSB
  $B8A8 LD D,(HL)      ; Get MSB of blueprint
- $B8A9 PUSH DE        ;
- $B8AA POP IY         ; Copy address into IY
- $B8AC LD (IX+$24),D  ; Also store in destination bytes 35-36
- $B8AF LD (IX+$23),E  ;
- $B8B2 PUSH IX        ;
- $B8B4 POP DE         ; Now DE=destination
- $B8B5 LD BC,$001F    ;
- $B8B8 LD HL,$B83E    ; ship_buffer
- $B8BB LDIR           ; Copy 31 bytes to destination
- $B8BD LD A,(IY+$07)  ;
- $B8C0 LD (IX+$22),A  ;
- $B8C3 LD A,(IY+$12)  ;
+ $B8A9 PUSH DE        ; {Copy blueprint address into IY
+ $B8AA POP IY         ; }
+ $B8AC LD (IX+$24),D  ; {Also store in ship buffer bytes $23-$24
+ $B8AF LD (IX+$23),E  ; }
+ $B8B2 PUSH IX        ; {Set DE=ship structure
+ $B8B4 POP DE         ; }
+ $B8B5 LD BC,$001F    ; Number of bytes to copy
+ $B8B8 LD HL,$B83E    ; Ship init data
+ $B8BB LDIR           ; Copy $1F bytes to ship buffer
+ $B8BD LD A,(IY+$07)  ; Max energy from blueprint
+ $B8C0 LD (IX+$22),A  ; Copy into ship buffer byte $22 -> energy
+ $B8C3 LD A,(IY+$12)  ; Unknown blueprint property
  $B8C6 LD C,A         ;
  $B8C7 AND $6F        ;
- $B8C9 LD (IX+$21),A  ;
- $B8CC LD A,(IY+$0A)  ;
- $B8CF AND $07        ;
- $B8D1 RLA            ;
- $B8D2 RL C           ;
- $B8D4 RRA            ;
- $B8D5 LD (IX+$20),A  ;
- $B8D8 LD A,(IY+$06)  ;
- $B8DB SRL A          ;
- $B8DD LD (IX+$1B),A  ;
- $B8E0 LD A,$7E       ;
- $B8E2 LD (IX+$25),A  ;
- $B8E5 XOR A          ;
- $B8E6 LD (IX+$26),A  ;
+ $B8C9 LD (IX+$21),A  ; Store in ship buffer byte $21
+ $B8CC LD A,(IY+$0A)  ; Unknown blueprint property
+ $B8CF AND $07        ; Preserve 3 bits
+ $B8D1 RLA            ; Roll A left
+ $B8D2 RL C           ; Place bit 7 of C in carry flag
+ $B8D4 RRA            ; Roll A right, getting bit 7 from C
+ $B8D5 LD (IX+$20),A  ; Store in ship buffer byte $20
+ $B8D8 LD A,(IY+$06)  ; Max speed
+ $B8DB SRL A          ; Divide by 2
+ $B8DD LD (IX+$1B),A  ; Store in ship buffer byte $1B -> speed
+ $B8E0 LD A,$7E       ; {Store $7E in ship buffer byte $25
+ $B8E2 LD (IX+$25),A  ; }
+ $B8E5 XOR A          ; {Store $00 in ship buffer byte $26
+ $B8E6 LD (IX+$26),A  ; }
  $B8E9 SET 6,(IX+$20) ;
  $B8ED BIT 2,(IX+$21) ;
  $B8F1 JR NZ,$B903    ;
- $B8F3 CALL $B799     ;
+ $B8F3 CALL $B799     ; Random number
  $B8F6 AND $07        ;
- $B8F8 LD (IX+$01),A  ;
- $B8FB CALL $B799     ;
+ $B8F8 LD (IX+$01),A  ; x hi ?
+ $B8FB CALL $B799     ; Random number
  $B8FE AND $07        ;
- $B900 LD (IX+$04),A  ;
-*$B903 CALL $B799     ;
- $B906 LD (IX+$00),A  ;
- $B909 CALL $B799     ;
- $B90C LD (IX+$03),A  ;
- $B90F CALL $B799     ;
+ $B900 LD (IX+$04),A  ; y hi ?
+*$B903 CALL $B799     ; Random number
+ $B906 LD (IX+$00),A  ; x lo ?
+ $B909 CALL $B799     ; Random number
+ $B90C LD (IX+$03),A  ; y lo ?
+ $B90F CALL $B799     ; Random number
  $B912 RRA            ;
- $B913 RR (IX+$02)    ;
+ $B913 RR (IX+$02)    ; x sign?
  $B917 RRA            ;
- $B918 RR (IX+$05)    ;
+ $B918 RR (IX+$05)    ; y sign?
  $B91C XOR A          ;
  $B91D RET            ;
 
@@ -19151,8 +19236,7 @@ w$F11A DEFW $F11E
 @label=other_tokens_ptr
 w$F11C DEFW $F4F5
 
-; Standard recursive tokens
-; Token $00
+; Standard recursive tokens Token $00
 @label=tokens
 t$F11E DEFM "o",$10,$00
 
@@ -19597,8 +19681,7 @@ t$F4F3 DEFM $00
 ; Token $93
 t$F4F4 DEFM $00
 
-; Other/extra tokens
-; Token $00
+; Other/extra tokens Token $00
 @label=other_tokens
 t$F4F5 DEFM $01,$08,"  AC",$E9,"SS ME",$E1,$02,$0C,$0C,$0C,$0C," 1 ",$95,$0C,$0C," 2",$CB," ",$9A," ",$01,$04,$02,$0C,$0C," 3 EX",$DB,$00
 
@@ -20210,7 +20293,7 @@ t$FA16 DEFM " TO ",$00
 t$FA1B DEFM " ",$98," ",$00
 
 ; Token $CB
-t$FA1F DEFM " SA",$FA,$00C
+t$FA1F DEFM " SA",$FA,$00
 
 ; Token $CC
 t$FA24 DEFM ".",$0C," ",$13,$00

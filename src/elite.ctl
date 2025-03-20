@@ -1,8 +1,10 @@
 @ $4000 start
 @ $4000 org
 b $4000 #UDGTABLE { #SCR(loading) | loading screen. } TABLE#
+@ $4000 label=zx_screen
 B $4000,6144,32
 b $5800 attributes
+@ $5800 label=zx_attrs
 B $5800,768,32
 b $5B00 printer buffer
 @ $5B00 label=ctrl_panel_attrs
@@ -16,11 +18,35 @@ B $5CCB,165,8*20,5
 b $5D70 Font #HTML[#FONT$5D70,96]
 @ $5D70 label=font
 B $5D70,1001,8*125,1
-b $6159 Data block at 6159
-@ $6159 label=title_screen_ship
-B $6159,39,8*4,7
-b $6180 Ship lookup table XX21
-@ $6180 label=ship_lookup_table
+b $6159 Current ship ($26 bytes)
+@ $6159 label=current_ship
+B $6159,34,8*4,2
+b $617B Data block at 617B
+B $617B,4,4
+s $617F Unused
+b $6180 Ship blueprint lookup table
+D $6180 Structure of a blueprint:
+D $6180 byte $00: Max canisters released
+D $6180 byte $01: Targetable area?
+D $6180 byte $02: Targetable area?
+D $6180 byte $03: Number of vertices
+D $6180 byte $04: Number of edges
+D $6180 byte $05: Number of faces
+D $6180 byte $06: Max speed
+D $6180 byte $07: Max energy
+D $6180 word $08: Bounty
+D $6180 byte $0A: Unknown
+D $6180 byte $0B: Visibility distance
+D $6180 word $0C: Offset to vertices from byte 0
+D $6180 word $0E: Offset to edges
+D $6180 word $10: Offset to faces
+D $6180 byte $12: Unknown
+D $6180 byte $13: Normals scaled by
+D $6180 byte $14: Gun vertex
+D $6180 byte $15: Unknown
+D $6180 byte $16: Unknown
+D $6180 Unknown could be: Max. edge count, Explosion count, Laser power/missiles
+@ $6180 label=ship_blueprints
 B $6180,1,1
 W $6181,2,2
 B $6183,2,1
@@ -90,11 +116,11 @@ b $6438 Ship canister edges
 B $6438,60,4
 b $6474 Ship canister faces
 B $6474,28,4
-b $6490 Unknown ship 3
-@ $6490 label=unknown_ship_3
+b $6490 Ship cobra mk 3 v1
+@ $6490 label=ship_cobra_mk_3_v1
 B $6490,23,8*2,7
-b $64A7 Ship cobra
-@ $64A7 label=ship_cobra_mk_3
+b $64A7 Ship cobra mk 3 v2
+@ $64A7 label=ship_cobra_mk_3_v2
 B $64A7,23,8*2,7
 b $64BE Ship cobra mk 3 vertices
 B $64BE,168,6
@@ -1161,7 +1187,17 @@ D $B618 Used by the routine at #R$9C9F.
 c $B63C Routine at B63C
 D $B63C Used by the routine at #R$B7B4.
 c $B799 Routine at B799
-D $B799 Used by the routines at #R$A84D, #R$B4D8, #R$B63C, #R$B898 and #R$BBBA.
+D $B799 Is this some kind of random number generator?
+R $B799 Used by the routines at #R$A84D, #R$B4D8, #R$B63C, #R$B898 and #R$BBBA.
+@ $B799 label=rand_no
+C $B79B,3 Get old value
+C $B79E,1 A=H
+C $B79F,1 A=2*H
+C $B7A0,1 B=2*H
+C $B7A1,1 A=2*H+L
+C $B7A2,1 H=2*H+L
+C $B7A3,1 L=2*H
+C $B7A4,3 Save new value
 w $B7AA Data block at B7AA
 @ $B7AA label=word_at_B7AA
 W $B7AA,2,2
@@ -1173,30 +1209,57 @@ b $B83D Data block at B83D
 @ $B83D label=byte_at_B83D
 B $B83D,1,1
 b $B83E Data block at B83E
-@ $B83E label=ship_buffer
+@ $B83E label=ship_init_data
 B $B83E,31,8*3,7
 b $B85D Data block at B85D
 @ $B85D label=data_at_B85D
-B $B85D,10,8,2
+B $B85D,9,8,1
+b $B866 Byte at B866
+B $B866,1,1
 c $B867 Routine at B867
 D $B867 Used by the routines at #R$9C9C, #R$9CBB, #R$B618 and #R$B63C.
 R $B867 A Some value
-c $B898 Routine at B898
+c $B898 Create a ship from a blueprint
 D $B898 Used by the routines at #R$B91E, #R$B94A, #R$B96B, #R$BB75, #R$BBF2, #R$BC21 and #R$BC78.
-R $B898 A Index of ship
-R $B898 IX Destination
+R $B898 A Index of ship blueprint
+R $B898 IX Address of ship buffer, e.g. current_ship
+@ $B898 label=create_ship
 C $B898,3 Table of ship blueprints
+C $B89B,1 Copy index to B
+C $B89C,2 Cap at 63
 C $B89E,1 Index x 2
 C $B89F,1 Index x 4
-C $B8A0,1 Add offset to HL
+C $B8A0,5 Add offset to HL
 C $B8A5,1 Skip past first byte
 C $B8A6,1 Get LSB of blueprint
+C $B8A7,1 Skip past LSB
 C $B8A8,1 Get MSB of blueprint
-C $B8AA,2 Copy address into IY
-C $B8AC,3 Also store in destination bytes 35-36
-C $B8B4,1 Now DE=destination
-C $B8B8,3 ship_buffer
-C $B8BB,2 Copy 31 bytes to destination
+C $B8A9,3 Copy blueprint address into IY
+C $B8AC,6 Also store in ship buffer bytes $23-$24
+C $B8B2,3 Set DE=ship structure
+C $B8B5,3 Number of bytes to copy
+C $B8B8,3 Ship init data
+C $B8BB,2 Copy $1F bytes to ship buffer
+C $B8BD,3 Max energy from blueprint
+C $B8C0,3 Copy into ship buffer byte $22
+C $B8C3,3 Unknown blueprint property
+C $B8C9,3 Store in ship buffer byte $21
+C $B8CC,3 Unknown blueprint property
+C $B8CF,2 Preserve 3 bits
+C $B8D1,1 Roll A left
+C $B8D2,2 Place bit 7 of C in carry flag
+C $B8D4,1 Roll A right, getting bit 7 from C
+C $B8D5,3 Store in ship buffer byte $20
+C $B8D8,3 Max speed
+C $B8DB,2 Divide by 2
+C $B8DD,3 Store in ship buffer byte $1B
+C $B8E0,5 Store $7E in ship buffer byte $25
+C $B8E5,4 Store $00 in ship buffer byte $26
+C $B8F3,3 Random number
+C $B8FB,3 Random number
+C $B903,3 Random number
+C $B909,3 Random number
+C $B90F,3 Random number
 c $B91E Routine at B91E
 D $B91E Used by the routines at #R$B99F, #R$B9E7, #R$BB2F and #R$BB4D.
 c $B936 Routine at B936
