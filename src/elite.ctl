@@ -19,7 +19,7 @@ b $5D70 Font #HTML[#FONT$5D70,96]
 @ $5D70 label=font
 B $5D70,1001,8*125,1
 b $6159 Structure of a ship ($26 bytes)
-D $6159 #TABLE { =h Type | =h Offset | =h Content } { byte | $00 | x_lo } { byte | $01 | x_hi } { byte | $02 | x_sign } { byte | $03 | y_lo } { byte | $04 | y_hi } { byte | $05 | y_sign } { byte | $06 | z_lo } { byte | $07 | z_hi } { byte | $08 | z_sign } { byte | $09 | nosev_x_lo } { byte | $0A | nosev_x_hi } { byte | $0B | nosev_y_lo } { byte | $0C | nosev_y_hi } { byte | $0D | nosev_z_lo } { byte | $0E | nosev_z_hi } { byte | $0F | roofv_x_lo } { byte | $10 | roofv_x_hi } { byte | $11 | roofv_y_lo } { byte | $12 | roofv_y_hi } { byte | $13 | roofv_z_lo } { byte | $14 | roofv_z_hi } { byte | $15 | sidev_x_lo } { byte | $16 | sidev_x_hi } { byte | $17 | sidev_y_lo } { byte | $18 | sidev_y_hi } { byte | $19 | sidev_z_lo } { byte | $1A | sidev_z_hi } { byte | $1B | Speed } { byte | $1C | Acceleration? } { byte | $1D | Roll counter? } { byte | $1E | Pitch counter? } { byte | $1F | Unknown } { byte | $20 | From blueprint byte $0A - bit field } { byte | $21 | From blueprint byte $12 } { byte | $22 | Energy } { word | $23 | Address of blueprint } { byte | $25 | Unknown, set to $7E } { byte | $26 | Unknown, set to $00 } TABLE#
+D $6159 #TABLE { =h Type | =h Offset | =h Content } { byte | $00 | x_lo } { byte | $01 | x_hi } { byte | $02 | x_sign } { byte | $03 | y_lo } { byte | $04 | y_hi } { byte | $05 | y_sign } { byte | $06 | z_lo } { byte | $07 | z_hi } { byte | $08 | z_sign } { byte | $09 | nosev_x_lo } { byte | $0A | nosev_x_hi } { byte | $0B | nosev_y_lo } { byte | $0C | nosev_y_hi } { byte | $0D | nosev_z_lo } { byte | $0E | nosev_z_hi } { byte | $0F | roofv_x_lo } { byte | $10 | roofv_x_hi } { byte | $11 | roofv_y_lo } { byte | $12 | roofv_y_hi } { byte | $13 | roofv_z_lo } { byte | $14 | roofv_z_hi } { byte | $15 | sidev_x_lo } { byte | $16 | sidev_x_hi } { byte | $17 | sidev_y_lo } { byte | $18 | sidev_y_hi } { byte | $19 | sidev_z_lo } { byte | $1A | sidev_z_hi } { byte | $1B | Speed } { byte | $1C | Acceleration?} { byte | $1D | Roll counter? Set to $C0 } { byte | $1E | Pitch counter?  Set to $C0 } { byte | $1F | Unknown } { byte | $20 | From blueprint byte $0A - bit field } { byte | $21 | From blueprint byte $12 - bit field } { byte | $22 | Energy } { word | $23 | Address of blueprint } { byte | $25 | Unknown, set to $7E } { byte | $26 | Unknown, set to $00 } TABLE#
 N $6159 Current ship
 @ $6159 label=current_ship
 B $6159,34,8*4,2
@@ -28,8 +28,6 @@ B $617B,4,4
 s $617F Unused
 S $617F,1,$01
 b $6180 Ship blueprint lookup table
-D $6180 Structure of a blueprint ($17 bytes): #TABLE { =h Type | =h Offset | =h Content } { byte | $00 | Max canisters released } { byte | $01 | Targetable area? } { byte | $02 | Targetable area? } { byte | $03 | Number of vertices } { byte | $04 | Number of edges } { byte | $05 | Number of faces } { byte | $06 | Max speed } { byte | $07 | Max energy } { word | $08 | Bounty } { byte | $0A | Unknown } { byte | $0B | Visibility distance } { word | $0C | Offset to vertices from byte 0 } { word | $0E | Offset to edges } { word | $10 | Offset to faces } { byte | $12 | Unknown } { byte | $13 | Normals scaled by } { byte | $14 | Gun vertex } { byte | $15 | Unknown } { byte | $16 | Unknown } TABLE#
-D $6180 Unknown could be: Max. edge count, Explosion count, Laser power/missiles
 @ $6180 label=ship_blueprints
 B $6180,1,1
 W $6181,2,2
@@ -71,11 +69,13 @@ B $61C7,2,1
 W $61C9,2,2
 B $61CB,1,1
 b $61CC Unknown ship 1
+D $61CC Structure of a blueprint ($17 bytes): #TABLE { =h Type | =h Offset | =h Content } { byte | $00 | Max canisters released } { byte | $01 | Targetable area? } { byte | $02 | Targetable area? } { byte | $03 | Number of vertices } { byte | $04 | Number of edges } { byte | $05 | Number of faces } { byte | $06 | Max speed } { byte | $07 | Max energy } { word | $08 | Bounty } { byte | $0A | Unknown } { byte | $0B | Visibility distance } { word | $0C | Offset to vertices from byte 0 } { word | $0E | Offset to edges } { word | $10 | Offset to faces } { byte | $12 | Unknown } { byte | $13 | Normals scaled by } { byte | $14 | Gun vertex } { byte | $15 | Unknown } { byte | $16 | Unknown } TABLE# Unknown could be: Max. edge count, Explosion count, Laser power/missiles
 @ $61CC label=unknown_ship_1
 B $61CC,23,8*2,7
 b $61E3 Unknown ship 1 vertices
 B $61E3,114,6
 b $6255 Unknown ship 1 edges
+D $6255 Structure of an edge ($04 bytes): #TABLE { =h Offset | =h Content } { $00 | Visibility distance } { $01 | The number of the vertex at the start of the edge } { $02 | The number of the vertex at the end of the edge } { $03 | Bits 0-3 = the number of face 1. Bits 4-7 = the number of face 2 } TABLE#
 B $6255,112,4
 b $62C5 Unknown ship 1 faces
 B $62C5,48,4
@@ -1076,12 +1076,30 @@ c $A8DE Routine at A8DE
 D $A8DE Used by the routine at #R$A6DF.
 b $A8FA Data block at A8FA
 @ $A8FA label=data_at_A8FA
-B $A8FA,207,8*25,7
+B $A8FA,,3
+b $A984 Face visibility table
+@ $A984 label=face_visibility_table
+B $A984,16,8
+b $A994 Data block at A994
+B $A994,36,8*4,4
+b $A9B8 Data block at A9B8
+@ $A9B8 label=some_distance
+B $A9B8,17,8*2,1
 c $A9C9 Routine at A9C9
 D $A9C9 Used by the routine at #R$A84D.
 N $A9DE This entry point is used by the routine at #R$ACA2.
 c $AA10 Routine at AA10
 D $AA10 Used by the routines at #R$A9C9 and #R$AE01.
+R $AA10 A Contains the numbers of the two faces for an edge
+@ $AA10 label=check_face_visible
+C $AA10,9 Isolate face 1 number in B
+C $AA19,2 Isolate face 2 number in A
+C $AA1E,1 Return if ?
+C $AA1F,1 Do the same for face 1
+C $AA20,3 Face visibility table
+C $AA23,5 HL += A
+C $AA28,1 Get byte from table
+C $AA29,1 Check if zero
 c $AA2B Routine at AA2B
 D $AA2B Used by the routine at #R$ACA2.
 c $AAFB Routine at AAFB
@@ -1116,10 +1134,52 @@ c $ACA2 Routine at ACA2
 D $ACA2 Used by the routine at #R$A9C9.
 N $ACDF This entry point is used by the routine at #R$AB73.
 N $ADF2 This entry point is used by the routine at #R$A9C9.
-c $AE01 Routine at AE01
+c $AE01 Draw ship
 D $AE01 Used by the routine at #R$A84D.
+R $AE01 IX Address ship data structure
+R $AE01 IY Address of blueprint
+@ $AE01 label=draw_ship
+C $AE01,3 Offset to edges LSB
+C $AE04,3 Offset to edges MSB
+C $AE07,3 Number of edges
+C $AE0A,2 Save address of blueprint
+C $AE0C,2 IX = Address of blueprint, stack has ship address
+C $AE0E,2 IX = Address of edges
+C $AE11,3 Get visibility distance
+C $AE14,2 Is it max?
+C $AE16,2 Skip next comparison if so
+C $AE18,1 C = visibility distance
+C $AE19,3 Get distance to compare with
+C $AE1C,1 Do comparison
+C $AE1D,2 Skip edge if too far away (A > C)
+C $AE1F,3 Get numbers of face 1 and 2
+C $AE22,3 Is one of the faces visible?
+C $AE25,2 Skip edge if not
+C $AE27,3 Get number of the vertex at the start of the edge
+C $AE2A,3 Returns values in DE and A
+C $AE2D,2 Skip edge if ?
+C $AE31,3 Get number of the vertex at the end of the edge
+C $AE34,3 Returns values in DE and A
+C $AE38,1 Now HL, DE, A, and C have calculated values
+C $AE39,2 Skip edge if ?
+C $AE3B,7 A7 A6 A5 A4 A3 A2 A1 A0 | C  | C7 C6 C5 C4 C3 C2 C1 C0 -> A0 A7 A6 A5 A4 A3 A2 C7 | C6 | C5 C4 C3 C2 C1 C0 A1 A0
+C $AE42,3 Draw the edge?
+C $AE45,1 Restore edge counter
+C $AE46,5 Update IX to point to next edge
+C $AE4B,2 Next edge
+C $AE4D,2 Restore ship address
 c $AE50 Routine at AE50
 D $AE50 Used by the routines at #R$A84D and #R$AE01.
+R $AE50 A Vertex number
+@ $AE50 lookup_vertex_something
+C $AE51,1 A *= 2
+C $AE52,3 Table of vertex coordinates?
+C $AE58,1 A *= 3 (3 bytes per entry)
+C $AE5C,5 HL += A
+C $AE61,1 Get byte 0
+C $AE63,1 Get byte 1
+C $AE65,1 Get byte 2
+C $AE66,2 Set msb
 c $AE69 Routine at AE69
 D $AE69 Used by the routines at #R$9CBB and #R$A28D.
 c $AE8A Routine at AE8A
@@ -1140,6 +1200,8 @@ b $AFF0 Data block at AFF0
 B $AFF0,84,8*10,4
 c $B044 Routine at B044
 D $B044 Used by the routines at #R$A84D, #R$AE01, #R$B63C and #R$B7B4.
+R $B044 HL
+R $B044 DE
 N $B0E0 This entry point is used by the routine at #R$B362.
 c $B2F0 Routine at B2F0
 D $B2F0 Used by the routine at #R$B044.

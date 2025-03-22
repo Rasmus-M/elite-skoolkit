@@ -449,12 +449,11 @@ b$5D70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 ; { byte | $19 | sidev_z_lo }
 ; { byte | $1A | sidev_z_hi }
 ; { byte | $1B | Speed }
-; { byte | $1C | Acceleration? }
-; { byte | $1D | Roll counter? }
-; { byte | $1E | Pitch counter? }
+; { byte | $1C | Acceleration?} { byte | $1D | Roll counter? Set to $C0 }
+; { byte | $1E | Pitch counter?  Set to $C0 }
 ; { byte | $1F | Unknown }
 ; { byte | $20 | From blueprint byte $0A - bit field }
-; { byte | $21 | From blueprint byte $12 }
+; { byte | $21 | From blueprint byte $12 - bit field }
 ; { byte | $22 | Energy }
 ; { word | $23 | Address of blueprint }
 ; { byte | $25 | Unknown, set to $7E }
@@ -478,32 +477,6 @@ b$617B DEFB $00,$00,$00,$00
 s$617F DEFS $01
 
 ; Ship blueprint lookup table
-;
-; Structure of a blueprint ($17 bytes):
-; #TABLE
-; { =h Type | =h Offset | =h Content }
-; { byte | $00 | Max canisters released }
-; { byte | $01 | Targetable area? }
-; { byte | $02 | Targetable area? }
-; { byte | $03 | Number of vertices }
-; { byte | $04 | Number of edges }
-; { byte | $05 | Number of faces }
-; { byte | $06 | Max speed }
-; { byte | $07 | Max energy }
-; { word | $08 | Bounty }
-; { byte | $0A | Unknown }
-; { byte | $0B | Visibility distance }
-; { word | $0C | Offset to vertices from byte 0 }
-; { word | $0E | Offset to edges }
-; { word | $10 | Offset to faces }
-; { byte | $12 | Unknown }
-; { byte | $13 | Normals scaled by }
-; { byte | $14 | Gun vertex }
-; { byte | $15 | Unknown }
-; { byte | $16 | Unknown }
-; TABLE#
-; .
-; Unknown could be: Max. edge count, Explosion count, Laser power/missiles
 @label=ship_blueprints
 b$6180 DEFB $C3
  $6181 DEFW $6A9D
@@ -564,6 +537,31 @@ b$6180 DEFB $C3
  $61CB DEFB $04
 
 ; Unknown ship 1
+;
+; Structure of a blueprint ($17 bytes):
+; #TABLE
+; { =h Type | =h Offset | =h Content }
+; { byte | $00 | Max canisters released }
+; { byte | $01 | Targetable area? }
+; { byte | $02 | Targetable area? }
+; { byte | $03 | Number of vertices }
+; { byte | $04 | Number of edges }
+; { byte | $05 | Number of faces }
+; { byte | $06 | Max speed }
+; { byte | $07 | Max energy }
+; { word | $08 | Bounty }
+; { byte | $0A | Unknown }
+; { byte | $0B | Visibility distance }
+; { word | $0C | Offset to vertices from byte 0 }
+; { word | $0E | Offset to edges }
+; { word | $10 | Offset to faces }
+; { byte | $12 | Unknown }
+; { byte | $13 | Normals scaled by }
+; { byte | $14 | Gun vertex }
+; { byte | $15 | Unknown }
+; { byte | $16 | Unknown }
+; TABLE#
+; Unknown could be: Max. edge count, Explosion count, Laser power/missiles
 @label=unknown_ship_1
 b$61CC DEFB $00,$3C,$FA,$13,$1C,$0C,$28,$96
  $61D4 DEFB $C8,$00,$01,$18,$17,$00,$89,$00
@@ -591,6 +589,15 @@ b$61E3 DEFB $00,$12,$00,$56,$01,$22
  $624F DEFB $00,$07,$53,$4A,$04,$04
 
 ; Unknown ship 1 edges
+;
+; Structure of an edge ($04 bytes):
+; #TABLE
+; { =h Offset | =h Content }
+; { $00 | Visibility distance }
+; { $01 | The number of the vertex at the start of the edge }
+; { $02 | The number of the vertex at the end of the edge }
+; { $03 | Bits 0-3 = the number of face 1. Bits 4-7 = the number of face 2 }
+; TABLE#
 b$6255 DEFB $16,$00,$01,$12
  $6259 DEFB $16,$00,$04,$01
  $625D DEFB $16,$00,$07,$02
@@ -10027,32 +10034,70 @@ c$A8DE BIT 3,(IX+$20) ;
 
 ; Data block at A8FA
 @label=data_at_A8FA
-b$A8FA DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A902 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A90A DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A912 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A91A DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A922 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A92A DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A932 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A93A DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A942 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A94A DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A952 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A95A DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A962 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A96A DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A972 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A97A DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A982 DEFB $00,$00,$01,$01,$01,$01,$01,$01
- $A98A DEFB $01,$01,$01,$01,$01,$01,$01,$01
- $A992 DEFB $01,$01,$7E,$32,$81,$8D,$F3,$24
- $A99A DEFB $81,$8D,$7E,$32,$F3,$24,$F2,$A4
- $A9A2 DEFB $F2,$A4,$F3,$24,$00,$00,$00,$00
- $A9AA DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A9B2 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A9BA DEFB $01,$00,$00,$00,$00,$00,$00,$00
- $A9C2 DEFB $00,$00,$00,$00,$00,$00,$00
+b$A8FA DEFB $00,$00,$00
+ $A8FD DEFB $00,$00,$00
+ $A900 DEFB $00,$00,$00
+ $A903 DEFB $00,$00,$00
+ $A906 DEFB $00,$00,$00
+ $A909 DEFB $00,$00,$00
+ $A90C DEFB $00,$00,$00
+ $A90F DEFB $00,$00,$00
+ $A912 DEFB $00,$00,$00
+ $A915 DEFB $00,$00,$00
+ $A918 DEFB $00,$00,$00
+ $A91B DEFB $00,$00,$00
+ $A91E DEFB $00,$00,$00
+ $A921 DEFB $00,$00,$00
+ $A924 DEFB $00,$00,$00
+ $A927 DEFB $00,$00,$00
+ $A92A DEFB $00,$00,$00
+ $A92D DEFB $00,$00,$00
+ $A930 DEFB $00,$00,$00
+ $A933 DEFB $00,$00,$00
+ $A936 DEFB $00,$00,$00
+ $A939 DEFB $00,$00,$00
+ $A93C DEFB $00,$00,$00
+ $A93F DEFB $00,$00,$00
+ $A942 DEFB $00,$00,$00
+ $A945 DEFB $00,$00,$00
+ $A948 DEFB $00,$00,$00
+ $A94B DEFB $00,$00,$00
+ $A94E DEFB $00,$00,$00
+ $A951 DEFB $00,$00,$00
+ $A954 DEFB $00,$00,$00
+ $A957 DEFB $00,$00,$00
+ $A95A DEFB $00,$00,$00
+ $A95D DEFB $00,$00,$00
+ $A960 DEFB $00,$00,$00
+ $A963 DEFB $00,$00,$00
+ $A966 DEFB $00,$00,$00
+ $A969 DEFB $00,$00,$00
+ $A96C DEFB $00,$00,$00
+ $A96F DEFB $00,$00,$00
+ $A972 DEFB $00,$00,$00
+ $A975 DEFB $00,$00,$00
+ $A978 DEFB $00,$00,$00
+ $A97B DEFB $00,$00,$00
+ $A97E DEFB $00,$00,$00
+ $A981 DEFB $00,$00,$00
+
+; Face visibility table
+@label=face_visibility_table
+b$A984 DEFB $01,$01,$01,$01,$01,$01,$01,$01
+ $A98C DEFB $01,$01,$01,$01,$01,$01,$01,$01
+
+; Data block at A994
+b$A994 DEFB $7E,$32,$81,$8D,$F3,$24,$81,$8D
+ $A99C DEFB $7E,$32,$F3,$24,$F2,$A4,$F2,$A4
+ $A9A4 DEFB $F3,$24,$00,$00,$00,$00,$00,$00
+ $A9AC DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $A9B4 DEFB $00,$00,$00,$00
+
+; Data block at A9B8
+@label=some_distance
+b$A9B8 DEFB $00,$00,$01,$00,$00,$00,$00,$00
+ $A9C0 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $A9C8 DEFB $00
 
 ; Routine at A9C9
 ;
@@ -10092,22 +10137,25 @@ c$A9C9 PUSH IY       ;
 ; Routine at AA10
 ;
 ; Used by the routines at #R$A9C9 and #R$AE01.
-c$AA10 LD B,A        ;
+;
+; A Contains the numbers of the two faces for an edge
+@label=check_face_visible
+c$AA10 LD B,A        ; {Isolate face 1 number in B
  $AA11 SRL B         ;
  $AA13 SRL B         ;
  $AA15 SRL B         ;
- $AA17 SRL B         ;
- $AA19 AND $0F       ;
+ $AA17 SRL B         ; }
+ $AA19 AND $0F       ; Isolate face 2 number in A
  $AA1B CALL $AA20    ;
- $AA1E RET NZ        ;
- $AA1F LD A,B        ;
-*$AA20 LD HL,$A984   ;
- $AA23 ADD A,L       ;
+ $AA1E RET NZ        ; Return if ?
+ $AA1F LD A,B        ; Do the same for face 1
+*$AA20 LD HL,$A984   ; Face visibility table
+ $AA23 ADD A,L       ; {HL += A
  $AA24 LD L,A        ;
  $AA25 JR NC,$AA28   ;
- $AA27 INC H         ;
-*$AA28 LD A,(HL)     ;
- $AA29 AND A         ;
+ $AA27 INC H         ; }
+*$AA28 LD A,(HL)     ; Get byte from table
+ $AA29 AND A         ; Check if zero
  $AA2A RET           ;
 
 ; Routine at AA2B
@@ -10660,70 +10708,77 @@ c$ACA2 PUSH IY       ;
  $ADFE POP IY        ;
  $AE00 RET           ;
 
-; Routine at AE01
+; Draw ship
 ;
 ; Used by the routine at #R$A84D.
-c$AE01 LD E,(IY+$0E) ;
- $AE04 LD D,(IY+$0F) ;
- $AE07 LD B,(IY+$04) ;
- $AE0A PUSH IY       ;
- $AE0C EX (SP),IX    ;
- $AE0E ADD IX,DE     ;
-*$AE10 PUSH BC       ;
- $AE11 LD A,(IX+$00) ;
- $AE14 CP $1F        ;
- $AE16 JR Z,$AE1F    ;
- $AE18 LD C,A        ;
- $AE19 LD A,($A9B8)  ;
- $AE1C CP C          ;
- $AE1D JR NC,$AE45   ;
-*$AE1F LD A,(IX+$03) ;
- $AE22 CALL $AA10    ;
- $AE25 JR Z,$AE45    ;
- $AE27 LD A,(IX+$01) ;
- $AE2A CALL $AE50    ;
- $AE2D JR NZ,$AE45   ;
+;
+; IX Address ship data structure
+; IY Address of blueprint
+@label=draw_ship
+c$AE01 LD E,(IY+$0E) ; Offset to edges LSB
+ $AE04 LD D,(IY+$0F) ; Offset to edges MSB
+ $AE07 LD B,(IY+$04) ; Number of edges
+ $AE0A PUSH IY       ; Save address of blueprint
+ $AE0C EX (SP),IX    ; IX = Address of blueprint, stack has ship address
+ $AE0E ADD IX,DE     ; IX = Address of edges
+*$AE10 PUSH BC       ; Save counter
+ $AE11 LD A,(IX+$00) ; Get visibility distance
+ $AE14 CP $1F        ; Is it max?
+ $AE16 JR Z,$AE1F    ; Skip next comparison if so
+ $AE18 LD C,A        ; C = visibility distance
+ $AE19 LD A,($A9B8)  ; Get distance to compare with
+ $AE1C CP C          ; Do comparison
+ $AE1D JR NC,$AE45   ; Skip edge if too far away (A > C)
+*$AE1F LD A,(IX+$03) ; Get numbers of face 1 and 2
+ $AE22 CALL $AA10    ; Is one of the faces visible?
+ $AE25 JR Z,$AE45    ; Skip edge if not
+ $AE27 LD A,(IX+$01) ; Get number of the vertex at the start of the edge
+ $AE2A CALL $AE50    ; Returns values in DE and A
+ $AE2D JR NZ,$AE45   ; Skip edge if vertex not visible?
  $AE2F LD C,A        ;
  $AE30 PUSH DE       ;
- $AE31 LD A,(IX+$02) ;
- $AE34 CALL $AE50    ;
- $AE37 EX DE,HL      ;
- $AE38 POP DE        ;
- $AE39 JR NZ,$AE45   ;
- $AE3B RRCA          ;
- $AE3C RRA           ;
- $AE3D RL C          ;
- $AE3F RLA           ;
- $AE40 RL C          ;
- $AE42 CALL $B044    ;
-*$AE45 POP BC        ;
- $AE46 LD DE,$0004   ;
- $AE49 ADD IX,DE     ;
- $AE4B DJNZ $AE10    ;
- $AE4D POP IX        ;
+ $AE31 LD A,(IX+$02) ; Get number of the vertex at the end of the edge
+ $AE34 CALL $AE50    ; Returns values in DE and A
+ $AE37 EX DE,HL      ; Put second value in HL
+ $AE38 POP DE        ; Now HL, DE, A, and C have calculated values
+ $AE39 JR NZ,$AE45   ; Skip edge if vertex not visible?
+ $AE3B RRCA          ; {
+ $AE3C RRA           ; A7 A6 A5 A4 A3 A2 A1 A0 | CY | C7 C6 C5 C4 C3 C2 C1 C0
+ $AE3D RL C          ; ->
+ $AE3F RLA           ; A0 A7 A6 A5 A4 A3 A2 C7 | C6 | C5 C4 C3 C2 C1 C0 A1 A0
+ $AE40 RL C          ; }
+ $AE42 CALL $B044    ; Draw the edge?
+*$AE45 POP BC        ; Restore edge counter
+ $AE46 LD DE,$0004   ; {Update IX to point to next edge
+ $AE49 ADD IX,DE     ; }
+ $AE4B DJNZ $AE10    ; Next edge
+ $AE4D POP IX        ; Restore ship address
  $AE4F RET           ;
 
 ; Routine at AE50
 ;
 ; Used by the routines at #R$A84D and #R$AE01.
+;
+; A Vertex number
+@lookup_vertex_something
 c$AE50 LD B,A        ;
- $AE51 ADD A,A       ;
- $AE52 LD HL,$A8FA   ;
+ $AE51 ADD A,A       ; A *= 2
+ $AE52 LD HL,$A8FA   ; Table of vertex coordinates?
  $AE55 JR NC,$AE58   ;
  $AE57 INC H         ;
-*$AE58 ADD A,B       ;
+*$AE58 ADD A,B       ; A *= 3 (3 bytes per entry)
  $AE59 JR NC,$AE5C   ;
  $AE5B INC H         ;
-*$AE5C ADD A,L       ;
+*$AE5C ADD A,L       ; {HL += A
  $AE5D LD L,A        ;
  $AE5E JR NC,$AE61   ;
- $AE60 INC H         ;
-*$AE61 LD D,(HL)     ;
+ $AE60 INC H         ; }
+*$AE61 LD D,(HL)     ; Get byte 0
  $AE62 INC HL        ;
- $AE63 LD E,(HL)     ;
+ $AE63 LD E,(HL)     ; Get byte 1
  $AE64 INC HL        ;
- $AE65 LD A,(HL)     ;
- $AE66 BIT 7,A       ;
+ $AE65 LD A,(HL)     ; Get byte 2
+ $AE66 BIT 7,A       ; Test bit 7 of byte 2
  $AE68 RET           ;
 
 ; Routine at AE69
@@ -10987,6 +11042,9 @@ b$AFF0 DEFB $00,$04,$02,$03,$00,$04,$06,$05
 ; Routine at B044
 ;
 ; Used by the routines at #R$A84D, #R$AE01, #R$B63C and #R$B7B4.
+;
+; HL
+; DE
 c$B044 LD A,H        ;
  $B045 AND E         ;
  $B046 INC A         ;
@@ -12244,8 +12302,8 @@ b$B866 DEFB $00
 ;
 ; A Some value, e.g. $79, lower nybble is action, upper nybble is ship
 @label=ship_action
-c$B867 LD C,A        ; {Set C to upper nybble
- $B868 SRL C         ; shifted down
+c$B867 LD C,A        ; {Set C to upper nybble shifted down
+ $B868 SRL C         ;
  $B86A SRL C         ;
  $B86C SRL C         ;
  $B86E SRL C         ; }
@@ -12680,8 +12738,8 @@ c$BB4D LD A,$05       ;
 @label=create_current_ship
 c$BB75 LD IX,$6159    ; Ship structure
  $BB79 LD A,C         ; Upper nybble from action
- $BB7A ADD A,$02      ; {Add 2, and use as index of blueprint for
- $BB7C CALL $B898     ; creating ship}
+ $BB7A ADD A,$02      ; {Add 2, and use as index of blueprint for creating ship
+ $BB7C CALL $B898     ; }
  $BB7F LD A,$C0       ;
  $BB81 LD (IX+$1D),A  ; Probably not roll counter and pitch counter
  $BB84 LD (IX+$1E),A  ;
@@ -12697,7 +12755,7 @@ c$BB75 LD IX,$6159    ; Ship structure
  $BBA1 INC A          ;
  $BBA2 INC A          ;
  $BBA3 LD (IX+$07),A  ; z_hi = 2
- $BBA6 PUSH IX        ; { HL = Ship structure
+ $BBA6 PUSH IX        ; {HL = Ship structure
  $BBA8 POP HL         ; }
  $BBA9 LD DE,$0009    ; DE = 9
  $BBAC LD B,D         ; {BC = 9
@@ -12705,9 +12763,9 @@ c$BB75 LD IX,$6159    ; Ship structure
  $BBAE ADD HL,DE      ; HL = Orientation vectors
  $BBAF EX DE,HL       ; DE = Orientation vectors
  $BBB0 LD HL,$B85D    ; Init data for orientation vectors
-*$BBB3 INC DE         ; {Skip low byte
- $BBB4 LDI            ; Copy init data to ship structure
- $BBB6 JP PE,$BBB3    ; High bytes only}
+*$BBB3 INC DE         ; {Skip low byte Copy init data to ship structure High
+ $BBB4 LDI            ; bytes only
+ $BBB6 JP PE,$BBB3    ; }
  $BBB9 RET            ;
 
 ; Routine at BBBA
