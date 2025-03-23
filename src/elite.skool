@@ -452,7 +452,7 @@ b$5D70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 ; { byte | $1C | Acceleration?} { byte | $1D | Roll counter? Set to $C0 }
 ; { byte | $1E | Pitch counter?  Set to $C0 }
 ; { byte | $1F | Unknown }
-; { byte | $20 | From blueprint byte $0A - bit field }
+; { byte | $20 | From blueprint byte $0A - bit field. Bit 3 fire laser }
 ; { byte | $21 | From blueprint byte $12 - bit field }
 ; { byte | $22 | Energy }
 ; { word | $23 | Address of blueprint }
@@ -1561,14 +1561,92 @@ s$70DE DEFS $02
 @label=jump_to_7366
 c$70E0 JP $7366      ;
 
-; Data block at 70E3
-b$70E3 DEFB $00,$00,$00,$0A,$00,$00,$00,$00
- $70EB DEFB $00,$A0,$00,$00,$00,$00,$00,$A0
- $70F3 DEFB $00,$00,$FF,$00,$00,$00,$00,$A0
- $70FB DEFB $00,$A0,$00,$00,$00,$00,$00,$00
- $7103 DEFB $00,$00,$37,$4A,$00,$00,$00,$00
- $710B DEFB $80,$01,$00,$10,$09,$00,$00,$00
- $7113 DEFB $00,$00,$00,$00,$80,$01
+; Byte at 70E3
+b$70E3 DEFB $00
+
+; Byte at 70E4
+b$70E4 DEFB $00
+
+; Byte at 70E5
+b$70E5 DEFB $00
+
+; Byte at 70E6
+b$70E6 DEFB $0A
+
+; Byte at 70E7
+b$70E7 DEFB $00
+
+; Byte at 70E8
+b$70E8 DEFB $00,$00
+
+; Data at 70EA
+b$70EA DEFB $00,$00
+
+; Data at 70EC
+b$70EC DEFB $A0,$00
+
+; Data at 70EE
+b$70EE DEFB $00,$00
+
+; Byte at 70F0
+b$70F0 DEFB $00,$00
+
+; Data at 70F2
+b$70F2 DEFB $A0,$00
+
+; Data at 70F4
+b$70F4 DEFB $00,$FF
+
+; Data at 70F6
+b$70F6 DEFB $00,$00
+
+; Data at 70F8
+b$70F8 DEFB $00,$00
+
+; Data at 70FA
+b$70FA DEFB $A0,$00
+
+; Data at 70FC
+b$70FC DEFB $A0,$00
+
+; Data at 70FE
+b$70FE DEFB $00,$00
+
+; Data at 7100
+b$7100 DEFB $00,$00,$00
+
+; Byte at 7103
+b$7103 DEFB $00
+
+; Byte at 7104
+b$7104 DEFB $00
+
+; Data at 7105
+b$7105 DEFB $37,$4A
+
+; Data at 7107
+b$7107 DEFB $00,$00
+
+; Data at 7109
+b$7109 DEFB $00,$00,$80
+
+; Data at 710C
+b$710C DEFB $01,$00,$10
+
+; Data at 710F
+b$710F DEFB $09
+
+; Data at 7110
+b$7110 DEFB $00,$00
+
+; Data at 7112
+b$7112 DEFB $00,$00,$00
+
+; Data at 7115
+b$7115 DEFB $00,$00
+
+; Data at 7117
+b$7117 DEFB $80,$01
 
 ; Routine at 7119
 ;
@@ -3779,11 +3857,11 @@ c$7FE3 LD B,$08      ; Number of rows?
 ;
 ; Used by the routines at #R$717B, #R$728D, #R$7378, #R$7471 and #R$93ED.
 @label=draw_ctrl_panel
-c$8042 LD DE,$4000   ;
+c$8042 LD DE,$4000   ; {Check byte at 0,0 and return is it's not $ff
  $8045 LD A,(DE)     ;
  $8046 INC A         ;
- $8047 RET NZ        ; Return if byte at 0,0 is not $ff
- $8048 CALL $94FE    ;
+ $8047 RET NZ        ; }
+ $8048 CALL $94FE    ; CLear 5 bytes at $FC08
 ; This entry point is used by the routine at #R$7366.
 *$804B CALL $D036    ; Clear screen
  $804E LD DE,$001F   ; One row - 1
@@ -4687,8 +4765,14 @@ c$8606 LD (HL),C     ;
 
 ; Data block at 8619
 b$8619 DEFB $00,$00,$00,$0F,$64,$00,$00,$00
- $8621 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $8629 DEFB $00,$20
+ $8621 DEFB $00,$00
+
+; For saving SP
+@label=save_sp_2
+w$8623 DEFW $0000
+
+; Data block at 8625
+b$8625 DEFB $00,$00,$00,$00,$00,$20
 
 ; Routine at 862B
 ;
@@ -5517,7 +5601,7 @@ c$8AF7 LD A,E        ;
 ; Routine at 8B0F
 ;
 ; Used by the routine at #R$8AF7.
-c$8B0F LD ($8623),SP ;
+c$8B0F LD ($8623),SP ; Save stack pointer
 *$8B13 LD A,(HL)     ;
  $8B14 OR C          ;
  $8B15 LD (HL),A     ;
@@ -5542,7 +5626,7 @@ c$8B0F LD ($8623),SP ;
  $8B30 LD SP,HL      ;
 @label=self_mod_1
 *$8B31 JR $8B31      ; Self-modified
- $8B33 PUSH AF       ;
+ $8B33 PUSH AF       ; {Write 32 bytes
  $8B34 PUSH AF       ;
  $8B35 PUSH AF       ;
  $8B36 PUSH AF       ;
@@ -5557,10 +5641,10 @@ c$8B0F LD ($8623),SP ;
  $8B3F PUSH AF       ;
  $8B40 PUSH AF       ;
  $8B41 PUSH AF       ;
- $8B42 PUSH AF       ;
+ $8B42 PUSH AF       ; }
  $8B43 LD A,($8628)  ;
  $8B46 AND A         ;
- $8B47 LD SP,($8623) ;
+ $8B47 LD SP,($8623) ; Restore stack pointer
  $8B4B JR NZ,$8B52   ;
  $8B4D CALL $8DEE    ;
  $8B50 JR $8B55      ;
@@ -5598,7 +5682,7 @@ c$8B0F LD ($8623),SP ;
  $8B80 LD C,$FE      ;
  $8B82 JR $8B66      ;
 ; This entry point is used by the routine at #R$8B8A.
-*$8B84 LD SP,($8623) ;
+*$8B84 LD SP,($8623) ; Restore stack pointer
  $8B88 POP AF        ;
  $8B89 RET           ;
 
@@ -6235,7 +6319,10 @@ c$8F0D LD A,($9C96)   ;
  $8FB3 RET            ;
 
 ; Data block at 8FB4
-b$8FB4 DEFB $00,$00,$FF,$FF
+b$8FB4 DEFB $00,$00
+
+; Data block at 8FB6
+b$8FB6 DEFB $FF,$FF
 
 ; Routine at 8FB8
 ;
@@ -7114,9 +7201,10 @@ c$93ED LD A,($7103)  ;
  $94F9 CALL $9503    ;
  $94FC LD (HL),$0C   ; Set the 6th byte
 ; This entry point is used by the routines at #R$8042 and #R$813E.
+@label=clear_5_bytes_at_FC08
 *$94FE LD B,$05      ;
  $9500 LD HL,$FC08   ; Clear 5 bytes at FC08
-@clear_b_bytes_at_hl
+@label=clear_b_bytes_at_hl
 *$9503 XOR A         ;
 *$9504 LD (HL),A     ;
  $9505 INC HL        ;
@@ -7715,24 +7803,24 @@ c$98A2 CALL $98CD    ;
  $98A5 LD BC,$0005   ;
  $98A8 LD A,$EB      ;
  $98AA LD HL,$9912   ;
- $98AD LD (HL),A     ;
+ $98AD LD (HL),A     ; Modify instruction at $9912 to EX DE,HL
  $98AE LD A,$E5      ;
  $98B0 LD HL,$9915   ;
- $98B3 LD (HL),A     ;
+ $98B3 LD (HL),A     ; Modify instruction at $9915 to PUSH HL
  $98B4 ADD HL,BC     ;
- $98B5 LD (HL),A     ;
+ $98B5 LD (HL),A     ; Modify instruction at $991A to PUSH HL
  $98B6 LD A,$E1      ;
  $98B8 LD HL,$9935   ;
- $98BB LD (HL),A     ;
+ $98BB LD (HL),A     ; Modify instruction at $9935 to POP HL
  $98BC INC HL        ;
  $98BD LD A,$24      ;
- $98BF LD (HL),A     ;
+ $98BF LD (HL),A     ; Modify instruction at $9936 to INC H
  $98C0 XOR A         ;
  $98C1 LD HL,$9940   ;
- $98C4 LD (HL),A     ;
+ $98C4 LD (HL),A     ; Modify instruction at $9936 to NOP
  $98C5 LD A,$EB      ;
  $98C7 LD HL,$9939   ;
- $98CA LD (HL),A     ;
+ $98CA LD (HL),A     ; Modify instruction at $9939 to EX DE,HL
  $98CB JR $990C      ;
 
 ; Routine at 98CD
@@ -7743,48 +7831,48 @@ c$98CD LD A,($96C4)  ;
  $98D1 RET NZ        ;
  $98D2 LD ($96C4),A  ;
  $98D5 XOR A         ;
- $98D6 LD C,$08      ;
- $98D8 LD HL,$502A   ;
-*$98DB LD B,$0B      ;
+ $98D6 LD C,$08      ; 8 lines to clear
+ $98D8 LD HL,$502A   ; Screen address (80, 72)
+*$98DB LD B,$0B      ; {Clear 8 bytes
  $98DD PUSH HL       ;
 *$98DE LD (HL),A     ;
  $98DF INC L         ;
  $98E0 DJNZ $98DE    ;
- $98E2 POP HL        ;
- $98E3 INC H         ;
+ $98E2 POP HL        ; }
+ $98E3 INC H         ; Next line
  $98E4 DEC C         ;
- $98E5 JR NZ,$98DB   ;
+ $98E5 JR NZ,$98DB   ; Clear line loop
  $98E7 LD BC,$0005   ;
  $98EA XOR A         ;
  $98EB LD HL,$9912   ;
- $98EE LD (HL),A     ;
+ $98EE LD (HL),A     ; Modify instruction at $9912 to NOP
  $98EF LD A,$D5      ;
  $98F1 LD HL,$9915   ;
- $98F4 LD (HL),A     ;
- $98F5 ADD HL,BC     ;
- $98F6 LD (HL),A     ;
+ $98F4 LD (HL),A     ; Modify instruction at $9915 to PUSH DE
+ $98F5 ADD HL,BC     ; HL = $991A
+ $98F6 LD (HL),A     ; Modify instruction at $991A to PUSH DE
  $98F7 LD A,$D1      ;
  $98F9 LD HL,$9935   ;
- $98FC LD (HL),A     ;
+ $98FC LD (HL),A     ; Modify instruction at $9935 to POP DE
  $98FD INC HL        ;
  $98FE LD A,$14      ;
- $9900 LD (HL),A     ;
+ $9900 LD (HL),A     ; Modify instruction at $9936 to INC D
  $9901 LD A,$EB      ;
  $9903 LD HL,$9940   ;
- $9906 LD (HL),A     ;
+ $9906 LD (HL),A     ; Modify instruction at $9940 to EX DE,HL
  $9907 XOR A         ;
  $9908 LD HL,$9939   ;
- $990B LD (HL),A     ;
+ $990B LD (HL),A     ; Modify instruction at $9939 to NOP
 ; This entry point is used by the routine at #R$98A2.
-*$990C LD DE,$5049   ;
- $990F LD HL,$5B00   ;
- $9912 NOP           ;
+*$990C LD DE,$5049   ; Screen address (72, 80)
+ $990F LD HL,$5B00   ; Attributes for control panel?
+ $9912 NOP           ; Self-modified to EX DE,HL
  $9913 LD A,$06      ;
-*$9915 PUSH DE       ;
- $9916 LD B,$08      ;
+*$9915 PUSH DE       ; Self-modified to PUSH HL
+ $9916 LD B,$08      ; 8 rows
  $9918 LD C,$FF      ;
-*$991A PUSH DE       ;
- $991B LDI           ;
+*$991A PUSH DE       ; Self-modified to PUSH HL
+ $991B LDI           ; {Copy 13 bytes
  $991D LDI           ;
  $991F LDI           ;
  $9921 LDI           ;
@@ -7796,18 +7884,18 @@ c$98CD LD A,($96C4)  ;
  $992D LDI           ;
  $992F LDI           ;
  $9931 LDI           ;
- $9933 LDI           ;
- $9935 POP DE        ;
- $9936 INC D         ;
- $9937 DJNZ $991A    ;
- $9939 NOP           ;
+ $9933 LDI           ; }
+ $9935 POP DE        ; Self-modified to POP HL
+ $9936 INC D         ; Next line. Self-modified to INC H
+ $9937 DJNZ $991A    ; Repeat 8 times
+ $9939 NOP           ; Self-modified to EX DE,HL
  $993A POP DE        ;
  $993B EX DE,HL      ;
- $993C LD BC,$0020   ;
+ $993C LD BC,$0020   ; Next row
  $993F ADD HL,BC     ;
- $9940 EX DE,HL      ;
+ $9940 EX DE,HL      ; Self-modified to NOP
  $9941 DEC A         ;
- $9942 JR NZ,$9915   ;
+ $9942 JR NZ,$9915   ; Repeat 6 times
  $9944 RET           ;
 
 ; Unused
@@ -9156,7 +9244,7 @@ c$A281 LD C,A        ;
 ; Unused
 s$A28B DEFS $02
 
-; Routine at A28D
+; Draw title ship
 ;
 ; Used by the routine at #R$9CAF.
 @label=draw_title_ship
@@ -9738,9 +9826,13 @@ c$A6AC LD B,(IX+$01) ;
 @label=byte_at_A6DE
 b$A6DE DEFB $00
 
-; Routine at A6DF
+; Draw ship
 ;
 ; Used by the routines at #R$9CBB and #R$A28D.
+;
+; IX Address of ship structure
+; IY Address of blueprint
+@label=draw_ship
 c$A6DF LD A,($70E3)   ;
  $A6E2 LD B,A         ;
  $A6E3 CP $04         ;
@@ -9937,9 +10029,13 @@ c$A83C LD A,B        ;
  $A84B LD (HL),A     ;
  $A84C RET           ;
 
-; Routine at A84D
+; Draw ship part 2
 ;
 ; Used by the routine at #R$A6DF.
+;
+; IX Address of ship structure
+; IY Address of blueprint
+@label=draw_ship_and_laser
 c$A84D PUSH IY        ;
  $A84F CALL $AECC     ;
  $A852 POP IY         ;
@@ -9961,14 +10057,14 @@ c$A84D PUSH IY        ;
  $A86F CALL $BCD4     ;
  $A872 CALL $A9C9     ;
  $A875 CALL $AE01     ;
- $A878 BIT 3,(IX+$20) ;
- $A87C RET Z          ;
- $A87D LD A,(IY+$14)  ;
- $A880 CALL $AE50     ;
+ $A878 BIT 3,(IX+$20) ; Test a bit on the ship, should it fire?
+ $A87C RET Z          ; Return if not set
+ $A87D LD A,(IY+$14)  ; Gun vertex
+ $A880 CALL $AE50     ; Get coordinates
  $A883 LD C,A         ;
 ; This entry point is used by the routine at #R$A8DE.
-*$A884 CALL $B799     ;
- $A887 LD L,A         ;
+*$A884 CALL $B799     ; Random number
+ $A887 LD L,A         ; {Calculate coordinates of other end of line
  $A888 SUB $FF        ;
  $A88A NEG            ;
  $A88C LD H,A         ;
@@ -9978,15 +10074,15 @@ c$A84D PUSH IY        ;
  $A891 SLA C          ;
  $A893 SLA C          ;
  $A895 OR C           ;
- $A896 LD C,A         ;
- $A897 LD A,($B348)   ;
+ $A896 LD C,A         ; }
+ $A897 LD A,($B348)   ; {Set some temporary flag
  $A89A PUSH AF        ;
  $A89B SET 7,A        ;
- $A89D LD ($B348),A   ;
- $A8A0 CALL $B044     ;
- $A8A3 POP AF         ;
- $A8A4 LD ($B348),A   ;
- $A8A7 RES 3,(IX+$20) ;
+ $A89D LD ($B348),A   ; }
+ $A8A0 CALL $B044     ; Draw laser?
+ $A8A3 POP AF         ; {Revert flag
+ $A8A4 LD ($B348),A   ; }
+ $A8A7 RES 3,(IX+$20) ; Reset bit on the ship
  $A8AB RET            ;
 
 ; Routine at A8AC
@@ -10095,9 +10191,57 @@ b$A994 DEFB $7E,$32,$81,$8D,$F3,$24,$81,$8D
 
 ; Data block at A9B8
 @label=some_distance
-b$A9B8 DEFB $00,$00,$01,$00,$00,$00,$00,$00
- $A9C0 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $A9C8 DEFB $00
+w$A9B8 DEFW $0000
+
+; Byte at A9BA
+@label=byte_at_A9BA
+b$A9BA DEFB $01
+
+; Word at A9BB
+@label=word_at_A9BB
+w$A9BB DEFW $0000
+
+; Word at A9BD
+@label=word_at_A9BD
+w$A9BD DEFW $0000
+
+; Word at A9BF
+@label=word_at_A9BF
+w$A9BF DEFW $0000
+
+; Byte at A9C1
+@label=byte_at_A9C1
+b$A9C1 DEFB $00
+
+; Byte at A9C2
+@label=byte_at_A9C2
+b$A9C2 DEFB $00
+
+; Byte at A9C3
+;
+; Used by the routine at #R$E107.
+@label=byte_at_A9C3
+b$A9C3 DEFB $00
+
+; Byte at A9C4
+@label=byte_at_A9C4
+b$A9C4 DEFB $00
+
+; Byte at A9C5
+@label=byte_at_A9C5
+b$A9C5 DEFB $00
+
+; Byte at A9C6
+@label=byte_at_A9C6
+b$A9C6 DEFB $00
+
+; Byte at A9C7
+@label=byte_at_A9C7
+b$A9C7 DEFB $00
+
+; Byte at A9C8
+@label=byte_at_A9C8
+b$A9C8 DEFB $00
 
 ; Routine at A9C9
 ;
@@ -10708,13 +10852,13 @@ c$ACA2 PUSH IY       ;
  $ADFE POP IY        ;
  $AE00 RET           ;
 
-; Draw ship
+; Draw edges
 ;
 ; Used by the routine at #R$A84D.
 ;
 ; IX Address ship data structure
 ; IY Address of blueprint
-@label=draw_ship
+@label=draw_edges
 c$AE01 LD E,(IY+$0E) ; Offset to edges LSB
  $AE04 LD D,(IY+$0F) ; Offset to edges MSB
  $AE07 LD B,(IY+$04) ; Number of edges
@@ -10742,12 +10886,12 @@ c$AE01 LD E,(IY+$0E) ; Offset to edges LSB
  $AE37 EX DE,HL      ; Put second value in HL
  $AE38 POP DE        ; Now HL, DE, A, and C have calculated values
  $AE39 JR NZ,$AE45   ; Skip edge if vertex not visible?
- $AE3B RRCA          ; {
- $AE3C RRA           ; A7 A6 A5 A4 A3 A2 A1 A0 | CY | C7 C6 C5 C4 C3 C2 C1 C0
- $AE3D RL C          ; ->
- $AE3F RLA           ; A0 A7 A6 A5 A4 A3 A2 C7 | C6 | C5 C4 C3 C2 C1 C0 A1 A0
+ $AE3B RRCA          ; {A7 A6 A5 A4 A3 A2 A1 A0 | CY | C7 C6 C5 C4 C3 C2 C1 C0
+ $AE3C RRA           ; -> A0 A7 A6 A5 A4 A3 A2 C7 | C6 | C5 C4 C3 C2 C1 C0 A1
+ $AE3D RL C          ; A0
+ $AE3F RLA           ;
  $AE40 RL C          ; }
- $AE42 CALL $B044    ; Draw the edge?
+ $AE42 CALL $B044    ; Draw the edge
 *$AE45 POP BC        ; Restore edge counter
  $AE46 LD DE,$0004   ; {Update IX to point to next edge
  $AE49 ADD IX,DE     ; }
@@ -10755,12 +10899,12 @@ c$AE01 LD E,(IY+$0E) ; Offset to edges LSB
  $AE4D POP IX        ; Restore ship address
  $AE4F RET           ;
 
-; Routine at AE50
+; Lookup vertex coordinates
 ;
 ; Used by the routines at #R$A84D and #R$AE01.
 ;
 ; A Vertex number
-@lookup_vertex_something
+@label=lookup_vertex_coords
 c$AE50 LD B,A        ;
  $AE51 ADD A,A       ; A *= 2
  $AE52 LD HL,$A8FA   ; Table of vertex coordinates?
@@ -11039,12 +11183,13 @@ b$AFF0 DEFB $00,$04,$02,$03,$00,$04,$06,$05
  $B038 DEFB $00,$02,$02,$01,$02,$02,$00,$00
  $B040 DEFB $00,$00,$00,$00
 
-; Routine at B044
+; Draw line
 ;
 ; Used by the routines at #R$A84D, #R$AE01, #R$B63C and #R$B7B4.
 ;
 ; HL
 ; DE
+@label=draw_line
 c$B044 LD A,H        ;
  $B045 AND E         ;
  $B046 INC A         ;

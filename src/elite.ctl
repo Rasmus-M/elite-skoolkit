@@ -19,7 +19,7 @@ b $5D70 Font #HTML[#FONT$5D70,96]
 @ $5D70 label=font
 B $5D70,1001,8*125,1
 b $6159 Structure of a ship ($26 bytes)
-D $6159 #TABLE { =h Type | =h Offset | =h Content } { byte | $00 | x_lo } { byte | $01 | x_hi } { byte | $02 | x_sign } { byte | $03 | y_lo } { byte | $04 | y_hi } { byte | $05 | y_sign } { byte | $06 | z_lo } { byte | $07 | z_hi } { byte | $08 | z_sign } { byte | $09 | nosev_x_lo } { byte | $0A | nosev_x_hi } { byte | $0B | nosev_y_lo } { byte | $0C | nosev_y_hi } { byte | $0D | nosev_z_lo } { byte | $0E | nosev_z_hi } { byte | $0F | roofv_x_lo } { byte | $10 | roofv_x_hi } { byte | $11 | roofv_y_lo } { byte | $12 | roofv_y_hi } { byte | $13 | roofv_z_lo } { byte | $14 | roofv_z_hi } { byte | $15 | sidev_x_lo } { byte | $16 | sidev_x_hi } { byte | $17 | sidev_y_lo } { byte | $18 | sidev_y_hi } { byte | $19 | sidev_z_lo } { byte | $1A | sidev_z_hi } { byte | $1B | Speed } { byte | $1C | Acceleration?} { byte | $1D | Roll counter? Set to $C0 } { byte | $1E | Pitch counter?  Set to $C0 } { byte | $1F | Unknown } { byte | $20 | From blueprint byte $0A - bit field } { byte | $21 | From blueprint byte $12 - bit field } { byte | $22 | Energy } { word | $23 | Address of blueprint } { byte | $25 | Unknown, set to $7E } { byte | $26 | Unknown, set to $00 } TABLE#
+D $6159 #TABLE { =h Type | =h Offset | =h Content } { byte | $00 | x_lo } { byte | $01 | x_hi } { byte | $02 | x_sign } { byte | $03 | y_lo } { byte | $04 | y_hi } { byte | $05 | y_sign } { byte | $06 | z_lo } { byte | $07 | z_hi } { byte | $08 | z_sign } { byte | $09 | nosev_x_lo } { byte | $0A | nosev_x_hi } { byte | $0B | nosev_y_lo } { byte | $0C | nosev_y_hi } { byte | $0D | nosev_z_lo } { byte | $0E | nosev_z_hi } { byte | $0F | roofv_x_lo } { byte | $10 | roofv_x_hi } { byte | $11 | roofv_y_lo } { byte | $12 | roofv_y_hi } { byte | $13 | roofv_z_lo } { byte | $14 | roofv_z_hi } { byte | $15 | sidev_x_lo } { byte | $16 | sidev_x_hi } { byte | $17 | sidev_y_lo } { byte | $18 | sidev_y_hi } { byte | $19 | sidev_z_lo } { byte | $1A | sidev_z_hi } { byte | $1B | Speed } { byte | $1C | Acceleration?} { byte | $1D | Roll counter? Set to $C0 } { byte | $1E | Pitch counter?  Set to $C0 } { byte | $1F | Unknown } { byte | $20 | From blueprint byte $0A - bit field. Bit 3 fire laser } { byte | $21 | From blueprint byte $12 - bit field } { byte | $22 | Energy } { word | $23 | Address of blueprint } { byte | $25 | Unknown, set to $7E } { byte | $26 | Unknown, set to $00 } TABLE#
 N $6159 Current ship
 @ $6159 label=current_ship
 B $6159,34,8*4,2
@@ -242,8 +242,64 @@ S $70DE,2,$02
 c $70E0 Jump to 7366
 D $70E0 Used by the routine at #R$D07F.
 @ $70E0 label=jump_to_7366
-b $70E3 Data block at 70E3
-B $70E3,54,8*6,6
+b $70E3 Byte at 70E3
+B $70E3,1,1
+b $70E4 Byte at 70E4
+B $70E4,1,1
+b $70E5 Byte at 70E5
+B $70E5,1,1
+b $70E6 Byte at 70E6
+B $70E6,1,1
+b $70E7 Byte at 70E7
+B $70E7,1,1
+b $70E8 Byte at 70E8
+B $70E8,2,2
+b $70EA Data at 70EA
+B $70EA,2,2
+b $70EC Data at 70EC
+B $70EC,2,2
+b $70EE Data at 70EE
+B $70EE,2,2
+b $70F0 Byte at 70F0
+B $70F0,2,2
+b $70F2 Data at 70F2
+B $70F2,2,2
+b $70F4 Data at 70F4
+B $70F4,2,2
+b $70F6 Data at 70F6
+B $70F6,2,2
+b $70F8 Data at 70F8
+B $70F8,2,2
+b $70FA Data at 70FA
+B $70FA,2,2
+b $70FC Data at 70FC
+B $70FC,2,2
+b $70FE Data at 70FE
+B $70FE,2,2
+b $7100 Data at 7100
+B $7100,3,3
+b $7103 Byte at 7103
+B $7103,1,1
+b $7104 Byte at 7104
+B $7104,1,1
+b $7105 Data at 7105
+B $7105,2,2
+b $7107 Data at 7107
+B $7107,2,2
+b $7109 Data at 7109
+B $7109,3,3
+b $710C Data at 710C
+B $710C,3,3
+b $710F Data at 710F
+B $710F,1,1
+b $7110 Data at 7110
+B $7110,2,2
+b $7112 Data at 7112
+B $7112,3,3
+b $7115 Data at 7115
+B $7115,2,2
+b $7117 Data at 7117
+B $7117,2,2
 c $7119 Routine at 7119
 D $7119 Used by the routines at #R$EB7C and #R$EC58.
 s $711C Unused
@@ -488,7 +544,8 @@ C $803F,2 Loop for 8 rows
 c $8042 Routine at 8042
 D $8042 Used by the routines at #R$717B, #R$728D, #R$7378, #R$7471 and #R$93ED.
 @ $8042 label=draw_ctrl_panel
-C $8047,1 Return if byte at 0,0 is not $ff
+C $8042,6 Check byte at 0,0 and return is it's not $ff
+C $8048,3 CLear 5 bytes at $FC08
 N $804B This entry point is used by the routine at #R$7366.
 C $804B,3 Clear screen
 C $804E,3 One row - 1
@@ -614,7 +671,12 @@ N $855B This entry point is used by the routine at #R$8540.
 c $8606 Routine at 8606
 D $8606 Used by the routine at #R$854F.
 b $8619 Data block at 8619
-B $8619,18,8*2,2
+B $8619,10,8,2
+w $8623 For saving SP
+@ $8623 label=save_sp_2
+W $8623,2,2
+b $8625 Data block at 8625
+B $8625,6,6
 c $862B Routine at 862B
 D $862B Used by the routines at #R$87FE, #R$884A, #R$8898, #R$88C2 and #R$8FB8.
 c $8643 Routine at 8643
@@ -691,10 +753,14 @@ c $8AF7 Routine at 8AF7
 D $8AF7 Used by the routines at #R$8689 and #R$86A1.
 c $8B0F Routine at 8B0F
 D $8B0F Used by the routine at #R$8AF7.
+C $8B0F,4 Save stack pointer
 @ $8B31 label=self_mod_1
 C $8B31,2 Self-modified
+C $8B33,16 Write 32 bytes
+C $8B47,4 Restore stack pointer
 N $8B69 This entry point is used by the routines at #R$8C13 and #R$8D13.
 N $8B84 This entry point is used by the routine at #R$8B8A.
+C $8B84,4 Restore stack pointer
 c $8B8A Routine at 8B8A
 N $8B9C This entry point is used by the routine at #R$8AF7.
 N $8BA9 This entry point is used by the routines at #R$8C13 and #R$8D13.
@@ -736,7 +802,9 @@ B $8E8D,128,8
 c $8F0D Routine at 8F0D
 D $8F0D Used by the routine at #R$7471.
 b $8FB4 Data block at 8FB4
-B $8FB4,4,4
+B $8FB4,2,2
+b $8FB6 Data block at 8FB6
+B $8FB6,2,2
 c $8FB8 Routine at 8FB8
 D $8FB8 Used by the routine at #R$88C2.
 c $8FCC Routine at 8FCC
@@ -827,8 +895,9 @@ N $94F4 This entry point is used by the routines at #R$7366, #R$7378 and #R$9296
 C $94F6,3 Clear 5 bytes of the 3 words at FF08
 C $94FC,2 Set the 6th byte
 N $94FE This entry point is used by the routines at #R$8042 and #R$813E.
+@ $94FE label=clear_5_bytes_at_FC08
 C $9500,3 Clear 5 bytes at FC08
-@ $9503 clear_b_bytes_at_hl
+@ $9503 label=clear_b_bytes_at_hl
 c $9509 Routine at 9509
 D $9509 Used by the routines at #R$7471, #R$7EDE, #R$9296 and #R$93ED.
 b $9522 Data block at 9522
@@ -900,9 +969,43 @@ c $988E Routine at 988E
 D $988E Used by the routines at #R$7471 and #R$96D9.
 c $98A2 Routine at 98A2
 D $98A2 Used by the routine at #R$8042.
+C $98AD,1 Modify instruction at $9912 to EX DE,HL
+C $98B3,1 Modify instruction at $9915 to PUSH HL
+C $98B5,1 Modify instruction at $991A to PUSH HL
+C $98BB,1 Modify instruction at $9935 to POP HL
+C $98BF,1 Modify instruction at $9936 to INC H
+C $98C4,1 Modify instruction at $9936 to NOP
+C $98CA,1 Modify instruction at $9939 to EX DE,HL
 c $98CD Routine at 98CD
 D $98CD Used by the routines at #R$7471, #R$815D, #R$96D9 and #R$98A2.
+C $98D6,2 8 lines to clear
+C $98D8,3 Screen address (80, 72)
+C $98DB,8 Clear 8 bytes
+C $98E3,1 Next line
+C $98E5,2 Clear line loop
+C $98EE,1 Modify instruction at $9912 to NOP
+C $98F4,1 Modify instruction at $9915 to PUSH DE
+C $98F5,1 HL = $991A
+C $98F6,1 Modify instruction at $991A to PUSH DE
+C $98FC,1 Modify instruction at $9935 to POP DE
+C $9900,1 Modify instruction at $9936 to INC D
+C $9906,1 Modify instruction at $9940 to EX DE,HL
+C $990B,1 Modify instruction at $9939 to NOP
 N $990C This entry point is used by the routine at #R$98A2.
+C $990C,3 Screen address (72, 80)
+C $990F,3 Attributes for control panel?
+C $9912,1 Self-modified to EX DE,HL
+C $9915,1 Self-modified to PUSH HL
+C $9916,2 8 rows
+C $991A,1 Self-modified to PUSH HL
+C $991B,26 Copy 13 bytes
+C $9935,1 Self-modified to POP HL
+C $9936,1 Next line. Self-modified to INC H
+C $9937,2 Repeat 8 times
+C $9939,1 Self-modified to EX DE,HL
+C $993C,3 Next row
+C $9940,1 Self-modified to NOP
+C $9942,2 Repeat 6 times
 s $9945 Unused
 S $9945,1,$01
 c $9946 Routine at 9946
@@ -1013,7 +1116,7 @@ c $A281 Routine at A281
 D $A281 Used by the routine at #R$A173.
 s $A28B Unused
 S $A28B,2,$02
-c $A28D Routine at A28D
+c $A28D Draw title ship
 D $A28D Used by the routine at #R$9CAF.
 @ $A28D label=draw_title_ship
 C $A28D,4 Ship data structure
@@ -1063,28 +1166,81 @@ D $A6AC Used by the routine at #R$AE69.
 b $A6DE Data block at A6DE
 @ $A6DE label=byte_at_A6DE
 B $A6DE,1,1
-c $A6DF Routine at A6DF
+c $A6DF Draw ship
 D $A6DF Used by the routines at #R$9CBB and #R$A28D.
+R $A6DF IX Address of ship structure
+R $A6DF IY Address of blueprint
+@ $A6DF label=draw_ship
 c $A83C Routine at A83C
 D $A83C Used by the routine at #R$A6DF.
-c $A84D Routine at A84D
+c $A84D Draw ship part 2
 D $A84D Used by the routine at #R$A6DF.
+R $A84D IX Address of ship structure
+R $A84D IY Address of blueprint
+@ $A84D label=draw_ship_and_laser
+C $A878,4 Test a bit on the ship, should it fire?
+C $A87C,1 Return if not set
+C $A87D,3 Gun vertex
+C $A880,3 Get coordinates
 N $A884 This entry point is used by the routine at #R$A8DE.
+C $A884,3 Random number
+C $A887,16 Calculate coordinates of other end of line
+C $A897,9 Set some temporary flag
+C $A8A0,3 Draw laser?
+C $A8A3,4 Revert flag
+C $A8A7,4 Reset bit on the ship
 c $A8AC Routine at A8AC
 D $A8AC Used by the routine at #R$A6DF.
 c $A8DE Routine at A8DE
 D $A8DE Used by the routine at #R$A6DF.
 b $A8FA Data block at A8FA
 @ $A8FA label=data_at_A8FA
-B $A8FA,,3
+B $A8FA,138,3
 b $A984 Face visibility table
 @ $A984 label=face_visibility_table
 B $A984,16,8
 b $A994 Data block at A994
 B $A994,36,8*4,4
-b $A9B8 Data block at A9B8
+w $A9B8 Data block at A9B8
 @ $A9B8 label=some_distance
-B $A9B8,17,8*2,1
+W $A9B8,2,2
+b $A9BA Byte at A9BA
+@ $A9BA label=byte_at_A9BA
+B $A9BA,1,1
+w $A9BB Word at A9BB
+@ $A9BB label=word_at_A9BB
+W $A9BB,2,2
+w $A9BD Word at A9BD
+@ $A9BD label=word_at_A9BD
+W $A9BD,2,2
+w $A9BF Word at A9BF
+@ $A9BF label=word_at_A9BF
+W $A9BF,2,2
+b $A9C1 Byte at A9C1
+@ $A9C1 label=byte_at_A9C1
+B $A9C1,1,1
+b $A9C2 Byte at A9C2
+@ $A9C2 label=byte_at_A9C2
+B $A9C2,1,1
+b $A9C3 Byte at A9C3
+D $A9C3 Used by the routine at #R$E107.
+@ $A9C3 label=byte_at_A9C3
+B $A9C3,1,1
+b $A9C4 Byte at A9C4
+@ $A9C4 label=byte_at_A9C4
+B $A9C4,1,1
+b $A9C5 Byte at A9C5
+@ $A9C5 label=byte_at_A9C5
+B $A9C5,1,1
+b $A9C6 Byte at A9C6
+@ $A9C6 label=byte_at_A9C6
+B $A9C6,1,1
+b $A9C7 Byte at A9C7
+@ $A9C7 label=byte_at_A9C7
+B $A9C7,1,1
+b $A9C8 Byte at A9C8
+@ $A9C8 label=byte_at_A9C8
+B $A9C8,1,1
 c $A9C9 Routine at A9C9
 D $A9C9 Used by the routine at #R$A84D.
 N $A9DE This entry point is used by the routine at #R$ACA2.
@@ -1134,17 +1290,18 @@ c $ACA2 Routine at ACA2
 D $ACA2 Used by the routine at #R$A9C9.
 N $ACDF This entry point is used by the routine at #R$AB73.
 N $ADF2 This entry point is used by the routine at #R$A9C9.
-c $AE01 Draw ship
+c $AE01 Draw edges
 D $AE01 Used by the routine at #R$A84D.
 R $AE01 IX Address ship data structure
 R $AE01 IY Address of blueprint
-@ $AE01 label=draw_ship
+@ $AE01 label=draw_edges
 C $AE01,3 Offset to edges LSB
 C $AE04,3 Offset to edges MSB
 C $AE07,3 Number of edges
 C $AE0A,2 Save address of blueprint
 C $AE0C,2 IX = Address of blueprint, stack has ship address
 C $AE0E,2 IX = Address of edges
+C $AE10,1 Save counter
 C $AE11,3 Get visibility distance
 C $AE14,2 Is it max?
 C $AE16,2 Skip next comparison if so
@@ -1157,21 +1314,22 @@ C $AE22,3 Is one of the faces visible?
 C $AE25,2 Skip edge if not
 C $AE27,3 Get number of the vertex at the start of the edge
 C $AE2A,3 Returns values in DE and A
-C $AE2D,2 Skip edge if ?
+C $AE2D,2 Skip edge if vertex not visible?
 C $AE31,3 Get number of the vertex at the end of the edge
 C $AE34,3 Returns values in DE and A
+C $AE37,1 Put second value in HL
 C $AE38,1 Now HL, DE, A, and C have calculated values
-C $AE39,2 Skip edge if ?
-C $AE3B,7 A7 A6 A5 A4 A3 A2 A1 A0 | C  | C7 C6 C5 C4 C3 C2 C1 C0 -> A0 A7 A6 A5 A4 A3 A2 C7 | C6 | C5 C4 C3 C2 C1 C0 A1 A0
-C $AE42,3 Draw the edge?
+C $AE39,2 Skip edge if vertex not visible?
+C $AE3B,7 A7 A6 A5 A4 A3 A2 A1 A0 | CY | C7 C6 C5 C4 C3 C2 C1 C0 -> A0 A7 A6 A5 A4 A3 A2 C7 | C6 | C5 C4 C3 C2 C1 C0 A1 A0
+C $AE42,3 Draw the edge
 C $AE45,1 Restore edge counter
 C $AE46,5 Update IX to point to next edge
 C $AE4B,2 Next edge
 C $AE4D,2 Restore ship address
-c $AE50 Routine at AE50
+c $AE50 Lookup vertex coordinates
 D $AE50 Used by the routines at #R$A84D and #R$AE01.
 R $AE50 A Vertex number
-@ $AE50 lookup_vertex_something
+@ $AE50 label=lookup_vertex_coords
 C $AE51,1 A *= 2
 C $AE52,3 Table of vertex coordinates?
 C $AE58,1 A *= 3 (3 bytes per entry)
@@ -1179,7 +1337,7 @@ C $AE5C,5 HL += A
 C $AE61,1 Get byte 0
 C $AE63,1 Get byte 1
 C $AE65,1 Get byte 2
-C $AE66,2 Set msb
+C $AE66,2 Test bit 7 of byte 2
 c $AE69 Routine at AE69
 D $AE69 Used by the routines at #R$9CBB and #R$A28D.
 c $AE8A Routine at AE8A
@@ -1198,10 +1356,11 @@ D $AFCD Used by the routine at #R$BD5F.
 b $AFF0 Data block at AFF0
 @ $AFF0 label=data_at_AFF0
 B $AFF0,84,8*10,4
-c $B044 Routine at B044
+c $B044 Draw line
 D $B044 Used by the routines at #R$A84D, #R$AE01, #R$B63C and #R$B7B4.
 R $B044 HL
 R $B044 DE
+@ $B044 label=draw_line
 N $B0E0 This entry point is used by the routine at #R$B362.
 c $B2F0 Routine at B2F0
 D $B2F0 Used by the routine at #R$B044.
