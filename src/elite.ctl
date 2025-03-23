@@ -873,6 +873,7 @@ c $9296 Routine at 9296
 D $9296 Used by the routine at #R$7471.
 N $92D6 This entry point is used by the routine at #R$928C.
 c $9337 Routine at 9337
+@ $9337 label=unused_9337
 c $9341 Routine at 9341
 c $935E Routine at 935E
 D $935E Used by the routine at #R$9296.
@@ -880,6 +881,7 @@ b $9364 Data block at 9364
 B $9364,5,5
 c $9369 Routine at 9369
 D $9369 Used by the routine at #R$9337.
+@ $9369 label=unused_9369
 c $937B Routine at 937B
 D $937B Used by the routine at #R$935E.
 c $93AC Routine at 93AC
@@ -2105,6 +2107,7 @@ N $D87F This entry point is used by the routines at #R$D86A, #R$D872, #R$D885 an
 c $D885 Routine at D885
 c $D8A9 Routine at D8A9
 c $D8AD Routine at D8AD
+@ $D8AD label=unused_D8AD
 c $D8AE Routine at D8AE
 N $D8B0 This entry point is used by the routines at #R$D833 and #R$D8A9.
 c $D8B4 Routine at D8B4
@@ -2235,6 +2238,7 @@ c $E08C Routine at E08C
 D $E08C Used by the routines at #R$DF4C and #R$DF60.
 c $E107 Routine at E107
 D $E107 Used by the routines at #R$E3E9 and #R$EDDF.
+C $E122,3 Jump to data!
 c $E125 Routine at E125
 c $E12E Routine at E12E
 D $E12E Used by the routines at #R$DF03 and #R$DF60.
@@ -2325,6 +2329,7 @@ B $E3C9,3,3
 c $E3CC Routine at E3CC
 D $E3CC Used by the routines at #R$DA53 and #R$E398.
 c $E3E9 Routine at E3E9
+@ $E3E9 label_unused_E3E9
 N $E45B This entry point is used by the routine at #R$D018.
 N $E45E This entry point is used by the routine at #R$E398.
 c $E46F Routine at E46F

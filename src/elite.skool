@@ -6982,6 +6982,7 @@ c$9296 LD A,($D040)  ;
  $9335 JR $92F9      ;
 
 ; Routine at 9337
+@label=unused_9337
 c$9337 LD A,($93D2)  ;
  $933A DEC A         ;
  $933B LD ($93D2),A  ;
@@ -7017,6 +7018,7 @@ b$9364 DEFB $AF,$32,$40,$D0,$C9
 ; Routine at 9369
 ;
 ; Used by the routine at #R$9337.
+@label=unused_9369
 c$9369 XOR A         ;
  $936A LD ($D03F),A  ;
  $936D LD A,$08      ;
@@ -15817,6 +15819,7 @@ c$D8A9 LD A,$02      ;
  $D8AB JR $D8B0      ;
 
 ; Routine at D8AD
+@label=unused_D8AD
 c$D8AD RET           ;
 
 ; Routine at D8AE
@@ -17036,7 +17039,7 @@ c$E107 LD HL,($DEF6) ;
  $E11B SCF           ;
  $E11C CALL $D2E5    ;
  $E11F CALL $D421    ;
- $E122 JP $A9C3      ;
+ $E122 JP $A9C3      ; Jump to data!
 
 ; Routine at E125
 c$E125 JP PO,$9021   ;
@@ -17535,6 +17538,7 @@ c$E3CC LD ($E3C9),A  ;
  $E3E8 RET           ;
 
 ; Routine at E3E9
+@label_unused_E3E9
 c$E3E9 EX (SP),HL    ;
  $E3EA CALL $D45F    ;
 *$E3ED CALL $E1F7    ;
