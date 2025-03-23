@@ -1468,7 +1468,8 @@ c$6FF2 JP $7089      ;
 
 ; Routine at 6FF8
 ;
-; Used by the routines at #R$7222, #R$7471, #R$8F0D and #R$DAB4.
+; Used by the routines at #R$7222, #R$7471, #R$8F0D, #R$93C0, #R$DB62 and
+; #R$DE67.
 @label=jump_to_70B0
 c$6FF8 JP $70B0      ;
 
@@ -1650,7 +1651,7 @@ b$7117 DEFB $80,$01
 
 ; Routine at 7119
 ;
-; Used by the routines at #R$EB7C and #R$EC58.
+; Used by the routines at #R$E6AE, #R$EB7C and #R$EC58.
 c$7119 JP $8E29      ;
 
 ; Unused
@@ -3792,8 +3793,7 @@ c$7FBE LD DE,$4000   ; Top of screen
 
 ; Routine at 7FE3
 ;
-; Copy every 2nd line of an area from buffer to screen Used by the routine at
-; #R$7FBE.
+; Copy every 2nd line of an area from buffer to screen.
 ;
 ; HL Source (screen buffer) address (110sslllrrrccccc)
 ; DE Destination (screen) address (010sslllrrrccccc)
@@ -3890,7 +3890,7 @@ c$8042 LD DE,$4000   ; {Check byte at 0,0 and return is it's not $ff
 
 ; Clear 3D area and draw a border
 ;
-; Used by the routines at #R$7378, #R$7471, #R$9296 and #R$93ED.
+; Used by the routines at #R$7378, #R$7471, #R$9296, #R$9341 and #R$93ED.
 @label=clear_3d_area
 c$8080 DI            ; Disable interrupts
  $8081 LD ($80D1),SP ; Save stack pointer
@@ -4003,7 +4003,9 @@ c$80D3 LD A,($D040)  ;
 
 ; Jump to entry in jump table at $D000
 ;
-; Used by the routines at #R$71F3, #R$80D3 and #R$93ED. A Index of jump to take
+; Used by the routines at #R$71F3, #R$80D3 and #R$93ED.
+;
+; A Index of jump to take
 c$813E LD ($80D1),SP ; Save stack pointer
  $8142 LD SP,$D000   ; Set SP just above screen buffer
  $8145 LD B,A        ;
@@ -5699,7 +5701,7 @@ c$8B8A INC E         ;
  $8B96 JR Z,$8B84    ;
  $8B98 LD C,$FE      ;
  $8B9A JR $8BA4      ;
-; This entry point is used by the routine at #R$8AF7.
+; This entry point is used by the routine at #R$8B0F.
 *$8B9C SRL B         ;
  $8B9E JR NC,$8B8A   ;
 *$8BA0 SLA C         ;
@@ -6126,7 +6128,8 @@ c$8D8B INC E         ;
 
 ; Routine at 8DEE
 ;
-; Used by the routines at #R$9060, #R$90CC, #R$917B, #R$91F4 and #R$925F.
+; Used by the routines at #R$8B0F, #R$8B8A, #R$8C13, #R$8C96, #R$8D13, #R$8D8B,
+; #R$9060, #R$90CC, #R$917B, #R$91F4 and #R$925F.
 c$8DEE LD A,H        ;
  $8DEF DEC H         ;
  $8DF0 AND $07       ;
@@ -6150,7 +6153,8 @@ c$8DEE LD A,H        ;
 
 ; Routine at 8E08
 ;
-; Used by the routines at #R$9060, #R$90CC, #R$917B, #R$91F4 and #R$925F.
+; Used by the routines at #R$8B0F, #R$8B8A, #R$8C13, #R$8C96, #R$8D13, #R$8D8B,
+; #R$9060, #R$90CC, #R$917B, #R$91F4 and #R$925F.
 c$8E08 INC H         ;
  $8E09 LD A,H        ;
  $8E0A AND $07       ;
@@ -7410,7 +7414,7 @@ c$9624 LD DE,($9523) ;
 
 ; Routine at 9641
 ;
-; Used by the routine at #R$956D.
+; Used by the routine at #R$9561.
 c$9641 LD A,$FD      ;
  $9643 LD DE,$0200   ;
  $9646 JR $964D      ;
@@ -7457,7 +7461,7 @@ c$9657 LD A,$1A      ;
 
 ; Routine at 9684
 ;
-; Used by the routine at #R$969B.
+; Used by the routines at #R$969B and #R$96A9.
 c$9684 LD HL,$0127   ;
  $9687 LD A,C        ;
  $9688 LD ($95BD),A  ;
@@ -8712,7 +8716,7 @@ c$9ECF LD H,(IX+$01) ;
 
 ; Routine at 9EF1
 ;
-; Used by the routine at #R$9C86.
+; Used by the routines at #R$9C86 and #R$9E73.
 c$9EF1 LD A,H        ;
  $9EF2 CP $10        ;
  $9EF4 JR NC,$9F18   ;
@@ -8812,7 +8816,7 @@ w$9F80 DEFW $0000
 
 ; Routine at 9F82
 ;
-; Used by the routine at #R$9CBB.
+; Used by the routines at #R$9CA5 and #R$9CBB.
 c$9F82 CALL $A173     ;
  $9F85 BIT 2,(IX+$26) ;
  $9F89 JR NZ,$9F90    ;
@@ -9246,7 +9250,7 @@ s$A28B DEFS $02
 
 ; Draw title ship
 ;
-; Used by the routine at #R$9CAF.
+; Used by the routines at #R$9CA5 and #R$9CAF.
 @label=draw_title_ship
 c$A28D LD IX,$6159   ; Ship data structure
  $A291 LD H,(IX+$24) ; Get blueprint MSB
@@ -9797,7 +9801,7 @@ c$A69D LD C,A        ;
 
 ; Routine at A6AC
 ;
-; Used by the routine at #R$AE69.
+; Used by the routines at #R$A587 and #R$AE69.
 c$A6AC LD B,(IX+$01) ;
  $A6AF LD A,(IY+$01) ;
  $A6B2 CALL $A69D    ;
@@ -10189,7 +10193,7 @@ b$A994 DEFB $7E,$32,$81,$8D,$F3,$24,$81,$8D
  $A9AC DEFB $00,$00,$00,$00,$00,$00,$00,$00
  $A9B4 DEFB $00,$00,$00,$00
 
-; Data block at A9B8
+; Word at A9B8
 @label=some_distance
 w$A9B8 DEFW $0000
 
@@ -10460,7 +10464,8 @@ c$AB1E LD A,($A9C7)  ;
 
 ; Routine at AB34
 ;
-; Used by the routines at #R$9F68, #R$A1EA, #R$AF22, #R$B2F0 and #R$BD95.
+; Used by the routines at #R$9E98, #R$9F68, #R$A1EA, #R$AF22, #R$AF64, #R$B2F0
+; and #R$BD95.
 c$AB34 LD A,B        ;
  $AB35 SUB C         ;
  $AB36 JR NC,$AB3A   ;
@@ -11114,7 +11119,7 @@ c$AF64 PUSH IX       ;
 
 ; Routine at AFA8
 ;
-; Used by the routines at #R$9C89 and #R$9EF1.
+; Used by the routines at #R$9C89, #R$9ECF and #R$9F18.
 c$AFA8 LD BC,$FFFE   ;
 *$AFAB ADD A,A       ;
  $AFAC RL L          ;
@@ -11185,7 +11190,7 @@ b$AFF0 DEFB $00,$04,$02,$03,$00,$04,$06,$05
 
 ; Draw line
 ;
-; Used by the routines at #R$A84D, #R$AE01, #R$B63C and #R$B7B4.
+; Used by the routines at #R$9C8C, #R$A84D, #R$AE01, #R$B63C and #R$B7B4.
 ;
 ; HL
 ; DE
@@ -12348,7 +12353,7 @@ c$B7AC XOR A         ;
 
 ; Routine at B7B4
 ;
-; Used by the routine at #R$9CB5.
+; Used by the routines at #R$9C8C and #R$9CB5.
 c$B7B4 LD A,($711F)  ;
  $B7B7 AND A         ;
  $B7B8 JR NZ,$B7AC   ;
@@ -12443,7 +12448,7 @@ b$B866 DEFB $00
 
 ; Routine at B867
 ;
-; Used by the routines at #R$9C9C, #R$9CBB, #R$B618 and #R$B63C.
+; Used by the routines at #R$9C9C, #R$9CBB, #R$A3A2, #R$B618 and #R$B63C.
 ;
 ; A Some value, e.g. $79, lower nybble is action, upper nybble is ship
 @label=ship_action
@@ -13415,7 +13420,7 @@ b$C000 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 
 ; Lenslock
 ;
-; Used by the routine at #R$D07C.
+; Used by the routines at #R$C24A and #R$D07C.
 c$C213 LD IX,$C7B6   ;
  $C217 LD IY,$5C3A   ;
  $C21B LD A,$02      ;
@@ -13502,7 +13507,7 @@ c$C268 LD C,A        ;
 
 ; Routine at C2BA (lenslock)
 ;
-; Used by the routines at #R$C25D and #R$C268.
+; Used by the routines at #R$C25D, #R$C268 and #R$C414.
 c$C2BA LD HL,$4000   ;
  $C2BD LD DE,$1800   ;
 *$C2C0 XOR A         ;
@@ -13516,7 +13521,7 @@ c$C2BA LD HL,$4000   ;
 
 ; Routine at C2C9 (lenslock)
 ;
-; Used by the routine at #R$C268.
+; Used by the routines at #R$C268 and #R$C4FF.
 c$C2C9 LD BC,$5880   ;
  $C2CC LD A,B        ;
  $C2CD PUSH AF       ;
@@ -13671,14 +13676,14 @@ c$C391 LD B,$05      ;
 
 ; Routine at C3A8 (lenslock)
 ;
-; Used by the routines at #R$C226 and #R$C608.
+; Used by the routines at #R$C226, #R$C414 and #R$C608.
 c$C3A8 LD B,$14      ;
  $C3AA LD C,$02      ;
  $C3AC JR $C3B0      ;
 
 ; Routine at C3AE (lenslock)
 ;
-; Used by the routine at #R$C4B0.
+; Used by the routines at #R$C43F and #R$C4B0.
 c$C3AE LD C,$05      ;
 ; This entry point is used by the routine at #R$C3A8.
 *$C3B0 LD A,$16      ;
@@ -13753,7 +13758,7 @@ c$C3F3 LD A,D        ;
 
 ; Routine at C408 (lenslock)
 ;
-; Used by the routines at #R$C268, #R$C303 and #R$C3B8.
+; Used by the routines at #R$C268, #R$C303, #R$C3B8 and #R$C43F.
 c$C408 LD H,B        ;
  $C409 LD L,C        ;
  $C40A LD BC,$0000   ;
@@ -13856,7 +13861,7 @@ c$C4B0 CALL $C3AE    ;
 
 ; Routine at C4D0 (lenslock)
 ;
-; Used by the routine at #R$C268.
+; Used by the routines at #R$C268 and #R$C43F.
 c$C4D0 LD A,($C777)  ;
  $C4D3 LD B,A        ;
  $C4D4 LD A,($C77A)  ;
@@ -14266,7 +14271,7 @@ c$C71C LD B,$04      ;
 
 ; Routine at C727 (lenslock)
 ;
-; Used by the routines at #R$C4B0 and #R$C608.
+; Used by the routines at #R$C230, #R$C414, #R$C4B0, #R$C52F and #R$C608.
 c$C727 POP HL        ;
 *$C728 LD A,(HL)     ;
  $C729 INC HL        ;
@@ -14899,7 +14904,7 @@ c$D2E1 AND A         ;
 ; This entry point is used by the routine at #R$D2DE.
 *$D2E2 LD H,$00      ;
  $D2E4 LD L,A        ;
-; This entry point is used by the routines at #R$D32D, #R$D90A, #R$DAB4,
+; This entry point is used by the routines at #R$D32D, #R$D946, #R$DAEF,
 ; #R$E107, #R$E212, #R$EDDF and #R$EF21.
 *$D2E5 PUSH AF       ;
  $D2E6 PUSH HL       ;
@@ -15040,7 +15045,7 @@ c$D3CE PUSH HL       ;
 
 ; Routine at D3D3
 ;
-; Used by the routine at #R$E973.
+; Used by the routines at #R$D1C7, #R$E935 and #R$E973.
 c$D3D3 LD HL,($D068) ;
  $D3D6 ADD HL,DE     ;
  $D3D7 LD ($D068),HL ;
@@ -15070,7 +15075,7 @@ c$D3EF LD HL,($D066) ;
 
 ; Routine at D3FD
 ;
-; Used by the routine at #R$E973.
+; Used by the routines at #R$E7DB and #R$E973.
 c$D3FD LD HL,($D068) ;
  $D400 AND A         ;
  $D401 SBC HL,DE     ;
@@ -15098,17 +15103,17 @@ b$D420 DEFB $01
 ; Print token
 ;
 ; Used by the routines at #R$D2E1, #R$D837, #R$E107, #R$E212, #R$E2F8, #R$E31E,
-; #R$E7CF, #R$E87E, #R$E8EA, #R$E973, #R$EB47, #R$EDDF, #R$EEA8, #R$EF87 and
-; #R$F0A1.
+; #R$E398, #R$E3CC, #R$E7CF, #R$E818, #R$E87E, #R$E8EA, #R$E973, #R$EB47,
+; #R$EDDF, #R$EEA8, #R$EF87 and #R$F0A1.
 @label=print_token
 c$D421 POP HL        ; Get pointer to token number from stack
  $D422 LD A,(HL)     ; Get the token number
  $D423 INC HL        ; Point to next token number
  $D424 PUSH HL       ; Save on stack
 ; This entry point is used by the routines at #R$D048, #R$D357, #R$D37D,
-; #R$D470, #R$DA7A, #R$DAB4, #R$E212, #R$E268, #R$E297, #R$E29E, #R$E2A6,
-; #R$E2F8, #R$E306, #R$E311, #R$E31E, #R$E776, #R$E87E, #R$E973, #R$EEA8,
-; #R$EECE, #R$F068 and #R$F07A.
+; #R$D470, #R$D8F8, #R$DA7A, #R$DAEF, #R$E212, #R$E268, #R$E297, #R$E29E,
+; #R$E2A6, #R$E2F8, #R$E306, #R$E311, #R$E31E, #R$E3E9, #R$E776, #R$E818,
+; #R$E87E, #R$E973, #R$EEA8, #R$EECE, #R$F068 and #R$F07A.
 *$D425 CP $0E        ; {Jump if token < 14
  $D427 JP C,$D7B5    ; }
  $D42A CP $20        ; {Jump if 14 <= token < 32
@@ -15144,8 +15149,9 @@ c$D421 POP HL        ; Get pointer to token number from stack
 
 ; Print other recursive token
 ;
-; Used by the routines at #R$D039, #R$D470, #R$D5B4, #R$D90A, #R$DA5A, #R$DBA2,
-; #R$E292, #R$E8E5, #R$EDDF, #R$EF87 and #R$F0A1.
+; Used by the routines at #R$D039, #R$D0F6, #R$D138, #R$D470, #R$D5B4, #R$D90A,
+; #R$D946, #R$DA5A, #R$DBA2, #R$E292, #R$E3E9, #R$E8E5, #R$EDDF, #R$EF87 and
+; #R$F0A1.
 @label=print_other_recursive_token
 c$D45F LD HL,($F11C) ; Get base address of other tokens
  $D462 LD D,A        ; D=number of tokens to search through
@@ -15295,7 +15301,7 @@ c$D499 CP $41        ; Char A?
 
 ; Routine at D54F
 ;
-; Used by the routines at #R$D90A, #R$E8D9, #R$E973 and #R$EC58.
+; Used by the routines at #R$D90A, #R$E707, #R$E8D9, #R$E973 and #R$EC58.
 c$D54F LD HL,$5AA1   ;
  $D552 LD A,$05      ;
 ; This entry point is used by the routine at #R$F0A1.
@@ -15321,8 +15327,8 @@ c$D55C LD HL,$4340   ;
 
 ; Routine at D568
 ;
-; Used by the routines at #R$D90A, #R$E8D9, #R$EDDF, #R$EF48, #R$EF87 and
-; #R$F0A1.
+; Used by the routines at #R$D90A, #R$E707, #R$E8D9, #R$EDDF, #R$EF48, #R$EF87
+; and #R$F0A1.
 c$D568 LD HL,$5821   ;
 *$D56B LD A,(DE)     ;
  $D56C INC DE        ;
@@ -15414,7 +15420,7 @@ c$D5B4 LD D,$00      ;
 
 ; Routine at D5E1
 ;
-; Used by the routine at #R$D5B4.
+; Used by the routines at #R$D5B4 and #R$D885.
 c$D5E1 LD HL,($DECC) ;
  $D5E4 SLA L         ;
  $D5E6 EX DE,HL      ;
@@ -15436,7 +15442,7 @@ b$D5F5 DEFB $10,$15,$1A,$1F,$9B,$A0,$2E,$A5
 ; Clear screen with border
 ;
 ; Clear the screen and draw a one pixel border
-;
+; .
 ; Used by the routines at #R$D036, #R$D90A, #R$DBA2, #R$E973, #R$EB7C and
 ; #R$EC58.
 @label=clear_screen_border
@@ -15767,7 +15773,8 @@ c$D86A CALL $D87F    ;
 ; Routine at D872
 c$D872 CALL $D87F    ;
  $D875 LD HL,$DEED   ;
-; This entry point is used by the routines at #R$D82E, #R$D86A and #R$D8B4.
+; This entry point is used by the routines at #R$D82E, #R$D857, #R$D86A and
+; #R$D8B4.
 *$D878 JP $E311      ;
 
 ; Routine at D87B
@@ -15775,7 +15782,8 @@ c$D872 CALL $D87F    ;
 ; Used by the routine at #R$D837.
 c$D87B CALL $E2BC    ;
  $D87E INC B         ;
-; This entry point is used by the routines at #R$D86A, #R$D872 and #R$D8B4.
+; This entry point is used by the routines at #R$D86A, #R$D872, #R$D885 and
+; #R$D8B4.
 *$D87F LD A,$01      ;
  $D881 LD ($D0D3),A  ;
  $D884 RET           ;
@@ -16012,7 +16020,7 @@ c$D946 LD HL,$DED0   ;
 
 ; Routine at DA16
 ;
-; Used by the routine at #R$D90A.
+; Used by the routine at #R$D946.
 c$DA16 LD B,$08      ;
  $DA18 LD C,$00      ;
 *$DA1A RRA           ;
@@ -16025,12 +16033,12 @@ c$DA16 LD B,$08      ;
 
 ; Routine at DA25
 ;
-; Used by the routine at #R$D90A.
+; Used by the routine at #R$D946.
 c$DA25 HALT          ;
  $DA26 LD A,($FC0D)  ;
  $DA29 CP $20        ;
  $DA2B JR NZ,$DA37   ;
-; This entry point is used by the routine at #R$D90A.
+; This entry point is used by the routine at #R$D946.
 *$DA2D CALL $E36B    ;
  $DA30 LD A,$C7      ;
  $DA32 CALL $DA5A    ;
@@ -16045,7 +16053,7 @@ c$DA25 HALT          ;
 
 ; Routine at DA49
 ;
-; Used by the routine at #R$D90A.
+; Used by the routine at #R$D946.
 c$DA49 LD IX,$D054   ;
  $DA4D LD DE,$0066   ;
  $DA50 LD A,$FF      ;
@@ -16053,14 +16061,14 @@ c$DA49 LD IX,$D054   ;
 
 ; Routine at DA53
 ;
-; Used by the routine at #R$D90A.
+; Used by the routine at #R$D946.
 c$DA53 LD B,$0A      ;
  $DA55 LD A,$08      ;
  $DA57 JP $E3CC      ;
 
 ; Routine at DA5A
 ;
-; Used by the routines at #R$D90A and #R$DA25.
+; Used by the routines at #R$D946 and #R$DA25.
 c$DA5A PUSH AF       ;
  $DA5B XOR A         ;
  $DA5C LD ($D0D1),A  ;
@@ -16660,7 +16668,7 @@ c$DE67 LD A,L        ;
 
 ; Routine at DEA2
 ;
-; Used by the routines at #R$DAB4, #R$DC8E and #R$E973.
+; Used by the routines at #R$DB62, #R$DC8E and #R$E973.
 c$DEA2 CP $47        ;
  $DEA4 JR C,$DEA8    ;
  $DEA6 LD A,$46      ;
@@ -16763,7 +16771,7 @@ w$DF5E DEFW $0000
 
 ; Routine at DF60
 ;
-; Used by the routines at #R$DBA2, #R$DC29 and #R$EDDF.
+; Used by the routines at #R$DBA2, #R$DC29, #R$E3E9 and #R$EDDF.
 c$DF60 LD A,($70E3)  ;
  $DF63 CP $07        ;
  $DF65 JR C,$DF74    ;
@@ -16882,7 +16890,7 @@ c$E009 LD E,$00      ;
 
 ; Routine at E01C
 ;
-; Used by the routines at #R$DF60 and #R$ED78.
+; Used by the routines at #R$D857, #R$DF03, #R$DF60 and #R$ED78.
 c$E01C LD HL,$DEDB   ;
  $E01F LD ($DF01),HL ;
  $E022 LD B,$08      ;
@@ -16940,7 +16948,7 @@ c$E01C LD HL,$DEDB   ;
 
 ; Routine at E080
 ;
-; Used by the routine at #R$DF60.
+; Used by the routines at #R$DF4C and #R$DF60.
 c$E080 LD BC,$0008   ;
  $E083 LD HL,$DEDB   ;
  $E086 LD DE,$DEED   ;
@@ -16949,7 +16957,7 @@ c$E080 LD BC,$0008   ;
 
 ; Routine at E08C
 ;
-; Used by the routine at #R$DF60.
+; Used by the routines at #R$DF4C and #R$DF60.
 c$E08C LD HL,($DEC0) ;
  $E08F LD ($DEBA),HL ;
  $E092 LD A,H        ;
@@ -17013,7 +17021,7 @@ c$E08C LD HL,($DEC0) ;
 
 ; Routine at E107
 ;
-; Used by the routine at #R$EDDF.
+; Used by the routines at #R$E3E9 and #R$EDDF.
 c$E107 LD HL,($DEF6) ;
  $E10A LD A,H        ;
  $E10B OR L          ;
@@ -17036,14 +17044,14 @@ c$E125 JP PO,$9021   ;
 
 ; Routine at E12E
 ;
-; Used by the routine at #R$DF60.
+; Used by the routines at #R$DF03 and #R$DF60.
 c$E12E LD HL,$DEC0   ;
  $E131 LD DE,$DEC6   ;
  $E134 JR $E13C      ;
 
 ; Routine at E136
 ;
-; Used by the routine at #R$DF60.
+; Used by the routines at #R$DF4C and #R$DF60.
 c$E136 LD HL,$DEC6   ;
  $E139 LD DE,$DEC0   ;
 ; This entry point is used by the routines at #R$E125 and #R$E12E.
@@ -17154,7 +17162,8 @@ b$E1BB DEFB $00,$00,$00,$00,$00,$00,$00,$00
 
 ; Routine at E1E8
 ;
-; Used by the routines at #R$DA5A, #R$DAB4, #R$DBA2 and #R$E832.
+; Used by the routines at #R$D0F6, #R$DA5A, #R$DAD7, #R$DBA2, #R$E398, #R$E3E9
+; and #R$E832.
 c$E1E8 LD A,($FC0E)  ;
  $E1EB BIT 7,A       ;
  $E1ED RET Z         ;
@@ -17164,7 +17173,8 @@ c$E1E8 LD A,($FC0E)  ;
 
 ; Routine at E1F7
 ;
-; Used by the routines at #R$D90A, #R$E776 and #R$E973.
+; Used by the routines at #R$D0F6, #R$D90A, #R$D946, #R$E3E9, #R$E6AE, #R$E776
+; and #R$E973.
 c$E1F7 CALL $E35A    ;
  $E1FA CALL $E205    ;
 *$E1FD LD A,($FC0D)  ;
@@ -17174,7 +17184,8 @@ c$E1F7 CALL $E35A    ;
 
 ; Routine at E205
 ;
-; Used by the routines at #R$D90A, #R$DBA2 and #R$E1F7.
+; Used by the routines at #R$D0F6, #R$D90A, #R$DBA2, #R$E1F7, #R$E398 and
+; #R$E3E9.
 c$E205 DI            ;
  $E206 LD HL,$FC08   ;
  $E209 LD B,$04      ;
@@ -17186,7 +17197,7 @@ c$E205 DI            ;
 
 ; Routine at E212
 ;
-; Used by the routine at #R$EF48.
+; Used by the routines at #R$E707 and #R$EF48.
 c$E212 LD A,($E1DF)  ;
  $E215 ADD A,$D0     ;
  $E217 CALL $D425    ;
@@ -17280,11 +17291,11 @@ c$E29E CALL $D425    ;
 
 ; Routine at E2A6
 ;
-; Used by the routines at #R$D837, #R$DA7A, #R$DAB4, #R$E212, #R$E87E, #R$E973,
-; #R$EE9D, #R$EF48, #R$EF87 and #R$F0A1.
+; Used by the routines at #R$D837, #R$DA7A, #R$DAEF, #R$E212, #R$E707, #R$E87E,
+; #R$E973, #R$EE9D, #R$EF48, #R$EF87 and #R$F0A1.
 c$E2A6 CALL $D425    ;
 ; This entry point is used by the routines at #R$D6B9, #R$DA5A, #R$E212,
-; #R$E2BC, #R$E8EA, #R$E973, #R$EDDF, #R$EEA2, #R$F068 and #R$F0A1.
+; #R$E2BC, #R$E3E9, #R$E8EA, #R$E973, #R$EDDF, #R$EEA2, #R$F068 and #R$F0A1.
 *$E2A9 LD A,$01      ;
  $E2AB LD ($D0D2),A  ; Set something to 1
  $E2AE CALL $E2B7    ; Set x to zero
@@ -17304,8 +17315,8 @@ c$E2B7 XOR A         ; {Set x to 0
 
 ; Routine at E2BC
 ;
-; Used by the routines at #R$D87B, #R$E212, #R$E268, #R$E7CF, #R$E973, #R$EB63,
-; #R$EF87 and #R$F0A1.
+; Used by the routines at #R$D87B, #R$E212, #R$E268, #R$E707, #R$E7CF, #R$E818,
+; #R$E973, #R$EB63, #R$EF87 and #R$F0A1.
 c$E2BC POP HL        ;
  $E2BD LD A,(HL)     ;
  $E2BE INC HL        ;
@@ -17318,8 +17329,8 @@ c$E2BC POP HL        ;
 
 ; Routine at E2C8
 ;
-; Used by the routines at #R$E2A6, #R$E36B, #R$E973, #R$EDDF, #R$EF87 and
-; #R$F0A1.
+; Used by the routines at #R$D8F3, #R$E2A6, #R$E36B, #R$E973, #R$EDDF, #R$EF87
+; and #R$F0A1.
 @label=save_and_wrap_y
 c$E2C8 LD ($D046),A  ; Save y
  $E2CB CP $18        ; Last row?
@@ -17330,7 +17341,7 @@ c$E2C8 LD ($D046),A  ; Save y
 
 ; Routine at E2D5
 ;
-; Used by the routine at #R$E76E.
+; Used by the routines at #R$E3E9 and #R$E76E.
 c$E2D5 LD A,($D046)  ;
  $E2D8 LD B,$A1      ;
  $E2DA CP $15        ;
@@ -17353,7 +17364,7 @@ c$E2D5 LD A,($D046)  ;
 
 ; Routine at E2F8
 ;
-; Used by the routines at #R$E306 and #R$EDDF.
+; Used by the routines at #R$E306, #R$E3E9 and #R$EDDF.
 c$E2F8 PUSH AF       ;
  $E2F9 CALL $D421    ;
  $E2FC LD B,$F1      ;
@@ -17371,7 +17382,7 @@ c$E306 CALL $E2F8    ;
 
 ; Routine at E311
 ;
-; Used by the routines at #R$D872, #R$D8B4 and #R$ED78.
+; Used by the routines at #R$D872, #R$D8B4, #R$E398 and #R$ED78.
 c$E311 LD A,(HL)     ;
  $E312 CP $00        ;
  $E314 SCF           ;
@@ -17422,13 +17433,14 @@ c$E34C LD A,($E1DF)  ;
 
 ; Routine at E35A
 ;
-; Used by the routine at #R$E1F7.
+; Used by the routines at #R$E1F7 and #R$E3E9.
 c$E35A LD B,$14      ;
  $E35C JR $E360      ;
 
 ; Routine at E35E
 ;
-; Used by the routines at #R$DBA2, #R$E832 and #R$E8EA.
+; Used by the routines at #R$D0F6, #R$D81F, #R$DBA2, #R$E6AE, #R$E832 and
+; #R$E8EA.
 c$E35E LD B,$24      ;
 ; This entry point is used by the routine at #R$E35A.
 *$E360 HALT          ;
@@ -17437,14 +17449,15 @@ c$E35E LD B,$24      ;
 
 ; Routine at E364
 ;
-; Used by the routine at #R$E8EA.
+; Used by the routines at #R$E707 and #R$E8EA.
 c$E364 LD HL,($D045) ;
  $E367 LD ($E1E6),HL ;
  $E36A RET           ;
 
 ; Routine at E36B
 ;
-; Used by the routines at #R$DA25, #R$E87E and #R$E973.
+; Used by the routines at #R$DA25, #R$E398, #R$E3CC, #R$E3E9, #R$E87E and
+; #R$E973.
 c$E36B LD A,$15      ;
  $E36D CALL $E2C8    ;
  $E370 CALL $E2B7    ;
@@ -17468,7 +17481,7 @@ c$E36B LD A,$15      ;
 
 ; Routine at E38D
 ;
-; Used by the routine at #R$E8EA.
+; Used by the routines at #R$E707 and #R$E8EA.
 c$E38D LD HL,($E1E6) ;
  $E390 LD ($D045),HL ;
  $E393 RET           ;
@@ -17584,7 +17597,7 @@ c$E3E9 EX (SP),HL    ;
 
 ; Routine at E46F
 ;
-; Used by the routines at #R$DF60, #R$EB7C and #R$EC58.
+; Used by the routines at #R$DF4C, #R$DF60, #R$E4D4, #R$EB7C and #R$EC58.
 c$E46F LD A,($E52B)  ;
  $E472 CP $0A        ;
  $E474 JR Z,$E4C1    ;
@@ -18015,7 +18028,7 @@ b$E6F8 DEFB $F1,$F0
 
 ; Routine at E6FA
 ;
-; Used by the routine at #R$EF48.
+; Used by the routines at #R$E707 and #R$EF48.
 c$E6FA LD HL,$E1D2   ;
  $E6FD LD A,(HL)     ;
  $E6FE AND A         ;
@@ -18082,7 +18095,7 @@ c$E76E CALL $E2D5    ;
 
 ; Routine at E776
 ;
-; Used by the routines at #R$E8EA and #R$E973.
+; Used by the routines at #R$E707, #R$E8EA and #R$E973.
 c$E776 LD ($E8AC),HL ;
 ; This entry point is used by the routine at #R$E76E.
 *$E779 XOR A         ;
@@ -18130,7 +18143,7 @@ c$E776 LD ($E8AC),HL ;
 
 ; Routine at E7CF
 ;
-; Used by the routines at #R$E8EA and #R$E973.
+; Used by the routines at #R$E707, #R$E8EA and #R$E973.
 c$E7CF CALL $E2BC    ;
  $E7D2 INC BC        ;
  $E7D3 CALL $D421    ;
@@ -18207,7 +18220,7 @@ c$E832 CALL $E1E8    ;
 
 ; Routine at E83C
 ;
-; Used by the routine at #R$E973.
+; Used by the routines at #R$E7DB, #R$E935 and #R$E973.
 c$E83C LD HL,($D066) ;
  $E83F LD ($E8A6),HL ;
  $E842 LD HL,($D068) ;
@@ -18224,7 +18237,7 @@ c$E83C LD HL,($D066) ;
 
 ; Routine at E85D
 ;
-; Used by the routines at #R$E76E, #R$E776 and #R$E973.
+; Used by the routines at #R$E76E, #R$E776, #R$E818 and #R$E973.
 c$E85D LD HL,($E8A6) ;
  $E860 LD ($D066),HL ;
  $E863 LD HL,($E8A4) ;
@@ -18241,7 +18254,7 @@ c$E85D LD HL,($E8A6) ;
 
 ; Routine at E87E
 ;
-; Used by the routine at #R$E8EA.
+; Used by the routines at #R$E707 and #R$E8EA.
 c$E87E CALL $E36B    ;
  $E881 LD A,$01      ;
  $E883 LD ($D0D2),A  ;
@@ -18366,7 +18379,7 @@ c$E935 CALL $E83C    ;
 
 ; Routine at E962
 ;
-; Used by the routine at #R$E8EA.
+; Used by the routines at #R$E707 and #R$E8EA.
 c$E962 LD HL,$D06A   ;
  $E965 LD ($E1E0),HL ;
  $E968 LD HL,$E1BB   ;
@@ -18610,7 +18623,7 @@ c$EB38 LD HL,$D081   ;
 
 ; Routine at EB3E
 ;
-; Used by the routines at #R$E973, #R$EB2F and #R$ED78.
+; Used by the routines at #R$D1E9, #R$D21F, #R$E973, #R$EB2F and #R$ED78.
 c$EB3E LD D,$00      ;
  $EB40 LD E,A        ;
  $EB41 ADD HL,DE     ;
@@ -19173,7 +19186,7 @@ c$EF21 LD HL,($DEBE) ;
 
 ; Routine at EF37
 ;
-; Used by the routine at #R$EDDF.
+; Used by the routines at #R$DDE3 and #R$EDDF.
 c$EF37 LD DE,$D090   ;
  $EF3A LD B,$06      ;
 *$EF3C LD A,(DE)     ;
@@ -19387,7 +19400,8 @@ c$F0A1 EX AF,AF'     ;
  $F0B5 LD A,(BC)     ;
  $F0B6 ADD HL,DE     ;
  $F0B7 RST $38       ;
-; This entry point is used by the routines at #R$D018, #R$E8AE and #R$E8EA.
+; This entry point is used by the routines at #R$D018, #R$E6AE, #R$E707,
+; #R$E8AE and #R$E8EA.
 *$F0B8 LD A,$0C      ;
  $F0BA LD ($70E3),A  ;
  $F0BD CALL $E8E5    ;
