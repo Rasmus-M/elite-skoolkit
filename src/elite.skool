@@ -3773,7 +3773,7 @@ b$7F6F DEFB $00,$00,$00,$00,$00,$00,$00,$00
 
 ; Copy screen buffer to screen
 ;
-; Used by the routines at #R$7378, #R$7471, #R$9296 and #R$93ED.
+; Used by the routines at #R$7378, #R$7471, #R$9296, #R$9341 and #R$93ED.
 ; .
 ; Looks like this is just making an exact copy.
 @label=draw_screen_buffer
@@ -12321,9 +12321,11 @@ c$B63C LD A,($B4D7)   ;
 
 ; Routine at B799
 ;
+; Used by the routines at #R$A2C0, #R$A3A2, #R$A587, #R$A84D, #R$B4D8, #R$B63C,
+; #R$B898, #R$B96B, #R$B9E7, #R$BA83, #R$BA94, #R$BBBA, #R$BBF2, #R$BC21 and
+; #R$BC78.
+; .
 ; Is this some kind of random number generator?
-;
-; Used by the routines at #R$A84D, #R$B4D8, #R$B63C, #R$B898 and #R$BBBA.
 @label=rand_no
 c$B799 PUSH HL       ;
  $B79A PUSH BC       ;
@@ -15441,10 +15443,10 @@ b$D5F5 DEFB $10,$15,$1A,$1F,$9B,$A0,$2E,$A5
 
 ; Clear screen with border
 ;
-; Clear the screen and draw a one pixel border
+; Used by the routines at #R$D036, #R$D0F6, #R$D138, #R$D90A, #R$DBA2, #R$E707,
+; #R$E973, #R$EB7C and #R$EC58.
 ; .
-; Used by the routines at #R$D036, #R$D90A, #R$DBA2, #R$E973, #R$EB7C and
-; #R$EC58.
+; Clear the screen and draw a one pixel border
 @label=clear_screen_border
 c$D61D DI            ;
  $D61E LD ($D61B),SP ; Store the stack pointer
