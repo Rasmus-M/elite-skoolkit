@@ -73,11 +73,13 @@ D $61CC Structure of a blueprint ($17 bytes): #TABLE { =h Type | =h Offset | =h 
 @ $61CC label=unknown_ship_1
 B $61CC,23,8*2,7
 b $61E3 Unknown ship 1 vertices
+D $61E3 Structure of a vertex ($06 bytes): #TABLE { =h Offset | =h Content } { $00 | Magnitude of the vertex's x-coordinate } { $01 | Magnitude of the vertex's y-coordinate } { $02 | Magnitude of the vertex's z-coordinate } { $03 | Bits 0-4 = visibility distance. Bits 7-5 = the sign bits of x, y and z. } { $04 | Bits 0-3 = the number of face 1. Bits 4-7 = the number of face 2. } { $05 | Bits 0-3 = the number of face 3. Bits 4-7 = the number of face 4. } TABLE#
 B $61E3,114,6
 b $6255 Unknown ship 1 edges
 D $6255 Structure of an edge ($04 bytes): #TABLE { =h Offset | =h Content } { $00 | Visibility distance } { $01 | The number of the vertex at the start of the edge } { $02 | The number of the vertex at the end of the edge } { $03 | Bits 0-3 = the number of face 1. Bits 4-7 = the number of face 2 } TABLE#
 B $6255,112,4
 b $62C5 Unknown ship 1 faces
+D $62C5 Structure of a face ($04 bytes): #TABLE { =h Offset | =h Content } { $00 | Face normal x } { $01 | Face normal y } { $02 | Face normal z } { $03 | Bits 0-4 = visibility distance. Bits 7-5 = the sign bits of normals } TABLE#
 B $62C5,48,4
 b $62F5 Unknown ship 2
 @ $62F5 label=unknown_ship_2
@@ -1203,9 +1205,10 @@ b $A984 Face visibility table
 @ $A984 label=face_visibility_table
 B $A984,16,8
 b $A994 Data block at A994
-B $A994,36,8*4,4
+@ $A994 label=normal_table
+B $A994,,6
 w $A9B8 Word at A9B8
-@ $A9B8 label=some_distance
+@ $A9B8 label=ship_distance
 W $A9B8,2,2
 b $A9BA Byte at A9BA
 @ $A9BA label=byte_at_A9BA
@@ -1246,6 +1249,7 @@ b $A9C8 Byte at A9C8
 B $A9C8,1,1
 c $A9C9 Routine at A9C9
 D $A9C9 Used by the routine at #R$A84D.
+@ $A9C9 label=project_vertices
 N $A9DE This entry point is used by the routine at #R$ACA2.
 c $AA10 Routine at AA10
 D $AA10 Used by the routines at #R$A9C9 and #R$AE01.
@@ -1263,12 +1267,67 @@ c $AA2B Routine at AA2B
 D $AA2B Used by the routine at #R$ACA2.
 c $AAFB Routine at AAFB
 D $AAFB Used by the routines at #R$A6AC, #R$AA2B, #R$ABC0 and #R$AC01.
-c $AB0B Routine at AB0B
+R $AAFB I:H Sign 1
+R $AAFB I:L Magnitude 1
+R $AAFB I:D Sign 2
+R $AAFB I:E Magnitude 2
+R $AAFB O:A Added magnitude
+R $AAFB O:H Sign of result
+@ $AAFB label=add_sign_mag_bytes
+C $AAFB,1 Sign 1
+C $AAFC,1 XOR sign 2
+C $AAFE,2 Jump if signs are different
+C $AB00,1 A = L
+C $AB01,1 A = L + E
+C $AB03,1 A = L
+C $AB04,1 A = L - E
+C $AB05,1 Return if L >= E
+C $AB06,2 A = E - L
+C $AB08,1 Clear carry
+C $AB09,1 Sign 1 = Sign 2
+c $AB0B Multiply MSB
 D $AB0B Used by the routines at #R$A0FD, #R$A1EA, #R$A69D, #R$AB1E, #R$AC01, #R$AE8A and #R$BD95.
+D $AB0B Calculate A = B * C / 256 using square lookup table.
+R $AB0B I:B First number
+R $AB0B I:C Second number
+R $AB0B O:A B * C / 256
+@ $AB0B label=mult_b_c_msb
+C $AB0B,1 A = B
+C $AB0C,1 A = B - C
+C $AB0F,2 A = ABS(B - C)
+C $AB11,2 A = ABS(B - C) / 2
+C $AB13,2 H = MSB of square table at #R$BF00
+C $AB15,1 L = ABS(B - C) / 2
+C $AB16,1 D = ((B - C) / 2)^2 / 256
+C $AB17,1 A = B
+C $AB18,1 A = B + C
+C $AB19,1 A = (B + C) / 2
+C $AB1A,1 L = (B + C) / 2
+C $AB1B,1 A = ((B + C) / 2)^2 / 256
+C $AB1C,1 A = (((B + C) / 2)^2 - ((B - C) / 2)^2) / 256 = B * C / 256
 c $AB1E Routine at AB1E
 D $AB1E Used by the routine at #R$AA2B.
-c $AB34 Routine at AB34
+c $AB34 Multiply
 D $AB34 Used by the routines at #R$9E98, #R$9F68, #R$A1EA, #R$AF22, #R$AF64, #R$B2F0 and #R$BD95.
+D $AB34 Calculate HL = B * C using square lookup table.
+R $AB34 I:B First number
+R $AB34 I:C Second number
+R $AB34 O:HL B * C
+@ $AB34 label=mult_b_c
+C $AB34,1 A = B
+C $AB35,1 A = B - C
+C $AB38,2 A = ABS(B - C)
+C $AB3A,2 A = ABS(B - C) / 2
+C $AB3C,2 H = MSB of square table at #R$BE00
+C $AB3E,1 L = ABS(B - C) / 2
+C $AB3F,3 DE = ((B - C) / 2)^2
+C $AB43,1 A = B
+C $AB44,1 A = B + C
+C $AB45,1 A = (B + C) / 2
+C $AB46,1 L = (B + C) / 2
+C $AB47,4 HL = ((B + C) / 2)^2
+C $AB4B,1 Clear carry flag
+C $AB4C,2 HL = ((B + C) / 2)^2 - ((B - C) / 2)^2 = B^2/4 + C^2/4 + 2B * C/4 - (B^2/4 + C^2/4 - 2B * C/4) = 4B * C/4 = B * C
 c $AB4F Routine at AB4F
 D $AB4F Used by the routine at #R$ACA2.
 c $AB73 Routine at AB73
@@ -1277,6 +1336,14 @@ c $ABC0 Routine at ABC0
 D $ABC0 Used by the routine at #R$AB73.
 c $AC01 Routine at AC01
 D $AC01 Used by the routines at #R$AB73 and #R$BDB4.
+R $AC01 IX Address of face structure
+R $AC01 IY Table of ?
+C $AC01,3 Face normal x
+C $AC09,3 Calculate
+C $AC1D,3 Face normal y
+C $AC26,3 Calculate
+C $AC40,3 Face normal z
+C $AC49,3 Calculate
 c $AC69 Routine at AC69
 D $AC69 Used by the routines at #R$A6DF and #R$ACA2.
 N $AC8B This entry point is used by the routine at #R$B2FE.
@@ -1359,14 +1426,19 @@ D $AFCD Used by the routine at #R$BD5F.
 b $AFF0 Data block at AFF0
 @ $AFF0 label=data_at_AFF0
 B $AFF0,84,8*10,4
-c $B044 Draw line
+c $B044 Draw clipped line
 D $B044 Used by the routines at #R$9C8C, #R$A84D, #R$AE01, #R$B63C and #R$B7B4.
-R $B044 HL
-R $B044 DE
-@ $B044 label=draw_line
+R $B044 HL Coordinates of point 1
+R $B044 DE Coordinates of point 2
+R $B044 C Extra bits for coordinates (bits 2,3 for point 1, bits 1,0 for point 2)?
+@ $B044 label=draw_clipped_line
 N $B0E0 This entry point is used by the routine at #R$B362.
 c $B2F0 Routine at B2F0
 D $B2F0 Used by the routine at #R$B044.
+R $B2F0 I:A First number
+R $B2F0 I:C Second number
+R $B2F0 O:C (((A + C) / 2)^2 - ((A - C) / 2)^2 + 128) / 256
+@ $B2F0 label=calc_something
 c $B2FE Routine at B2FE
 D $B2FE Used by the routines at #R$B044, #R$B362 and #R$B3A7.
 c $B308 Routine at B308
@@ -1484,16 +1556,16 @@ C $B8DD,3 Store in ship buffer byte $1B -> speed
 C $B8E0,5 Store $7E in ship buffer byte $25
 C $B8E5,4 Store $00 in ship buffer byte $26
 C $B8F3,3 Random number
-C $B8F8,3 x hi ?
+C $B8F8,3 x_hi
 C $B8FB,3 Random number
-C $B900,3 y hi ?
+C $B900,3 y_hi
 C $B903,3 Random number
-C $B906,3 x lo ?
+C $B906,3 x_lo
 C $B909,3 Random number
-C $B90C,3 y lo ?
+C $B90C,3 y_lo
 C $B90F,3 Random number
-C $B913,4 x sign?
-C $B918,4 y sign?
+C $B913,4 x_sign
+C $B918,4 y_sign
 c $B91E Routine at B91E
 D $B91E Used by the routines at #R$B99F, #R$B9E7, #R$BB2F and #R$BB4D.
 c $B936 Routine at B936
@@ -1562,10 +1634,10 @@ D $BC78 Used by the routine at #R$BC21.
 N $BC7F This entry point is used by the routine at #R$BC21.
 N $BCAB This entry point is used by the routine at #R$BBF2.
 w $BCC8 Data block at BCC8
-@ $BCC8 label=word_at_BCC8
+@ $BCC8 label=saved_ship_address
 W $BCC8,2,2
 b $BCCA Data block at BCCA
-@ $BCCA label=byte_at_BCCA
+@ $BCCA label=normal_scaling
 B $BCCA,1,1
 w $BCCB Data block at BCCB
 @ $BCCB label=word_at_BCCB
@@ -1587,12 +1659,55 @@ b $BCD3 Data block at BCD3
 B $BCD3,1,1
 c $BCD4 Routine at BCD4
 D $BCD4 Used by the routine at #R$A84D.
+@ $BCD4 label=face_visibility
+C $BCD4,2 Push ship address
+C $BCD6,2 Push blueprint address
+C $BCD8,2 Push blueprint address
+C $BCDA,2 IX = blueprint, stack = ship
+C $BCDC,1 HL = Ship address
+C $BCDD,3 Save ship address
+C $BCE0,6 DE = Offset to faces
+C $BCE6,2 IX = Address of faces
+C $BCE8,3 Face visibility table
+C $BCEB,3 Normal scaling
+C $BCEE,3 Save it
+C $BCF1,3 Number of faces
+C $BCF5,4 Table of ?
+C $BCF9,2 Jump if number of faces > 0
+C $BCFB,1 A = 1
+C $BCFC,1 Write to face visibility table
+C $BCFD,2 Return
+C $BD01,3 Get visibility distance and sign bits
+C $BD04,2 Isolate visibility distance
+C $BD06,2 Is it max?
+C $BD08,2 Continue if so
+C $BD0A,5 Compare with ship distance
+C $BD0F,2 Continue if higher than ship distance
+C $BD12,1 Flag value 0
+C $BD13,2 Jump to set flag
+C $BD15,2 Push table of ?
+C $BD17,3 Restore ship address
+C $BD1A,1 Push ship address
+C $BD1B,3 Calculate x
+C $BD24,3 Calculate y
+C $BD2D,3 Calculate z
+C $BD39,4 Vector
+C $BD3D,4 Signs
+C $BD41,3 Cross product?
+C $BD4C,2 H msb indicates if face is visible
+C $BD4F,1 Record in face visibility table
+C $BD51,5 Advance to next face
+C $BD57,1 Dec face counter
+C $BD58,2 Loop
 c $BD5F Routine at BD5F
 D $BD5F Used by the routine at #R$BCD4.
 c $BD95 Routine at BD95
 D $BD95 Used by the routine at #R$BD5F.
 c $BDB4 Routine at BDB4
 D $BDB4 Used by the routine at #R$BCD4.
+R $BDB4 IX Address of face structure
+R $BDB4 IY Table of ?
+C $BDB8,2 IX = ?
 b $BE00 Table of squares
 @ $BE00 label=sqr_table
 B $BE00,512,8
