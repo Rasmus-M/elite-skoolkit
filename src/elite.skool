@@ -9808,18 +9808,25 @@ c$A686 LD B,$0B       ;
 *$A699 LD (IX+$1C),B  ;
  $A69C RET            ;
 
-; Routine at A69D
+; Calculate -4 * A * B / 256
 ;
 ; Used by the routine at #R$A6AC.
-c$A69D LD C,A        ;
- $A69E XOR B         ;
- $A69F XOR $80       ;
- $A6A1 SLA B         ;
- $A6A3 SLA C         ;
- $A6A5 PUSH AF       ;
- $A6A6 CALL $AB0B    ;
- $A6A9 POP HL        ;
- $A6AA LD L,A        ;
+;
+; I:A First number (packed sign-magnitude byte)
+; I:B Second number (packed sign-magnitude byte)
+; O:H Sign
+; O:L -4 * A * B / 256
+;
+@label=minus_4_a_b
+c$A69D LD C,A        ; {Combine signs in A
+ $A69E XOR B         ; }
+ $A69F XOR $80       ; Flip sign
+ $A6A1 SLA B         ; B *= 2
+ $A6A3 SLA C         ; C *= 2
+ $A6A5 PUSH AF       ; Save signs
+ $A6A6 CALL $AB0B    ; A = B * C / 256
+ $A6A9 POP HL        ; Restore sign in H
+ $A6AA LD L,A        ; Place product in L
  $A6AB RET           ;
 
 ; Routine at A6AC
@@ -10209,37 +10216,49 @@ b$A8FA DEFB $00,$00,$00
 b$A984 DEFB $01,$01,$01,$01,$01,$01,$01,$01
  $A98C DEFB $01,$01,$01,$01,$01,$01,$01,$01
 
-; Data block at A994
+; Calculated values for ship
 ;
 ; #TABLE
 ; { =h Offset | =h Value }
 ; { $00 | ? }
-; { $01 | nosev_y_hi * roofv_z_hi + nosev_z_hi * roofv_y_hi }
+; { $01 | nosev_yz ⋅ roofv_zy }
 ; { $02 | ? }
 ; { $03 | roofv_x_hi }
 ; { $04 | ? }
 ; { $05 | nosev_x_hi }
 ; { $06 | ? }
-; { $07 | nosev_z_hi * nosev_z_hi + nosev_x_hi * roofv_z_hi }
-; { $08 | nosev_y_hi }
+; { $07 | nosev_zx ⋅ roofv_xz }
+; { $08 | ? }
 ; { $09 | roofv_y_hi }
 ; { $0A | ? }
-; { $0B | ? }
+; { $0B | nosev_y_hi }
 ; { $0C | ? }
-; { $0D | nosev_x_hi * roofv_y_hi + nosev_y_hi * roofv_x_hi }
+; { $0D | nosev_xy ⋅ roofv_yx }
 ; { $0E | ? }
 ; { $0F | roofv_z_hi }
 ; { $10 | ? }
 ; { $11 | nosev_z_hi }
-; { $12 | ? }
-; { $13 | ? }
-; { $14 | ? }
-; { $15 | ? }
-; { $16 | ? }
-; { $17 | ? }
+; { $12 | Magn face normal_x * nosev_yz ⋅ roofv_zy }
+; { $13 | Sign face normal_x * nosev_yz ⋅ roofv_zy }
+; { $14 | Magn face normal_y * roofv_x_hi }
+; { $15 | Sign face normal_y * roofv_x_hi }
+; { $16 | Magn face normal_z * nosev_x_hi }
+; { $17 | Sign face normal_z * nosev_x_hi }
+; { $18 | Magn face normal_x * nosev_zx ⋅ roofv_xz }
+; { $19 | Sign face normal_x * nosev_zx ⋅ roofv_xz }
+; { $1A | Magn face normal_y * roofv_y_hi }
+; { $1B | Sign face normal_y * roofv_y_hi }
+; { $1C | Magn face normal_z * nosev_y_hi }
+; { $1D | Sign face normal_z * nosev_y_hi }
+; { $1E | Magn face normal_x * nosev_xy ⋅ roofv_yx }
+; { $1D | Sign face normal_x * nosev_xy ⋅ roofv_yx }
+; { $20 | Magn face normal_y * roofv_z_hi }
+; { $21 | Sign face normal_y * roofv_z_hi }
+; { $22 | Magn face normal_z * nosev_z_hi }
+; { $23 | Sign face normal_z * nosev_z_hi }
 ; TABLE#
 ;
-@label=normal_table
+@label=ship_calculations
 b$A994 DEFB $7E,$32,$81,$8D,$F3,$24
  $A99A DEFB $81,$8D,$7E,$32,$F3,$24
  $A9A0 DEFB $F2,$A4,$F2,$A4,$F3,$24
@@ -10471,8 +10490,8 @@ c$AA2B LD A,($A9C8)  ;
 ; I:L Magnitude 1
 ; I:D Sign 2
 ; I:E Magnitude 2
-; O:A Added magnitude
 ; O:H Sign of result
+; O:A Added magnitude
 @label=add_sign_mag_bytes
 c$AAFB LD A,H        ; Sign 1
  $AAFC XOR D         ; XOR sign 2
@@ -10674,57 +10693,61 @@ c$ABC0 LD A,(IX+$03) ;
 ; Routine at AC01
 ;
 ; Used by the routines at #R$AB73 and #R$BDB4.
+; Comments are for call with offset 0
 ;
 ; IX Address of face structure
-; IY Table of ?
-c$AC01 LD B,(IX+$00) ; Face normal x
- $AC04 LD C,(IY+$01) ;
- $AC07 RES 7,C       ;
- $AC09 CALL $AB0B    ; Calculate
- $AC0C LD L,A        ;
- $AC0D LD A,(IX+$03) ;
- $AC10 XOR (IY+$01)  ;
- $AC13 AND $80       ;
- $AC15 LD H,A        ;
- $AC16 LD (IY+$12),L ;
- $AC19 LD (IY+$13),H ;
- $AC1C EX DE,HL      ;
- $AC1D LD B,(IX+$01) ; Face normal y
- $AC20 LD C,(IY+$03) ;
- $AC23 RES 7,C       ;
+; IY Table of ship calculations, offset 0, 6, 12
+; O:HL sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi + normal_z * nosev_x_hi
+; O:IY IY + 6
+@label=calculate_normals
+c$AC01 LD B,(IX+$00) ; Face normal_x
+ $AC04 LD C,(IY+$01) ; nosev_yz ⋅ roofv_zy
+ $AC07 RES 7,C       ; Reset sign
+ $AC09 CALL $AB0B    ; A = B * C / 256 = normal_x * nosev_yz ⋅ roofv_zy
+ $AC0C LD L,A        ; L = normal_x * nosev_yz ⋅ roofv_zy
+ $AC0D LD A,(IX+$03) ; Face sign bits
+ $AC10 XOR (IY+$01)  ; Combine with sign of nosev_yz ⋅ roofv_zy
+ $AC13 AND $80       ; Isolate sign
+ $AC15 LD H,A        ; H = sign
+ $AC16 LD (IY+$12),L ; Store magnitude
+ $AC19 LD (IY+$13),H ; Store sign
+ $AC1C EX DE,HL      ; DE = sign-magn normal_x * nosev_yz ⋅ roofv_zy
+ $AC1D LD B,(IX+$01) ; Face normal_y
+ $AC20 LD C,(IY+$03) ; roofv_x_hi
+ $AC23 RES 7,C       ; Reset sign
  $AC25 PUSH DE       ;
- $AC26 CALL $AB0B    ; Calculate
+ $AC26 CALL $AB0B    ; A = B * C / 256 = normal_y * roofv_x_hi
  $AC29 POP DE        ;
- $AC2A LD L,A        ;
- $AC2B LD A,(IX+$03) ;
- $AC2E RLA           ;
- $AC2F XOR (IY+$03)  ;
- $AC32 AND $80       ;
- $AC34 LD H,A        ;
- $AC35 LD (IY+$14),L ;
- $AC38 LD (IY+$15),H ;
- $AC3B CALL $AAFB    ;
- $AC3E LD L,A        ;
- $AC3F EX DE,HL      ;
- $AC40 LD B,(IX+$02) ; Face normal z
- $AC43 LD C,(IY+$05) ;
- $AC46 RES 7,C       ;
+ $AC2A LD L,A        ; L = normal_y * roofv_x_hi
+ $AC2B LD A,(IX+$03) ; Face sign bits
+ $AC2E RLA           ; Shift sign bit for y into bit 7
+ $AC2F XOR (IY+$03)  ; Combine with sign of roofv_x_hi
+ $AC32 AND $80       ; Isolate sign
+ $AC34 LD H,A        ; H = sign
+ $AC35 LD (IY+$14),L ; Store magnitude
+ $AC38 LD (IY+$15),H ; Store sign
+ $AC3B CALL $AAFB    ; add_sign_mag_bytes HA = HL + DE
+ $AC3E LD L,A        ; HL = sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi
+ $AC3F EX DE,HL      ; DE = ...
+ $AC40 LD B,(IX+$02) ; Face normal_z
+ $AC43 LD C,(IY+$05) ; nosev_x_hi
+ $AC46 RES 7,C       ; Reset sign
  $AC48 PUSH DE       ;
- $AC49 CALL $AB0B    ; Calculate
+ $AC49 CALL $AB0B    ; A = B * C / 256 = normal_z * nosev_x_hi
  $AC4C POP DE        ;
- $AC4D LD L,A        ;
- $AC4E LD A,(IX+$03) ;
- $AC51 RLA           ;
- $AC52 RLA           ;
- $AC53 XOR (IY+$05)  ;
- $AC56 AND $80       ;
- $AC58 LD H,A        ;
- $AC59 LD (IY+$16),L ;
- $AC5C LD (IY+$17),H ;
- $AC5F CALL $AAFB    ;
- $AC62 LD L,A        ;
- $AC63 LD DE,$0006   ;
- $AC66 ADD IY,DE     ;
+ $AC4D LD L,A        ; L = normal_z * nosev_x_hi
+ $AC4E LD A,(IX+$03) ; Face sign bits
+ $AC51 RLA           ; {Shift sign bit for z into bit 7
+ $AC52 RLA           ; }
+ $AC53 XOR (IY+$05)  ; Combine with sign bit for nosev_x_hi
+ $AC56 AND $80       ; Isolate sign
+ $AC58 LD H,A        ; H = sign
+ $AC59 LD (IY+$16),L ; Store magnitude
+ $AC5C LD (IY+$17),H ; Store sign
+ $AC5F CALL $AAFB    ; add_sign_mag_bytes HA = HL + DE
+ $AC62 LD L,A        ; HL = sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi + normal_z * nosev_x_hi
+ $AC63 LD DE,$0006   ; {Change offset of calculations
+ $AC66 ADD IY,DE     ; }
  $AC68 RET           ;
 
 ; Routine at AC69
@@ -11076,25 +11099,25 @@ c$AE8A LD C,(IX+$01) ;
 ; Setup the table at #R$A994
 ;
 ; Used by the routine at #R$A84D.
-@label=calculate_normals
+@label=calculate_dot_products
 c$AECC LD IY,$A994   ; Normals table
  $AED0 LD B,(IX+$0C) ; nosev_y_hi
  $AED3 LD C,(IX+$14) ; roofv_z_hi
  $AED6 LD D,(IX+$0E) ; nosev_z_hi
  $AED9 LD E,(IX+$12) ; roofv_y_hi
- $AEDC CALL $AF22    ; HL = nosev_y_hi * roofv_z_hi + nosev_z_hi * roofv_y_hi
- $AEDF LD (IX+$16),H ; sidev_x_hi = nosev_y_hi * roofv_z_hi + nosev_z_hi * roofv_y_hi
- $AEE2 LD (IY+$01),H ; $01 = nosev_y_hi * roofv_z_hi + nosev_z_hi * roofv_y_hi
+ $AEDC CALL $AF22    ; HL = nosev_yz ⋅ roofv_zy
+ $AEDF LD (IX+$16),H ; sidev_x_hi = nosev_yz ⋅ roofv_zy
+ $AEE2 LD (IY+$01),H ; $01 = nosev_yz ⋅ roofv_zy
  $AEE5 LD B,(IX+$0E) ; nosev_z_hi
  $AEE8 LD (IY+$11),B ; $11 = nosev_z_hi
- $AEEB LD C,(IX+$10) ; nosev_z_hi
+ $AEEB LD C,(IX+$10) ; roofv_x_hi
  $AEEE LD (IY+$03),C ; $03 = roofv_x_hi
  $AEF1 LD D,(IX+$0A) ; nosev_x_hi
  $AEF4 LD E,(IX+$14) ; roofv_z_hi
  $AEF7 LD (IY+$0F),E ; $0F = roofv_z_hi
- $AEFA CALL $AF22    ; HL = nosev_z_hi * nosev_z_hi + nosev_x_hi * roofv_z_hi
- $AEFD LD (IX+$18),H ; sidev_y_hi = nosev_z_hi * nosev_z_hi + nosev_x_hi * roofv_z_hi
- $AF00 LD (IY+$07),H ; $07 = nosev_z_hi * nosev_z_hi + nosev_x_hi * roofv_z_hi
+ $AEFA CALL $AF22    ; HL = nosev_zx ⋅ roofv_xz
+ $AEFD LD (IX+$18),H ; sidev_y_hi = nosev_zx ⋅ roofv_xz
+ $AF00 LD (IY+$07),H ; $07 = nosev_zx ⋅ roofv_xz
  $AF03 LD B,(IX+$0A) ; nosev_x_hi
  $AF06 LD (IY+$05),B ; $05 = nosev_x_hi
  $AF09 LD C,(IX+$12) ; roofv_y_hi
@@ -11102,20 +11125,20 @@ c$AECC LD IY,$A994   ; Normals table
  $AF0F LD D,(IX+$0C) ; nosev_y_hi
  $AF12 LD (IY+$0B),D ; $08 = nosev_y_hi
  $AF15 LD E,(IX+$10) ; roofv_x_hi
- $AF18 CALL $AF22    ; HL = nosev_x_hi * roofv_y_hi + nosev_y_hi * roofv_x_hi
- $AF1B LD (IX+$1A),H ; sidev_z_hi = nosev_x_hi * roofv_y_hi + nosev_y_hi * roofv_x_hi
- $AF1E LD (IY+$0D),H ; $0D = nosev_x_hi * roofv_y_hi + nosev_y_hi * roofv_x_hi
+ $AF18 CALL $AF22    ; HL = nosev_xy ⋅ roofv_yx
+ $AF1B LD (IX+$1A),H ; sidev_z_hi = nosev_xy ⋅ roofv_yx
+ $AF1E LD (IY+$0D),H ; $0D = nosev_xy ⋅ roofv_yx
  $AF21 RET           ;
 
 ; Dot product of B,C and D,E
 ;
 ; Used by the routine at #R$AECC.
 ;
-; B x1 sign-magnitude number
-; C y1 sign-magnitude number
-; D x2 sign-magnitude number
-; E y2 sign-magnitude number
-; O:HL dot product 2 * (x1 * y1 + x2 * y2)
+; B x1 packed sign-magnitude byte
+; C y1 packed sign-magnitude byte
+; D x2 packed sign-magnitude byte
+; E y2 packed sign-magnitude byte
+; O:HL dot product 2 * (x1 * y1 + x2 * y2) as packed sign-magnitude word
 @label=dot_product
 c$AF22 SLA B         ; Move sign of x1 into carry and multiply by 2
  $AF24 RRA           ; Move sign of x1 into A
@@ -13228,7 +13251,7 @@ c$BCD4 PUSH IX       ; Push ship address
  $BCEE LD ($BCCA),A  ; Save it
  $BCF1 LD A,(IY+$05) ; Number of faces
  $BCF4 AND A         ;
- $BCF5 LD IY,$A994   ; Table of ?
+ $BCF5 LD IY,$A994   ; Table of ship calculations
  $BCF9 JR NZ,$BCFF   ; Jump if number of faces > 0
  $BCFB INC A         ; A = 1
  $BCFC LD (DE),A     ; Write to face visibility table
@@ -13246,20 +13269,20 @@ c$BCD4 PUSH IX       ; Push ship address
  $BD11 POP DE        ;
  $BD12 XOR A         ; Flag value 0
  $BD13 JR $BD4F      ; Jump to set flag
-*$BD15 PUSH IY       ; Push table of ?
+*$BD15 PUSH IY       ; Push table of ship calculations
  $BD17 LD HL,($BCC8) ; Restore ship address
  $BD1A PUSH HL       ; Push ship address
- $BD1B CALL $BDB4    ; Calculate x
+ $BD1B CALL $BDB4    ; Calculate for x
  $BD1E LD ($BCD1),A  ;
  $BD21 LD ($BCCB),HL ;
- $BD24 CALL $BDB4    ; Calculate y
+ $BD24 CALL $BDB4    ; Calculate for y
  $BD27 LD ($BCD2),A  ;
  $BD2A LD ($BCCD),HL ;
- $BD2D CALL $BDB4    ; Calculate z
+ $BD2D CALL $BDB4    ; Calculate for z
  $BD30 LD ($BCD3),A  ;
  $BD33 LD ($BCCF),HL ;
- $BD36 POP HL        ;
- $BD37 PUSH IX       ;
+ $BD36 POP HL        ; Restore ship address
+ $BD37 PUSH IX       ; Restore
  $BD39 LD IY,$BCCB   ; Vector
  $BD3D LD IX,$BCD1   ; Signs
  $BD41 CALL $BD5F    ; Cross product?
@@ -13336,34 +13359,37 @@ c$BD95 LD B,A        ;
 ;
 ; Used by the routine at #R$BCD4.
 ;
-; IX Address of face structure
-; IY Table of ?
-c$BDB4 CALL $AC01    ;
- $BDB7 POP BC        ;
- $BDB8 EX (SP),IX    ; IX = ?
- $BDBA LD E,(IX+$00) ;
- $BDBD LD D,(IX+$01) ;
- $BDC0 LD A,(IX+$02) ;
- $BDC3 INC IX        ;
- $BDC5 INC IX        ;
- $BDC7 INC IX        ;
- $BDC9 EX (SP),IX    ;
- $BDCB PUSH BC       ;
- $BDCC LD C,A        ;
- $BDCD LD A,($BCCA)  ;
- $BDD0 SLA L         ;
- $BDD2 PUSH HL       ;
- $BDD3 LD B,A        ;
- $BDD4 INC B         ;
+; I:IX Address of face structure
+; I:IY Table of ship calculations
+; O:A
+; O:HL
+;
+c$BDB4 CALL $AC01    ; HL = normal_xyz ⋅ some vector, IY += 6
+ $BDB7 POP BC        ; BC = return address
+ $BDB8 EX (SP),IX    ; IX = Ship structure, stack = face structure
+ $BDBA LD E,(IX+$00) ; Ship x_lo
+ $BDBD LD D,(IX+$01) ; Ship x_hi
+ $BDC0 LD A,(IX+$02) ; Ship x_sign
+ $BDC3 INC IX        ; {Advance ship structure ptr 3 bytes
+ $BDC5 INC IX        ; so for next calls we will use y or z
+ $BDC7 INC IX        ; }
+ $BDC9 EX (SP),IX    ; IX = face structure, stack = ship structure + 3
+ $BDCB PUSH BC       ; Restore return address
+ $BDCC LD C,A        ; C = x_sign
+ $BDCD LD A,($BCCA)  ; Scaling
+ $BDD0 SLA L         ; Magnitude of dot product
+ $BDD2 PUSH HL       ; Save dot product
+ $BDD3 LD B,A        ; Scaling
+ $BDD4 INC B         ; {Scale down magnitude
 *$BDD5 SRL L         ;
- $BDD7 DJNZ $BDD5    ;
- $BDD9 RL L          ;
- $BDDB LD A,C        ;
- $BDDC XOR H         ;
- $BDDD SLA H         ;
- $BDDF RLA           ;
- $BDE0 JR C,$BDE5    ;
- $BDE2 ADD HL,DE     ;
+ $BDD7 DJNZ $BDD5    ; }
+ $BDD9 RL L          ; Double
+ $BDDB LD A,C        ; x_sign
+ $BDDC XOR H         ; Combine with sign of dot product
+ $BDDD SLA H         ; Move sign of dot product to carry
+ $BDDF RLA           ; Move sign into A
+ $BDE0 JR C,$BDE5    ; {Add ship x in DE
+ $BDE2 ADD HL,DE     ; to HL
  $BDE3 JR $BDF4      ;
 *$BDE5 EX DE,HL      ;
  $BDE6 AND A         ;
@@ -13374,15 +13400,15 @@ c$BDB4 CALL $AC01    ;
  $BDED AND A         ;
  $BDEE SBC HL,DE     ;
  $BDF0 LD A,C        ;
- $BDF1 XOR $80       ;
- $BDF3 LD C,A        ;
+ $BDF1 XOR $80       ; Flip sign
+ $BDF3 LD C,A        ; }
 *$BDF4 SLA C         ;
  $BDF6 RR H          ;
  $BDF8 RR L          ;
- $BDFA POP DE        ;
- $BDFB LD A,E        ;
- $BDFC RL D          ;
- $BDFE RRA           ;
+ $BDFA POP DE        ; Restore dot product in DE
+ $BDFB LD A,E        ; Magnitude
+ $BDFC RL D          ; Sign
+ $BDFE RRA           ; Sign into A
  $BDFF RET           ;
 
 ; Table of squares
