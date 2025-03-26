@@ -8686,7 +8686,7 @@ c$9E98 LD B,(IX+$01) ;
  $9E9E RES 7,B       ;
  $9EA0 PUSH IX       ;
  $9EA2 LD IX,$0000   ;
- $9EA6 CALL $AB34    ;
+ $9EA6 CALL $AB34    ; mult_b_c
  $9EA9 XOR A         ;
  $9EAA LD D,A        ;
  $9EAB ADD HL,HL     ;
@@ -8824,7 +8824,7 @@ c$9F41 LD H,$BF      ;
 ; Used by the routine at #R$9F41.
 c$9F68 LD C,(IX+$01) ;
  $9F6B SLA C         ;
- $9F6D CALL $AB34    ;
+ $9F6D CALL $AB34    ; mult_b_c
  $9F70 SLA H         ;
  $9F72 SLA (IX+$01)  ;
  $9F76 RR H          ;
@@ -9041,7 +9041,7 @@ c$A0FD PUSH DE       ;
  $A0FF SLA B         ;
  $A101 RES 7,C       ;
  $A103 LD E,A        ;
- $A104 CALL $AB0B    ;
+ $A104 CALL $AB0B    ; mult_b_c_msb
  $A107 POP BC        ;
  $A108 LD C,A        ;
  $A109 LD A,E        ;
@@ -9176,12 +9176,12 @@ c$A1EA PUSH IX       ;
  $A203 RES 7,C       ;
  $A205 RES 7,B       ;
  $A207 PUSH DE       ;
- $A208 CALL $AB34    ;
+ $A208 CALL $AB34    ; mult_b_c
  $A20B POP DE        ;
  $A20C PUSH HL       ;
  $A20D LD B,D        ;
  $A20E PUSH DE       ;
- $A20F CALL $AB34    ;
+ $A20F CALL $AB34    ; mult_b_c
  $A212 POP DE        ;
  $A213 LD B,E        ;
  $A214 LD A,L        ;
@@ -9191,7 +9191,7 @@ c$A1EA PUSH IX       ;
  $A219 ADD HL,DE     ;
  $A21A LD E,A        ;
  $A21B PUSH HL       ;
- $A21C CALL $AB0B    ;
+ $A21C CALL $AB0B    ; mult_b_c_msb
  $A21F ADD A,E       ;
  $A220 POP HL        ;
  $A221 JR NC,$A224   ;
@@ -10546,7 +10546,7 @@ c$AB1E LD A,($A9C7)  ;
  $AB26 LD C,(IY+$01) ;
  $AB29 RES 7,C       ;
  $AB2B PUSH DE       ;
- $AB2C CALL $AB0B    ;
+ $AB2C CALL $AB0B    ; mult_b_c_msb
  $AB2F LD L,A        ;
  $AB30 LD H,$00      ;
  $AB32 POP DE        ;
@@ -10561,7 +10561,7 @@ c$AB1E LD A,($A9C7)  ;
 ;
 ; I:B First number
 ; I:C Second number
-; O:HL B * C
+; O:HL B * C (minus 1?)
 @label=mult_b_c
 c$AB34 LD A,B        ; A = B
  $AB35 SUB C         ; A = B - C
@@ -10699,7 +10699,7 @@ c$ABC0 LD A,(IX+$03) ;
 ; IY Table of ship calculations, offset 0, 6, 12
 ; O:HL sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi + normal_z * nosev_x_hi
 ; O:IY IY + 6
-@label=calculate_normals
+@label=face_normal_component
 c$AC01 LD B,(IX+$00) ; Face normal_x
  $AC04 LD C,(IY+$01) ; nosev_yz ⋅ roofv_zy
  $AC07 RES 7,C       ; Reset sign
@@ -11061,7 +11061,7 @@ c$AE8A LD C,(IX+$01) ;
  $AE8D LD B,E        ;
  $AE8E SLA B         ;
  $AE90 SLA C         ;
- $AE92 CALL $AB0B    ;
+ $AE92 CALL $AB0B    ; mult_b_c_msb
  $AE95 LD C,A        ;
  $AE96 LD A,E        ;
  $AE97 XOR (IX+$01)  ;
@@ -11123,7 +11123,7 @@ c$AECC LD IY,$A994   ; Normals table
  $AF09 LD C,(IX+$12) ; roofv_y_hi
  $AF0C LD (IY+$09),C ; $09 = roofv_y_hi
  $AF0F LD D,(IX+$0C) ; nosev_y_hi
- $AF12 LD (IY+$0B),D ; $08 = nosev_y_hi
+ $AF12 LD (IY+$0B),D ; $0B = nosev_y_hi
  $AF15 LD E,(IX+$10) ; roofv_x_hi
  $AF18 CALL $AF22    ; HL = nosev_xy ⋅ roofv_yx
  $AF1B LD (IX+$1A),H ; sidev_z_hi = nosev_xy ⋅ roofv_yx
@@ -11135,50 +11135,50 @@ c$AECC LD IY,$A994   ; Normals table
 ; Used by the routine at #R$AECC.
 ;
 ; B x1 packed sign-magnitude byte
-; C y1 packed sign-magnitude byte
-; D x2 packed sign-magnitude byte
+; C x2 packed sign-magnitude byte
+; D y1 packed sign-magnitude byte
 ; E y2 packed sign-magnitude byte
-; O:HL dot product 2 * (x1 * y1 + x2 * y2) as packed sign-magnitude word
+; O:HL dot product 2 * (x1 * x2 + y1 * y2) as packed sign-magnitude word
 @label=dot_product
 c$AF22 SLA B         ; Move sign of x1 into carry and multiply by 2
  $AF24 RRA           ; Move sign of x1 into A
- $AF25 XOR C         ; A = sign x1 XOR y1
- $AF26 SLA C         ; y1 *= 2
+ $AF25 XOR C         ; A = sign x1 XOR x2
+ $AF26 SLA C         ; x2 *= 2
  $AF28 AND $80       ; Isolate sign bit
- $AF2A LD H,A        ; H = sign x1 XOR sign y1
- $AF2B SLA D         ; Move sign of x2 into carry and multiply by 2
- $AF2D RRA           ; Move sign of x2 into A
- $AF2E XOR E         ; A = sign x2 XOR y2
+ $AF2A LD H,A        ; H = sign x1 XOR sign x2
+ $AF2B SLA D         ; Move sign of y1 into carry and multiply by 2
+ $AF2D RRA           ; Move sign of y1 into A
+ $AF2E XOR E         ; A = sign y1 XOR y2
  $AF2F SLA E         ; y2 *= 2
  $AF31 AND $80       ; Isolate sign bit
- $AF33 XOR H         ; A = (sign x1 XOR sign y1) XOR (sign x2 XOR sign y2)
- $AF34 SLA H         ; Move sign x1 XOR sign y1 into carry
- $AF36 RRA           ; And into A, moving (sign x1 XOR sign y1) XOR (sign x2 XOR sign y2) into bit 6
- $AF37 XOR $80       ; Flip bit 7, which is now ^(sign x1 XOR sign y1)
+ $AF33 XOR H         ; A = (sign x1 XOR sign x2) XOR (sign y1 XOR sign y2)
+ $AF34 SLA H         ; Move sign x1 XOR sign x2 into carry
+ $AF36 RRA           ; And into A, moving (sign x1 XOR sign x2) XOR (sign y1 XOR sign y2) into bit 6
+ $AF37 XOR $80       ; Flip bit 7, which is now ^(sign x1 XOR sign x2)
  $AF39 PUSH AF       ; Save sign
- $AF3A PUSH DE       ; Save 2 * x2, 2 * y2
- $AF3B CALL $AB34    ; HL = 4 * x1 * y1
- $AF3E POP BC        ; BC = 2 * x2, 2 * y2
- $AF3F PUSH HL       ; Save 2 * x1 * 2 * y1
- $AF40 CALL $AB34    ; HL = 4 * x2 * y2
- $AF43 POP DE        ; DE = 4 * x1 * y1
+ $AF3A PUSH DE       ; Save 2 * y1, 2 * y2
+ $AF3B CALL $AB34    ; HL = 4 * x1 * x2
+ $AF3E POP BC        ; BC = 2 * y1, 2 * y2
+ $AF3F PUSH HL       ; Save 2 * x1 * 2 * x2
+ $AF40 CALL $AB34    ; HL = 4 * y1 * y2
+ $AF43 POP DE        ; DE = 4 * x1 * x2
  $AF44 POP AF        ; Restore sign
- $AF45 BIT 6,A       ; Check (sign x1 XOR sign y1) XOR (sign x2 XOR sign y2)
+ $AF45 BIT 6,A       ; Check (sign x1 XOR sign x2) XOR (sign y1 XOR sign y2)
  $AF47 JR Z,$AF51    ; Jump if reset
- $AF49 ADD HL,DE     ; HL = 4 * (x1 * y1 + x2 * y2)
+ $AF49 ADD HL,DE     ; HL = 4 * (x1 * x2 + y1 * y2)
  $AF4A JR NC,$AF5E   ; Jump to return if not overflowing
  $AF4C LD HL,$FFFF   ; Max number
  $AF4F JR $AF5E      ; Jump return
-*$AF51 EX DE,HL      ; HL = 4 * x1 * y1, DE = 4 * x2 * y2
+*$AF51 EX DE,HL      ; HL = 4 * x1 * x2, DE = 4 * y1 * y2
  $AF52 AND A         ; Clear carry
- $AF53 SBC HL,DE     ; HL = 4 * (x1 * y1 - x2 * y2)
+ $AF53 SBC HL,DE     ; HL = 4 * (x1 * x2 - y1 * y2)
  $AF55 JR NC,$AF5E   ; Jump to return if not overflowing
- $AF57 ADD HL,DE     ; HL = 4 * x1 * y1
- $AF58 EX DE,HL      ; HL = 4 * x2 * y2, DE = 4 * x1 * y1
+ $AF57 ADD HL,DE     ; HL = 4 * x1 * x2
+ $AF58 EX DE,HL      ; HL = 4 * y1 * y2, DE = 4 * x1 * x2
  $AF59 AND A         ; Clear carry
- $AF5A SBC HL,DE     ; HL = 4 * (x2 * y2 - x1 * y1)
+ $AF5A SBC HL,DE     ; HL = 4 * (y1 * y2 - x1 * x2)
  $AF5C XOR $80       ; Flip sign
-*$AF5E RLA           ; Move sign x1 XOR sign y1 into carry
+*$AF5E RLA           ; Move sign x1 XOR sign x2 into carry
  $AF5F RR H          ; And into H, also dividing by 2
  $AF61 RR L          ; Divide L by 2
  $AF63 RET           ;
@@ -11194,13 +11194,13 @@ c$AF64 PUSH IX       ;
  $AF6F PUSH BC       ;
  $AF70 PUSH DE       ;
  $AF71 LD B,E        ;
- $AF72 CALL $AB34    ;
+ $AF72 CALL $AB34    ; mult_b_c
  $AF75 EX DE,HL      ;
  $AF76 ADD IX,DE     ;
  $AF78 POP DE        ;
  $AF79 POP BC        ;
  $AF7A LD B,D        ;
- $AF7B CALL $AB34    ;
+ $AF7B CALL $AB34    ; mult_b_c
  $AF7E LD E,$00      ;
  $AF80 LD D,L        ;
  $AF81 ADD IX,DE     ;
@@ -11212,7 +11212,7 @@ c$AF64 PUSH IX       ;
  $AF89 POP DE        ;
  $AF8A PUSH HL       ;
  $AF8B LD B,D        ;
- $AF8C CALL $AB34    ;
+ $AF8C CALL $AB34    ; mult_b_c
  $AF8F LD E,$00      ;
  $AF91 LD D,L        ;
  $AF92 ADD IX,DE     ;
@@ -11226,7 +11226,7 @@ c$AF64 PUSH IX       ;
  $AF9D POP DE        ;
  $AF9E LD C,D        ;
  $AF9F PUSH HL       ;
- $AFA0 CALL $AB34    ;
+ $AFA0 CALL $AB34    ; mult_b_c
  $AFA3 POP DE        ;
  $AFA4 ADD HL,DE     ;
  $AFA5 POP IX        ;
@@ -11265,28 +11265,34 @@ c$AFC9 LD A,D        ;
 ; Routine at AFCD
 ;
 ; Used by the routine at #R$BD5F.
-c$AFCD LD A,H        ;
- $AFCE XOR D         ;
- $AFCF LD B,H        ;
- $AFD0 LD C,D        ;
- $AFD1 RES 7,H       ;
- $AFD3 RES 7,D       ;
- $AFD5 AND $80       ;
- $AFD7 JR NZ,$AFDC   ;
- $AFD9 ADD HL,DE     ;
+;
+; DE: Sign-magn number n1
+; HL: Sign-magn number n2
+; O:HL (HL + DE) / 2
+; O:B: Sign
+@label=de_plus_hl_div_2
+c$AFCD LD A,H        ; Sign
+ $AFCE XOR D         ; Combined sign
+ $AFCF LD B,H        ; Copy n1
+ $AFD0 LD C,D        ; Copy n2
+ $AFD1 RES 7,H       ; Clear sign n1
+ $AFD3 RES 7,D       ; Clear sign n2
+ $AFD5 AND $80       ; Isolate sign
+ $AFD7 JR NZ,$AFDC   ; Jump if minus
+ $AFD9 ADD HL,DE     ; n1 + n2
  $AFDA JR $AFE6      ;
-*$AFDC SBC HL,DE     ;
+*$AFDC SBC HL,DE     ; {n1 - n2
  $AFDE JR NC,$AFE6   ;
  $AFE0 ADD HL,DE     ;
  $AFE1 EX DE,HL      ;
  $AFE2 AND A         ;
- $AFE3 SBC HL,DE     ;
- $AFE5 LD B,C        ;
+ $AFE3 SBC HL,DE     ; }
+ $AFE5 LD B,C        ; {Apply sign
 *$AFE6 SRL H         ;
  $AFE8 RR L          ;
  $AFEA BIT 7,B       ;
  $AFEC RET Z         ;
- $AFED SET 7,H       ;
+ $AFED SET 7,H       ; }
  $AFEF RET           ;
 
 ; Data block at AFF0
@@ -11727,7 +11733,7 @@ c$B044 LD A,H        ;
 c$B2F0 PUSH DE       ;
  $B2F1 PUSH HL       ;
  $B2F2 LD B,A        ;
- $B2F3 CALL $AB34    ;
+ $B2F3 CALL $AB34    ; mult_b_c
  $B2F6 LD DE,$0080   ;
  $B2F9 ADD HL,DE     ;
  $B2FA LD C,H        ;
@@ -13210,27 +13216,27 @@ w$BCC8 DEFW $0000
 b$BCCA DEFB $00
 
 ; Data block at BCCB
-@label=word_at_BCCB
+@label=tmp_x
 w$BCCB DEFW $0000
 
 ; Data block at BCCD
-@label=word_at_BCCD
+@label=tmp_y
 w$BCCD DEFW $0000
 
 ; Data block at BCCF
-@label=word_at_BCCF
+@label=tmp_z
 w$BCCF DEFW $0000
 
 ; Data block at BCD1
-@label=byte_at_BCD1
+@label=tmp_sign_x
 b$BCD1 DEFB $00
 
 ; Data block at BCD2
-@label=byte_at_BCD2
+@label=tmp_sign_y
 b$BCD2 DEFB $00
 
 ; Data block at BCD3
-@label=byte_at_BCD3
+@label=tmp_sign_z
 b$BCD3 DEFB $00
 
 ; Routine at BCD4
@@ -13256,8 +13262,8 @@ c$BCD4 PUSH IX       ; Push ship address
  $BCFB INC A         ; A = 1
  $BCFC LD (DE),A     ; Write to face visibility table
  $BCFD JR $BD5A      ; Return
-*$BCFF PUSH AF       ;
- $BD00 PUSH DE       ;
+*$BCFF PUSH AF       ; Push face counter
+ $BD00 PUSH DE       ; Push face visibility table
  $BD01 LD A,(IX+$03) ; Get visibility distance and sign bits
  $BD04 AND $1F       ; Isolate visibility distance
  $BD06 CP $1F        ; Is it max?
@@ -13266,38 +13272,38 @@ c$BCD4 PUSH IX       ; Push ship address
  $BD0B LD A,($A9B8)  ;
  $BD0E CP B          ; }
  $BD0F JR C,$BD15    ; Continue if higher than ship distance
- $BD11 POP DE        ;
+ $BD11 POP DE        ; Pop face visibility table
  $BD12 XOR A         ; Flag value 0
  $BD13 JR $BD4F      ; Jump to set flag
 *$BD15 PUSH IY       ; Push table of ship calculations
  $BD17 LD HL,($BCC8) ; Restore ship address
  $BD1A PUSH HL       ; Push ship address
  $BD1B CALL $BDB4    ; Calculate for x
- $BD1E LD ($BCD1),A  ;
+ $BD1E LD ($BCD1),A  ; Save values for x
  $BD21 LD ($BCCB),HL ;
  $BD24 CALL $BDB4    ; Calculate for y
- $BD27 LD ($BCD2),A  ;
+ $BD27 LD ($BCD2),A  ; Save values for y
  $BD2A LD ($BCCD),HL ;
  $BD2D CALL $BDB4    ; Calculate for z
- $BD30 LD ($BCD3),A  ;
+ $BD30 LD ($BCD3),A  ; Save values for z
  $BD33 LD ($BCCF),HL ;
  $BD36 POP HL        ; Restore ship address
- $BD37 PUSH IX       ; Restore
+ $BD37 PUSH IX       ; Push face structure
  $BD39 LD IY,$BCCB   ; Vector
  $BD3D LD IX,$BCD1   ; Signs
- $BD41 CALL $BD5F    ; Cross product?
- $BD44 POP IX        ;
- $BD46 POP IY        ;
- $BD48 POP DE        ;
- $BD49 XOR A         ;
+ $BD41 CALL $BD5F    ; Calculate visibility
+ $BD44 POP IX        ; Pop face structure
+ $BD46 POP IY        ; Pop table of ship calculations
+ $BD48 POP DE        ; Pop face visibility table
+ $BD49 XOR A         ; Flag value 0
  $BD4A SLA H         ;
  $BD4C JR NC,$BD4F   ; H msb indicates if face is visible
- $BD4E INC A         ;
+ $BD4E INC A         ; Flag value 1
 *$BD4F LD (DE),A     ; Record in face visibility table
  $BD50 INC DE        ;
  $BD51 LD BC,$0004   ; {Advance to next face
  $BD54 ADD IX,BC     ; }
- $BD56 POP AF        ;
+ $BD56 POP AF        ; Pop face counter
  $BD57 DEC A         ; Dec face counter
  $BD58 JR NZ,$BCFF   ; Loop
 *$BD5A POP IY        ;
@@ -13307,52 +13313,62 @@ c$BCD4 PUSH IX       ; Push ship address
 ; Routine at BD5F
 ;
 ; Used by the routine at #R$BCD4.
-c$BD5F LD E,(IY+$01) ;
- $BD62 LD C,(IY+$00) ;
- $BD65 LD A,(IX+$00) ;
+;
+; IX Signs x, y, z (bytes)
+; IY Magnitudes x, y, z (words)
+;
+c$BD5F LD E,(IY+$01) ; Magn x MSB
+ $BD62 LD C,(IY+$00) ; Magn x LSB
+ $BD65 LD A,(IX+$00) ; Sign x
  $BD68 CALL $BD95    ;
- $BD6B PUSH HL       ;
- $BD6C LD E,(IY+$03) ;
- $BD6F LD C,(IY+$02) ;
- $BD72 LD A,(IX+$01) ;
+ $BD6B PUSH HL       ; Push result
+ $BD6C LD E,(IY+$03) ; Magn y MSB
+ $BD6F LD C,(IY+$02) ; Magn y LSB
+ $BD72 LD A,(IX+$01) ; Sign y
  $BD75 CALL $BD95    ;
- $BD78 PUSH HL       ;
- $BD79 LD E,(IY+$05) ;
- $BD7C LD C,(IY+$04) ;
- $BD7F LD A,(IX+$02) ;
+ $BD78 PUSH HL       ; Push result
+ $BD79 LD E,(IY+$05) ; Magn z MSB
+ $BD7C LD C,(IY+$04) ; Magn z MSB
+ $BD7F LD A,(IX+$02) ; Sign z
  $BD82 CALL $BD95    ;
- $BD85 POP DE        ;
- $BD86 CALL $AFCD    ;
- $BD89 ADC HL,HL     ;
+ $BD85 POP DE        ; Pop second result
+ $BD86 CALL $AFCD    ; Second + third
+ $BD89 ADC HL,HL     ; Double
  $BD8B BIT 7,B       ;
  $BD8D JR Z,$BD91    ;
  $BD8F SET 7,H       ;
-*$BD91 POP DE        ;
- $BD92 JP $AFCD      ;
+*$BD91 POP DE        ; Pop first result
+ $BD92 JP $AFCD      ; First + second + third
 
 ; Routine at BD95
 ;
 ; Used by the routine at #R$BD5F.
-c$BD95 LD B,A        ;
- $BD96 SLA B         ;
- $BD98 AND $80       ;
- $BD9A XOR E         ;
- $BD9B LD E,A        ;
- $BD9C CALL $AB0B    ;
- $BD9F LD D,E        ;
- $BDA0 LD E,A        ;
- $BDA1 LD C,D        ;
- $BDA2 RES 7,C       ;
+;
+; A X (packed sign-magnitude byte)
+; E S, -1, 0, 1
+; C Y, magnitude
+;
+@label=mult_A_E_plus_mult_2_A_C
+c$BD95 LD B,A        ; B = X
+ $BD96 SLA B         ; B = 2X
+ $BD98 AND $80       ; A = SGN(X)
+ $BD9A XOR E         ; A = SGN(X) XOR S
+ $BD9B LD E,A        ; E = SGN(X) XOR S
+ $BD9C CALL $AB0B    ; A = MSB(2X * Y)
+ $BD9F LD D,E        ; D = SGN(X) XOR S
+ $BDA0 LD E,A        ; E = MSB(2X * Y)
+ $BDA1 LD C,D        ; C = SGN(X) XOR S
+ $BDA2 RES 7,C       ; C = ABS(SGN(X) XOR S) = ABS(S) = 0 or 1
  $BDA4 PUSH DE       ;
- $BDA5 CALL $AB34    ;
- $BDA8 POP DE        ;
- $BDA9 LD A,D        ;
- $BDAA LD D,$00      ;
- $BDAC ADD HL,DE     ;
- $BDAD ADD HL,HL     ;
- $BDAE RLA           ;
- $BDAF RR H          ;
- $BDB1 RR L          ;
+ $BDA5 CALL $AB34    ; HL = X * ABS(S)
+ $BDA8 POP DE        ; DE = SGN(X) XOR S , MSB(2X * Y)
+ $BDA9 LD A,D        ; A = SGN(X) XOR S
+ $BDAA LD D,$00      ; DE = 0 , MSB(2X * Y)
+ $BDAC ADD HL,DE     ; HL = X * ABS(S) + MSB(2X * Y)
+ $BDAD ADD HL,HL     ; HL = 2 * (X * ABS(S) + MSB(2X * Y))
+ $BDAE RLA           ; CARRY = SGN(X) XOR S
+ $BDAF RR H          ; {HL = SGN(X) XOR S | X * ABS(S) + MSB(2X * Y)
+ $BDB1 RR L          ; }
  $BDB3 RET           ;
 
 ; Routine at BDB4
@@ -13361,9 +13377,10 @@ c$BD95 LD B,A        ;
 ;
 ; I:IX Address of face structure
 ; I:IY Table of ship calculations
-; O:A
-; O:HL
+; O:A Sign
+; O:HL Magnitude
 ;
+@label=line_of_sight_vector_component
 c$BDB4 CALL $AC01    ; HL = normal_xyz ⋅ some vector, IY += 6
  $BDB7 POP BC        ; BC = return address
  $BDB8 EX (SP),IX    ; IX = Ship structure, stack = face structure
