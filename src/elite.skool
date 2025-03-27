@@ -13216,27 +13216,27 @@ w$BCC8 DEFW $0000
 b$BCCA DEFB $00
 
 ; Data block at BCCB
-@label=tmp_x
+@label=tmp_word_x
 w$BCCB DEFW $0000
 
 ; Data block at BCCD
-@label=tmp_y
+@label=tmp_word_y
 w$BCCD DEFW $0000
 
 ; Data block at BCCF
-@label=tmp_z
+@label=tmp_word_z
 w$BCCF DEFW $0000
 
 ; Data block at BCD1
-@label=tmp_sign_x
+@label=tmp_byte_x
 b$BCD1 DEFB $00
 
 ; Data block at BCD2
-@label=tmp_sign_y
+@label=tmp_byte_y
 b$BCD2 DEFB $00
 
 ; Data block at BCD3
-@label=tmp_sign_z
+@label=tmp_byte_z
 b$BCD3 DEFB $00
 
 ; Routine at BCD4
@@ -13289,15 +13289,15 @@ c$BCD4 PUSH IX       ; Push ship address
  $BD33 LD ($BCCF),HL ;
  $BD36 POP HL        ; Restore ship address
  $BD37 PUSH IX       ; Push face structure
- $BD39 LD IY,$BCCB   ; Vector
- $BD3D LD IX,$BCD1   ; Signs
+ $BD39 LD IY,$BCCB   ; Vector 2
+ $BD3D LD IX,$BCD1   ; Vector 1
  $BD41 CALL $BD5F    ; Calculate visibility
  $BD44 POP IX        ; Pop face structure
  $BD46 POP IY        ; Pop table of ship calculations
  $BD48 POP DE        ; Pop face visibility table
  $BD49 XOR A         ; Flag value 0
- $BD4A SLA H         ;
- $BD4C JR NC,$BD4F   ; H msb indicates if face is visible
+ $BD4A SLA H         ; Test sign
+ $BD4C JR NC,$BD4F   ; Sign of H indicates if face is visible
  $BD4E INC A         ; Flag value 1
 *$BD4F LD (DE),A     ; Record in face visibility table
  $BD50 INC DE        ;
@@ -13314,31 +13314,32 @@ c$BCD4 PUSH IX       ; Push ship address
 ;
 ; Used by the routine at #R$BCD4.
 ;
-; IX Signs x, y, z (bytes)
-; IY Magnitudes x, y, z (words)
+; IX Vector 1 (x, y, z) (bytes)
+; IY Vector 2 (x, y, z) (words)
 ;
-c$BD5F LD E,(IY+$01) ; Magn x MSB
- $BD62 LD C,(IY+$00) ; Magn x LSB
- $BD65 LD A,(IX+$00) ; Sign x
+@label=calculate_visibility
+c$BD5F LD E,(IY+$01) ; {Vector 2: x
+ $BD62 LD C,(IY+$00) ; }
+ $BD65 LD A,(IX+$00) ; Vector 1: x
  $BD68 CALL $BD95    ;
  $BD6B PUSH HL       ; Push result
- $BD6C LD E,(IY+$03) ; Magn y MSB
- $BD6F LD C,(IY+$02) ; Magn y LSB
- $BD72 LD A,(IX+$01) ; Sign y
+ $BD6C LD E,(IY+$03) ; {Vector 2: y
+ $BD6F LD C,(IY+$02) ; }
+ $BD72 LD A,(IX+$01) ; Vector 1: y
  $BD75 CALL $BD95    ;
  $BD78 PUSH HL       ; Push result
- $BD79 LD E,(IY+$05) ; Magn z MSB
- $BD7C LD C,(IY+$04) ; Magn z MSB
- $BD7F LD A,(IX+$02) ; Sign z
+ $BD79 LD E,(IY+$05) ; {Vector 2: x
+ $BD7C LD C,(IY+$04) ; }
+ $BD7F LD A,(IX+$02) ; Vector 1: z
  $BD82 CALL $BD95    ;
  $BD85 POP DE        ; Pop second result
- $BD86 CALL $AFCD    ; Second + third
- $BD89 ADC HL,HL     ; Double
- $BD8B BIT 7,B       ;
+ $BD86 CALL $AFCD    ; (second + third) / 2
+ $BD89 ADC HL,HL     ; * 2
+ $BD8B BIT 7,B       ; {Fix sign
  $BD8D JR Z,$BD91    ;
- $BD8F SET 7,H       ;
+ $BD8F SET 7,H       ; }
 *$BD91 POP DE        ; Pop first result
- $BD92 JP $AFCD      ; First + second + third
+ $BD92 JP $AFCD      ; (first + second + third) / 2 and return
 
 ; Routine at BD95
 ;
@@ -13377,8 +13378,8 @@ c$BD95 LD B,A        ; B = X
 ;
 ; I:IX Address of face structure
 ; I:IY Table of ship calculations
-; O:A Sign
-; O:HL Magnitude
+; O:A Some part of dot product
+; O:HL Vector component
 ;
 @label=line_of_sight_vector_component
 c$BDB4 CALL $AC01    ; HL = normal_xyz ⋅ some vector, IY += 6
