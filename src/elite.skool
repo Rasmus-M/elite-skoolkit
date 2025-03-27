@@ -10103,6 +10103,7 @@ c$A84D PUSH IY        ;
  $A880 CALL $AE50     ; Get coordinates
  $A883 LD C,A         ;
 ; This entry point is used by the routine at #R$A8DE.
+@label=draw_laser
 *$A884 CALL $B799     ; Random number
  $A887 LD L,A         ; {Calculate coordinates of other end of line
  $A888 SUB $FF        ;
