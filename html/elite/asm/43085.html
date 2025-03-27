@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at A84D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43068.html">A83C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43085">Map</a></td>
+<td class="next">
+Next: <a href="43180.html">A8AC</a>
+</td>
+</tr>
+</table>
+<div class="description">A84D: Draw ship part 2</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="42719.html">draw_ship</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">IX</td>
+<td class="register-desc">Address of ship structure</td>
+</tr>
+<tr>
+<td class="register">IY</td>
+<td class="register-desc">Address of blueprint</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">draw_ship_and_laser</td>
+<td class="address-2"><span id="43085"></span>A84D</td>
+<td class="instruction">PUSH IY</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43087"></span>A84F</td>
+<td class="instruction">CALL <a href="44748.html">calculate_dot_products</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43090"></span>A852</td>
+<td class="instruction">POP IY</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43092"></span>A854</td>
+<td class="instruction">LD HL,(<a href="43448.html">ship_distance</a>)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43095"></span>A857</td>
+<td class="instruction">ADD HL,HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43096"></span>A858</td>
+<td class="instruction">LD B,$1F</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43098"></span>A85A</td>
+<td class="instruction">JR C,<a href="43085.html#43105">draw_ship_and_laser_0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43100"></span>A85C</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43101"></span>A85D</td>
+<td class="instruction">CP B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43102"></span>A85E</td>
+<td class="instruction">JR NC,<a href="43085.html#43105">draw_ship_and_laser_0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43104"></span>A860</td>
+<td class="instruction">LD B,H</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">draw_ship_and_laser_0</td>
+<td class="address-2"><span id="43105"></span>A861</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43106"></span>A862</td>
+<td class="instruction">SUB $02</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43108"></span>A864</td>
+<td class="instruction">JR NC,<a href="43085.html#43111">draw_ship_and_laser_1</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43110"></span>A866</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">draw_ship_and_laser_1</td>
+<td class="address-2"><span id="43111"></span>A867</td>
+<td class="instruction">LD (<a href="43448.html">ship_distance</a>),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43114"></span>A86A</td>
+<td class="instruction">LD A,$FD</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43116"></span>A86C</td>
+<td class="instruction">LD (<a href="43450.html">byte_at_A9BA</a>),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43119"></span>A86F</td>
+<td class="instruction">CALL <a href="48340.html">face_visibility</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43122"></span>A872</td>
+<td class="instruction">CALL <a href="43465.html">vertex_visibility</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43125"></span>A875</td>
+<td class="instruction">CALL <a href="44545.html">draw_edges</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43128"></span>A878</td>
+<td class="instruction">BIT 3,(IX+$20)</td>
+<td class="comment-1" rowspan="1">Test a bit on the ship, should it fire?</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43132"></span>A87C</td>
+<td class="instruction">RET Z</td>
+<td class="comment-1" rowspan="1">Return if not set</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43133"></span>A87D</td>
+<td class="instruction">LD A,(IY+$14)</td>
+<td class="comment-1" rowspan="1">Gun vertex</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43136"></span>A880</td>
+<td class="instruction">CALL <a href="44624.html">lookup_vertex_coords</a></td>
+<td class="comment-1" rowspan="1">Get coordinates</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43139"></span>A883</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="43140"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="43230.html">LA8DE</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">draw_ship_and_laser_2</td>
+<td class="address-2"><span id="43140"></span>A884</td>
+<td class="instruction">CALL <a href="47001.html">rand_no</a></td>
+<td class="comment-1" rowspan="1">Random number</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43143"></span>A887</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="11">Calculate coordinates of other end of line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43144"></span>A888</td>
+<td class="instruction">SUB $FF</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43146"></span>A88A</td>
+<td class="instruction">NEG</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43148"></span>A88C</td>
+<td class="instruction">LD H,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43149"></span>A88D</td>
+<td class="instruction">LD A,C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43150"></span>A88E</td>
+<td class="instruction">CPL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43151"></span>A88F</td>
+<td class="instruction">AND $03</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43153"></span>A891</td>
+<td class="instruction">SLA C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43155"></span>A893</td>
+<td class="instruction">SLA C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43157"></span>A895</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43158"></span>A896</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43159"></span>A897</td>
+<td class="instruction">LD A,($B348)</td>
+<td class="comment-1" rowspan="4">Set some temporary flag</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43162"></span>A89A</td>
+<td class="instruction">PUSH AF</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43163"></span>A89B</td>
+<td class="instruction">SET 7,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43165"></span>A89D</td>
+<td class="instruction">LD ($B348),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43168"></span>A8A0</td>
+<td class="instruction">CALL <a href="45124.html">draw_clipped_line</a></td>
+<td class="comment-1" rowspan="1">Draw laser?</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43171"></span>A8A3</td>
+<td class="instruction">POP AF</td>
+<td class="comment-1" rowspan="2">Revert flag</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43172"></span>A8A4</td>
+<td class="instruction">LD ($B348),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43175"></span>A8A7</td>
+<td class="instruction">RES 3,(IX+$20)</td>
+<td class="comment-1" rowspan="1">Reset bit on the ship</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43179"></span>A8AB</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43068.html">A83C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43085">Map</a></td>
+<td class="next">
+Next: <a href="43180.html">A8AC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

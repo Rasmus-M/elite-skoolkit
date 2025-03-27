@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at EC58</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="60480.html">EC40</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#60504">Map</a></td>
+<td class="next">
+Next: <a href="60626.html">ECD2</a>
+</td>
+</tr>
+</table>
+<div class="description">EC58: Routine at EC58</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="53260.html">LD00C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LEC58</td>
+<td class="address-2"><span id="60504"></span>EC58</td>
+<td class="instruction">XOR A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60505"></span>EC59</td>
+<td class="instruction">LD B,$18</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60507"></span>EC5B</td>
+<td class="instruction">LD HL,<a href="60480.html">data_at_EC40</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LEC58_0</td>
+<td class="address-2"><span id="60510"></span>EC5E</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60511"></span>EC5F</td>
+<td class="instruction">INC HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60512"></span>EC60</td>
+<td class="instruction">DJNZ <a href="60504.html#60510">LEC58_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60514"></span>EC62</td>
+<td class="instruction">CALL <a href="54813.html">clear_screen_border</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60517"></span>EC65</td>
+<td class="instruction">LD A,$BE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60519"></span>EC67</td>
+<td class="instruction">CALL <a href="60259.html">LEB63</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60522"></span>EC6A</td>
+<td class="instruction">CALL <a href="54607.html">LD54F</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60525"></span>EC6D</td>
+<td class="instruction">LD A,(<a href="53375.html#53401">$D099</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60528"></span>EC70</td>
+<td class="instruction">SUB $13</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60530"></span>EC72</td>
+<td class="instruction">CALL C,<a href="60475.html">LEC3B</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60533"></span>EC75</td>
+<td class="instruction">LD ($ECDF),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60536"></span>EC78</td>
+<td class="instruction">LD A,(<a href="53375.html#53401">$D099</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60539"></span>EC7B</td>
+<td class="instruction">ADD A,$13</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60541"></span>EC7D</td>
+<td class="instruction">CALL C,<a href="60477.html">LEC3D</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60544"></span>EC80</td>
+<td class="instruction">LD ($ECE3),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60547"></span>EC83</td>
+<td class="instruction">LD A,(<a href="53375.html#53399">$D097</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60550"></span>EC86</td>
+<td class="instruction">SUB $22</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60552"></span>EC88</td>
+<td class="instruction">CALL C,<a href="60475.html">LEC3B</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60555"></span>EC8B</td>
+<td class="instruction">LD ($ECEA),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60558"></span>EC8E</td>
+<td class="instruction">LD A,(<a href="53375.html#53399">$D097</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60561"></span>EC91</td>
+<td class="instruction">ADD A,$22</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60563"></span>EC93</td>
+<td class="instruction">CALL C,<a href="60477.html">LEC3D</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60566"></span>EC96</td>
+<td class="instruction">LD ($ECEE),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60569"></span>EC99</td>
+<td class="instruction">LD A,$18</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60571"></span>EC9B</td>
+<td class="instruction">LD ($E52C),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60574"></span>EC9E</td>
+<td class="instruction">LD A,$A7</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60576"></span>ECA0</td>
+<td class="instruction">LD ($E52D),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60579"></span>ECA3</td>
+<td class="instruction">LD A,$18</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60581"></span>ECA5</td>
+<td class="instruction">LD (<a href="58667.html">LE52B</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60584"></span>ECA8</td>
+<td class="instruction">LD A,$61</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60586"></span>ECAA</td>
+<td class="instruction">LD (<a href="53329.html">byte_at_D051</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60589"></span>ECAD</td>
+<td class="instruction">LD A,$60</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60591"></span>ECAF</td>
+<td class="instruction">LD (<a href="53330.html">byte_at_D052</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60594"></span>ECB2</td>
+<td class="instruction">CALL <a href="58670.html">LE52E</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60597"></span>ECB5</td>
+<td class="instruction">LD HL,<a href="60711.html">LED27</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60600"></span>ECB8</td>
+<td class="instruction">CALL <a href="60626.html">LECD2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60603"></span>ECBB</td>
+<td class="instruction">LD HL,<a href="60792.html">LED78</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60606"></span>ECBE</td>
+<td class="instruction">CALL <a href="60626.html">LECD2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60609"></span>ECC1</td>
+<td class="instruction">LD A,(<a href="53375.html#53378">$D082</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60612"></span>ECC4</td>
+<td class="instruction">LD (<a href="53331.html">byte_at_D053</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60615"></span>ECC7</td>
+<td class="instruction">CALL <a href="28953.html">L7119</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60618"></span>ECCA</td>
+<td class="instruction">LD A,$10</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60620"></span>ECCC</td>
+<td class="instruction">LD (<a href="58667.html">LE52B</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60623"></span>ECCF</td>
+<td class="instruction">JP <a href="58479.html">LE46F</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="60480.html">EC40</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#60504">Map</a></td>
+<td class="next">
+Next: <a href="60626.html">ECD2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

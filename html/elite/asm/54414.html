@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D48E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54384.html">D470</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54414">Map</a></td>
+<td class="next">
+Next: <a href="54425.html">D499</a>
+</td>
+</tr>
+</table>
+<div class="description">D48E: Other token loop</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="54367.html">print_other_recursive_token</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LD48E</td>
+<td class="address-2"><span id="54414"></span>D48E</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Get next char code of token</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54415"></span>D48F</td>
+<td class="instruction">AND A</td>
+<td class="comment-1" rowspan="2">Return if we're at the end</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54416"></span>D490</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54417"></span>D491</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Save token address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54418"></span>D492</td>
+<td class="instruction">CALL <a href="54384.html">LD470</a></td>
+<td class="comment-1" rowspan="1">Call routine recursively</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54421"></span>D495</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore token address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54422"></span>D496</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment token address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54423"></span>D497</td>
+<td class="instruction">JR <a href="54414.html#54414">LD48E</a></td>
+<td class="comment-1" rowspan="1">Loop to process next char code</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54384.html">D470</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54414">Map</a></td>
+<td class="next">
+Next: <a href="54425.html">D499</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

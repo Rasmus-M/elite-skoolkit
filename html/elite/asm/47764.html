@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at BA94</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="47747.html">BA83</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#47764">Map</a></td>
+<td class="next">
+Next: <a href="47848.html">BAE8</a>
+</td>
+</tr>
+</table>
+<div class="description">BA94: Routine at BA94</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="47207.html">ship_action</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LBA94</td>
+<td class="address-2"><span id="47764"></span>BA94</td>
+<td class="instruction">BIT 0,C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47766"></span>BA96</td>
+<td class="instruction">JR Z,<a href="47848.html">LBAE8</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47768"></span>BA98</td>
+<td class="instruction">CALL <a href="47764.html#47772">LBA94_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47771"></span>BA9B</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LBA94_0</td>
+<td class="address-2"><span id="47772"></span>BA9C</td>
+<td class="instruction">LD A,$03</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="47774"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="47848.html">LBAE8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LBA94_1</td>
+<td class="address-2"><span id="47774"></span>BA9E</td>
+<td class="instruction">CALL <a href="47434.html">LB94A</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47777"></span>BAA1</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47778"></span>BAA2</td>
+<td class="instruction">CALL <a href="47747.html">LBA83</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47781"></span>BAA5</td>
+<td class="instruction">RES 6,(IX+$20)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47785"></span>BAA9</td>
+<td class="instruction">CALL <a href="47001.html">rand_no</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47788"></span>BAAC</td>
+<td class="instruction">AND $3F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47790"></span>BAAE</td>
+<td class="instruction">OR $10</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47792"></span>BAB0</td>
+<td class="instruction">LD (IX+$00),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47795"></span>BAB3</td>
+<td class="instruction">LD A,(IX+$0A)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47798"></span>BAB6</td>
+<td class="instruction">AND $80</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47800"></span>BAB8</td>
+<td class="instruction">XOR $80</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47802"></span>BABA</td>
+<td class="instruction">LD (IX+$02),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47805"></span>BABD</td>
+<td class="instruction">CALL <a href="47001.html">rand_no</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47808"></span>BAC0</td>
+<td class="instruction">AND $3F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47810"></span>BAC2</td>
+<td class="instruction">OR $10</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47812"></span>BAC4</td>
+<td class="instruction">LD (IX+$03),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47815"></span>BAC7</td>
+<td class="instruction">LD A,(IX+$0C)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47818"></span>BACA</td>
+<td class="instruction">AND $80</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47820"></span>BACC</td>
+<td class="instruction">XOR $80</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47822"></span>BACE</td>
+<td class="instruction">LD (IX+$05),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47825"></span>BAD1</td>
+<td class="instruction">LD A,$19</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47827"></span>BAD3</td>
+<td class="instruction">LD (IX+$06),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47830"></span>BAD6</td>
+<td class="instruction">CALL <a href="47001.html">rand_no</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47833"></span>BAD9</td>
+<td class="instruction">LD (IX+$1D),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47836"></span>BADC</td>
+<td class="instruction">CALL <a href="47001.html">rand_no</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47839"></span>BADF</td>
+<td class="instruction">AND $1F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47841"></span>BAE1</td>
+<td class="instruction">OR $08</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47843"></span>BAE3</td>
+<td class="instruction">LD (IX+$1B),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47846"></span>BAE6</td>
+<td class="instruction">XOR A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47847"></span>BAE7</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="47747.html">BA83</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#47764">Map</a></td>
+<td class="next">
+Next: <a href="47848.html">BAE8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

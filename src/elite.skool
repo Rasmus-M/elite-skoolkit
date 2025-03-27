@@ -1584,6 +1584,7 @@ s$70DE DEFS $02
 c$70E0 JP $7366      ;
 
 ; Byte at 70E3
+@label=ship_attribute_1
 b$70E3 DEFB $00
 
 ; Byte at 70E4
@@ -9871,47 +9872,47 @@ c$A6DF LD A,($70E3)   ;
  $A6E2 LD B,A         ;
  $A6E3 CP $04         ;
  $A6E5 RET NC         ;
- $A6E6 PUSH IX        ;
- $A6E8 POP HL         ;
- $A6E9 BIT 1,A        ;
- $A6EB JR NZ,$A6F1    ;
- $A6ED LD DE,$0006    ;
- $A6F0 ADD HL,DE      ;
-*$A6F1 LD E,(HL)      ;
+ $A6E6 PUSH IX        ; {HL=Address of ship structure
+ $A6E8 POP HL         ; }
+ $A6E9 BIT 1,A        ; {If bit 1 is set we use the x values
+ $A6EB JR NZ,$A6F1    ; }
+ $A6ED LD DE,$0006    ; {Move to z values
+ $A6F0 ADD HL,DE      ; }
+*$A6F1 LD E,(HL)      ; x_lo or z_lo
  $A6F2 INC HL         ;
- $A6F3 LD D,(HL)      ;
+ $A6F3 LD D,(HL)      ; x_hi or z_hi
  $A6F4 INC HL         ;
- $A6F5 LD C,(HL)      ;
+ $A6F5 LD C,(HL)      ; x_sign or z_sign
  $A6F6 SRL A          ;
- $A6F8 XOR B          ;
+ $A6F8 XOR B          ; #R$70E3
  $A6F9 RRCA           ;
- $A6FA XOR C          ;
- $A6FB AND $80        ;
- $A6FD RET NZ         ;
- $A6FE LD ($A9B8),DE  ;
- $A702 LD H,$00       ;
- $A704 LD L,(IY+$01)  ;
+ $A6FA XOR C          ; x_sign or z_sign
+ $A6FB AND $80        ; Isolate sign
+ $A6FD RET NZ         ; Return if ship is behind?
+ $A6FE LD ($A9B8),DE  ; Save z as distance
+ $A702 LD H,$00       ; {
+ $A704 LD L,(IY+$01)  ; Check for targetable area?
  $A707 PUSH HL        ;
  $A708 AND A          ;
  $A709 SBC HL,DE      ;
  $A70B JR C,$A70F     ;
  $A70D POP HL         ;
- $A70E RET            ;
-*$A70F PUSH DE        ;
- $A710 PUSH DE        ;
+ $A70E RET            ; }
+*$A70F PUSH DE        ; Push z
+ $A710 PUSH DE        ; Push z
  $A711 BIT 1,B        ;
  $A713 JR NZ,$A73B    ;
- $A715 EX DE,HL       ;
- $A716 LD D,(IX+$01)  ;
- $A719 LD E,(IX+$00)  ;
+ $A715 EX DE,HL       ; HL = z
+ $A716 LD D,(IX+$01)  ; x_hi
+ $A719 LD E,(IX+$00)  ; x_lo
  $A71C XOR A          ;
  $A71D LD C,A         ;
  $A71E CALL $AC69     ;
  $A721 LD A,C         ;
  $A722 LD ($A9C1),A   ;
  $A725 POP HL         ;
- $A726 LD D,(IX+$04)  ;
- $A729 LD E,(IX+$03)  ;
+ $A726 LD D,(IX+$04)  ; y_hi
+ $A729 LD E,(IX+$03)  ; y_lo
  $A72C XOR A          ;
  $A72D LD C,A         ;
  $A72E CALL $AC69     ;
@@ -9920,23 +9921,23 @@ c$A6DF LD A,($70E3)   ;
  $A735 LD B,(IX+$02)  ;
  $A738 JP $A75E       ;
 *$A73B EX DE,HL       ;
- $A73C LD D,(IX+$07)  ;
- $A73F LD E,(IX+$06)  ;
+ $A73C LD D,(IX+$07)  ; z_hi
+ $A73F LD E,(IX+$06)  ; z_lo
  $A742 XOR A          ;
  $A743 LD C,A         ;
  $A744 CALL $AC69     ;
  $A747 LD A,C         ;
  $A748 LD ($A9C1),A   ;
  $A74B POP HL         ;
- $A74C LD D,(IX+$04)  ;
- $A74F LD E,(IX+$03)  ;
+ $A74C LD D,(IX+$04)  ; y_hi
+ $A74F LD E,(IX+$03)  ; y_lo
  $A752 XOR A          ;
  $A753 LD C,A         ;
  $A754 CALL $AC69     ;
  $A757 LD A,C         ;
  $A758 LD ($A9C2),A   ;
- $A75B LD B,(IX+$08)  ;
-*$A75E LD A,(IX+$05)  ;
+ $A75B LD B,(IX+$08)  ; z_sign
+*$A75E LD A,(IX+$05)  ; y_sign
  $A761 SLA B          ;
  $A763 RLA            ;
  $A764 RLA            ;
@@ -10037,30 +10038,35 @@ c$A6DF LD A,($70E3)   ;
  $A824 JR $A82A       ;
 *$A826 LD A,$3F       ;
  $A828 SUB B          ;
- $A829 LD B,A         ;
+ $A829 LD B,A         ; {Draw 2x2 pixels
 *$A82A CALL $A83C     ;
  $A82D INC B          ;
  $A82E CALL $A83C     ;
  $A831 INC C          ;
  $A832 CALL $A83C     ;
  $A835 DEC B          ;
- $A836 CALL $A83C     ;
+ $A836 CALL $A83C     ; }
  $A839 JP $A8DE       ;
 
 ; Routine at A83C
 ;
 ; Used by the routine at #R$A6DF.
+;
+; B: y
+; C: x
+;
+@label=plot_pixel
 c$A83C LD A,B        ;
- $A83D CALL $22B1    ;
- $A840 LD D,A        ;
- $A841 INC D         ;
- $A842 LD A,$01      ;
+ $A83D CALL $22B1    ; Pixel_address in ROM
+ $A840 LD D,A        ; Pixel offset
+ $A841 INC D         ; Pixel offset + 1
+ $A842 LD A,$01      ; {Shift 1 right D times
 *$A844 RRCA          ;
  $A845 DEC D         ;
- $A846 JR NZ,$A844   ;
- $A848 SET 7,H       ;
- $A84A XOR (HL)      ;
- $A84B LD (HL),A     ;
+ $A846 JR NZ,$A844   ; }
+ $A848 SET 7,H       ; Set address to screen buffer
+ $A84A XOR (HL)      ; XOR with content
+ $A84B LD (HL),A     ; Write back
  $A84C RET           ;
 
 ; Draw ship part 2
@@ -10323,38 +10329,42 @@ b$A9C8 DEFB $00
 ; Routine at A9C9
 ;
 ; Used by the routine at #R$A84D.
-@label=project_vertices
-c$A9C9 PUSH IY       ;
- $A9CB PUSH IY       ;
- $A9CD LD A,(IY+$03) ;
- $A9D0 EX (SP),IX    ;
- $A9D2 LD D,(IY+$0D) ;
- $A9D5 LD E,(IY+$0C) ;
- $A9D8 ADD IX,DE     ;
- $A9DA LD IY,$A994   ;
+;
+; IX Address of ship structure
+; IY Address of blueprint
+;
+@label=vertex_visibility
+c$A9C9 PUSH IY       ; Push blueprint
+ $A9CB PUSH IY       ; Push blueprint
+ $A9CD LD A,(IY+$03) ; Number of vertices
+ $A9D0 EX (SP),IX    ; IX = blueprint, stack = ship
+ $A9D2 LD D,(IY+$0D) ; {Offset to vertices
+ $A9D5 LD E,(IY+$0C) ; }
+ $A9D8 ADD IX,DE     ; Add offset to blueprint base
+ $A9DA LD IY,$A994   ; Table of ship calculations
 ; This entry point is used by the routine at #R$ACA2.
-*$A9DE PUSH AF       ;
+*$A9DE PUSH AF       ; Push counter
  $A9DF LD A,($A9BA)  ;
  $A9E2 ADD A,$03     ;
  $A9E4 LD ($A9BA),A  ;
- $A9E7 LD A,(IX+$03) ;
- $A9EA AND $1F       ;
- $A9EC CP $1F        ;
- $A9EE JR Z,$A9F7    ;
- $A9F0 LD B,A        ;
- $A9F1 LD A,($A9B8)  ;
+ $A9E7 LD A,(IX+$03) ; Vertex visibility and signs
+ $A9EA AND $1F       ; Isolate visibility
+ $A9EC CP $1F        ; Is it max?
+ $A9EE JR Z,$A9F7    ; If yes skip next
+ $A9F0 LD B,A        ; B = visibility
+ $A9F1 LD A,($A9B8)  ; A = ship distance
  $A9F4 CP B          ;
- $A9F5 JR NC,$AA08   ;
-*$A9F7 LD A,(IX+$04) ;
- $A9FA CALL $AA10    ;
- $A9FD JR NZ,$AA05   ;
- $A9FF LD A,(IX+$05) ;
- $AA02 CALL $AA10    ;
-*$AA05 JP NZ,$ACA2   ;
-*$AA08 INC A         ;
- $AA09 LD ($A9C8),A  ;
- $AA0C POP AF        ;
- $AA0D JP $ADF2      ;
+ $A9F5 JR NC,$AA08   ; Skip edge if too far
+*$A9F7 LD A,(IX+$04) ; Numbers of face 1 and 2
+ $A9FA CALL $AA10    ; Check if a face is visible
+ $A9FD JR NZ,$AA05   ; If yes move on to ...
+ $A9FF LD A,(IX+$05) ; Numbers of face 3 and 4
+ $AA02 CALL $AA10    ; Check if a face is visible
+*$AA05 JP NZ,$ACA2   ; If yes move on to ...
+*$AA08 INC A         ; Increment a to 1
+ $AA09 LD ($A9C8),A  ; Save it
+ $AA0C POP AF        ; Pop counter
+ $AA0D JP $ADF2      ; Next vertex and loop
 
 ; Routine at AA10
 ;
@@ -10804,6 +10814,7 @@ b$ACA1 DEFB $00
 ; Routine at ACA2
 ;
 ; Used by the routine at #R$A9C9.
+@label=project_vertex
 c$ACA2 PUSH IY       ;
  $ACA4 LD A,($A9B8)  ;
  $ACA7 CP $04        ;
@@ -13242,6 +13253,10 @@ b$BCD3 DEFB $00
 ; Routine at BCD4
 ;
 ; Used by the routine at #R$A84D.
+;
+; IX Address of ship structure
+; IY Address of blueprint
+;
 @label=face_visibility
 c$BCD4 PUSH IX       ; Push ship address
  $BCD6 PUSH IY       ; Push blueprint address

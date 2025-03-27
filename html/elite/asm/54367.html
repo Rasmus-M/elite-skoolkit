@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D45F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54305.html">D421</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54367">Map</a></td>
+<td class="next">
+Next: <a href="54384.html">D470</a>
+</td>
+</tr>
+</table>
+<div class="description">D45F: Print other recursive token</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="53305.html">jump_to_print_other_token</a>, <a href="53494.html">LD0F6</a>, <a href="53560.html">LD138</a>, <a href="54384.html">LD470</a>, <a href="54708.html">other_token_92_to_128</a>, <a href="55562.html">LD90A</a>, <a href="55622.html">LD946</a>, <a href="55898.html">LDA5A</a>, <a href="56226.html">LDBA2</a>, <a href="58002.html">LE292</a>, <a href="58345.html">LE3E9</a>, <a href="59621.html">LE8E5</a>, <a href="60895.html">LEDDF</a>, <a href="61319.html">LEF87</a> and <a href="61601.html">LF0A1</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">print_other_recursive_token</td>
+<td class="address-2"><span id="54367"></span>D45F</td>
+<td class="instruction">LD HL,(<a href="61724.html">other_tokens_ptr</a>)</td>
+<td class="comment-1" rowspan="1">Get base address of other tokens</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54370"></span>D462</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-1" rowspan="1">D=number of tokens to search through</td>
+</tr>
+<tr>
+<td class="asm-label">print_other_recursive_token_0</td>
+<td class="address-2"><span id="54371"></span>D463</td>
+<td class="instruction">DEC D</td>
+<td class="comment-1" rowspan="1">One less token to search through</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54372"></span>D464</td>
+<td class="instruction">JR Z,<a href="54414.html">LD48E</a></td>
+<td class="comment-1" rowspan="1">Jump if we're now at the right token</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54374"></span>D466</td>
+<td class="instruction">LD BC,<a href="65368.html#65535">$FFFF</a></td>
+<td class="comment-1" rowspan="1">Search through all memory</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54377"></span>D469</td>
+<td class="instruction">LD A,$00</td>
+<td class="comment-1" rowspan="2">Look for a zero (end of token)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54379"></span>D46B</td>
+<td class="instruction">CPIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54381"></span>D46D</td>
+<td class="instruction">JP <a href="54367.html#54371">print_other_recursive_token_0</a></td>
+<td class="comment-1" rowspan="1">And loop</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54305.html">D421</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54367">Map</a></td>
+<td class="next">
+Next: <a href="54384.html">D470</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

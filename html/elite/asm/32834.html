@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at 8042</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="32739.html">7FE3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#32834">Map</a></td>
+<td class="next">
+Next: <a href="32896.html">8080</a>
+</td>
+</tr>
+</table>
+<div class="description">8042: Routine at 8042</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="29051.html">L717B</a>, <a href="29325.html">L728D</a>, <a href="29560.html">title_loop</a>, <a href="29809.html">L7471</a> and <a href="37869.html">L93ED</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">draw_ctrl_panel</td>
+<td class="address-2"><span id="32834"></span>8042</td>
+<td class="instruction">LD DE,<a href="16384.html">zx_screen</a></td>
+<td class="comment-1" rowspan="4">Check byte at 0,0 and return is it's not $ff</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32837"></span>8045</td>
+<td class="instruction">LD A,(DE)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32838"></span>8046</td>
+<td class="instruction">INC A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32839"></span>8047</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32840"></span>8048</td>
+<td class="instruction">CALL <a href="37869.html#38142">clear_5_bytes_at_FC08</a></td>
+<td class="comment-1" rowspan="1">CLear 5 bytes at $FC08</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="32843"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="29542.html">title_screen</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">draw_ctrl_panel_0</td>
+<td class="address-2"><span id="32843"></span>804B</td>
+<td class="instruction">CALL <a href="53302.html">LD036</a></td>
+<td class="comment-1" rowspan="1">Clear screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32846"></span>804E</td>
+<td class="instruction">LD DE,$001F</td>
+<td class="comment-1" rowspan="1">One row - 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32849"></span>8051</td>
+<td class="instruction">LD B,$17</td>
+<td class="comment-1" rowspan="1">23 rows</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32851"></span>8053</td>
+<td class="instruction">LD A,$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32853"></span>8055</td>
+<td class="instruction">LD HL,<a href="22528.html">zx_attrs</a></td>
+<td class="comment-1" rowspan="1">Attributes</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32856"></span>8058</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write 0</td>
+</tr>
+<tr>
+<td class="asm-label">draw_ctrl_panel_1</td>
+<td class="address-2"><span id="32857"></span>8059</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">End of row</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32858"></span>805A</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32859"></span>805B</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Next row</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32860"></span>805C</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32861"></span>805D</td>
+<td class="instruction">DJNZ <a href="32834.html#32857">draw_ctrl_panel_1</a></td>
+<td class="comment-1" rowspan="1">Repeat 23 times</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32863"></span>805F</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">End of last row</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32864"></span>8060</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32865"></span>8061</td>
+<td class="instruction">LD DE,<a href="16384.html#20480">$5000</a></td>
+<td class="comment-1" rowspan="1">Copy control panel gfx from buffer to screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32868"></span>8064</td>
+<td class="instruction">LD HL,<a href="49152.html">screen_buffer</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32871"></span>8067</td>
+<td class="instruction">LD BC,$0800</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32874"></span>806A</td>
+<td class="instruction">LDIR</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32876"></span>806C</td>
+<td class="instruction">LD DE,<a href="22528.html#23040">$5A00</a></td>
+<td class="comment-1" rowspan="1">Copy control panel attrs from buffer to screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32879"></span>806F</td>
+<td class="instruction">LD HL,<a href="23296.html">ctrl_panel_attrs</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32882"></span>8072</td>
+<td class="instruction">LD BC,$0100</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32885"></span>8075</td>
+<td class="instruction">LDIR</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32887"></span>8077</td>
+<td class="instruction">CALL <a href="29276.html">L725C</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32890"></span>807A</td>
+<td class="instruction">CALL <a href="29285.html">L7265</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32893"></span>807D</td>
+<td class="instruction">JP <a href="39074.html">L98A2</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="32739.html">7FE3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#32834">Map</a></td>
+<td class="next">
+Next: <a href="32896.html">8080</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D90A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="55551.html">D8FF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#55562">Map</a></td>
+<td class="next">
+Next: <a href="55622.html">D946</a>
+</td>
+</tr>
+</table>
+<div class="description">D90A: Routine at D90A</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="53326.html">LD04E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LD90A</td>
+<td class="address-2"><span id="55562"></span>D90A</td>
+<td class="instruction">CALL <a href="54813.html">clear_screen_border</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55565"></span>D90D</td>
+<td class="instruction">LD DE,$D902</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55568"></span>D910</td>
+<td class="instruction">CALL <a href="54632.html">LD568</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55571"></span>D913</td>
+<td class="instruction">CALL <a href="54607.html">LD54F</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55574"></span>D916</td>
+<td class="instruction">LD A,$0F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55576"></span>D918</td>
+<td class="instruction">CALL <a href="60259.html#60270">LEB63_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55579"></span>D91B</td>
+<td class="instruction">XOR A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55580"></span>D91C</td>
+<td class="instruction">LD (<a href="55551.html#55559">$D907</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55583"></span>D91F</td>
+<td class="instruction">INC A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55584"></span>D920</td>
+<td class="instruction">CALL <a href="54367.html">print_other_recursive_token</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55587"></span>D923</td>
+<td class="instruction">LD ($D908),SP</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="55591"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="55622.html">LD946</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LD90A_0</td>
+<td class="address-2"><span id="55591"></span>D927</td>
+<td class="instruction">LD SP,($D908)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55595"></span>D92B</td>
+<td class="instruction">CALL <a href="57847.html">LE1F7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55598"></span>D92E</td>
+<td class="instruction">SUB $31</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55600"></span>D930</td>
+<td class="instruction">JR Z,<a href="55622.html">LD946</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55602"></span>D932</td>
+<td class="instruction">DEC A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55603"></span>D933</td>
+<td class="instruction">JP Z,<a href="55622.html#55680">LD946_2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55606"></span>D936</td>
+<td class="instruction">DEC A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55607"></span>D937</td>
+<td class="instruction">JR NZ,<a href="55562.html#55591">LD90A_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55609"></span>D939</td>
+<td class="instruction">CALL <a href="59442.html">LE832</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55612"></span>D93C</td>
+<td class="instruction">CALL <a href="57861.html">LE205</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55615"></span>D93F</td>
+<td class="instruction">LD A,(<a href="55551.html#55559">$D907</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55618"></span>D942</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55619"></span>D943</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55620"></span>D944</td>
+<td class="instruction">XOR A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55621"></span>D945</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="55551.html">D8FF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#55562">Map</a></td>
+<td class="next">
+Next: <a href="55622.html">D946</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

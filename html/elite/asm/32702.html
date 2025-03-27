@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at 7FBE</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="32623.html">7F6F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#32702">Map</a></td>
+<td class="next">
+Next: <a href="32739.html">7FE3</a>
+</td>
+</tr>
+</table>
+<div class="description">7FBE: Copy screen buffer to screen</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="29560.html">title_loop</a>, <a href="29809.html">L7471</a>, <a href="37526.html">L9296</a>, <a href="37697.html">L9341</a> and <a href="37869.html">L93ED</a>.
+</div>
+<div class="paragraph">
+Looks like this is just making an exact copy.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">draw_screen_buffer</td>
+<td class="address-2"><span id="32702"></span>7FBE</td>
+<td class="instruction">LD DE,<a href="16384.html">zx_screen</a></td>
+<td class="comment-1" rowspan="1">Top of screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32705"></span>7FC1</td>
+<td class="instruction">LD HL,<a href="49152.html">screen_buffer</a></td>
+<td class="comment-1" rowspan="1">Screen buffer addr at top of screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32708"></span>7FC4</td>
+<td class="instruction">CALL <a href="32739.html">copy_screen_area</a></td>
+<td class="comment-1" rowspan="1">Copy even lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32711"></span>7FC7</td>
+<td class="instruction">LD DE,<a href="16384.html#18432">$4800</a></td>
+<td class="comment-1" rowspan="1">2nd third of screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32714"></span>7FCA</td>
+<td class="instruction">LD HL,<a href="51200.html">ctrl_panel_gfx</a></td>
+<td class="comment-1" rowspan="1">Screen buffer addr at 2nd third of screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32717"></span>7FCD</td>
+<td class="instruction">CALL <a href="32739.html">copy_screen_area</a></td>
+<td class="comment-1" rowspan="1">Copy even lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32720"></span>7FD0</td>
+<td class="instruction">LD DE,<a href="16384.html#16640">$4100</a></td>
+<td class="comment-1" rowspan="1">2nd line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32723"></span>7FD3</td>
+<td class="instruction">LD HL,<a href="49152.html#49408">$C100</a></td>
+<td class="comment-1" rowspan="1">Screen buffer addr at 2nd line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32726"></span>7FD6</td>
+<td class="instruction">CALL <a href="32739.html">copy_screen_area</a></td>
+<td class="comment-1" rowspan="1">Copy odd lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32729"></span>7FD9</td>
+<td class="instruction">LD DE,<a href="16384.html#18688">$4900</a></td>
+<td class="comment-1" rowspan="1">2nd line of 2nd third</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32732"></span>7FDC</td>
+<td class="instruction">LD HL,<a href="51200.html#51456">$C900</a></td>
+<td class="comment-1" rowspan="1">Screen buffer addr at 2nd line of 2nd third</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32735"></span>7FDF</td>
+<td class="instruction">CALL <a href="32739.html">copy_screen_area</a></td>
+<td class="comment-1" rowspan="1">Copy odd lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="32738"></span>7FE2</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="32623.html">7F6F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#32702">Map</a></td>
+<td class="next">
+Next: <a href="32739.html">7FE3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

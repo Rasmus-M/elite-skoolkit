@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at 98A2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="39054.html">988E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#39074">Map</a></td>
+<td class="next">
+Next: <a href="39117.html">98CD</a>
+</td>
+</tr>
+</table>
+<div class="description">98A2: Routine at 98A2</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="32834.html">draw_ctrl_panel</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">L98A2</td>
+<td class="address-2"><span id="39074"></span>98A2</td>
+<td class="instruction">CALL <a href="39117.html">L98CD</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39077"></span>98A5</td>
+<td class="instruction">LD BC,$0005</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39080"></span>98A8</td>
+<td class="instruction">LD A,$EB</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39082"></span>98AA</td>
+<td class="instruction">LD HL,<a href="39117.html#39186">$9912</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39085"></span>98AD</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Modify instruction at $9912 to EX DE,HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39086"></span>98AE</td>
+<td class="instruction">LD A,$E5</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39088"></span>98B0</td>
+<td class="instruction">LD HL,<a href="39117.html#39189">L98CD_3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39091"></span>98B3</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Modify instruction at $9915 to PUSH HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39092"></span>98B4</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39093"></span>98B5</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Modify instruction at $991A to PUSH HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39094"></span>98B6</td>
+<td class="instruction">LD A,$E1</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39096"></span>98B8</td>
+<td class="instruction">LD HL,<a href="39117.html#39221">$9935</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39099"></span>98BB</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Modify instruction at $9935 to POP HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39100"></span>98BC</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39101"></span>98BD</td>
+<td class="instruction">LD A,$24</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39103"></span>98BF</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Modify instruction at $9936 to INC H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39104"></span>98C0</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39105"></span>98C1</td>
+<td class="instruction">LD HL,<a href="39117.html#39232">$9940</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39108"></span>98C4</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Modify instruction at $9936 to NOP</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39109"></span>98C5</td>
+<td class="instruction">LD A,$EB</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39111"></span>98C7</td>
+<td class="instruction">LD HL,<a href="39117.html#39225">$9939</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39114"></span>98CA</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Modify instruction at $9939 to EX DE,HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="39115"></span>98CB</td>
+<td class="instruction">JR <a href="39117.html#39180">L98CD_2</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="39054.html">988E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#39074">Map</a></td>
+<td class="next">
+Next: <a href="39117.html">98CD</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

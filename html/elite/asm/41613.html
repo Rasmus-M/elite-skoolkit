@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at A28D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="41611.html">A28B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#41613">Map</a></td>
+<td class="next">
+Next: <a href="41656.html">A2B8</a>
+</td>
+</tr>
+</table>
+<div class="description">A28D: Draw title ship</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="40101.html">L9CA5</a> and <a href="40111.html">jump_to_draw_title_ship</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">draw_title_ship</td>
+<td class="address-2"><span id="41613"></span>A28D</td>
+<td class="instruction">LD IX,<a href="24921.html">current_ship</a></td>
+<td class="comment-1" rowspan="1">Ship data structure</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41617"></span>A291</td>
+<td class="instruction">LD H,(IX+$24)</td>
+<td class="comment-1" rowspan="1">Get blueprint MSB</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41620"></span>A294</td>
+<td class="instruction">LD L,(IX+$23)</td>
+<td class="comment-1" rowspan="1">Get blueprint LSB</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41623"></span>A297</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="2">Copy blueprint addr to IY</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41624"></span>A298</td>
+<td class="instruction">POP IY</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41626"></span>A29A</td>
+<td class="instruction">LD A,$94</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41628"></span>A29C</td>
+<td class="instruction">LD (<a href="40832.html">word at 9F80</a>),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41631"></span>A29F</td>
+<td class="instruction">LD A,$8C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41633"></span>A2A1</td>
+<td class="instruction">CALL <a href="40834.html#40957">L9F82_6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41636"></span>A2A4</td>
+<td class="instruction">CALL <a href="44649.html">LAE69</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41639"></span>A2A7</td>
+<td class="instruction">LD IX,$6162</td>
+<td class="comment-1" rowspan="1">Orientation vectors</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41643"></span>A2AB</td>
+<td class="instruction">CALL <a href="40769.html">L9F41</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41646"></span>A2AE</td>
+<td class="instruction">CALL <a href="40769.html">L9F41</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41649"></span>A2B1</td>
+<td class="instruction">LD IX,<a href="24921.html">current_ship</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="41653"></span>A2B5</td>
+<td class="instruction">JP <a href="42719.html">draw_ship</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="41611.html">A28B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#41613">Map</a></td>
+<td class="next">
+Next: <a href="41656.html">A2B8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

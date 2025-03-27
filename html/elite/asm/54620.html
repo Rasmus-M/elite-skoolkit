@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D55C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54607.html">D54F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54620">Map</a></td>
+<td class="next">
+Next: <a href="54632.html">D568</a>
+</td>
+</tr>
+</table>
+<div class="description">D55C: Routine at D55C</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LD55C</td>
+<td class="address-2"><span id="54620"></span>D55C</td>
+<td class="instruction">LD HL,<a href="16384.html#17216">$4340</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="54623"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="54813.html">clear_screen_border</a>, <a href="60259.html">LEB63</a> and <a href="60284.html">LEB7C</a>. HL Screen address
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">draw_h_line</td>
+<td class="address-2"><span id="54623"></span>D55F</td>
+<td class="instruction">LD A,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54625"></span>D561</td>
+<td class="instruction">LD B,$20</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="54627"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="54607.html">LD54F</a>, <a href="54632.html">LD568</a>, <a href="60259.html">LEB63</a> and <a href="60284.html">LEB7C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LD55C_0</td>
+<td class="address-2"><span id="54627"></span>D563</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54628"></span>D564</td>
+<td class="instruction">INC HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54629"></span>D565</td>
+<td class="instruction">DJNZ <a href="54620.html#54627">LD55C_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54631"></span>D567</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54607.html">D54F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54620">Map</a></td>
+<td class="next">
+Next: <a href="54632.html">D568</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

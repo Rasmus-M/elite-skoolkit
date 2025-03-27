@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at 8AF7</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="35533.html">8ACD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#35575">Map</a></td>
+<td class="next">
+Next: <a href="35599.html">8B0F</a>
+</td>
+</tr>
+</table>
+<div class="description">8AF7: Routine at 8AF7</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="34441.html">L8689</a> and <a href="34465.html">L86A1</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">L8AF7</td>
+<td class="address-2"><span id="35575"></span>8AF7</td>
+<td class="instruction">LD A,E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35576"></span>8AF8</td>
+<td class="instruction">SUB L</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35577"></span>8AF9</td>
+<td class="instruction">JR NC,<a href="35575.html#35597">L8AF7_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35579"></span>8AFB</td>
+<td class="instruction">LD A,($8628)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35582"></span>8AFE</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35583"></span>8AFF</td>
+<td class="instruction">JR NZ,<a href="35575.html#35592">L8AF7_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35585"></span>8B01</td>
+<td class="instruction">LD A,$BF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35587"></span>8B03</td>
+<td class="instruction">CP H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35588"></span>8B04</td>
+<td class="instruction">JR C,<a href="35599.html">L8B0F</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35590"></span>8B06</td>
+<td class="instruction">JR <a href="35575.html#35597">L8AF7_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">L8AF7_0</td>
+<td class="address-2"><span id="35592"></span>8B08</td>
+<td class="instruction">LD A,$CF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35594"></span>8B0A</td>
+<td class="instruction">CP H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35595"></span>8B0B</td>
+<td class="instruction">JR NC,<a href="35599.html">L8B0F</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">L8AF7_1</td>
+<td class="address-2"><span id="35597"></span>8B0D</td>
+<td class="instruction">POP AF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="35598"></span>8B0E</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="35533.html">8ACD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#35575">Map</a></td>
+<td class="next">
+Next: <a href="35599.html">8B0F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at A8DE</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43180.html">A8AC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43230">Map</a></td>
+<td class="next">
+Next: <a href="43258.html">A8FA</a>
+</td>
+</tr>
+</table>
+<div class="description">A8DE: Routine at A8DE</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="42719.html">draw_ship</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LA8DE</td>
+<td class="address-2"><span id="43230"></span>A8DE</td>
+<td class="instruction">BIT 3,(IX+$20)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43234"></span>A8E2</td>
+<td class="instruction">RET Z</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43235"></span>A8E3</td>
+<td class="instruction">LD A,(<a href="43457.html">byte_at_A9C1</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43238"></span>A8E6</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43239"></span>A8E7</td>
+<td class="instruction">LD A,(<a href="43458.html">byte_at_A9C2</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43242"></span>A8EA</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43243"></span>A8EB</td>
+<td class="instruction">LD A,(<a href="28899.html">ship_attribute_1</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43246"></span>A8EE</td>
+<td class="instruction">BIT 0,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43248"></span>A8F0</td>
+<td class="instruction">LD A,(<a href="43459.html">byte_at_A9C3</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43251"></span>A8F3</td>
+<td class="instruction">JR Z,<a href="43230.html#43255">LA8DE_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43253"></span>A8F5</td>
+<td class="instruction">XOR $02</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LA8DE_0</td>
+<td class="address-2"><span id="43255"></span>A8F7</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43256"></span>A8F8</td>
+<td class="instruction">JR <a href="43085.html#43140">draw_ship_and_laser_2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43180.html">A8AC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43230">Map</a></td>
+<td class="next">
+Next: <a href="43258.html">A8FA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

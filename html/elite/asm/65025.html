@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at FE01</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="65011.html">FDF3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#65025">Map</a></td>
+<td class="next">
+Next: <a href="65278.html">FEFE</a>
+</td>
+</tr>
+</table>
+<div class="description">FE01: Routine at FE01</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="65317.html">interrupt_routine</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LFE01</td>
+<td class="address-2"><span id="65025"></span>FE01</td>
+<td class="instruction">LD A,(<a href="28899.html">ship_attribute_1</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65028"></span>FE04</td>
+<td class="instruction">CP $04</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65030"></span>FE06</td>
+<td class="instruction">RET NC</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65031"></span>FE07</td>
+<td class="instruction">LD A,(<a href="64521.html">byte_at_FC09</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65034"></span>FE0A</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65035"></span>FE0B</td>
+<td class="instruction">LD A,(<a href="64526.html">byte_at_FC0E</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65038"></span>FE0E</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65039"></span>FE0F</td>
+<td class="instruction">LD HL,(<a href="65288.html">word_at_FF08</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65042"></span>FE12</td>
+<td class="instruction">BIT 0,B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65044"></span>FE14</td>
+<td class="instruction">JR NZ,<a href="65025.html#65089">LFE01_2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65046"></span>FE16</td>
+<td class="instruction">BIT 1,B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65048"></span>FE18</td>
+<td class="instruction">JR NZ,<a href="65025.html#65070">LFE01_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65050"></span>FE1A</td>
+<td class="instruction">BIT 3,C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65052"></span>FE1C</td>
+<td class="instruction">JR Z,<a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65054"></span>FE1E</td>
+<td class="instruction">LD DE,$003C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65057"></span>FE21</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65058"></span>FE22</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65060"></span>FE24</td>
+<td class="instruction">BIT 6,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65062"></span>FE26</td>
+<td class="instruction">JR Z,<a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65064"></span>FE28</td>
+<td class="instruction">LD HL,$0000</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65067"></span>FE2B</td>
+<td class="instruction">JP <a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_0</td>
+<td class="address-2"><span id="65070"></span>FE2E</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65071"></span>FE2F</td>
+<td class="instruction">AND $7F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65073"></span>FE31</td>
+<td class="instruction">OR L</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65074"></span>FE32</td>
+<td class="instruction">JR NZ,<a href="65025.html#65082">LFE01_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65076"></span>FE34</td>
+<td class="instruction">LD HL,$00FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65079"></span>FE37</td>
+<td class="instruction">JP <a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_1</td>
+<td class="address-2"><span id="65082"></span>FE3A</td>
+<td class="instruction">BIT 7,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65084"></span>FE3C</td>
+<td class="instruction">JR Z,<a href="65025.html#65109">LFE01_4</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65086"></span>FE3E</td>
+<td class="instruction">JP <a href="65025.html#65123">LFE01_5</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_2</td>
+<td class="address-2"><span id="65089"></span>FE41</td>
+<td class="instruction">BIT 1,B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65091"></span>FE43</td>
+<td class="instruction">JR NZ,<a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65093"></span>FE45</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65094"></span>FE46</td>
+<td class="instruction">AND $7F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65096"></span>FE48</td>
+<td class="instruction">OR L</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65097"></span>FE49</td>
+<td class="instruction">JR NZ,<a href="65025.html#65105">LFE01_3</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65099"></span>FE4B</td>
+<td class="instruction">LD HL,<a href="32979.html#33023">$80FF</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65102"></span>FE4E</td>
+<td class="instruction">JP <a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_3</td>
+<td class="address-2"><span id="65105"></span>FE51</td>
+<td class="instruction">BIT 7,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65107"></span>FE53</td>
+<td class="instruction">JR Z,<a href="65025.html#65123">LFE01_5</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_4</td>
+<td class="address-2"><span id="65109"></span>FE55</td>
+<td class="instruction">LD DE,$00FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65112"></span>FE58</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65113"></span>FE59</td>
+<td class="instruction">BIT 4,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65115"></span>FE5B</td>
+<td class="instruction">JR Z,<a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65117"></span>FE5D</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65118"></span>FE5E</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65120"></span>FE60</td>
+<td class="instruction">JP <a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_5</td>
+<td class="address-2"><span id="65123"></span>FE63</td>
+<td class="instruction">BIT 2,C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65125"></span>FE65</td>
+<td class="instruction">JR Z,<a href="65025.html#65133">LFE01_6</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65127"></span>FE67</td>
+<td class="instruction">LD HL,$0000</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65130"></span>FE6A</td>
+<td class="instruction">JP <a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_6</td>
+<td class="address-2"><span id="65133"></span>FE6D</td>
+<td class="instruction">LD DE,$00FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65136"></span>FE70</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65137"></span>FE71</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65139"></span>FE73</td>
+<td class="instruction">BIT 6,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65141"></span>FE75</td>
+<td class="instruction">JR Z,<a href="65025.html#65146">LFE01_7</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65143"></span>FE77</td>
+<td class="instruction">LD HL,$0000</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_7</td>
+<td class="address-2"><span id="65146"></span>FE7A</td>
+<td class="instruction">LD (<a href="65288.html">word_at_FF08</a>),HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65149"></span>FE7D</td>
+<td class="instruction">LD HL,(<a href="65290.html">word_at_FF0A</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65152"></span>FE80</td>
+<td class="instruction">BIT 2,B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65154"></span>FE82</td>
+<td class="instruction">JR NZ,<a href="65025.html#65199">LFE01_10</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65156"></span>FE84</td>
+<td class="instruction">BIT 3,B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65158"></span>FE86</td>
+<td class="instruction">JR NZ,<a href="65025.html#65180">LFE01_8</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65160"></span>FE88</td>
+<td class="instruction">BIT 3,C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65162"></span>FE8A</td>
+<td class="instruction">JR Z,<a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65164"></span>FE8C</td>
+<td class="instruction">LD DE,$0024</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65167"></span>FE8F</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65168"></span>FE90</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65170"></span>FE92</td>
+<td class="instruction">BIT 6,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65172"></span>FE94</td>
+<td class="instruction">JR Z,<a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65174"></span>FE96</td>
+<td class="instruction">LD HL,$0000</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65177"></span>FE99</td>
+<td class="instruction">JP <a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_8</td>
+<td class="address-2"><span id="65180"></span>FE9C</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65181"></span>FE9D</td>
+<td class="instruction">AND $7F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65183"></span>FE9F</td>
+<td class="instruction">OR L</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65184"></span>FEA0</td>
+<td class="instruction">JR NZ,<a href="65025.html#65192">LFE01_9</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65186"></span>FEA2</td>
+<td class="instruction">LD HL,$0066</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65189"></span>FEA5</td>
+<td class="instruction">JP <a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_9</td>
+<td class="address-2"><span id="65192"></span>FEA8</td>
+<td class="instruction">BIT 7,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65194"></span>FEAA</td>
+<td class="instruction">JR Z,<a href="65025.html#65219">LFE01_12</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65196"></span>FEAC</td>
+<td class="instruction">JP <a href="65025.html#65233">LFE01_13</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_10</td>
+<td class="address-2"><span id="65199"></span>FEAF</td>
+<td class="instruction">BIT 3,B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65201"></span>FEB1</td>
+<td class="instruction">JR NZ,<a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65203"></span>FEB3</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65204"></span>FEB4</td>
+<td class="instruction">AND $7F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65206"></span>FEB6</td>
+<td class="instruction">OR L</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65207"></span>FEB7</td>
+<td class="instruction">JR NZ,<a href="65025.html#65215">LFE01_11</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65209"></span>FEB9</td>
+<td class="instruction">LD HL,$8066</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65212"></span>FEBC</td>
+<td class="instruction">JP <a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_11</td>
+<td class="address-2"><span id="65215"></span>FEBF</td>
+<td class="instruction">BIT 7,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65217"></span>FEC1</td>
+<td class="instruction">JR Z,<a href="65025.html#65233">LFE01_13</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_12</td>
+<td class="address-2"><span id="65219"></span>FEC3</td>
+<td class="instruction">LD DE,$0066</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65222"></span>FEC6</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65223"></span>FEC7</td>
+<td class="instruction">BIT 4,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65225"></span>FEC9</td>
+<td class="instruction">JR Z,<a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65227"></span>FECB</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65228"></span>FECC</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65230"></span>FECE</td>
+<td class="instruction">JP <a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_13</td>
+<td class="address-2"><span id="65233"></span>FED1</td>
+<td class="instruction">BIT 2,C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65235"></span>FED3</td>
+<td class="instruction">JR Z,<a href="65025.html#65243">LFE01_14</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65237"></span>FED5</td>
+<td class="instruction">LD HL,$0000</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65240"></span>FED8</td>
+<td class="instruction">JP <a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_14</td>
+<td class="address-2"><span id="65243"></span>FEDB</td>
+<td class="instruction">LD DE,$0066</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65246"></span>FEDE</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65247"></span>FEDF</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65249"></span>FEE1</td>
+<td class="instruction">BIT 6,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65251"></span>FEE3</td>
+<td class="instruction">JR Z,<a href="65025.html#65256">LFE01_15</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65253"></span>FEE5</td>
+<td class="instruction">LD HL,$0000</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LFE01_15</td>
+<td class="address-2"><span id="65256"></span>FEE8</td>
+<td class="instruction">LD (<a href="65290.html">word_at_FF0A</a>),HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65259"></span>FEEB</td>
+<td class="instruction">LD HL,(<a href="65292.html">word_at_FF0C</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65262"></span>FEEE</td>
+<td class="instruction">LD DE,$00A0</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65265"></span>FEF1</td>
+<td class="instruction">BIT 4,B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65267"></span>FEF3</td>
+<td class="instruction">JR NZ,<a href="65280.html">LFF00</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65269"></span>FEF5</td>
+<td class="instruction">BIT 5,B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65271"></span>FEF7</td>
+<td class="instruction">JR Z,<a href="65302.html#65309">LFF16_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65273"></span>FEF9</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65274"></span>FEFA</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="65276"></span>FEFC</td>
+<td class="instruction">JR <a href="65294.html">LFF0E</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="65011.html">FDF3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#65025">Map</a></td>
+<td class="next">
+Next: <a href="65278.html">FEFE</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

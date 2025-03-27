@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at B799</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="46652.html">B63C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#47001">Map</a></td>
+<td class="next">
+Next: <a href="47018.html">B7AA</a>
+</td>
+</tr>
+</table>
+<div class="description">B799: Routine at B799</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="41664.html">LA2C0</a>, <a href="41890.html">LA3A2</a>, <a href="42375.html">LA587</a>, <a href="43085.html">draw_ship_and_laser</a>, <a href="46296.html">LB4D8</a>, <a href="46652.html">LB63C</a>, <a href="47256.html">create_ship</a>, <a href="47467.html">LB96B</a>, <a href="47591.html">LB9E7</a>, <a href="47747.html">LBA83</a>, <a href="47764.html">LBA94</a>, <a href="48058.html">LBBBA</a>, <a href="48114.html">LBBF2</a>, <a href="48161.html">LBC21</a> and <a href="48248.html">LBC78</a>.
+</div>
+<div class="paragraph">
+Is this some kind of random number generator?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">rand_no</td>
+<td class="address-2"><span id="47001"></span>B799</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47002"></span>B79A</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47003"></span>B79B</td>
+<td class="instruction">LD HL,(<a href="47018.html">word_at_B7AA</a>)</td>
+<td class="comment-1" rowspan="1">Get old value</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47006"></span>B79E</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-1" rowspan="1">A=H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47007"></span>B79F</td>
+<td class="instruction">ADC A,A</td>
+<td class="comment-1" rowspan="1">A=2*H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47008"></span>B7A0</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1">B=2*H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47009"></span>B7A1</td>
+<td class="instruction">ADC A,L</td>
+<td class="comment-1" rowspan="1">A=2*H+L</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47010"></span>B7A2</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-1" rowspan="1">H=2*H+L</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47011"></span>B7A3</td>
+<td class="instruction">LD L,B</td>
+<td class="comment-1" rowspan="1">L=2*H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47012"></span>B7A4</td>
+<td class="instruction">LD (<a href="47018.html">word_at_B7AA</a>),HL</td>
+<td class="comment-1" rowspan="1">Save new value</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47015"></span>B7A7</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47016"></span>B7A8</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47017"></span>B7A9</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="46652.html">B63C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#47001">Map</a></td>
+<td class="next">
+Next: <a href="47018.html">B7AA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

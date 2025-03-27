@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at EBEE</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="60284.html">EB7C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#60398">Map</a></td>
+<td class="next">
+Next: <a href="60433.html">EC11</a>
+</td>
+</tr>
+</table>
+<div class="description">EBEE: Routine at EBEE</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="60284.html">LEB7C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LEBEE</td>
+<td class="address-2"><span id="60398"></span>EBEE</td>
+<td class="instruction">DI</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60399"></span>EBEF</td>
+<td class="instruction">LD (<a href="60434.html">word_at_EC12</a>),SP</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60403"></span>EBF3</td>
+<td class="instruction">LD (<a href="60433.html">byte_at_EC11</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60406"></span>EBF6</td>
+<td class="instruction">LD C,$08</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60408"></span>EBF8</td>
+<td class="instruction">LD DE,$0000</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LEBEE_0</td>
+<td class="address-2"><span id="60411"></span>EBFB</td>
+<td class="instruction">LD SP,HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60412"></span>EBFC</td>
+<td class="instruction">LD A,(<a href="60433.html">byte_at_EC11</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LEBEE_1</td>
+<td class="address-2"><span id="60415"></span>EBFF</td>
+<td class="instruction">LD B,$10</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LEBEE_2</td>
+<td class="address-2"><span id="60417"></span>EC01</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60418"></span>EC02</td>
+<td class="instruction">DJNZ <a href="60398.html#60417">LEBEE_2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60420"></span>EC04</td>
+<td class="instruction">DEC A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60421"></span>EC05</td>
+<td class="instruction">JR NZ,<a href="60398.html#60415">LEBEE_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60423"></span>EC07</td>
+<td class="instruction">INC H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60424"></span>EC08</td>
+<td class="instruction">DEC C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60425"></span>EC09</td>
+<td class="instruction">JR NZ,<a href="60398.html#60411">LEBEE_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60427"></span>EC0B</td>
+<td class="instruction">LD SP,(<a href="60434.html">word_at_EC12</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60431"></span>EC0F</td>
+<td class="instruction">EI</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60432"></span>EC10</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="60284.html">EB7C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#60398">Map</a></td>
+<td class="next">
+Next: <a href="60433.html">EC11</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

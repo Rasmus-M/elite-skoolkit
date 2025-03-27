@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D499</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54414.html">D48E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54425">Map</a></td>
+<td class="next">
+Next: <a href="54607.html">D54F</a>
+</td>
+</tr>
+</table>
+<div class="description">D499: Print ASCII character</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="54305.html">print_token</a>, <a href="54384.html">LD470</a> and <a href="54684.html">print_two_letter_token</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char</td>
+<td class="address-2"><span id="54425"></span>D499</td>
+<td class="instruction">CP $41</td>
+<td class="comment-1" rowspan="1">Char A?</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54427"></span>D49B</td>
+<td class="instruction">JR C,<a href="54425.html#54482">print_ascii_char_2</a></td>
+<td class="comment-1" rowspan="1">Jump if &lt; A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54429"></span>D49D</td>
+<td class="instruction">CP $5B</td>
+<td class="comment-1" rowspan="1">Char [ (after Z)?</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54431"></span>D49F</td>
+<td class="instruction">JR NC,<a href="54425.html#54482">print_ascii_char_2</a></td>
+<td class="comment-1" rowspan="1">Jump if &gt; Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54433"></span>D4A1</td>
+<td class="instruction">PUSH AF</td>
+<td class="comment-1" rowspan="1">Save ASCII code</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54434"></span>D4A2</td>
+<td class="instruction">LD A,(<a href="53457.html">byte_at_D0D1</a>)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54437"></span>D4A5</td>
+<td class="instruction">CP $01</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54439"></span>D4A7</td>
+<td class="instruction">JR Z,<a href="54425.html#54488">print_ascii_char_3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54441"></span>D4A9</td>
+<td class="instruction">LD A,(<a href="53459.html">byte_at_D0D3</a>)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54444"></span>D4AC</td>
+<td class="instruction">AND A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54445"></span>D4AD</td>
+<td class="instruction">JR Z,<a href="54425.html#54456">print_ascii_char_0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54447"></span>D4AF</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54448"></span>D4B0</td>
+<td class="instruction">LD (<a href="53459.html">byte_at_D0D3</a>),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54451"></span>D4B3</td>
+<td class="instruction">LD (<a href="53458.html">byte_at_D0D2</a>),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54454"></span>D4B6</td>
+<td class="instruction">JR <a href="54425.html#54488">print_ascii_char_3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char_0</td>
+<td class="address-2"><span id="54456"></span>D4B8</td>
+<td class="instruction">LD A,(<a href="53458.html">byte_at_D0D2</a>)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54459"></span>D4BB</td>
+<td class="instruction">CP $01</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54461"></span>D4BD</td>
+<td class="instruction">JR NZ,<a href="54425.html#54476">print_ascii_char_1</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54463"></span>D4BF</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54464"></span>D4C0</td>
+<td class="instruction">LD (<a href="53458.html">byte_at_D0D2</a>),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54467"></span>D4C3</td>
+<td class="instruction">LD A,(<a href="53457.html">byte_at_D0D1</a>)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54470"></span>D4C6</td>
+<td class="instruction">CP $02</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54472"></span>D4C8</td>
+<td class="instruction">JR Z,<a href="54425.html#54476">print_ascii_char_1</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54474"></span>D4CA</td>
+<td class="instruction">JR <a href="54425.html#54488">print_ascii_char_3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char_1</td>
+<td class="address-2"><span id="54476"></span>D4CC</td>
+<td class="instruction">POP AF</td>
+<td class="comment-1" rowspan="1">Restore ASCII code</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54477"></span>D4CD</td>
+<td class="instruction">ADD A,$20</td>
+<td class="comment-1" rowspan="1">Add 32</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54479"></span>D4CF</td>
+<td class="instruction">PUSH AF</td>
+<td class="comment-1" rowspan="1">Save new code</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54480"></span>D4D0</td>
+<td class="instruction">JR <a href="54425.html#54488">print_ascii_char_3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char_2</td>
+<td class="address-2"><span id="54482"></span>D4D2</td>
+<td class="instruction">PUSH AF</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54483"></span>D4D3</td>
+<td class="instruction">LD A,$01</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54485"></span>D4D5</td>
+<td class="instruction">LD (<a href="53458.html">byte_at_D0D2</a>),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char_3</td>
+<td class="address-2"><span id="54488"></span>D4D8</td>
+<td class="instruction">LD A,(<a href="53460.html">LD0D4</a>)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54491"></span>D4DB</td>
+<td class="instruction">CP $01</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54493"></span>D4DD</td>
+<td class="instruction">JP Z,<a href="54969.html">LD6B9</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54496"></span>D4E0</td>
+<td class="instruction">POP AF</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="54497"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="54969.html">LD6B9</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">inc_print_char</td>
+<td class="address-2"><span id="54497"></span>D4E1</td>
+<td class="instruction">PUSH AF</td>
+<td class="comment-1" rowspan="1">Save ASCII code</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54498"></span>D4E2</td>
+<td class="instruction">LD HL,<a href="53317.html">print_x</a></td>
+<td class="comment-1" rowspan="1">X coord</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54501"></span>D4E5</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54502"></span>D4E6</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Get new x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54503"></span>D4E7</td>
+<td class="instruction">CP $20</td>
+<td class="comment-1" rowspan="2">Jump if not at end of row</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54505"></span>D4E9</td>
+<td class="instruction">JR C,<a href="54425.html#54513">print_char</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54507"></span>D4EB</td>
+<td class="instruction">LD A,$01</td>
+<td class="comment-1" rowspan="2">Set x to 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54509"></span>D4ED</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54510"></span>D4EE</td>
+<td class="instruction">CALL <a href="58022.html#58033">increment_y</a></td>
+<td class="comment-1" rowspan="1">Increment y</td>
+</tr>
+<tr>
+<td class="asm-label">print_char</td>
+<td class="address-2"><span id="54513"></span>D4F1</td>
+<td class="instruction">POP AF</td>
+<td class="comment-1" rowspan="1">ASCII code</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54514"></span>D4F2</td>
+<td class="instruction">LD HL,<a href="23920.html">font</a></td>
+<td class="comment-1" rowspan="1">Font base address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54517"></span>D4F5</td>
+<td class="instruction">SUB $20</td>
+<td class="comment-1" rowspan="1">Code - 32</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54519"></span>D4F7</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54520"></span>D4F8</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-1" rowspan="1">BC = 0A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54522"></span>D4FA</td>
+<td class="instruction">SLA C</td>
+<td class="comment-1" rowspan="1">* 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54524"></span>D4FC</td>
+<td class="instruction">RL B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54526"></span>D4FE</td>
+<td class="instruction">SLA C</td>
+<td class="comment-1" rowspan="1">* 4</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54528"></span>D500</td>
+<td class="instruction">RL B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54530"></span>D502</td>
+<td class="instruction">SLA C</td>
+<td class="comment-1" rowspan="1">* 8</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54532"></span>D504</td>
+<td class="instruction">RL B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54534"></span>D506</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1">Add to font base address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54535"></span>D507</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Push character source address</td>
+</tr>
+<tr>
+<td class="asm-label">ld_hl_4000_instr</td>
+<td class="address-1"><span id="54536"></span>D508</td>
+<td class="instruction">LD HL,<a href="16384.html">zx_screen</a></td>
+<td class="comment-1" rowspan="1">Self-modified (screen or buffer)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54539"></span>D50B</td>
+<td class="instruction">LD A,(<a href="53318.html">print_y</a>)</td>
+<td class="comment-1" rowspan="1">Y coord</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54542"></span>D50E</td>
+<td class="instruction">CP $10</td>
+<td class="comment-1" rowspan="2">Jump if &gt;= 16</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54544"></span>D510</td>
+<td class="instruction">JP NC,<a href="54425.html#54556">print_ascii_char_4</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54547"></span>D513</td>
+<td class="instruction">CP $08</td>
+<td class="comment-1" rowspan="2">Jump if &gt;= 8</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54549"></span>D515</td>
+<td class="instruction">JP NC,<a href="54425.html#54566">print_ascii_char_5</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54552"></span>D518</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1">Y coord within 3rd</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54553"></span>D519</td>
+<td class="instruction">JP <a href="54425.html#54573">print_ascii_char_6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char_4</td>
+<td class="address-2"><span id="54556"></span>D51C</td>
+<td class="instruction">SUB $10</td>
+<td class="comment-1" rowspan="1">Bottom 3rd of screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54558"></span>D51E</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1">Y coord within 3rd</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54559"></span>D51F</td>
+<td class="instruction">LD DE,$1000</td>
+<td class="comment-1" rowspan="1">Offset to bottom 3rd</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54562"></span>D522</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">Add offset to destination</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54563"></span>D523</td>
+<td class="instruction">JP <a href="54425.html#54573">print_ascii_char_6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char_5</td>
+<td class="address-2"><span id="54566"></span>D526</td>
+<td class="instruction">SUB $08</td>
+<td class="comment-1" rowspan="1">Middle 3rd of screen</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54568"></span>D528</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1">Y coord within 3rd</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54569"></span>D529</td>
+<td class="instruction">LD DE,$0800</td>
+<td class="comment-1" rowspan="1">Offset to middle 3rd</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54572"></span>D52C</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">Add offset to destination</td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char_6</td>
+<td class="address-2"><span id="54573"></span>D52D</td>
+<td class="instruction">LD C,$00</td>
+<td class="comment-1" rowspan="1">BC = 00000rrr00000000</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54575"></span>D52F</td>
+<td class="instruction">SRL B</td>
+<td class="comment-1" rowspan="1">&gt;&gt; 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54577"></span>D531</td>
+<td class="instruction">RR C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54579"></span>D533</td>
+<td class="instruction">SRL B</td>
+<td class="comment-1" rowspan="1">&gt;&gt; 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54581"></span>D535</td>
+<td class="instruction">RR C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54583"></span>D537</td>
+<td class="instruction">SRL B</td>
+<td class="comment-1" rowspan="1">&gt;&gt; 3</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54585"></span>D539</td>
+<td class="instruction">RR C</td>
+<td class="comment-1" rowspan="1">BC = 00000000rrr00000</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54587"></span>D53B</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1">HL = xxxss000rrr00000</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54588"></span>D53C</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54590"></span>D53E</td>
+<td class="instruction">LD A,(<a href="53317.html">print_x</a>)</td>
+<td class="comment-1" rowspan="1">X coord</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54593"></span>D541</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54594"></span>D542</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1">HL = xxxss000rrrccccc</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54595"></span>D543</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">DE = source</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54596"></span>D544</td>
+<td class="instruction">LD B,$08</td>
+<td class="comment-1" rowspan="1">8 bytes in character</td>
+</tr>
+<tr>
+<td class="asm-label">print_ascii_char_7</td>
+<td class="address-2"><span id="54598"></span>D546</td>
+<td class="instruction">LD A,(DE)</td>
+<td class="comment-1" rowspan="1">Get source byte</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54599"></span>D547</td>
+<td class="instruction">LD C,(HL)</td>
+<td class="comment-1" rowspan="1">Get destination byte</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54600"></span>D548</td>
+<td class="instruction">XOR C</td>
+<td class="comment-1" rowspan="1">XOR source with destination</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54601"></span>D549</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write destination byte</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54602"></span>D54A</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="1">Next pixel line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54603"></span>D54B</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1">Next source byte</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54604"></span>D54C</td>
+<td class="instruction">DJNZ <a href="54425.html#54598">print_ascii_char_7</a></td>
+<td class="comment-1" rowspan="1">Repeat 8 times</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54606"></span>D54E</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54414.html">D48E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54425">Map</a></td>
+<td class="next">
+Next: <a href="54607.html">D54F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D07F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="53372.html">D07C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#53375">Map</a></td>
+<td class="next">
+Next: <a href="53415.html">D0A7</a>
+</td>
+</tr>
+</table>
+<div class="description">D07F: After lenslock</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LD07F</td>
+<td class="address-2"><span id="53375"></span>D07F</td>
+<td class="instruction">LD HL,<a href="51200.html">ctrl_panel_gfx</a></td>
+<td class="comment-1" rowspan="4">Copy 2K from C800 to C000</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53378"></span>D082</td>
+<td class="instruction">LD DE,<a href="49152.html">screen_buffer</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53381"></span>D085</td>
+<td class="instruction">LD BC,$0800</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53384"></span>D088</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53386"></span>D08A</td>
+<td class="instruction">LD DE,<a href="48640.html">sqr_table</a></td>
+<td class="comment-1" rowspan="16">Generate table of squares</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53389"></span>D08D</td>
+<td class="instruction">LD B,$00</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53391"></span>D08F</td>
+<td class="instruction">LD C,B</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53392"></span>D090</td>
+<td class="instruction">LD H,B</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53393"></span>D091</td>
+<td class="instruction">LD L,B</td>
+</tr>
+<tr>
+<td class="asm-label">LD07F_0</td>
+<td class="address-2"><span id="53394"></span>D092</td>
+<td class="instruction">LD A,L</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53395"></span>D093</td>
+<td class="instruction">LD (DE),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53396"></span>D094</td>
+<td class="instruction">INC D</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53397"></span>D095</td>
+<td class="instruction">LD A,H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53398"></span>D096</td>
+<td class="instruction">LD (DE),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53399"></span>D097</td>
+<td class="instruction">DEC D</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53400"></span>D098</td>
+<td class="instruction">INC E</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53401"></span>D099</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53402"></span>D09A</td>
+<td class="instruction">INC C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53403"></span>D09B</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53404"></span>D09C</td>
+<td class="instruction">JR NZ,<a href="53375.html#53394">LD07F_0</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53406"></span>D09E</td>
+<td class="instruction">LD A,$FD</td>
+<td class="comment-1" rowspan="3">Set interrupt mode</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53408"></span>D0A0</td>
+<td class="instruction">LD I,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53410"></span>D0A2</td>
+<td class="instruction">IM 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="53412"></span>D0A4</td>
+<td class="instruction">JP <a href="28896.html">jump_to_7366</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="53372.html">D07C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#53375">Map</a></td>
+<td class="next">
+Next: <a href="53415.html">D0A7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D470</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54367.html">D45F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54384">Map</a></td>
+<td class="next">
+Next: <a href="54414.html">D48E</a>
+</td>
+</tr>
+</table>
+<div class="description">D470: Print other/extra token</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="54414.html">LD48E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LD470</td>
+<td class="address-2"><span id="54384"></span>D470</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54385"></span>D471</td>
+<td class="instruction">LD A,(<a href="54304.html">other_token_flag</a>)</td>
+<td class="comment-1" rowspan="1">Test flag</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54388"></span>D474</td>
+<td class="instruction">CP $00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54390"></span>D476</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54391"></span>D477</td>
+<td class="instruction">JR Z,<a href="54305.html#54309">print_token_0</a></td>
+<td class="comment-1" rowspan="1">Jump if flag is reset</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54393"></span>D479</td>
+<td class="instruction">CP $20</td>
+<td class="comment-1" rowspan="2">Jump if token &lt; 32</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54395"></span>D47B</td>
+<td class="instruction">JP C,<a href="55216.html">other_token_lt_32</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54398"></span>D47E</td>
+<td class="instruction">CP $5B</td>
+<td class="comment-1" rowspan="2">Jump if 32 &lt;= token &lt; 91</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54400"></span>D480</td>
+<td class="instruction">JR C,<a href="54425.html">print_ascii_char</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54402"></span>D482</td>
+<td class="instruction">CP $81</td>
+<td class="comment-1" rowspan="2">Jump if 92 &lt;= token &lt; 129</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54404"></span>D484</td>
+<td class="instruction">JP C,<a href="54708.html">other_token_92_to_128</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54407"></span>D487</td>
+<td class="instruction">CP $D7</td>
+<td class="comment-1" rowspan="2">Jump if 129 &lt;= token &lt; 215</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54409"></span>D489</td>
+<td class="instruction">JR C,<a href="54367.html">print_other_recursive_token</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54411"></span>D48B</td>
+<td class="instruction">JP <a href="54677.html">other_token_gt_214</a></td>
+<td class="comment-1" rowspan="1">Jump if token &gt;= 215</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54367.html">D45F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54384">Map</a></td>
+<td class="next">
+Next: <a href="54414.html">D48E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

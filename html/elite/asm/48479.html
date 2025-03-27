@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at BD5F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="48340.html">BCD4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#48479">Map</a></td>
+<td class="next">
+Next: <a href="48533.html">BD95</a>
+</td>
+</tr>
+</table>
+<div class="description">BD5F: Routine at BD5F</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="48340.html">face_visibility</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">IX</td>
+<td class="register-desc">Vector 1 (x, y, z) (bytes)</td>
+</tr>
+<tr>
+<td class="register">IY</td>
+<td class="register-desc">Vector 2 (x, y, z) (words)</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">calculate_visibility</td>
+<td class="address-2"><span id="48479"></span>BD5F</td>
+<td class="instruction">LD E,(IY+$01)</td>
+<td class="comment-1" rowspan="2">Vector 2: x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48482"></span>BD62</td>
+<td class="instruction">LD C,(IY+$00)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48485"></span>BD65</td>
+<td class="instruction">LD A,(IX+$00)</td>
+<td class="comment-1" rowspan="1">Vector 1: x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48488"></span>BD68</td>
+<td class="instruction">CALL <a href="48533.html">mult_A_E_plus_mult_2_A_C</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48491"></span>BD6B</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Push result</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48492"></span>BD6C</td>
+<td class="instruction">LD E,(IY+$03)</td>
+<td class="comment-1" rowspan="2">Vector 2: y</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48495"></span>BD6F</td>
+<td class="instruction">LD C,(IY+$02)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48498"></span>BD72</td>
+<td class="instruction">LD A,(IX+$01)</td>
+<td class="comment-1" rowspan="1">Vector 1: y</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48501"></span>BD75</td>
+<td class="instruction">CALL <a href="48533.html">mult_A_E_plus_mult_2_A_C</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48504"></span>BD78</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Push result</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48505"></span>BD79</td>
+<td class="instruction">LD E,(IY+$05)</td>
+<td class="comment-1" rowspan="2">Vector 2: x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48508"></span>BD7C</td>
+<td class="instruction">LD C,(IY+$04)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48511"></span>BD7F</td>
+<td class="instruction">LD A,(IX+$02)</td>
+<td class="comment-1" rowspan="1">Vector 1: z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48514"></span>BD82</td>
+<td class="instruction">CALL <a href="48533.html">mult_A_E_plus_mult_2_A_C</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48517"></span>BD85</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">Pop second result</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48518"></span>BD86</td>
+<td class="instruction">CALL <a href="45005.html">de_plus_hl_div_2</a></td>
+<td class="comment-1" rowspan="1">(second + third) / 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48521"></span>BD89</td>
+<td class="instruction">ADC HL,HL</td>
+<td class="comment-1" rowspan="1">* 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48523"></span>BD8B</td>
+<td class="instruction">BIT 7,B</td>
+<td class="comment-1" rowspan="3">Fix sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48525"></span>BD8D</td>
+<td class="instruction">JR Z,<a href="48479.html#48529">calculate_visibility_0</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48527"></span>BD8F</td>
+<td class="instruction">SET 7,H</td>
+</tr>
+<tr>
+<td class="asm-label">calculate_visibility_0</td>
+<td class="address-2"><span id="48529"></span>BD91</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">Pop first result</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48530"></span>BD92</td>
+<td class="instruction">JP <a href="45005.html">de_plus_hl_div_2</a></td>
+<td class="comment-1" rowspan="1">(first + second + third) / 2 and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="48340.html">BCD4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#48479">Map</a></td>
+<td class="next">
+Next: <a href="48533.html">BD95</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

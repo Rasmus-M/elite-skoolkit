@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at 8E08</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="36334.html">8DEE</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#36360">Map</a></td>
+<td class="next">
+Next: <a href="36393.html">8E29</a>
+</td>
+</tr>
+</table>
+<div class="description">8E08: Routine at 8E08</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="35599.html">L8B0F</a>, <a href="35722.html">L8B8A</a>, <a href="35859.html">L8C13</a>, <a href="35990.html">L8C96</a>, <a href="36115.html">L8D13</a>, <a href="36235.html">L8D8B</a>, <a href="36960.html">L9060</a>, <a href="37068.html">L90CC</a>, <a href="37243.html">L917B</a>, <a href="37364.html">L91F4</a> and <a href="37471.html">L925F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">L8E08</td>
+<td class="address-2"><span id="36360"></span>8E08</td>
+<td class="instruction">INC H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36361"></span>8E09</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36362"></span>8E0A</td>
+<td class="instruction">AND $07</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36364"></span>8E0C</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="36365"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="37115.html">L90FB</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">L8E08_0</td>
+<td class="address-2"><span id="36365"></span>8E0D</td>
+<td class="instruction">LD A,E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36366"></span>8E0E</td>
+<td class="instruction">ADD A,$20</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36368"></span>8E10</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36369"></span>8E11</td>
+<td class="instruction">LD A,L</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36370"></span>8E12</td>
+<td class="instruction">ADD A,$20</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36372"></span>8E14</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36373"></span>8E15</td>
+<td class="instruction">JR NC,<a href="36360.html#36381">L8E08_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36375"></span>8E17</td>
+<td class="instruction">LD A,$D0</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36377"></span>8E19</td>
+<td class="instruction">CP H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36378"></span>8E1A</td>
+<td class="instruction">JR Z,<a href="36360.html#36386">L8E08_2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36380"></span>8E1C</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">L8E08_1</td>
+<td class="address-2"><span id="36381"></span>8E1D</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36382"></span>8E1E</td>
+<td class="instruction">SUB $08</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36384"></span>8E20</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36385"></span>8E21</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="36386"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="36334.html">L8DEE</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">L8E08_2</td>
+<td class="address-2"><span id="36386"></span>8E22</td>
+<td class="instruction">POP AF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36387"></span>8E23</td>
+<td class="instruction">LD SP,(<a href="34339.html">save_sp_2</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36391"></span>8E27</td>
+<td class="instruction">POP AF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="36392"></span>8E28</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="36334.html">8DEE</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#36360">Map</a></td>
+<td class="next">
+Next: <a href="36393.html">8E29</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

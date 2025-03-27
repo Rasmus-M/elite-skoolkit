@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at AE50</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="44545.html">AE01</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#44624">Map</a></td>
+<td class="next">
+Next: <a href="44649.html">AE69</a>
+</td>
+</tr>
+</table>
+<div class="description">AE50: Lookup vertex coordinates</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="43085.html">draw_ship_and_laser</a> and <a href="44545.html">draw_edges</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Vertex number</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">lookup_vertex_coords</td>
+<td class="address-2"><span id="44624"></span>AE50</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44625"></span>AE51</td>
+<td class="instruction">ADD A,A</td>
+<td class="comment-1" rowspan="1">A *= 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44626"></span>AE52</td>
+<td class="instruction">LD HL,<a href="43258.html">data_at_A8FA</a></td>
+<td class="comment-1" rowspan="1">Table of vertex coordinates?</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44629"></span>AE55</td>
+<td class="instruction">JR NC,<a href="44624.html#44632">lookup_vertex_coords_0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44631"></span>AE57</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">lookup_vertex_coords_0</td>
+<td class="address-2"><span id="44632"></span>AE58</td>
+<td class="instruction">ADD A,B</td>
+<td class="comment-1" rowspan="1">A *= 3 (3 bytes per entry)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44633"></span>AE59</td>
+<td class="instruction">JR NC,<a href="44624.html#44636">lookup_vertex_coords_1</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44635"></span>AE5B</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">lookup_vertex_coords_1</td>
+<td class="address-2"><span id="44636"></span>AE5C</td>
+<td class="instruction">ADD A,L</td>
+<td class="comment-1" rowspan="4">HL += A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44637"></span>AE5D</td>
+<td class="instruction">LD L,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44638"></span>AE5E</td>
+<td class="instruction">JR NC,<a href="44624.html#44641">lookup_vertex_coords_2</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44640"></span>AE60</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="asm-label">lookup_vertex_coords_2</td>
+<td class="address-2"><span id="44641"></span>AE61</td>
+<td class="instruction">LD D,(HL)</td>
+<td class="comment-1" rowspan="1">Get byte 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44642"></span>AE62</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44643"></span>AE63</td>
+<td class="instruction">LD E,(HL)</td>
+<td class="comment-1" rowspan="1">Get byte 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44644"></span>AE64</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44645"></span>AE65</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Get byte 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44646"></span>AE66</td>
+<td class="instruction">BIT 7,A</td>
+<td class="comment-1" rowspan="1">Test bit 7 of byte 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44648"></span>AE68</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="44545.html">AE01</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#44624">Map</a></td>
+<td class="next">
+Next: <a href="44649.html">AE69</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

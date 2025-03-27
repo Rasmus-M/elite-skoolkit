@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at A83C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="42719.html">A6DF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43068">Map</a></td>
+<td class="next">
+Next: <a href="43085.html">A84D</a>
+</td>
+</tr>
+</table>
+<div class="description">A83C: Routine at A83C</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="42719.html">draw_ship</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register"></td>
+<td class="register-desc">y</td>
+</tr>
+<tr>
+<td class="register"></td>
+<td class="register-desc">x</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">plot_pixel</td>
+<td class="address-2"><span id="43068"></span>A83C</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43069"></span>A83D</td>
+<td class="instruction">CALL $22B1</td>
+<td class="comment-1" rowspan="1">Pixel_address in ROM</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43072"></span>A840</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-1" rowspan="1">Pixel offset</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43073"></span>A841</td>
+<td class="instruction">INC D</td>
+<td class="comment-1" rowspan="1">Pixel offset + 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43074"></span>A842</td>
+<td class="instruction">LD A,$01</td>
+<td class="comment-1" rowspan="4">Shift 1 right D times</td>
+</tr>
+<tr>
+<td class="asm-label">plot_pixel_0</td>
+<td class="address-2"><span id="43076"></span>A844</td>
+<td class="instruction">RRCA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43077"></span>A845</td>
+<td class="instruction">DEC D</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43078"></span>A846</td>
+<td class="instruction">JR NZ,<a href="43068.html#43076">plot_pixel_0</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43080"></span>A848</td>
+<td class="instruction">SET 7,H</td>
+<td class="comment-1" rowspan="1">Set address to screen buffer</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43082"></span>A84A</td>
+<td class="instruction">XOR (HL)</td>
+<td class="comment-1" rowspan="1">XOR with content</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43083"></span>A84B</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write back</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43084"></span>A84C</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="42719.html">A6DF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43068">Map</a></td>
+<td class="next">
+Next: <a href="43085.html">A84D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

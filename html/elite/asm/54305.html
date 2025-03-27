@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D421</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54304.html">D420</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54305">Map</a></td>
+<td class="next">
+Next: <a href="54367.html">D45F</a>
+</td>
+</tr>
+</table>
+<div class="description">D421: Print token</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="53985.html">LD2E1</a>, <a href="55351.html">LD837</a>, <a href="57607.html">LE107</a>, <a href="57874.html">LE212</a>, <a href="58104.html">LE2F8</a>, <a href="58142.html">LE31E</a>, <a href="58264.html">LE398</a>, <a href="58316.html">LE3CC</a>, <a href="59343.html">LE7CF</a>, <a href="59416.html">LE818</a>, <a href="59518.html">LE87E</a>, <a href="59626.html">LE8EA</a>, <a href="59763.html">LE973</a>, <a href="60231.html">LEB47</a>, <a href="60895.html">LEDDF</a>, <a href="61096.html">LEEA8</a>, <a href="61319.html">LEF87</a> and <a href="61601.html">LF0A1</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">print_token</td>
+<td class="address-2"><span id="54305"></span>D421</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Get pointer to token number from stack</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54306"></span>D422</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Get the token number</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54307"></span>D423</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Point to next token number</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54308"></span>D424</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Save on stack</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="54309"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="53320.html">jump_to_print_token</a>, <a href="54103.html">LD357</a>, <a href="54141.html">LD37D</a>, <a href="54384.html">LD470</a>, <a href="55544.html">LD8F8</a>, <a href="55930.html">LDA7A</a>, <a href="56047.html">LDAEF</a>, <a href="57874.html">LE212</a>, <a href="57960.html">LE268</a>, <a href="58007.html">LE297</a>, <a href="58014.html">LE29E</a>, <a href="58022.html">LE2A6</a>, <a href="58104.html">LE2F8</a>, <a href="58118.html">LE306</a>, <a href="58129.html">LE311</a>, <a href="58142.html">LE31E</a>, <a href="58345.html">LE3E9</a>, <a href="59254.html">LE776</a>, <a href="59416.html">LE818</a>, <a href="59518.html">LE87E</a>, <a href="59763.html">LE973</a>, <a href="61096.html">LEEA8</a>, <a href="61134.html">LEECE</a>, <a href="61544.html">LF068</a> and <a href="61562.html">LF07A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">print_token_0</td>
+<td class="address-2"><span id="54309"></span>D425</td>
+<td class="instruction">CP $0E</td>
+<td class="comment-1" rowspan="2">Jump if token &lt; 14</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54311"></span>D427</td>
+<td class="instruction">JP C,<a href="55221.html">print_control_code</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54314"></span>D42A</td>
+<td class="instruction">CP $20</td>
+<td class="comment-1" rowspan="2">Jump if 14 &lt;= token &lt; 32</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54316"></span>D42C</td>
+<td class="instruction">JP C,<a href="54305.html#54337">print_token_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54319"></span>D42F</td>
+<td class="instruction">CP $60</td>
+<td class="comment-1" rowspan="2">Jump if 32 &lt;= token &lt; 96</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54321"></span>D431</td>
+<td class="instruction">JP C,<a href="54425.html">print_ascii_char</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54324"></span>D434</td>
+<td class="instruction">CP $80</td>
+<td class="comment-1" rowspan="2">Jump if 96 &lt;= token &lt; 128</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54326"></span>D436</td>
+<td class="instruction">JR C,<a href="54305.html#54339">print_recursive_token</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54328"></span>D438</td>
+<td class="instruction">CP $A0</td>
+<td class="comment-1" rowspan="2">Jump if 128 &lt;= token &lt; 160</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54330"></span>D43A</td>
+<td class="instruction">JP C,<a href="54684.html">print_two_letter_token</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54333"></span>D43D</td>
+<td class="instruction">SUB $A0</td>
+<td class="comment-1" rowspan="1">If token &gt;= 160, subtract 160, so now 0 &lt;= token &lt; 96</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54335"></span>D43F</td>
+<td class="instruction">JR <a href="54305.html#54339">print_recursive_token</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">print_token_1</td>
+<td class="address-2"><span id="54337"></span>D441</td>
+<td class="instruction">ADD A,$72</td>
+<td class="comment-1" rowspan="1">If 14 &lt;= token &lt; 32, add 114, so now 128 &lt;= token &lt; 146</td>
+</tr>
+<tr>
+<td class="asm-label">print_recursive_token</td>
+<td class="address-2"><span id="54339"></span>D443</td>
+<td class="instruction">LD HL,(<a href="61722.html">tokens_ptr</a>)</td>
+<td class="comment-1" rowspan="1">Get base address of tokens</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54342"></span>D446</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-1" rowspan="1">D=number of tokens to search through</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54343"></span>D447</td>
+<td class="instruction">INC D</td>
+<td class="comment-1" rowspan="1">Start one higher</td>
+</tr>
+<tr>
+<td class="asm-label">print_token_2</td>
+<td class="address-2"><span id="54344"></span>D448</td>
+<td class="instruction">DEC D</td>
+<td class="comment-1" rowspan="1">One less token to search through</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54345"></span>D449</td>
+<td class="instruction">JP Z,<a href="54305.html#54356">print_token_3</a></td>
+<td class="comment-1" rowspan="1">Jump if we're now at the right token</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54348"></span>D44C</td>
+<td class="instruction">LD BC,<a href="65368.html#65535">$FFFF</a></td>
+<td class="comment-1" rowspan="1">Search through all memory</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54351"></span>D44F</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="2">Look for a zero (end of token)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54352"></span>D450</td>
+<td class="instruction">CPIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54354"></span>D452</td>
+<td class="instruction">JR <a href="54305.html#54344">print_token_2</a></td>
+<td class="comment-1" rowspan="1">And loop</td>
+</tr>
+<tr>
+<td class="asm-label">print_token_3</td>
+<td class="address-2"><span id="54356"></span>D454</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Get next char code of token</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54357"></span>D455</td>
+<td class="instruction">AND A</td>
+<td class="comment-1" rowspan="2">Return if we're at the end</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54358"></span>D456</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54359"></span>D457</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Save token address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54360"></span>D458</td>
+<td class="instruction">CALL <a href="54305.html#54309">print_token_0</a></td>
+<td class="comment-1" rowspan="1">Call routine recursively</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54363"></span>D45B</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore token address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54364"></span>D45C</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment token address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54365"></span>D45D</td>
+<td class="instruction">JR <a href="54305.html#54356">print_token_3</a></td>
+<td class="comment-1" rowspan="1">Loop to process next char code</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54304.html">D420</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54305">Map</a></td>
+<td class="next">
+Next: <a href="54367.html">D45F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

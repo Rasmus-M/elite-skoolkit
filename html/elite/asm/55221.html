@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D7B5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="55216.html">D7B0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#55221">Map</a></td>
+<td class="next">
+Next: <a href="55235.html">D7C3</a>
+</td>
+</tr>
+</table>
+<div class="description">D7B5: Routine at D7B5</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="54305.html">print_token</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">print_control_code</td>
+<td class="address-2"><span id="55221"></span>D7B5</td>
+<td class="instruction">LD HL,<a href="55235.html">jump_table_at_D7C3</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="55224"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="55216.html">other_token_lt_32</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">print_control_code_0</td>
+<td class="address-2"><span id="55224"></span>D7B8</td>
+<td class="instruction">LD D,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55226"></span>D7BA</td>
+<td class="instruction">SLA A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55228"></span>D7BC</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55229"></span>D7BD</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55230"></span>D7BE</td>
+<td class="instruction">LD E,(HL)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55231"></span>D7BF</td>
+<td class="instruction">INC HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55232"></span>D7C0</td>
+<td class="instruction">LD D,(HL)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55233"></span>D7C1</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="55234"></span>D7C2</td>
+<td class="instruction">JP (HL)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="55216.html">D7B0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#55221">Map</a></td>
+<td class="next">
+Next: <a href="55235.html">D7C3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

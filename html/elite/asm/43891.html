@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at AB73</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43855.html">AB4F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43891">Map</a></td>
+<td class="next">
+Next: <a href="43968.html">ABC0</a>
+</td>
+</tr>
+</table>
+<div class="description">AB73: Routine at AB73</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="44194.html">project_vertex</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LAB73</td>
+<td class="address-2"><span id="43891"></span>AB73</td>
+<td class="instruction">LD A,(<a href="43464.html">byte_at_A9C8</a>)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43894"></span>AB76</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43895"></span>AB77</td>
+<td class="instruction">PUSH IX</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43897"></span>AB79</td>
+<td class="instruction">JR NZ,<a href="43891.html#43935">LAB73_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43899"></span>AB7B</td>
+<td class="instruction">LD B,$03</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LAB73_0</td>
+<td class="address-2"><span id="43901"></span>AB7D</td>
+<td class="instruction">LD A,(IX+$00)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43904"></span>AB80</td>
+<td class="instruction">CP (IX-$06)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43907"></span>AB83</td>
+<td class="instruction">JR NZ,<a href="43891.html#43935">LAB73_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43909"></span>AB85</td>
+<td class="instruction">INC IX</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43911"></span>AB87</td>
+<td class="instruction">DJNZ <a href="43891.html#43901">LAB73_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43913"></span>AB89</td>
+<td class="instruction">POP IX</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43915"></span>AB8B</td>
+<td class="instruction">CALL <a href="43968.html">LABC0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43918"></span>AB8E</td>
+<td class="instruction">LD (<a href="43451.html">word_at_A9BB</a>),HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43921"></span>AB91</td>
+<td class="instruction">CALL <a href="43968.html">LABC0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43924"></span>AB94</td>
+<td class="instruction">LD (<a href="43453.html">word_at_A9BD</a>),HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43927"></span>AB97</td>
+<td class="instruction">CALL <a href="43968.html">LABC0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43930"></span>AB9A</td>
+<td class="instruction">LD (<a href="43455.html">word_at_A9BF</a>),HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43933"></span>AB9D</td>
+<td class="instruction">JR <a href="43891.html#43955">LAB73_2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LAB73_1</td>
+<td class="address-2"><span id="43935"></span>AB9F</td>
+<td class="instruction">POP IX</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43937"></span>ABA1</td>
+<td class="instruction">CALL <a href="44033.html">face_normal_component</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43940"></span>ABA4</td>
+<td class="instruction">LD (<a href="43451.html">word_at_A9BB</a>),HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43943"></span>ABA7</td>
+<td class="instruction">CALL <a href="44033.html">face_normal_component</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43946"></span>ABAA</td>
+<td class="instruction">LD (<a href="43453.html">word_at_A9BD</a>),HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43949"></span>ABAD</td>
+<td class="instruction">CALL <a href="44033.html">face_normal_component</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43952"></span>ABB0</td>
+<td class="instruction">LD (<a href="43455.html">word_at_A9BF</a>),HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LAB73_2</td>
+<td class="address-2"><span id="43955"></span>ABB3</td>
+<td class="instruction">XOR A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43956"></span>ABB4</td>
+<td class="instruction">LD (<a href="44191.html">byte_at_AC9F</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43959"></span>ABB7</td>
+<td class="instruction">LD (<a href="44192.html">byte_at_ACA0</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43962"></span>ABBA</td>
+<td class="instruction">LD (<a href="44193.html">byte_at_ACA1</a>),A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43965"></span>ABBD</td>
+<td class="instruction">JP <a href="44194.html#44255">project_vertex_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43855.html">AB4F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43891">Map</a></td>
+<td class="next">
+Next: <a href="43968.html">ABC0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

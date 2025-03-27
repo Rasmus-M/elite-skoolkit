@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at E2BC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58039.html">E2B7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58044">Map</a></td>
+<td class="next">
+Next: <a href="58056.html">E2C8</a>
+</td>
+</tr>
+</table>
+<div class="description">E2BC: Routine at E2BC</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="55419.html">LD87B</a>, <a href="57874.html">LE212</a>, <a href="57960.html">LE268</a>, <a href="59143.html">LE707</a>, <a href="59343.html">LE7CF</a>, <a href="59416.html">LE818</a>, <a href="59763.html">LE973</a>, <a href="60259.html">LEB63</a>, <a href="61319.html">LEF87</a> and <a href="61601.html">LF0A1</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LE2BC</td>
+<td class="address-2"><span id="58044"></span>E2BC</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58045"></span>E2BD</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58046"></span>E2BE</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58047"></span>E2BF</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58048"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="59763.html">LE973</a> and <a href="61544.html">LF068</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LE2BC_0</td>
+<td class="address-2"><span id="58048"></span>E2C0</td>
+<td class="instruction">LD (<a href="53317.html">print_x</a>),A</td>
+<td class="comment-1" rowspan="1">Get x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58051"></span>E2C3</td>
+<td class="instruction">CP $20</td>
+<td class="comment-1" rowspan="1">End of row?</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58053"></span>E2C5</td>
+<td class="instruction">RET C</td>
+<td class="comment-1" rowspan="1">Return if not</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58054"></span>E2C6</td>
+<td class="instruction">JR <a href="58022.html#58025">LE2A6_0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58039.html">E2B7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58044">Map</a></td>
+<td class="next">
+Next: <a href="58056.html">E2C8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

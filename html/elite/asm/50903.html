@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at C6D7</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="50854.html">C6A6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#50903">Map</a></td>
+<td class="next">
+Next: <a href="50918.html">C6E6</a>
+</td>
+</tr>
+</table>
+<div class="description">C6D7: Routine at C6D7 (lenslock)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="50854.html">LC6A6</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LC6D7</td>
+<td class="address-2"><span id="50903"></span>C6D7</td>
+<td class="instruction">LD B,C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50904"></span>C6D8</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LC6D7_0</td>
+<td class="address-2"><span id="50905"></span>C6D9</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50906"></span>C6DA</td>
+<td class="instruction">INC HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50907"></span>C6DB</td>
+<td class="instruction">CP C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50908"></span>C6DC</td>
+<td class="instruction">JR Z,<a href="50903.html#50915">LC6D7_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50910"></span>C6DE</td>
+<td class="instruction">DJNZ <a href="50903.html#50905">LC6D7_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50912"></span>C6E0</td>
+<td class="instruction">AND A</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50913"></span>C6E1</td>
+<td class="instruction">JR <a href="50903.html#50916">LC6D7_2</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LC6D7_1</td>
+<td class="address-2"><span id="50915"></span>C6E3</td>
+<td class="instruction">CCF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LC6D7_2</td>
+<td class="address-2"><span id="50916"></span>C6E4</td>
+<td class="instruction">LD A,C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50917"></span>C6E5</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="50854.html">C6A6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#50903">Map</a></td>
+<td class="next">
+Next: <a href="50918.html">C6E6</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

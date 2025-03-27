@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at BCD4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="48339.html">BCD3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#48340">Map</a></td>
+<td class="next">
+Next: <a href="48479.html">BD5F</a>
+</td>
+</tr>
+</table>
+<div class="description">BCD4: Routine at BCD4</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="43085.html">draw_ship_and_laser</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">IX</td>
+<td class="register-desc">Address of ship structure</td>
+</tr>
+<tr>
+<td class="register">IY</td>
+<td class="register-desc">Address of blueprint</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">face_visibility</td>
+<td class="address-2"><span id="48340"></span>BCD4</td>
+<td class="instruction">PUSH IX</td>
+<td class="comment-1" rowspan="1">Push ship address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48342"></span>BCD6</td>
+<td class="instruction">PUSH IY</td>
+<td class="comment-1" rowspan="1">Push blueprint address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48344"></span>BCD8</td>
+<td class="instruction">PUSH IY</td>
+<td class="comment-1" rowspan="1">Push blueprint address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48346"></span>BCDA</td>
+<td class="instruction">EX (SP),IX</td>
+<td class="comment-1" rowspan="1">IX = blueprint, stack = ship</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48348"></span>BCDC</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">HL = Ship address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48349"></span>BCDD</td>
+<td class="instruction">LD (<a href="48328.html">saved_ship_address</a>),HL</td>
+<td class="comment-1" rowspan="1">Save ship address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48352"></span>BCE0</td>
+<td class="instruction">LD D,(IX+$11)</td>
+<td class="comment-1" rowspan="2">DE = Offset to faces</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48355"></span>BCE3</td>
+<td class="instruction">LD E,(IX+$10)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48358"></span>BCE6</td>
+<td class="instruction">ADD IX,DE</td>
+<td class="comment-1" rowspan="1">IX = Address of faces</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48360"></span>BCE8</td>
+<td class="instruction">LD DE,<a href="43396.html">face_visibility_table</a></td>
+<td class="comment-1" rowspan="1">Face visibility table</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48363"></span>BCEB</td>
+<td class="instruction">LD A,(IY+$13)</td>
+<td class="comment-1" rowspan="1">Normal scaling</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48366"></span>BCEE</td>
+<td class="instruction">LD (<a href="48330.html">normal_scaling</a>),A</td>
+<td class="comment-1" rowspan="1">Save it</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48369"></span>BCF1</td>
+<td class="instruction">LD A,(IY+$05)</td>
+<td class="comment-1" rowspan="1">Number of faces</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48372"></span>BCF4</td>
+<td class="instruction">AND A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48373"></span>BCF5</td>
+<td class="instruction">LD IY,<a href="43412.html">ship_calculations</a></td>
+<td class="comment-1" rowspan="1">Table of ship calculations</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48377"></span>BCF9</td>
+<td class="instruction">JR NZ,<a href="48340.html#48383">face_visibility_0</a></td>
+<td class="comment-1" rowspan="1">Jump if number of faces &gt; 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48379"></span>BCFB</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">A = 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48380"></span>BCFC</td>
+<td class="instruction">LD (DE),A</td>
+<td class="comment-1" rowspan="1">Write to face visibility table</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48381"></span>BCFD</td>
+<td class="instruction">JR <a href="48340.html#48474">face_visibility_3</a></td>
+<td class="comment-1" rowspan="1">Return</td>
+</tr>
+<tr>
+<td class="asm-label">face_visibility_0</td>
+<td class="address-2"><span id="48383"></span>BCFF</td>
+<td class="instruction">PUSH AF</td>
+<td class="comment-1" rowspan="1">Push face counter</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48384"></span>BD00</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1">Push face visibility table</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48385"></span>BD01</td>
+<td class="instruction">LD A,(IX+$03)</td>
+<td class="comment-1" rowspan="1">Get visibility distance and sign bits</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48388"></span>BD04</td>
+<td class="instruction">AND $1F</td>
+<td class="comment-1" rowspan="1">Isolate visibility distance</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48390"></span>BD06</td>
+<td class="instruction">CP $1F</td>
+<td class="comment-1" rowspan="1">Is it max?</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48392"></span>BD08</td>
+<td class="instruction">JR Z,<a href="48340.html#48405">face_visibility_1</a></td>
+<td class="comment-1" rowspan="1">Continue if so</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48394"></span>BD0A</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="3">Compare with ship distance</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48395"></span>BD0B</td>
+<td class="instruction">LD A,(<a href="43448.html">ship_distance</a>)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48398"></span>BD0E</td>
+<td class="instruction">CP B</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48399"></span>BD0F</td>
+<td class="instruction">JR C,<a href="48340.html#48405">face_visibility_1</a></td>
+<td class="comment-1" rowspan="1">Continue if higher than ship distance</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48401"></span>BD11</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">Pop face visibility table</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48402"></span>BD12</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1">Flag value 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48403"></span>BD13</td>
+<td class="instruction">JR <a href="48340.html#48463">face_visibility_2</a></td>
+<td class="comment-1" rowspan="1">Jump to set flag</td>
+</tr>
+<tr>
+<td class="asm-label">face_visibility_1</td>
+<td class="address-2"><span id="48405"></span>BD15</td>
+<td class="instruction">PUSH IY</td>
+<td class="comment-1" rowspan="1">Push table of ship calculations</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48407"></span>BD17</td>
+<td class="instruction">LD HL,(<a href="48328.html">saved_ship_address</a>)</td>
+<td class="comment-1" rowspan="1">Restore ship address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48410"></span>BD1A</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Push ship address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48411"></span>BD1B</td>
+<td class="instruction">CALL <a href="48564.html">line_of_sight_vector_component</a></td>
+<td class="comment-1" rowspan="1">Calculate for x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48414"></span>BD1E</td>
+<td class="instruction">LD (<a href="48337.html">tmp_byte_x</a>),A</td>
+<td class="comment-1" rowspan="1">Save values for x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48417"></span>BD21</td>
+<td class="instruction">LD (<a href="48331.html">tmp_word_x</a>),HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48420"></span>BD24</td>
+<td class="instruction">CALL <a href="48564.html">line_of_sight_vector_component</a></td>
+<td class="comment-1" rowspan="1">Calculate for y</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48423"></span>BD27</td>
+<td class="instruction">LD (<a href="48338.html">tmp_byte_y</a>),A</td>
+<td class="comment-1" rowspan="1">Save values for y</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48426"></span>BD2A</td>
+<td class="instruction">LD (<a href="48333.html">tmp_word_y</a>),HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48429"></span>BD2D</td>
+<td class="instruction">CALL <a href="48564.html">line_of_sight_vector_component</a></td>
+<td class="comment-1" rowspan="1">Calculate for z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48432"></span>BD30</td>
+<td class="instruction">LD (<a href="48339.html">tmp_byte_z</a>),A</td>
+<td class="comment-1" rowspan="1">Save values for z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48435"></span>BD33</td>
+<td class="instruction">LD (<a href="48335.html">tmp_word_z</a>),HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48438"></span>BD36</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore ship address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48439"></span>BD37</td>
+<td class="instruction">PUSH IX</td>
+<td class="comment-1" rowspan="1">Push face structure</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48441"></span>BD39</td>
+<td class="instruction">LD IY,<a href="48331.html">tmp_word_x</a></td>
+<td class="comment-1" rowspan="1">Vector 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48445"></span>BD3D</td>
+<td class="instruction">LD IX,<a href="48337.html">tmp_byte_x</a></td>
+<td class="comment-1" rowspan="1">Vector 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48449"></span>BD41</td>
+<td class="instruction">CALL <a href="48479.html">calculate_visibility</a></td>
+<td class="comment-1" rowspan="1">Calculate visibility</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48452"></span>BD44</td>
+<td class="instruction">POP IX</td>
+<td class="comment-1" rowspan="1">Pop face structure</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48454"></span>BD46</td>
+<td class="instruction">POP IY</td>
+<td class="comment-1" rowspan="1">Pop table of ship calculations</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48456"></span>BD48</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">Pop face visibility table</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48457"></span>BD49</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1">Flag value 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48458"></span>BD4A</td>
+<td class="instruction">SLA H</td>
+<td class="comment-1" rowspan="1">Test sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48460"></span>BD4C</td>
+<td class="instruction">JR NC,<a href="48340.html#48463">face_visibility_2</a></td>
+<td class="comment-1" rowspan="1">Sign of H indicates if face is visible</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48462"></span>BD4E</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">Flag value 1</td>
+</tr>
+<tr>
+<td class="asm-label">face_visibility_2</td>
+<td class="address-2"><span id="48463"></span>BD4F</td>
+<td class="instruction">LD (DE),A</td>
+<td class="comment-1" rowspan="1">Record in face visibility table</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48464"></span>BD50</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48465"></span>BD51</td>
+<td class="instruction">LD BC,$0004</td>
+<td class="comment-1" rowspan="2">Advance to next face</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48468"></span>BD54</td>
+<td class="instruction">ADD IX,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48470"></span>BD56</td>
+<td class="instruction">POP AF</td>
+<td class="comment-1" rowspan="1">Pop face counter</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48471"></span>BD57</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1">Dec face counter</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48472"></span>BD58</td>
+<td class="instruction">JR NZ,<a href="48340.html#48383">face_visibility_0</a></td>
+<td class="comment-1" rowspan="1">Loop</td>
+</tr>
+<tr>
+<td class="asm-label">face_visibility_3</td>
+<td class="address-2"><span id="48474"></span>BD5A</td>
+<td class="instruction">POP IY</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48476"></span>BD5C</td>
+<td class="instruction">POP IX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48478"></span>BD5E</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="48339.html">BCD3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#48340">Map</a></td>
+<td class="next">
+Next: <a href="48479.html">BD5F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

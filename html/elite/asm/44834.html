@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at AF22</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="44748.html">AECC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#44834">Map</a></td>
+<td class="next">
+Next: <a href="44900.html">AF64</a>
+</td>
+</tr>
+</table>
+<div class="description">AF22: Dot product of B,C and D,E</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="44748.html">calculate_dot_products</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">B</td>
+<td class="register-desc">x1 packed sign-magnitude byte</td>
+</tr>
+<tr>
+<td class="register">C</td>
+<td class="register-desc">x2 packed sign-magnitude byte</td>
+</tr>
+<tr>
+<td class="register">D</td>
+<td class="register-desc">y1 packed sign-magnitude byte</td>
+</tr>
+<tr>
+<td class="register">E</td>
+<td class="register-desc">y2 packed sign-magnitude byte</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">dot product 2 * (x1 * x2 + y1 * y2) as packed sign-magnitude word</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">dot_product</td>
+<td class="address-2"><span id="44834"></span>AF22</td>
+<td class="instruction">SLA B</td>
+<td class="comment-1" rowspan="1">Move sign of x1 into carry and multiply by 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44836"></span>AF24</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="1">Move sign of x1 into A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44837"></span>AF25</td>
+<td class="instruction">XOR C</td>
+<td class="comment-1" rowspan="1">A = sign x1 XOR x2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44838"></span>AF26</td>
+<td class="instruction">SLA C</td>
+<td class="comment-1" rowspan="1">x2 *= 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44840"></span>AF28</td>
+<td class="instruction">AND $80</td>
+<td class="comment-1" rowspan="1">Isolate sign bit</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44842"></span>AF2A</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-1" rowspan="1">H = sign x1 XOR sign x2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44843"></span>AF2B</td>
+<td class="instruction">SLA D</td>
+<td class="comment-1" rowspan="1">Move sign of y1 into carry and multiply by 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44845"></span>AF2D</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="1">Move sign of y1 into A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44846"></span>AF2E</td>
+<td class="instruction">XOR E</td>
+<td class="comment-1" rowspan="1">A = sign y1 XOR y2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44847"></span>AF2F</td>
+<td class="instruction">SLA E</td>
+<td class="comment-1" rowspan="1">y2 *= 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44849"></span>AF31</td>
+<td class="instruction">AND $80</td>
+<td class="comment-1" rowspan="1">Isolate sign bit</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44851"></span>AF33</td>
+<td class="instruction">XOR H</td>
+<td class="comment-1" rowspan="1">A = (sign x1 XOR sign x2) XOR (sign y1 XOR sign y2)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44852"></span>AF34</td>
+<td class="instruction">SLA H</td>
+<td class="comment-1" rowspan="1">Move sign x1 XOR sign x2 into carry</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44854"></span>AF36</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="1">And into A, moving (sign x1 XOR sign x2) XOR (sign y1 XOR sign y2) into bit 6</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44855"></span>AF37</td>
+<td class="instruction">XOR $80</td>
+<td class="comment-1" rowspan="1">Flip bit 7, which is now ^(sign x1 XOR sign x2)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44857"></span>AF39</td>
+<td class="instruction">PUSH AF</td>
+<td class="comment-1" rowspan="1">Save sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44858"></span>AF3A</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1">Save 2 * y1, 2 * y2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44859"></span>AF3B</td>
+<td class="instruction">CALL <a href="43828.html">mult_b_c</a></td>
+<td class="comment-1" rowspan="1">HL = 4 * x1 * x2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44862"></span>AF3E</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">BC = 2 * y1, 2 * y2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44863"></span>AF3F</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Save 2 * x1 * 2 * x2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44864"></span>AF40</td>
+<td class="instruction">CALL <a href="43828.html">mult_b_c</a></td>
+<td class="comment-1" rowspan="1">HL = 4 * y1 * y2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44867"></span>AF43</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">DE = 4 * x1 * x2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44868"></span>AF44</td>
+<td class="instruction">POP AF</td>
+<td class="comment-1" rowspan="1">Restore sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44869"></span>AF45</td>
+<td class="instruction">BIT 6,A</td>
+<td class="comment-1" rowspan="1">Check (sign x1 XOR sign x2) XOR (sign y1 XOR sign y2)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44871"></span>AF47</td>
+<td class="instruction">JR Z,<a href="44834.html#44881">dot_product_0</a></td>
+<td class="comment-1" rowspan="1">Jump if reset</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44873"></span>AF49</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">HL = 4 * (x1 * x2 + y1 * y2)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44874"></span>AF4A</td>
+<td class="instruction">JR NC,<a href="44834.html#44894">dot_product_1</a></td>
+<td class="comment-1" rowspan="1">Jump to return if not overflowing</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44876"></span>AF4C</td>
+<td class="instruction">LD HL,<a href="65368.html#65535">$FFFF</a></td>
+<td class="comment-1" rowspan="1">Max number</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44879"></span>AF4F</td>
+<td class="instruction">JR <a href="44834.html#44894">dot_product_1</a></td>
+<td class="comment-1" rowspan="1">Jump return</td>
+</tr>
+<tr>
+<td class="asm-label">dot_product_0</td>
+<td class="address-2"><span id="44881"></span>AF51</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">HL = 4 * x1 * x2, DE = 4 * y1 * y2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44882"></span>AF52</td>
+<td class="instruction">AND A</td>
+<td class="comment-1" rowspan="1">Clear carry</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44883"></span>AF53</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-1" rowspan="1">HL = 4 * (x1 * x2 - y1 * y2)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44885"></span>AF55</td>
+<td class="instruction">JR NC,<a href="44834.html#44894">dot_product_1</a></td>
+<td class="comment-1" rowspan="1">Jump to return if not overflowing</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44887"></span>AF57</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">HL = 4 * x1 * x2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44888"></span>AF58</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">HL = 4 * y1 * y2, DE = 4 * x1 * x2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44889"></span>AF59</td>
+<td class="instruction">AND A</td>
+<td class="comment-1" rowspan="1">Clear carry</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44890"></span>AF5A</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-1" rowspan="1">HL = 4 * (y1 * y2 - x1 * x2)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44892"></span>AF5C</td>
+<td class="instruction">XOR $80</td>
+<td class="comment-1" rowspan="1">Flip sign</td>
+</tr>
+<tr>
+<td class="asm-label">dot_product_1</td>
+<td class="address-2"><span id="44894"></span>AF5E</td>
+<td class="instruction">RLA</td>
+<td class="comment-1" rowspan="1">Move sign x1 XOR sign x2 into carry</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44895"></span>AF5F</td>
+<td class="instruction">RR H</td>
+<td class="comment-1" rowspan="1">And into H, also dividing by 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44897"></span>AF61</td>
+<td class="instruction">RR L</td>
+<td class="comment-1" rowspan="1">Divide L by 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44899"></span>AF63</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="44748.html">AECC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#44834">Map</a></td>
+<td class="next">
+Next: <a href="44900.html">AF64</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

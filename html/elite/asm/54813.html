@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D61D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54773.html">D5F5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54813">Map</a></td>
+<td class="next">
+Next: <a href="54901.html">D675</a>
+</td>
+</tr>
+</table>
+<div class="description">D61D: Clear screen with border</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="53302.html">LD036</a>, <a href="53494.html">LD0F6</a>, <a href="53560.html">LD138</a>, <a href="55562.html">LD90A</a>, <a href="56226.html">LDBA2</a>, <a href="59143.html">LE707</a>, <a href="59763.html">LE973</a>, <a href="60284.html">LEB7C</a> and <a href="60504.html">LEC58</a>.
+</div>
+<div class="paragraph">
+Clear the screen and draw a one pixel border
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">clear_screen_border</td>
+<td class="address-2"><span id="54813"></span>D61D</td>
+<td class="instruction">DI</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54814"></span>D61E</td>
+<td class="instruction">LD ($D61B),SP</td>
+<td class="comment-1" rowspan="1">Store the stack pointer</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54818"></span>D622</td>
+<td class="instruction">LD SP,<a href="23296.html">ctrl_panel_attrs</a></td>
+<td class="comment-1" rowspan="1">Set stack to end of attributes</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54821"></span>D625</td>
+<td class="instruction">LD DE,$0707</td>
+<td class="comment-1" rowspan="1">Attribute value</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54824"></span>D628</td>
+<td class="instruction">LD C,$18</td>
+<td class="comment-1" rowspan="1">24 rows</td>
+</tr>
+<tr>
+<td class="asm-label">clear_screen_border_0</td>
+<td class="address-2"><span id="54826"></span>D62A</td>
+<td class="instruction">LD B,$10</td>
+<td class="comment-1" rowspan="1">2x16 attributes per row</td>
+</tr>
+<tr>
+<td class="asm-label">clear_screen_border_1</td>
+<td class="address-2"><span id="54828"></span>D62C</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1">Write two attributes</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54829"></span>D62D</td>
+<td class="instruction">DJNZ <a href="54813.html#54828">clear_screen_border_1</a></td>
+<td class="comment-1" rowspan="1">Repeat for one row</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54831"></span>D62F</td>
+<td class="instruction">DEC C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54832"></span>D630</td>
+<td class="instruction">JP NZ,<a href="54813.html#54826">clear_screen_border_0</a></td>
+<td class="comment-1" rowspan="1">Repeat for 24 rows</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54835"></span>D633</td>
+<td class="instruction">LD DE,$0000</td>
+<td class="comment-1" rowspan="1">Empty bitmap pattern</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54838"></span>D636</td>
+<td class="instruction">LD C,$C0</td>
+<td class="comment-1" rowspan="1">192 lines</td>
+</tr>
+<tr>
+<td class="asm-label">clear_screen_border_2</td>
+<td class="address-2"><span id="54840"></span>D638</td>
+<td class="instruction">LD B,$10</td>
+<td class="comment-1" rowspan="1">2x16 bytes per line</td>
+</tr>
+<tr>
+<td class="asm-label">clear_screen_border_3</td>
+<td class="address-2"><span id="54842"></span>D63A</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1">Write two bytes</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54843"></span>D63B</td>
+<td class="instruction">DJNZ <a href="54813.html#54842">clear_screen_border_3</a></td>
+<td class="comment-1" rowspan="1">Repeat for one line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54845"></span>D63D</td>
+<td class="instruction">DEC C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54846"></span>D63E</td>
+<td class="instruction">JP NZ,<a href="54813.html#54840">clear_screen_border_2</a></td>
+<td class="comment-1" rowspan="1">Repeat for 192 lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54849"></span>D641</td>
+<td class="instruction">LD SP,($D61B)</td>
+<td class="comment-1" rowspan="1">Restore stack pointer</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54853"></span>D645</td>
+<td class="instruction">EI</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="54854"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="60284.html">LEB7C</a> and <a href="61319.html">LEF87</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">clear_screen_border_4</td>
+<td class="address-2"><span id="54854"></span>D646</td>
+<td class="instruction">LD B,$C0</td>
+<td class="comment-1" rowspan="1">192 lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54856"></span>D648</td>
+<td class="instruction">LD DE,$0020</td>
+<td class="comment-1" rowspan="1">Increment per line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54859"></span>D64B</td>
+<td class="instruction">LD HL,<a href="16384.html">zx_screen</a></td>
+<td class="comment-1" rowspan="1">Screen address at 0,0</td>
+</tr>
+<tr>
+<td class="asm-label">clear_screen_border_5</td>
+<td class="address-2"><span id="54862"></span>D64E</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Read screen byte</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54863"></span>D64F</td>
+<td class="instruction">OR $80</td>
+<td class="comment-1" rowspan="1">Set leftmost pixel</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54865"></span>D651</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write screen byte</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54866"></span>D652</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">Next line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54867"></span>D653</td>
+<td class="instruction">DJNZ <a href="54813.html#54862">clear_screen_border_5</a></td>
+<td class="comment-1" rowspan="1">Repeat for 192 lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54869"></span>D655</td>
+<td class="instruction">LD B,$C0</td>
+<td class="comment-1" rowspan="1">192 lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54871"></span>D657</td>
+<td class="instruction">LD HL,$401F</td>
+<td class="comment-1" rowspan="1">Screen address at 255,0</td>
+</tr>
+<tr>
+<td class="asm-label">clear_screen_border_6</td>
+<td class="address-2"><span id="54874"></span>D65A</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Read screen byte</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54875"></span>D65B</td>
+<td class="instruction">OR $01</td>
+<td class="comment-1" rowspan="1">Set rightmost pixel</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54877"></span>D65D</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write screen byte</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54878"></span>D65E</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">Next line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54879"></span>D65F</td>
+<td class="instruction">DJNZ <a href="54813.html#54874">clear_screen_border_6</a></td>
+<td class="comment-1" rowspan="1">Repeat for 192 lines</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54881"></span>D661</td>
+<td class="instruction">LD HL,<a href="16384.html">zx_screen</a></td>
+<td class="comment-1" rowspan="1">Screen address at 0,0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54884"></span>D664</td>
+<td class="instruction">CALL <a href="54620.html#54623">draw_h_line</a></td>
+<td class="comment-1" rowspan="1">Draw a horizontal line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54887"></span>D667</td>
+<td class="instruction">LD HL,<a href="16384.html#22496">$57E0</a></td>
+<td class="comment-1" rowspan="1">Screen address at 0,191</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54890"></span>D66A</td>
+<td class="instruction">CALL <a href="54620.html#54623">draw_h_line</a></td>
+<td class="comment-1" rowspan="1">Draw a horizontal line</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54893"></span>D66D</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54894"></span>D66E</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54895"></span>D66F</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54896"></span>D670</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-1" rowspan="1">HL=$0100</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54897"></span>D671</td>
+<td class="instruction">LD (<a href="53317.html">print_x</a>),HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54900"></span>D674</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54773.html">D5F5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54813">Map</a></td>
+<td class="next">
+Next: <a href="54901.html">D675</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

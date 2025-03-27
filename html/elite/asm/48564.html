@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at BDB4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="48533.html">BD95</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#48564">Map</a></td>
+<td class="next">
+Next: <a href="48640.html">BE00</a>
+</td>
+</tr>
+</table>
+<div class="description">BDB4: Routine at BDB4</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="48340.html">face_visibility</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">IX</td>
+<td class="register-desc">Address of face structure</td>
+</tr>
+<tr>
+<td class="register">IY</td>
+<td class="register-desc">Table of ship calculations</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Some part of dot product</td>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">Vector component</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">line_of_sight_vector_component</td>
+<td class="address-2"><span id="48564"></span>BDB4</td>
+<td class="instruction">CALL <a href="44033.html">face_normal_component</a></td>
+<td class="comment-1" rowspan="1">HL = normal_xyz ⋅ some vector, IY += 6</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48567"></span>BDB7</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">BC = return address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48568"></span>BDB8</td>
+<td class="instruction">EX (SP),IX</td>
+<td class="comment-1" rowspan="1">IX = Ship structure, stack = face structure</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48570"></span>BDBA</td>
+<td class="instruction">LD E,(IX+$00)</td>
+<td class="comment-1" rowspan="1">Ship x_lo</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48573"></span>BDBD</td>
+<td class="instruction">LD D,(IX+$01)</td>
+<td class="comment-1" rowspan="1">Ship x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48576"></span>BDC0</td>
+<td class="instruction">LD A,(IX+$02)</td>
+<td class="comment-1" rowspan="1">Ship x_sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48579"></span>BDC3</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="3">Advance ship structure ptr 3 bytes so for next calls we will use y or z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48581"></span>BDC5</td>
+<td class="instruction">INC IX</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48583"></span>BDC7</td>
+<td class="instruction">INC IX</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48585"></span>BDC9</td>
+<td class="instruction">EX (SP),IX</td>
+<td class="comment-1" rowspan="1">IX = face structure, stack = ship structure + 3</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48587"></span>BDCB</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Restore return address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48588"></span>BDCC</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1">C = x_sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48589"></span>BDCD</td>
+<td class="instruction">LD A,(<a href="48330.html">normal_scaling</a>)</td>
+<td class="comment-1" rowspan="1">Scaling</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48592"></span>BDD0</td>
+<td class="instruction">SLA L</td>
+<td class="comment-1" rowspan="1">Magnitude of dot product</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48594"></span>BDD2</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Save dot product</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48595"></span>BDD3</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1">Scaling</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48596"></span>BDD4</td>
+<td class="instruction">INC B</td>
+<td class="comment-1" rowspan="3">Scale down magnitude</td>
+</tr>
+<tr>
+<td class="asm-label">line_of_sight_vector_component_0</td>
+<td class="address-2"><span id="48597"></span>BDD5</td>
+<td class="instruction">SRL L</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48599"></span>BDD7</td>
+<td class="instruction">DJNZ <a href="48564.html#48597">line_of_sight_vector_component_0</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48601"></span>BDD9</td>
+<td class="instruction">RL L</td>
+<td class="comment-1" rowspan="1">Double</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48603"></span>BDDB</td>
+<td class="instruction">LD A,C</td>
+<td class="comment-1" rowspan="1">x_sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48604"></span>BDDC</td>
+<td class="instruction">XOR H</td>
+<td class="comment-1" rowspan="1">Combine with sign of dot product</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48605"></span>BDDD</td>
+<td class="instruction">SLA H</td>
+<td class="comment-1" rowspan="1">Move sign of dot product to carry</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48607"></span>BDDF</td>
+<td class="instruction">RLA</td>
+<td class="comment-1" rowspan="1">Move sign into A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48608"></span>BDE0</td>
+<td class="instruction">JR C,<a href="48564.html#48613">line_of_sight_vector_component_1</a></td>
+<td class="comment-1" rowspan="14">Add ship x in DE to HL Flip sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48610"></span>BDE2</td>
+<td class="instruction">ADD HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48611"></span>BDE3</td>
+<td class="instruction">JR <a href="48564.html#48628">line_of_sight_vector_component_2</a></td>
+</tr>
+<tr>
+<td class="asm-label">line_of_sight_vector_component_1</td>
+<td class="address-2"><span id="48613"></span>BDE5</td>
+<td class="instruction">EX DE,HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48614"></span>BDE6</td>
+<td class="instruction">AND A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48615"></span>BDE7</td>
+<td class="instruction">SBC HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48617"></span>BDE9</td>
+<td class="instruction">JR NC,<a href="48564.html#48628">line_of_sight_vector_component_2</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48619"></span>BDEB</td>
+<td class="instruction">ADD HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48620"></span>BDEC</td>
+<td class="instruction">EX DE,HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48621"></span>BDED</td>
+<td class="instruction">AND A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48622"></span>BDEE</td>
+<td class="instruction">SBC HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48624"></span>BDF0</td>
+<td class="instruction">LD A,C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48625"></span>BDF1</td>
+<td class="instruction">XOR $80</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48627"></span>BDF3</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="asm-label">line_of_sight_vector_component_2</td>
+<td class="address-2"><span id="48628"></span>BDF4</td>
+<td class="instruction">SLA C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48630"></span>BDF6</td>
+<td class="instruction">RR H</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48632"></span>BDF8</td>
+<td class="instruction">RR L</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48634"></span>BDFA</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">Restore dot product in DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48635"></span>BDFB</td>
+<td class="instruction">LD A,E</td>
+<td class="comment-1" rowspan="1">Magnitude</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48636"></span>BDFC</td>
+<td class="instruction">RL D</td>
+<td class="comment-1" rowspan="1">Sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48638"></span>BDFE</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="1">Sign into A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48639"></span>BDFF</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="48533.html">BD95</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#48564">Map</a></td>
+<td class="next">
+Next: <a href="48640.html">BE00</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

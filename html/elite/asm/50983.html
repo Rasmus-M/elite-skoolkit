@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at C727</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="50972.html">C71C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#50983">Map</a></td>
+<td class="next">
+Next: <a href="50995.html">C733</a>
+</td>
+</tr>
+</table>
+<div class="description">C727: Routine at C727 (lenslock)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="49712.html">LC230</a>, <a href="50196.html">LC414</a>, <a href="50352.html">LC4B0</a>, <a href="50479.html">LC52F</a> and <a href="50696.html">LC608</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LC727</td>
+<td class="address-2"><span id="50983"></span>C727</td>
+<td class="instruction">POP HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LC727_0</td>
+<td class="address-2"><span id="50984"></span>C728</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50985"></span>C729</td>
+<td class="instruction">INC HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50986"></span>C72A</td>
+<td class="instruction">CP $5E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50988"></span>C72C</td>
+<td class="instruction">JR Z,<a href="50983.html#50993">LC727_1</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50990"></span>C72E</td>
+<td class="instruction">RST $10</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50991"></span>C72F</td>
+<td class="instruction">JR <a href="50983.html#50984">LC727_0</a></td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LC727_1</td>
+<td class="address-2"><span id="50993"></span>C731</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="50994"></span>C732</td>
+<td class="instruction">RET</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="50972.html">C71C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#50983">Map</a></td>
+<td class="next">
+Next: <a href="50995.html">C733</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

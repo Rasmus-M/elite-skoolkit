@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Data at 61CC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="24960.html">6180</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#25036">Map</a></td>
+<td class="next">
+Next: <a href="25059.html">61E3</a>
+</td>
+</tr>
+</table>
+<div class="description">61CC: Unknown ship 1</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Structure of a blueprint ($17 bytes): <table class="">
+<tr>
+<th colspan="1" rowspan="1">Type</th>
+<th colspan="1" rowspan="1">Offset</th>
+<th colspan="1" rowspan="1">Content</th>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$00</td>
+<td class="" colspan="1" rowspan="1">Max canisters released</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$01</td>
+<td class="" colspan="1" rowspan="1">Targetable area?</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$02</td>
+<td class="" colspan="1" rowspan="1">Targetable area?</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$03</td>
+<td class="" colspan="1" rowspan="1">Number of vertices</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$04</td>
+<td class="" colspan="1" rowspan="1">Number of edges</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$05</td>
+<td class="" colspan="1" rowspan="1">Number of faces</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$06</td>
+<td class="" colspan="1" rowspan="1">Max speed</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$07</td>
+<td class="" colspan="1" rowspan="1">Max energy</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">word</td>
+<td class="" colspan="1" rowspan="1">$08</td>
+<td class="" colspan="1" rowspan="1">Bounty</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$0A</td>
+<td class="" colspan="1" rowspan="1">Unknown</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$0B</td>
+<td class="" colspan="1" rowspan="1">Visibility distance</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">word</td>
+<td class="" colspan="1" rowspan="1">$0C</td>
+<td class="" colspan="1" rowspan="1">Offset to vertices from byte 0</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">word</td>
+<td class="" colspan="1" rowspan="1">$0E</td>
+<td class="" colspan="1" rowspan="1">Offset to edges</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">word</td>
+<td class="" colspan="1" rowspan="1">$10</td>
+<td class="" colspan="1" rowspan="1">Offset to faces</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$12</td>
+<td class="" colspan="1" rowspan="1">Unknown</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$13</td>
+<td class="" colspan="1" rowspan="1">Normals scaled by</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$14</td>
+<td class="" colspan="1" rowspan="1">Gun vertex</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$15</td>
+<td class="" colspan="1" rowspan="1">Unknown</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">byte</td>
+<td class="" colspan="1" rowspan="1">$16</td>
+<td class="" colspan="1" rowspan="1">Unknown</td>
+</tr>
+</table> Unknown could be: Max. edge count, Explosion count, Laser power/missiles
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">unknown_ship_1</td>
+<td class="address-1"><span id="25036"></span>61CC</td>
+<td class="instruction">DEFB $00,$3C,$FA,$13,$1C,$0C,$28,$96</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="25044"></span>61D4</td>
+<td class="instruction">DEFB $C8,$00,$01,$18,$17,$00,$89,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="25052"></span>61DC</td>
+<td class="instruction">DEFB $F9,$00,$8C,$01,$08,$40,$03</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="24960.html">6180</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#25036">Map</a></td>
+<td class="next">
+Next: <a href="25059.html">61E3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at B867</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="47206.html">B866</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#47207">Map</a></td>
+<td class="next">
+Next: <a href="47256.html">B898</a>
+</td>
+</tr>
+</table>
+<div class="description">B867: Routine at B867</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="40092.html">jump_to_ship_action</a>, <a href="40123.html">L9CBB</a>, <a href="41890.html">LA3A2</a>, <a href="46616.html">LB618</a> and <a href="46652.html">LB63C</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Some value, e.g. $79, lower nybble is action, upper nybble is ship</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">ship_action</td>
+<td class="address-2"><span id="47207"></span>B867</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="5">Set C to upper nybble shifted down</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47208"></span>B868</td>
+<td class="instruction">SRL C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47210"></span>B86A</td>
+<td class="instruction">SRL C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47212"></span>B86C</td>
+<td class="instruction">SRL C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47214"></span>B86E</td>
+<td class="instruction">SRL C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47216"></span>B870</td>
+<td class="instruction">AND $0F</td>
+<td class="comment-1" rowspan="1">Isolate lower nybble in A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47218"></span>B872</td>
+<td class="instruction">JP Z,<a href="48058.html">LBBBA</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble is 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47221"></span>B875</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47222"></span>B876</td>
+<td class="instruction">JP Z,<a href="47467.html">LB96B</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble was 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47225"></span>B879</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47226"></span>B87A</td>
+<td class="instruction">JP Z,<a href="47519.html">LB99F</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble was 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47229"></span>B87D</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47230"></span>B87E</td>
+<td class="instruction">RET Z</td>
+<td class="comment-1" rowspan="1">Return if lower nybble was 3</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47231"></span>B87F</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47232"></span>B880</td>
+<td class="instruction">JP Z,<a href="47591.html">LB9E7</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble was 4</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47235"></span>B883</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47236"></span>B884</td>
+<td class="instruction">JP Z,<a href="47764.html">LBA94</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble was 5</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47239"></span>B887</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47240"></span>B888</td>
+<td class="instruction">JP Z,<a href="47848.html#47858">LBAE8_0</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble was 6</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47243"></span>B88B</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47244"></span>B88C</td>
+<td class="instruction">JP Z,<a href="47848.html#47866">LBAE8_1</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble was 7</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47247"></span>B88F</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47248"></span>B890</td>
+<td class="instruction">JP Z,<a href="47949.html">LBB4D</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble was 8</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47251"></span>B893</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47252"></span>B894</td>
+<td class="instruction">JP Z,<a href="47989.html">create_current_ship</a></td>
+<td class="comment-1" rowspan="1">Jump if lower nybble was 9</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="47255"></span>B897</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="47206.html">B866</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#47207">Map</a></td>
+<td class="next">
+Next: <a href="47256.html">B898</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at AFCD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="45001.html">AFC9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#45005">Map</a></td>
+<td class="next">
+Next: <a href="45040.html">AFF0</a>
+</td>
+</tr>
+</table>
+<div class="description">AFCD: Routine at AFCD</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="48479.html">calculate_visibility</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register"></td>
+<td class="register-desc">Sign-magn number n1</td>
+</tr>
+<tr>
+<td class="register"></td>
+<td class="register-desc">Sign-magn number n2</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">(HL + DE) / 2</td>
+</tr>
+<tr>
+<td class="register">B:</td>
+<td class="register-desc">Sign</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">de_plus_hl_div_2</td>
+<td class="address-2"><span id="45005"></span>AFCD</td>
+<td class="instruction">LD A,H</td>
+<td class="comment-1" rowspan="1">Sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45006"></span>AFCE</td>
+<td class="instruction">XOR D</td>
+<td class="comment-1" rowspan="1">Combined sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45007"></span>AFCF</td>
+<td class="instruction">LD B,H</td>
+<td class="comment-1" rowspan="1">Copy n1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45008"></span>AFD0</td>
+<td class="instruction">LD C,D</td>
+<td class="comment-1" rowspan="1">Copy n2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45009"></span>AFD1</td>
+<td class="instruction">RES 7,H</td>
+<td class="comment-1" rowspan="1">Clear sign n1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45011"></span>AFD3</td>
+<td class="instruction">RES 7,D</td>
+<td class="comment-1" rowspan="1">Clear sign n2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45013"></span>AFD5</td>
+<td class="instruction">AND $80</td>
+<td class="comment-1" rowspan="1">Isolate sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45015"></span>AFD7</td>
+<td class="instruction">JR NZ,<a href="45005.html#45020">de_plus_hl_div_2_0</a></td>
+<td class="comment-1" rowspan="1">Jump if minus</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45017"></span>AFD9</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">n1 + n2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45018"></span>AFDA</td>
+<td class="instruction">JR <a href="45005.html#45030">de_plus_hl_div_2_1</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">de_plus_hl_div_2_0</td>
+<td class="address-2"><span id="45020"></span>AFDC</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-1" rowspan="6">n1 - n2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45022"></span>AFDE</td>
+<td class="instruction">JR NC,<a href="45005.html#45030">de_plus_hl_div_2_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45024"></span>AFE0</td>
+<td class="instruction">ADD HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45025"></span>AFE1</td>
+<td class="instruction">EX DE,HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45026"></span>AFE2</td>
+<td class="instruction">AND A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45027"></span>AFE3</td>
+<td class="instruction">SBC HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45029"></span>AFE5</td>
+<td class="instruction">LD B,C</td>
+<td class="comment-1" rowspan="6">Apply sign</td>
+</tr>
+<tr>
+<td class="asm-label">de_plus_hl_div_2_1</td>
+<td class="address-2"><span id="45030"></span>AFE6</td>
+<td class="instruction">SRL H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45032"></span>AFE8</td>
+<td class="instruction">RR L</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45034"></span>AFEA</td>
+<td class="instruction">BIT 7,B</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45036"></span>AFEC</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45037"></span>AFED</td>
+<td class="instruction">SET 7,H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="45039"></span>AFEF</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="45001.html">AFC9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#45005">Map</a></td>
+<td class="next">
+Next: <a href="45040.html">AFF0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

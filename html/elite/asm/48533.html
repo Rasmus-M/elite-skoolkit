@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at BD95</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="48479.html">BD5F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#48533">Map</a></td>
+<td class="next">
+Next: <a href="48564.html">BDB4</a>
+</td>
+</tr>
+</table>
+<div class="description">BD95: Routine at BD95</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="48479.html">calculate_visibility</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">X (packed sign-magnitude byte)</td>
+</tr>
+<tr>
+<td class="register">E</td>
+<td class="register-desc">S, -1, 0, 1</td>
+</tr>
+<tr>
+<td class="register">C</td>
+<td class="register-desc">Y, magnitude</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">mult_A_E_plus_mult_2_A_C</td>
+<td class="address-2"><span id="48533"></span>BD95</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1">B = X</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48534"></span>BD96</td>
+<td class="instruction">SLA B</td>
+<td class="comment-1" rowspan="1">B = 2X</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48536"></span>BD98</td>
+<td class="instruction">AND $80</td>
+<td class="comment-1" rowspan="1">A = SGN(X)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48538"></span>BD9A</td>
+<td class="instruction">XOR E</td>
+<td class="comment-1" rowspan="1">A = SGN(X) XOR S</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48539"></span>BD9B</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-1" rowspan="1">E = SGN(X) XOR S</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48540"></span>BD9C</td>
+<td class="instruction">CALL <a href="43787.html">mult_b_c_msb</a></td>
+<td class="comment-1" rowspan="1">A = MSB(2X * Y)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48543"></span>BD9F</td>
+<td class="instruction">LD D,E</td>
+<td class="comment-1" rowspan="1">D = SGN(X) XOR S</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48544"></span>BDA0</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-1" rowspan="1">E = MSB(2X * Y)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48545"></span>BDA1</td>
+<td class="instruction">LD C,D</td>
+<td class="comment-1" rowspan="1">C = SGN(X) XOR S</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48546"></span>BDA2</td>
+<td class="instruction">RES 7,C</td>
+<td class="comment-1" rowspan="1">C = ABS(SGN(X) XOR S) = ABS(S) = 0 or 1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48548"></span>BDA4</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48549"></span>BDA5</td>
+<td class="instruction">CALL <a href="43828.html">mult_b_c</a></td>
+<td class="comment-1" rowspan="1">HL = X * ABS(S)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48552"></span>BDA8</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">DE = SGN(X) XOR S , MSB(2X * Y)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48553"></span>BDA9</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-1" rowspan="1">A = SGN(X) XOR S</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48554"></span>BDAA</td>
+<td class="instruction">LD D,$00</td>
+<td class="comment-1" rowspan="1">DE = 0 , MSB(2X * Y)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48556"></span>BDAC</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">HL = X * ABS(S) + MSB(2X * Y)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48557"></span>BDAD</td>
+<td class="instruction">ADD HL,HL</td>
+<td class="comment-1" rowspan="1">HL = 2 * (X * ABS(S) + MSB(2X * Y))</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48558"></span>BDAE</td>
+<td class="instruction">RLA</td>
+<td class="comment-1" rowspan="1">CARRY = SGN(X) XOR S</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48559"></span>BDAF</td>
+<td class="instruction">RR H</td>
+<td class="comment-1" rowspan="2">HL = SGN(X) XOR S | X * ABS(S) + MSB(2X * Y)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48561"></span>BDB1</td>
+<td class="instruction">RR L</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="48563"></span>BDB3</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="48479.html">BD5F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#48533">Map</a></td>
+<td class="next">
+Next: <a href="48564.html">BDB4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

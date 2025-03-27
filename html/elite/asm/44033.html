@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at AC01</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43968.html">ABC0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#44033">Map</a></td>
+<td class="next">
+Next: <a href="44137.html">AC69</a>
+</td>
+</tr>
+</table>
+<div class="description">AC01: Routine at AC01</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">line_of_sight_vector_component</a>. Comments are for call with offset 0
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">IX</td>
+<td class="register-desc">Address of face structure</td>
+</tr>
+<tr>
+<td class="register">IY</td>
+<td class="register-desc">Table of ship calculations, offset 0, 6, 12</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi + normal_z * nosev_x_hi</td>
+</tr>
+<tr>
+<td class="register">IY</td>
+<td class="register-desc">IY + 6</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">face_normal_component</td>
+<td class="address-2"><span id="44033"></span>AC01</td>
+<td class="instruction">LD B,(IX+$00)</td>
+<td class="comment-1" rowspan="1">Face normal_x</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44036"></span>AC04</td>
+<td class="instruction">LD C,(IY+$01)</td>
+<td class="comment-1" rowspan="1">nosev_yz ⋅ roofv_zy</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44039"></span>AC07</td>
+<td class="instruction">RES 7,C</td>
+<td class="comment-1" rowspan="1">Reset sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44041"></span>AC09</td>
+<td class="instruction">CALL <a href="43787.html">mult_b_c_msb</a></td>
+<td class="comment-1" rowspan="1">A = B * C / 256 = normal_x * nosev_yz ⋅ roofv_zy</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44044"></span>AC0C</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1">L = normal_x * nosev_yz ⋅ roofv_zy</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44045"></span>AC0D</td>
+<td class="instruction">LD A,(IX+$03)</td>
+<td class="comment-1" rowspan="1">Face sign bits</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44048"></span>AC10</td>
+<td class="instruction">XOR (IY+$01)</td>
+<td class="comment-1" rowspan="1">Combine with sign of nosev_yz ⋅ roofv_zy</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44051"></span>AC13</td>
+<td class="instruction">AND $80</td>
+<td class="comment-1" rowspan="1">Isolate sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44053"></span>AC15</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-1" rowspan="1">H = sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44054"></span>AC16</td>
+<td class="instruction">LD (IY+$12),L</td>
+<td class="comment-1" rowspan="1">Store magnitude</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44057"></span>AC19</td>
+<td class="instruction">LD (IY+$13),H</td>
+<td class="comment-1" rowspan="1">Store sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44060"></span>AC1C</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">DE = sign-magn normal_x * nosev_yz ⋅ roofv_zy</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44061"></span>AC1D</td>
+<td class="instruction">LD B,(IX+$01)</td>
+<td class="comment-1" rowspan="1">Face normal_y</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44064"></span>AC20</td>
+<td class="instruction">LD C,(IY+$03)</td>
+<td class="comment-1" rowspan="1">roofv_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44067"></span>AC23</td>
+<td class="instruction">RES 7,C</td>
+<td class="comment-1" rowspan="1">Reset sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44069"></span>AC25</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44070"></span>AC26</td>
+<td class="instruction">CALL <a href="43787.html">mult_b_c_msb</a></td>
+<td class="comment-1" rowspan="1">A = B * C / 256 = normal_y * roofv_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44073"></span>AC29</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44074"></span>AC2A</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1">L = normal_y * roofv_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44075"></span>AC2B</td>
+<td class="instruction">LD A,(IX+$03)</td>
+<td class="comment-1" rowspan="1">Face sign bits</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44078"></span>AC2E</td>
+<td class="instruction">RLA</td>
+<td class="comment-1" rowspan="1">Shift sign bit for y into bit 7</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44079"></span>AC2F</td>
+<td class="instruction">XOR (IY+$03)</td>
+<td class="comment-1" rowspan="1">Combine with sign of roofv_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44082"></span>AC32</td>
+<td class="instruction">AND $80</td>
+<td class="comment-1" rowspan="1">Isolate sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44084"></span>AC34</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-1" rowspan="1">H = sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44085"></span>AC35</td>
+<td class="instruction">LD (IY+$14),L</td>
+<td class="comment-1" rowspan="1">Store magnitude</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44088"></span>AC38</td>
+<td class="instruction">LD (IY+$15),H</td>
+<td class="comment-1" rowspan="1">Store sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44091"></span>AC3B</td>
+<td class="instruction">CALL <a href="43771.html">add_sign_mag_bytes</a></td>
+<td class="comment-1" rowspan="1">add_sign_mag_bytes HA = HL + DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44094"></span>AC3E</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1">HL = sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44095"></span>AC3F</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">DE = ...</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44096"></span>AC40</td>
+<td class="instruction">LD B,(IX+$02)</td>
+<td class="comment-1" rowspan="1">Face normal_z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44099"></span>AC43</td>
+<td class="instruction">LD C,(IY+$05)</td>
+<td class="comment-1" rowspan="1">nosev_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44102"></span>AC46</td>
+<td class="instruction">RES 7,C</td>
+<td class="comment-1" rowspan="1">Reset sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44104"></span>AC48</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44105"></span>AC49</td>
+<td class="instruction">CALL <a href="43787.html">mult_b_c_msb</a></td>
+<td class="comment-1" rowspan="1">A = B * C / 256 = normal_z * nosev_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44108"></span>AC4C</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44109"></span>AC4D</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1">L = normal_z * nosev_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44110"></span>AC4E</td>
+<td class="instruction">LD A,(IX+$03)</td>
+<td class="comment-1" rowspan="1">Face sign bits</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44113"></span>AC51</td>
+<td class="instruction">RLA</td>
+<td class="comment-1" rowspan="2">Shift sign bit for z into bit 7</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44114"></span>AC52</td>
+<td class="instruction">RLA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44115"></span>AC53</td>
+<td class="instruction">XOR (IY+$05)</td>
+<td class="comment-1" rowspan="1">Combine with sign bit for nosev_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44118"></span>AC56</td>
+<td class="instruction">AND $80</td>
+<td class="comment-1" rowspan="1">Isolate sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44120"></span>AC58</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-1" rowspan="1">H = sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44121"></span>AC59</td>
+<td class="instruction">LD (IY+$16),L</td>
+<td class="comment-1" rowspan="1">Store magnitude</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44124"></span>AC5C</td>
+<td class="instruction">LD (IY+$17),H</td>
+<td class="comment-1" rowspan="1">Store sign</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44127"></span>AC5F</td>
+<td class="instruction">CALL <a href="43771.html">add_sign_mag_bytes</a></td>
+<td class="comment-1" rowspan="1">add_sign_mag_bytes HA = HL + DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44130"></span>AC62</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1">HL = sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi + normal_z * nosev_x_hi</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44131"></span>AC63</td>
+<td class="instruction">LD DE,$0006</td>
+<td class="comment-1" rowspan="2">Change offset of calculations</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44134"></span>AC66</td>
+<td class="instruction">ADD IY,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="44136"></span>AC68</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43968.html">ABC0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#44033">Map</a></td>
+<td class="next">
+Next: <a href="44137.html">AC69</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

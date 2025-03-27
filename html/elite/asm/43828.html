@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at AB34</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43806.html">AB1E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43828">Map</a></td>
+<td class="next">
+Next: <a href="43855.html">AB4F</a>
+</td>
+</tr>
+</table>
+<div class="description">AB34: Multiply</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="40600.html">L9E98</a>, <a href="40808.html">L9F68</a>, <a href="41450.html">LA1EA</a>, <a href="44834.html">dot_product</a>, <a href="44900.html">LAF64</a>, <a href="45808.html">calc_something</a> and <a href="48533.html">mult_A_E_plus_mult_2_A_C</a>.
+</div>
+<div class="paragraph">
+Calculate HL = B * C using square lookup table.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">B</td>
+<td class="register-desc">First number</td>
+</tr>
+<tr>
+<td class="register">C</td>
+<td class="register-desc">Second number</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">B * C (minus 1?)</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">mult_b_c</td>
+<td class="address-2"><span id="43828"></span>AB34</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1">A = B</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43829"></span>AB35</td>
+<td class="instruction">SUB C</td>
+<td class="comment-1" rowspan="1">A = B - C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43830"></span>AB36</td>
+<td class="instruction">JR NC,<a href="43828.html#43834">mult_b_c_0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43832"></span>AB38</td>
+<td class="instruction">NEG</td>
+<td class="comment-1" rowspan="1">A = ABS(B - C)</td>
+</tr>
+<tr>
+<td class="asm-label">mult_b_c_0</td>
+<td class="address-2"><span id="43834"></span>AB3A</td>
+<td class="instruction">SRL A</td>
+<td class="comment-1" rowspan="1">A = ABS(B - C) / 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43836"></span>AB3C</td>
+<td class="instruction">LD H,$BE</td>
+<td class="comment-1" rowspan="1">H = MSB of square table at <a href="48640.html">sqr_table</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43838"></span>AB3E</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1">L = ABS(B - C) / 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43839"></span>AB3F</td>
+<td class="instruction">LD E,(HL)</td>
+<td class="comment-1" rowspan="3">DE = ((B - C) / 2)^2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43840"></span>AB40</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43841"></span>AB41</td>
+<td class="instruction">LD D,(HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43842"></span>AB42</td>
+<td class="instruction">DEC H</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43843"></span>AB43</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1">A = B</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43844"></span>AB44</td>
+<td class="instruction">ADD A,C</td>
+<td class="comment-1" rowspan="1">A = B + C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43845"></span>AB45</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="1">A = (B + C) / 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43846"></span>AB46</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1">L = (B + C) / 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43847"></span>AB47</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="4">HL = ((B + C) / 2)^2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43848"></span>AB48</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43849"></span>AB49</td>
+<td class="instruction">LD H,(HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43850"></span>AB4A</td>
+<td class="instruction">LD L,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43851"></span>AB4B</td>
+<td class="instruction">AND A</td>
+<td class="comment-1" rowspan="1">Clear carry flag</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43852"></span>AB4C</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-1" rowspan="1">HL = ((B + C) / 2)^2 - ((B - C) / 2)^2 = B^2/4 + C^2/4 + 2B * C/4 - (B^2/4 + C^2/4 - 2B * C/4) = 4B * C/4 = B * C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43854"></span>AB4E</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43806.html">AB1E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43828">Map</a></td>
+<td class="next">
+Next: <a href="43855.html">AB4F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

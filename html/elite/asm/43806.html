@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at AB1E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43787.html">AB0B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43806">Map</a></td>
+<td class="next">
+Next: <a href="43828.html">AB34</a>
+</td>
+</tr>
+</table>
+<div class="description">AB1E: Routine at AB1E</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="43563.html">LAA2B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LAB1E</td>
+<td class="address-2"><span id="43806"></span>AB1E</td>
+<td class="instruction">LD A,(<a href="43463.html">byte_at_A9C7</a>)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">LAB1E_0</td>
+<td class="address-2"><span id="43809"></span>AB21</td>
+<td class="instruction">SLA B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43811"></span>AB23</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43812"></span>AB24</td>
+<td class="instruction">JR NZ,<a href="43806.html#43809">LAB1E_0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43814"></span>AB26</td>
+<td class="instruction">LD C,(IY+$01)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43817"></span>AB29</td>
+<td class="instruction">RES 7,C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43819"></span>AB2B</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43820"></span>AB2C</td>
+<td class="instruction">CALL <a href="43787.html">mult_b_c_msb</a></td>
+<td class="comment-1" rowspan="1">mult_b_c_msb</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43823"></span>AB2F</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43824"></span>AB30</td>
+<td class="instruction">LD H,$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43826"></span>AB32</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="43827"></span>AB33</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43787.html">AB0B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#43806">Map</a></td>
+<td class="next">
+Next: <a href="43828.html">AB34</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>

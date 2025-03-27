@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elite: Routine at D59C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">Elite</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54677.html">D595</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54684">Map</a></td>
+<td class="next">
+Next: <a href="54708.html">D5B4</a>
+</td>
+</tr>
+</table>
+<div class="description">D59C: Print two-letter token</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="54305.html">print_token</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">print_two_letter_token</td>
+<td class="address-2"><span id="54684"></span>D59C</td>
+<td class="instruction">SUB $80</td>
+<td class="comment-1" rowspan="1">Offset from 128</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54686"></span>D59E</td>
+<td class="instruction">LD HL,<a href="64947.html">two_letter_tokens</a></td>
+<td class="comment-1" rowspan="1">Two letter tokens base address</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="54689"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="54677.html">other_token_gt_214</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">print_two_letter_token_0</td>
+<td class="address-2"><span id="54689"></span>D5A1</td>
+<td class="instruction">ADD A,A</td>
+<td class="comment-1" rowspan="1">* 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54690"></span>D5A2</td>
+<td class="instruction">LD D,$00</td>
+<td class="comment-1" rowspan="2">DE=0A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54692"></span>D5A4</td>
+<td class="instruction">LD E,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54693"></span>D5A5</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">Add to base address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54694"></span>D5A6</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Get char</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54695"></span>D5A7</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Push char address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54696"></span>D5A8</td>
+<td class="instruction">CALL <a href="54425.html">print_ascii_char</a></td>
+<td class="comment-1" rowspan="1">Print first char</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54699"></span>D5AB</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Pop char address</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54700"></span>D5AC</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Point to next char</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54701"></span>D5AD</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Get char</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54702"></span>D5AE</td>
+<td class="instruction">CP $3F</td>
+<td class="comment-1" rowspan="1">Question mark?</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54704"></span>D5B0</td>
+<td class="instruction">RET Z</td>
+<td class="comment-1" rowspan="1">Then return</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54705"></span>D5B1</td>
+<td class="instruction">JP <a href="54425.html">print_ascii_char</a></td>
+<td class="comment-1" rowspan="1">Print second char</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54677.html">D595</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54684">Map</a></td>
+<td class="next">
+Next: <a href="54708.html">D5B4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright"></div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.5.</div>
+</footer>
+</body>
+</html>
