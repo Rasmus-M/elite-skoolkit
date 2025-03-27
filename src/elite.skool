@@ -449,7 +449,8 @@ b$5D70 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 ; { byte | $19 | sidev_z_lo }
 ; { byte | $1A | sidev_z_hi }
 ; { byte | $1B | Speed }
-; { byte | $1C | Acceleration?} { byte | $1D | Roll counter? Set to $C0 }
+; { byte | $1C | Acceleration? }
+; { byte | $1D | Roll counter? Set to $C0 }
 ; { byte | $1E | Pitch counter?  Set to $C0 }
 ; { byte | $1F | Unknown }
 ; { byte | $20 | From blueprint byte $0A - bit field. Bit 3 fire laser }
