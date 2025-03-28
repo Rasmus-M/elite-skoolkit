@@ -11009,11 +11009,11 @@ c$AE01 LD E,(IY+$0E) ; Offset to edges LSB
  $AE37 EX DE,HL      ; Put second value in HL
  $AE38 POP DE        ; Now HL, DE, A, and C have calculated values
  $AE39 JR NZ,$AE45   ; Skip edge if vertex not visible?
- $AE3B RRCA          ; {A7 A6 A5 A4 A3 A2 A1 A0 | CY | C7 C6 C5 C4 C3 C2 C1 C0
- $AE3C RRA           ; -> A0 A7 A6 A5 A4 A3 A2 C7 | C6 | C5 C4 C3 C2 C1 C0 A1
- $AE3D RL C          ; A0
+ $AE3B RRCA          ; A7 A6 A5 A4 A3 A2 A1 A0 | CY | C7 C6 C5 C4 C3 C2 C1 C0
+ $AE3C RRA           ;
+ $AE3D RL C          ; ->
  $AE3F RLA           ;
- $AE40 RL C          ; }
+ $AE40 RL C          ; A0 A7 A6 A5 A4 A3 A2 C7 | C6 | C5 C4 C3 C2 C1 C0 A1 A0
  $AE42 CALL $B044    ; Draw the edge
 *$AE45 POP BC        ; Restore edge counter
  $AE46 LD DE,$0004   ; {Update IX to point to next edge
@@ -13333,10 +13333,21 @@ c$BCD4 PUSH IX       ; Push ship address
 
 ; Routine at BD5F
 ;
+; Looks like we end up calculating:
+; .
+; [ [n_x n_y n_z] . sidev + ship_x ]   [ [n_x n_y n_z] . sidev ]
+; .
+; [ [n_x n_y n_z] . roofv + ship_y ] . [ [n_x n_y n_z] . roofv ]
+; .
+; [ [n_x n_y n_z] . nosev + ship_z ]   [ [n_x n_y n_z] . nosev ]
+; .
+; Which is different from the BBC version.
+; .
 ; Used by the routine at #R$BCD4.
 ;
-; IX Vector 1 (x, y, z) normal ⋅ orientation (bytes)
-; IY Vector 2 (x, y, z) normal ⋅ orientation + position (words)
+; I:IX Vector 1 (x, y, z) normal ⋅ orientation (bytes)
+; I:IY Vector 2 (x, y, z) normal ⋅ orientation + position (words)
+; O:HL Visibility
 ;
 @label=calculate_visibility
 c$BD5F LD E,(IY+$01) ; {Vector 2: x
@@ -13366,11 +13377,13 @@ c$BD5F LD E,(IY+$01) ; {Vector 2: x
 ;
 ; Used by the routine at #R$BD5F.
 ;
-; A X (packed sign-magnitude byte)
-; E Y1, Sign/MSB of packed sign-magnitude word
-; C Y2, LSB of packed sign-magnitude word
+; I:A X (packed sign-magnitude byte)
+; I:E Y1, Sign/MSB of packed sign-magnitude word
+; I:C Y2, LSB of packed sign-magnitude word
+; O:H Sign of X * Y
+; O:L Magn of 2 * X * Y / 256
 ;
-@label=mult_A_E_plus_mult_2_A_C
+@label=mult_2_A_EC
 c$BD95 LD B,A        ; B = X
  $BD96 SLA B         ; B = 2X (and shift out sign)
  $BD98 AND $80       ; A = SGN(X)

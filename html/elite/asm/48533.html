@@ -49,10 +49,23 @@ Used by the routine at <a href="48479.html">calculate_visibility</a>.
 <td class="register-desc">Y2, LSB of packed sign-magnitude word</td>
 </tr>
 </table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">H</td>
+<td class="register-desc">Sign of X * Y</td>
+</tr>
+<tr>
+<td class="register">L</td>
+<td class="register-desc">Magn of 2 * X * Y / 256</td>
+</tr>
+</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label">mult_A_E_plus_mult_2_A_C</td>
+<td class="asm-label">mult_2_A_EC</td>
 <td class="address-2"><span id="48533"></span>BD95</td>
 <td class="instruction">LD B,A</td>
 <td class="comment-1" rowspan="1">B = X</td>

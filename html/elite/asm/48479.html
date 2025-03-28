@@ -29,6 +29,21 @@ Next: <a href="48533.html">BD95</a>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
+Looks like we end up calculating:
+</div>
+<div class="paragraph">
+[ [n_x n_y n_z] . sidev + ship_x ]   [ [n_x n_y n_z] . sidev ]
+</div>
+<div class="paragraph">
+[ [n_x n_y n_z] . roofv + ship_y ] . [ [n_x n_y n_z] . roofv ]
+</div>
+<div class="paragraph">
+[ [n_x n_y n_z] . nosev + ship_z ]   [ [n_x n_y n_z] . nosev ]
+</div>
+<div class="paragraph">
+Which is different from the BBC version.
+</div>
+<div class="paragraph">
 Used by the routine at <a href="48340.html">face_visibility</a>.
 </div>
 </div>
@@ -43,6 +58,15 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <tr>
 <td class="register">IY</td>
 <td class="register-desc">Vector 2 (x, y, z) normal ⋅ orientation + position (words)</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">Visibility</td>
 </tr>
 </table>
 </td>
@@ -67,7 +91,7 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48488"></span>BD68</td>
-<td class="instruction">CALL <a href="48533.html">mult_A_E_plus_mult_2_A_C</a></td>
+<td class="instruction">CALL <a href="48533.html">mult_2_A_EC</a></td>
 <td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
@@ -96,7 +120,7 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48501"></span>BD75</td>
-<td class="instruction">CALL <a href="48533.html">mult_A_E_plus_mult_2_A_C</a></td>
+<td class="instruction">CALL <a href="48533.html">mult_2_A_EC</a></td>
 <td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
@@ -125,7 +149,7 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48514"></span>BD82</td>
-<td class="instruction">CALL <a href="48533.html">mult_A_E_plus_mult_2_A_C</a></td>
+<td class="instruction">CALL <a href="48533.html">mult_2_A_EC</a></td>
 <td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
