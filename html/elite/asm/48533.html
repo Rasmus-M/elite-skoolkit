@@ -42,11 +42,11 @@ Used by the routine at <a href="48479.html">calculate_visibility</a>.
 </tr>
 <tr>
 <td class="register">E</td>
-<td class="register-desc">S, -1, 0, 1</td>
+<td class="register-desc">Y1, Sign/MSB of packed sign-magnitude word</td>
 </tr>
 <tr>
 <td class="register">C</td>
-<td class="register-desc">Y, magnitude</td>
+<td class="register-desc">Y2, LSB of packed sign-magnitude word</td>
 </tr>
 </table>
 </td>
@@ -61,7 +61,7 @@ Used by the routine at <a href="48479.html">calculate_visibility</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="48534"></span>BD96</td>
 <td class="instruction">SLA B</td>
-<td class="comment-1" rowspan="1">B = 2X</td>
+<td class="comment-1" rowspan="1">B = 2X (and shift out sign)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -73,97 +73,97 @@ Used by the routine at <a href="48479.html">calculate_visibility</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="48538"></span>BD9A</td>
 <td class="instruction">XOR E</td>
-<td class="comment-1" rowspan="1">A = SGN(X) XOR S</td>
+<td class="comment-1" rowspan="1">A = SGN(X,Y) | Y1</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48539"></span>BD9B</td>
 <td class="instruction">LD E,A</td>
-<td class="comment-1" rowspan="1">E = SGN(X) XOR S</td>
+<td class="comment-1" rowspan="1">E = SGN(X,Y) | Y1</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48540"></span>BD9C</td>
 <td class="instruction">CALL <a href="43787.html">mult_b_c_msb</a></td>
-<td class="comment-1" rowspan="1">A = MSB(2X * Y)</td>
+<td class="comment-1" rowspan="1">A = MSB(2X * Y1)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48543"></span>BD9F</td>
 <td class="instruction">LD D,E</td>
-<td class="comment-1" rowspan="1">D = SGN(X) XOR S</td>
+<td class="comment-1" rowspan="1">D = SGN(X,Y) | Y1</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48544"></span>BDA0</td>
 <td class="instruction">LD E,A</td>
-<td class="comment-1" rowspan="1">E = MSB(2X * Y)</td>
+<td class="comment-1" rowspan="1">E = MSB(2X * Y1)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48545"></span>BDA1</td>
 <td class="instruction">LD C,D</td>
-<td class="comment-1" rowspan="1">C = SGN(X) XOR S</td>
+<td class="comment-1" rowspan="1">C = SGN(X,Y) | Y1</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48546"></span>BDA2</td>
 <td class="instruction">RES 7,C</td>
-<td class="comment-1" rowspan="1">C = ABS(SGN(X) XOR S) = ABS(S) = 0 or 1</td>
+<td class="comment-1" rowspan="1">C = ABS(SGN(X,Y) | Y1) = ABS(Y1)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48548"></span>BDA4</td>
 <td class="instruction">PUSH DE</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Push SGN(X,Y) | Y1, MSB(2X * Y1)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48549"></span>BDA5</td>
 <td class="instruction">CALL <a href="43828.html">mult_b_c</a></td>
-<td class="comment-1" rowspan="1">HL = X * ABS(S)</td>
+<td class="comment-1" rowspan="1">HL = 2X * ABS(Y1)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48552"></span>BDA8</td>
 <td class="instruction">POP DE</td>
-<td class="comment-1" rowspan="1">DE = SGN(X) XOR S , MSB(2X * Y)</td>
+<td class="comment-1" rowspan="1">DE = SGN(X,Y) | Y1, MSB(2X * Y2)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48553"></span>BDA9</td>
 <td class="instruction">LD A,D</td>
-<td class="comment-1" rowspan="1">A = SGN(X) XOR S</td>
+<td class="comment-1" rowspan="1">A = SGN(X,Y) | Y1</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48554"></span>BDAA</td>
 <td class="instruction">LD D,$00</td>
-<td class="comment-1" rowspan="1">DE = 0 , MSB(2X * Y)</td>
+<td class="comment-1" rowspan="1">DE = 0, MSB(2X * Y2)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48556"></span>BDAC</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-1" rowspan="1">HL = X * ABS(S) + MSB(2X * Y)</td>
+<td class="comment-1" rowspan="1">HL = 2X * ABS(Y1) + MSB(2X * Y2)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48557"></span>BDAD</td>
 <td class="instruction">ADD HL,HL</td>
-<td class="comment-1" rowspan="1">HL = 2 * (X * ABS(S) + MSB(2X * Y))</td>
+<td class="comment-1" rowspan="1">HL = 2 * (2X * ABS(Y1) + MSB(2X * Y2))</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48558"></span>BDAE</td>
 <td class="instruction">RLA</td>
-<td class="comment-1" rowspan="1">CARRY = SGN(X) XOR S</td>
+<td class="comment-1" rowspan="1">CARRY = SGN(X,Y)</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48559"></span>BDAF</td>
 <td class="instruction">RR H</td>
-<td class="comment-1" rowspan="2">HL = SGN(X) XOR S | X * ABS(S) + MSB(2X * Y)</td>
+<td class="comment-1" rowspan="2">HL = SGN(X,Y) | 2X * ABS(Y1) + MSB(2X * Y2) This is very confusing...</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

@@ -51,11 +51,11 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 </tr>
 <tr>
 <td class="register">A</td>
-<td class="register-desc">Some part of dot product</td>
+<td class="register-desc">Packed sign-mag byte: normal ⋅ orientation_x</td>
 </tr>
 <tr>
 <td class="register">HL</td>
-<td class="register-desc">Vector component</td>
+<td class="register-desc">Packed sign-mag word: normal ⋅ orientation_x + x</td>
 </tr>
 </table>
 </td>
@@ -64,7 +64,7 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <td class="asm-label">line_of_sight_vector_component</td>
 <td class="address-2"><span id="48564"></span>BDB4</td>
 <td class="instruction">CALL <a href="44033.html">face_normal_component</a></td>
-<td class="comment-1" rowspan="1">HL = normal_xyz ⋅ some vector, IY += 6</td>
+<td class="comment-1" rowspan="1">HL = Sign-magn (normal_x, normal_y, normal_z) ⋅ (sidev_x, roofv_x, nosev_x), IY += 6</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -174,7 +174,7 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="48601"></span>BDD9</td>
 <td class="instruction">RL L</td>
-<td class="comment-1" rowspan="1">Double</td>
+<td class="comment-1" rowspan="1">x 2</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -192,7 +192,7 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="48605"></span>BDDD</td>
 <td class="instruction">SLA H</td>
-<td class="comment-1" rowspan="1">Move sign of dot product to carry</td>
+<td class="comment-1" rowspan="1">Move sign of dot product to carry and x 2</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -204,22 +204,25 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="48608"></span>BDE0</td>
 <td class="instruction">JR C,<a href="48564.html#48613">line_of_sight_vector_component_1</a></td>
-<td class="comment-1" rowspan="14">Add ship x in DE to HL Flip sign</td>
+<td class="comment-1" rowspan="1">Jump if negative</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48610"></span>BDE2</td>
 <td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1">HL = dot product + x</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48611"></span>BDE3</td>
 <td class="instruction">JR <a href="48564.html#48628">line_of_sight_vector_component_2</a></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label">line_of_sight_vector_component_1</td>
 <td class="address-2"><span id="48613"></span>BDE5</td>
 <td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="11">Handle negative x - dot product Revert Dot product - x Get sign Flip sign Save sign</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -275,19 +278,19 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <td class="asm-label">line_of_sight_vector_component_2</td>
 <td class="address-2"><span id="48628"></span>BDF4</td>
 <td class="instruction">SLA C</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Move sign into carry</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48630"></span>BDF6</td>
 <td class="instruction">RR H</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Move sign into H and / 2</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="48632"></span>BDF8</td>
 <td class="instruction">RR L</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="1">L /= 2</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -299,7 +302,7 @@ Used by the routine at <a href="48340.html">face_visibility</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="48635"></span>BDFB</td>
 <td class="instruction">LD A,E</td>
-<td class="comment-1" rowspan="1">Magnitude</td>
+<td class="comment-1" rowspan="1">Magnitude of dot product</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

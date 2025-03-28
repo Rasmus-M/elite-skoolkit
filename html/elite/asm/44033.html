@@ -29,7 +29,7 @@ Next: <a href="44137.html">AC69</a>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">line_of_sight_vector_component</a>. Comments are for call with offset 0
+Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">line_of_sight_vector_component</a>. Comments are for call with IY pointing to x values, but this is also called for y and z.
 </div>
 </div>
 <table class="input">
@@ -51,7 +51,7 @@ Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">
 </tr>
 <tr>
 <td class="register">HL</td>
-<td class="register-desc">sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi + normal_z * nosev_x_hi</td>
+<td class="register-desc">sign-magn normal_x * sidev_x_hi + normal_y * roofv_x_hi + normal_z * nosev_x_hi</td>
 </tr>
 <tr>
 <td class="register">IY</td>
@@ -70,7 +70,7 @@ Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">
 <td class="asm-label"></td>
 <td class="address-1"><span id="44036"></span>AC04</td>
 <td class="instruction">LD C,(IY+$01)</td>
-<td class="comment-1" rowspan="1">nosev_yz ⋅ roofv_zy</td>
+<td class="comment-1" rowspan="1">sidev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -82,13 +82,13 @@ Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">
 <td class="asm-label"></td>
 <td class="address-1"><span id="44041"></span>AC09</td>
 <td class="instruction">CALL <a href="43787.html">mult_b_c_msb</a></td>
-<td class="comment-1" rowspan="1">A = B * C / 256 = normal_x * nosev_yz ⋅ roofv_zy</td>
+<td class="comment-1" rowspan="1">A = B * C / 256 = normal_x * sidev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="44044"></span>AC0C</td>
 <td class="instruction">LD L,A</td>
-<td class="comment-1" rowspan="1">L = normal_x * nosev_yz ⋅ roofv_zy</td>
+<td class="comment-1" rowspan="1">L = normal_x * sidev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -100,7 +100,7 @@ Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">
 <td class="asm-label"></td>
 <td class="address-1"><span id="44048"></span>AC10</td>
 <td class="instruction">XOR (IY+$01)</td>
-<td class="comment-1" rowspan="1">Combine with sign of nosev_yz ⋅ roofv_zy</td>
+<td class="comment-1" rowspan="1">Combine with sign of sidev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -130,7 +130,7 @@ Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">
 <td class="asm-label"></td>
 <td class="address-1"><span id="44060"></span>AC1C</td>
 <td class="instruction">EX DE,HL</td>
-<td class="comment-1" rowspan="1">DE = sign-magn normal_x * nosev_yz ⋅ roofv_zy</td>
+<td class="comment-1" rowspan="1">DE = sign-magn normal_x * sidev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -226,7 +226,7 @@ Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">
 <td class="asm-label"></td>
 <td class="address-1"><span id="44094"></span>AC3E</td>
 <td class="instruction">LD L,A</td>
-<td class="comment-1" rowspan="1">HL = sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi</td>
+<td class="comment-1" rowspan="1">HL = sign-magn normal_x * sidev_x_hi + normal_y * roofv_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -333,7 +333,7 @@ Used by the routines at <a href="43891.html">LAB73</a> and <a href="48564.html">
 <td class="asm-label"></td>
 <td class="address-1"><span id="44130"></span>AC62</td>
 <td class="instruction">LD L,A</td>
-<td class="comment-1" rowspan="1">HL = sign-magn normal_x * nosev_yz ⋅ roofv_zy + normal_y * roofv_x_hi + normal_z * nosev_x_hi</td>
+<td class="comment-1" rowspan="1">HL = sign-magn normal_x * sidev_x_hi + normal_y * roofv_x_hi + normal_z * nosev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

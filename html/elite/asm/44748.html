@@ -23,13 +23,16 @@ Next: <a href="44834.html">AF22</a>
 </td>
 </tr>
 </table>
-<div class="description">AECC: Routine at AECC</div>
+<div class="description">AECC: Setup the table at <a href="43412.html">ship_calculations</a>.</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Setup the table at <a href="43412.html">ship_calculations</a>
+sidev is calculated from nosev and roofz instead of just copied.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="43085.html">draw_ship_and_laser</a>.
 </div>
 </div>
 <table class="input">
@@ -37,14 +40,18 @@ Setup the table at <a href="43412.html">ship_calculations</a>
 <th colspan="2">Input</th>
 </tr>
 <tr>
-<td class="register">Used</td>
-<td class="register-desc">by the routine at <a href="43085.html">draw_ship_and_laser</a>.</td>
+<td class="register">IX</td>
+<td class="register-desc">Ship structure</td>
+</tr>
+<tr>
+<td class="register">IY</td>
+<td class="register-desc">Table of ship calculations</td>
 </tr>
 </table>
 </td>
 </tr>
 <tr>
-<td class="asm-label">calculate_dot_products</td>
+<td class="asm-label">init_ship_calculations</td>
 <td class="address-2"><span id="44748"></span>AECC</td>
 <td class="instruction">LD IY,<a href="43412.html">ship_calculations</a></td>
 <td class="comment-1" rowspan="1">Normals table</td>
@@ -89,7 +96,7 @@ Setup the table at <a href="43412.html">ship_calculations</a>
 <td class="asm-label"></td>
 <td class="address-1"><span id="44770"></span>AEE2</td>
 <td class="instruction">LD (IY+$01),H</td>
-<td class="comment-1" rowspan="1">$01 = nosev_yz ⋅ roofv_zy</td>
+<td class="comment-1" rowspan="1">$01 = sidev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -149,7 +156,7 @@ Setup the table at <a href="43412.html">ship_calculations</a>
 <td class="asm-label"></td>
 <td class="address-1"><span id="44800"></span>AF00</td>
 <td class="instruction">LD (IY+$07),H</td>
-<td class="comment-1" rowspan="1">$07 = nosev_zx ⋅ roofv_xz</td>
+<td class="comment-1" rowspan="1">$07 = sidev_y_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -209,7 +216,7 @@ Setup the table at <a href="43412.html">ship_calculations</a>
 <td class="asm-label"></td>
 <td class="address-1"><span id="44830"></span>AF1E</td>
 <td class="instruction">LD (IY+$0D),H</td>
-<td class="comment-1" rowspan="1">$0D = nosev_xy ⋅ roofv_yx</td>
+<td class="comment-1" rowspan="1">$0D = sidev_z_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
