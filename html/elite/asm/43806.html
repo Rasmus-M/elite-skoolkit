@@ -32,37 +32,53 @@ Next: <a href="43828.html">AB34</a>
 Used by the routine at <a href="43563.html">LAA2B</a>.
 </div>
 </div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">B</td>
+<td class="register-desc"></td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">0, MSB scale * B * sidev_x_hi</td>
+</tr>
+</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label">LAB1E</td>
+<td class="asm-label">mult_b_coord_scaled</td>
 <td class="address-2"><span id="43806"></span>AB1E</td>
-<td class="instruction">LD A,(<a href="43463.html">byte_at_A9C7</a>)</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="instruction">LD A,(<a href="43463.html">up_shift</a>)</td>
+<td class="comment-1" rowspan="1">Get number of bits to scale</td>
 </tr>
 <tr>
-<td class="asm-label">LAB1E_0</td>
+<td class="asm-label">mult_b_coord_scaled_0</td>
 <td class="address-2"><span id="43809"></span>AB21</td>
 <td class="instruction">SLA B</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="3">Shift B left A times</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="43811"></span>AB23</td>
 <td class="instruction">DEC A</td>
-<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="43812"></span>AB24</td>
-<td class="instruction">JR NZ,<a href="43806.html#43809">LAB1E_0</a></td>
-<td class="comment-1" rowspan="1"></td>
+<td class="instruction">JR NZ,<a href="43806.html#43809">mult_b_coord_scaled_0</a></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="43814"></span>AB26</td>
 <td class="instruction">LD C,(IY+$01)</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="1">sidev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -80,19 +96,18 @@ Used by the routine at <a href="43563.html">LAA2B</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="43820"></span>AB2C</td>
 <td class="instruction">CALL <a href="43787.html">mult_b_c_msb</a></td>
-<td class="comment-1" rowspan="1">mult_b_c_msb</td>
+<td class="comment-1" rowspan="1">A = MSB scale * B * sidev_x_hi</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="43823"></span>AB2F</td>
 <td class="instruction">LD L,A</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Setup result in HL</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="43824"></span>AB30</td>
 <td class="instruction">LD H,$00</td>
-<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>

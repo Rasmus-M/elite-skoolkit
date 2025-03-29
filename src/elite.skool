@@ -10321,11 +10321,11 @@ b$A9C5 DEFB $00
 b$A9C6 DEFB $00
 
 ; Byte at A9C7
-@label=byte_at_A9C7
+@label=up_shift
 b$A9C7 DEFB $00
 
 ; Byte at A9C8
-@label=byte_at_A9C8
+@label=first_vertex_flag
 b$A9C8 DEFB $00
 
 ; Routine at A9C9
@@ -10362,9 +10362,9 @@ c$A9C9 PUSH IY       ; Push blueprint
  $A9FD JR NZ,$AA05   ; If yes move on to ...
  $A9FF LD A,(IX+$05) ; Numbers of face 3 and 4
  $AA02 CALL $AA10    ; Check if a face is visible
-*$AA05 JP NZ,$ACA2   ; If yes move on to ...
+*$AA05 JP NZ,$ACA2   ; If yes move on to project vertex
 *$AA08 INC A         ; Increment a to 1
- $AA09 LD ($A9C8),A  ; Save it
+ $AA09 LD ($A9C8),A  ; Set flag to 1
  $AA0C POP AF        ; Pop counter
  $AA0D JP $ADF2      ; Next vertex and loop
 
@@ -10395,85 +10395,89 @@ c$AA10 LD B,A        ; {Isolate face 1 number in B
 ; Routine at AA2B
 ;
 ; Used by the routine at #R$ACA2.
-c$AA2B LD A,($A9C8)  ;
- $AA2E AND A         ;
- $AA2F JR NZ,$AA8B   ;
- $AA31 LD A,(IX+$00) ;
- $AA34 CP (IX-$06)   ;
- $AA37 JR NZ,$AA8B   ;
- $AA39 LD A,(IX+$01) ;
- $AA3C CP (IX-$05)   ;
- $AA3F JR NZ,$AA8B   ;
- $AA41 LD A,(IX+$02) ;
- $AA44 CP (IX-$04)   ;
- $AA47 JR NZ,$AA8B   ;
- $AA49 LD A,(IX+$03) ;
- $AA4C XOR (IX-$03)  ;
+;
+; IX Vertex structure
+; IY Table of ship calculations
+;
+c$AA2B LD A,($A9C8)  ; {Is it the first vertex?
+ $AA2E AND A         ; }
+ $AA2F JR NZ,$AA8B   ; Skip comparison with previous if it is
+ $AA31 LD A,(IX+$00) ; Vertex x
+ $AA34 CP (IX-$06)   ; Compare with previous vertex x
+ $AA37 JR NZ,$AA8B   ; Move on if not the same
+ $AA39 LD A,(IX+$01) ; Vertex y
+ $AA3C CP (IX-$05)   ; Compare with previous vertex y
+ $AA3F JR NZ,$AA8B   ; Move on if not the same
+ $AA41 LD A,(IX+$02) ; Vertex z
+ $AA44 CP (IX-$04)   ; Compare with previous vertex z
+ $AA47 JR NZ,$AA8B   ; Move on if not the same
+ $AA49 LD A,(IX+$03) ; Vertex signs
+ $AA4C XOR (IX-$03)  ; XOR previous vertex signs
  $AA4F LD B,A        ;
- $AA50 LD L,(IY+$12) ;
- $AA53 LD H,(IY+$13) ;
- $AA56 LD E,(IY+$14) ;
- $AA59 LD D,(IY+$15) ;
+ $AA50 LD L,(IY+$12) ; Magn face normal_x * sidev_x_hi
+ $AA53 LD H,(IY+$13) ; Sign face normal_x * sidev_x_hi
+ $AA56 LD E,(IY+$14) ; Magn face normal_y * roofv_x_hi
+ $AA59 LD D,(IY+$15) ; Sign face normal_y * roofv_x_hi
  $AA5C XOR H         ;
  $AA5D AND $80       ;
  $AA5F LD H,A        ;
- $AA60 LD (IY+$13),H ;
+ $AA60 LD (IY+$13),H ; Sign face normal_x * sidev_x_hi
  $AA63 RL B          ;
  $AA65 LD A,B        ;
  $AA66 XOR D         ;
  $AA67 AND $80       ;
  $AA69 LD D,A        ;
- $AA6A LD (IY+$15),D ;
+ $AA6A LD (IY+$15),D ; Save in sign face normal_y * roofv_x_hi
  $AA6D CALL $AAFB    ;
  $AA70 LD L,A        ;
- $AA71 LD E,(IY+$16) ;
- $AA74 LD D,(IY+$17) ;
+ $AA71 LD E,(IY+$16) ; Magn face normal_z * nosev_x_hi
+ $AA74 LD D,(IY+$17) ; Sign face normal_z * nosev_x_hi
  $AA77 LD A,B        ;
  $AA78 RLA           ;
  $AA79 XOR D         ;
  $AA7A AND $80       ;
  $AA7C LD D,A        ;
- $AA7D LD (IY+$17),D ;
+ $AA7D LD (IY+$17),D ; Save in sign face normal_z * nosev_x_hi
  $AA80 CALL $AAFB    ;
  $AA83 LD L,A        ;
- $AA84 LD DE,$0006   ;
- $AA87 ADD IY,DE     ;
+ $AA84 LD DE,$0006   ; {Add 6 to IY, moving to next coordinate
+ $AA87 ADD IY,DE     ; }
  $AA89 JR $AAE3      ;
-*$AA8B LD B,(IX+$00) ;
+*$AA8B LD B,(IX+$00) ; Vertex x
  $AA8E CALL $AB1E    ;
- $AA91 LD A,(IX+$03) ;
- $AA94 XOR (IY+$01)  ;
+ $AA91 LD A,(IX+$03) ; Vertex signs
+ $AA94 XOR (IY+$01)  ; sidev_x_hi
  $AA97 RLA           ;
  $AA98 RR H          ;
- $AA9A LD (IY+$12),L ;
- $AA9D LD (IY+$13),H ;
+ $AA9A LD (IY+$12),L ; Save in magn face normal_x * sidev_x_hi
+ $AA9D LD (IY+$13),H ; Save in sign face normal_x * sidev_x_hi
  $AAA0 EX DE,HL      ;
  $AAA1 INC IY        ;
  $AAA3 INC IY        ;
- $AAA5 LD B,(IX+$01) ;
+ $AAA5 LD B,(IX+$01) ; Vertex y
  $AAA8 CALL $AB1E    ;
- $AAAB LD A,(IX+$03) ;
+ $AAAB LD A,(IX+$03) ; Vertex signs
  $AAAE RLA           ;
- $AAAF XOR (IY+$01)  ;
+ $AAAF XOR (IY+$01)  ; sidev_x_hi
  $AAB2 RLA           ;
  $AAB3 RR H          ;
- $AAB5 LD (IY+$12),L ;
- $AAB8 LD (IY+$13),H ;
+ $AAB5 LD (IY+$12),L ; Save in magn face normal_x * sidev_x_hi
+ $AAB8 LD (IY+$13),H ; Save in sign face normal_x * sidev_x_hi
  $AABB CALL $AAFB    ;
  $AABE LD L,A        ;
  $AABF EX DE,HL      ;
  $AAC0 INC IY        ;
  $AAC2 INC IY        ;
- $AAC4 LD B,(IX+$02) ;
+ $AAC4 LD B,(IX+$02) ; Vertex y
  $AAC7 CALL $AB1E    ;
- $AACA LD A,(IX+$03) ;
+ $AACA LD A,(IX+$03) ; Vertex signs
  $AACD RLA           ;
  $AACE RLA           ;
- $AACF XOR (IY+$01)  ;
+ $AACF XOR (IY+$01)  ; sidev_x_hi
  $AAD2 RLA           ;
  $AAD3 RR H          ;
- $AAD5 LD (IY+$12),L ;
- $AAD8 LD (IY+$13),H ;
+ $AAD5 LD (IY+$12),L ; Save in magn face normal_x * sidev_x_hi
+ $AAD8 LD (IY+$13),H ; Save in sign face normal_x * sidev_x_hi
  $AADB CALL $AAFB    ;
  $AADE LD L,A        ;
  $AADF INC IY        ;
@@ -10551,16 +10555,21 @@ c$AB0B LD A,B        ; A = B
 ; Routine at AB1E
 ;
 ; Used by the routine at #R$AA2B.
-c$AB1E LD A,($A9C7)  ;
-*$AB21 SLA B         ;
+;
+; I:B
+; O:HL 0, MSB scale * B * sidev_x_hi
+;
+@label=mult_b_coord_scaled
+c$AB1E LD A,($A9C7)  ; Get number of bits to scale
+*$AB21 SLA B         ; {Shift B left A times
  $AB23 DEC A         ;
- $AB24 JR NZ,$AB21   ;
- $AB26 LD C,(IY+$01) ;
+ $AB24 JR NZ,$AB21   ; }
+ $AB26 LD C,(IY+$01) ; sidev_x_hi
  $AB29 RES 7,C       ;
  $AB2B PUSH DE       ;
- $AB2C CALL $AB0B    ; mult_b_c_msb
- $AB2F LD L,A        ;
- $AB30 LD H,$00      ;
+ $AB2C CALL $AB0B    ; A = MSB scale * B * sidev_x_hi
+ $AB2F LD L,A        ; {Setup result in HL
+ $AB30 LD H,$00      ; }
  $AB32 POP DE        ;
  $AB33 RET           ;
 
@@ -10816,41 +10825,45 @@ b$ACA1 DEFB $00
 ; Routine at ACA2
 ;
 ; Used by the routine at #R$A9C9.
+;
+; IX Vertex structure
+; IY Table of ship calculations
+;
 @label=project_vertex
-c$ACA2 PUSH IY       ;
+c$ACA2 PUSH IY       ; Push table of ship calculations
  $ACA4 LD A,($A9B8)  ;
  $ACA7 CP $04        ;
- $ACA9 JP NC,$AB73   ;
- $ACAC LD A,(IX+$00) ;
- $ACAF OR (IX+$01)   ;
- $ACB2 OR (IX+$02)   ;
+ $ACA9 JP NC,$AB73   ; Jump if >= 4
+ $ACAC LD A,(IX+$00) ; Vertex x
+ $ACAF OR (IX+$01)   ; Or Vertex y
+ $ACB2 OR (IX+$02)   ; Or Vertex z
  $ACB5 LD B,$FF      ;
-*$ACB7 INC B         ;
- $ACB8 SLA A         ;
- $ACBA JR NC,$ACB7   ;
- $ACBC LD A,B        ;
- $ACBD LD ($A9C7),A  ;
- $ACC0 AND A         ;
- $ACC1 JP Z,$AB73    ;
- $ACC4 CALL $AA2B    ;
- $ACC7 LD ($AC9F),A  ;
+*$ACB7 INC B         ; {Set B to position from left
+ $ACB8 SLA A         ; of first non-zero bit in any
+ $ACBA JR NC,$ACB7   ; of the coordinates}
+ $ACBC LD A,B        ; Move value to A
+ $ACBD LD ($A9C7),A  ; Save the value
+ $ACC0 AND A         ; {If it's zero,
+ $ACC1 JP Z,$AB73    ; jump to ... }
+ $ACC4 CALL $AA2B    ; Calculate for x
+ $ACC7 LD ($AC9F),A  ; Save result
  $ACCA LD ($A9BB),HL ;
- $ACCD CALL $AA2B    ;
- $ACD0 LD ($ACA0),A  ;
+ $ACCD CALL $AA2B    ; Calculate for y
+ $ACD0 LD ($ACA0),A  ; Save result
  $ACD3 LD ($A9BD),HL ;
- $ACD6 CALL $AA2B    ;
- $ACD9 LD ($ACA1),A  ;
+ $ACD6 CALL $AA2B    ; Calculate for y
+ $ACD9 LD ($ACA1),A  ; Save result
  $ACDC LD ($A9BF),HL ;
 ; This entry point is used by the routine at #R$AB73.
-*$ACDF XOR A         ;
- $ACE0 LD ($A9C8),A  ;
- $ACE3 POP IY        ;
- $ACE5 POP HL        ;
- $ACE6 EX (SP),IX    ;
- $ACE8 PUSH HL       ;
- $ACE9 LD L,(IX+$00) ;
- $ACEC LD H,(IX+$01) ;
- $ACEF LD B,(IX+$02) ;
+*$ACDF XOR A         ; {Reset flag
+ $ACE0 LD ($A9C8),A  ; }
+ $ACE3 POP IY        ; Pop table of ship calculations
+ $ACE5 POP HL        ; Pop vertex counter
+ $ACE6 EX (SP),IX    ; IX = ship structure, stack = vertex
+ $ACE8 PUSH HL       ; Push vertex counter
+ $ACE9 LD L,(IX+$00) ; x_lo
+ $ACEC LD H,(IX+$01) ; x_hi
+ $ACEF LD B,(IX+$02) ; x_sign
  $ACF2 LD DE,($A9BB) ;
  $ACF6 LD A,($AC9F)  ;
  $ACF9 RLA           ;
@@ -10860,9 +10873,9 @@ c$ACA2 PUSH IY       ;
  $AD01 LD ($A9C4),A  ;
  $AD04 POP AF        ;
  $AD05 LD ($AC9F),A  ;
- $AD08 LD L,(IX+$03) ;
- $AD0B LD H,(IX+$04) ;
- $AD0E LD B,(IX+$05) ;
+ $AD08 LD L,(IX+$03) ; y_lo
+ $AD0B LD H,(IX+$04) ; y_hi
+ $AD0E LD B,(IX+$05) ; y_sign
  $AD11 LD DE,($A9BD) ;
  $AD15 LD A,($ACA0)  ;
  $AD18 RLA           ;
@@ -10872,9 +10885,9 @@ c$ACA2 PUSH IY       ;
  $AD20 LD ($A9C5),A  ;
  $AD23 POP AF        ;
  $AD24 LD ($ACA0),A  ;
- $AD27 LD L,(IX+$06) ;
- $AD2A LD H,(IX+$07) ;
- $AD2D LD B,(IX+$08) ;
+ $AD27 LD L,(IX+$06) ; z_lo
+ $AD2A LD H,(IX+$07) ; z_hi
+ $AD2D LD B,(IX+$08) ; z_sign
  $AD30 LD DE,($A9BF) ;
  $AD34 LD A,($ACA1)  ;
  $AD37 RLA           ;
