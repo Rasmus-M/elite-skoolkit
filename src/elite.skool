@@ -11981,7 +11981,7 @@ c$B3A7 LD A,B        ;
 ;
 ; HL Screen buffer address
 ; D Length in pixels
-; E Start slope offset
+; E Start slope error
 ; B Start pixel line 1-8 in character row
 ; C Start pixel value to draw
 ;
@@ -11993,7 +11993,7 @@ c$B433 DEC H         ; Previous line
  $B436 LD (HL),A     ; Write back
  $B437 DEC D         ; Dec length
  $B438 RET Z         ; Return if no more pixels to draw
- $B439 LD A,E        ; Get slope offset
+ $B439 LD A,E        ; Get slope error
  $B43A ADD A,$00     ; Add slope increment (self-modified)
  $B43C LD E,A        ; Write it back
  $B43D JR NC,$B443   ; Jump if pixel shift is not needed
@@ -12021,34 +12021,45 @@ c$B433 DEC H         ; Previous line
 c$B45C INC L         ;
  $B45D JP $B464      ;
 
-; Routine at B460
-c$B460 RRC C         ;
- $B462 JR C,$B45C    ;
+; Line up flat
+;
+; Draws a flat line from bottom to top
+; .
+; Self-modified for drawing right or left
+;
+; HL Screen buffer address
+; D Length in pixels
+; E Start slope error
+; B Start pixel line 1-8 in character row
+; C Start pixel value to draw
+;
+c$B460 RRC C         ; Shift pixel to the right/left (self-modified)
+ $B462 JR C,$B45C    ; Jump if we need to move to next/previous character
 ; This entry point is used by the routines at #R$B044 and #R$B45C.
 @label=draw_line_up_flat
-*$B464 LD A,(HL)     ;
- $B465 OR C          ;
- $B466 LD (HL),A     ;
- $B467 DEC D         ;
- $B468 RET Z         ;
- $B469 LD A,E        ;
- $B46A ADD A,$00     ;
- $B46C LD E,A        ;
- $B46D JR NC,$B460   ;
- $B46F DEC H         ;
- $B470 DJNZ $B460    ;
- $B472 LD B,$08      ;
- $B474 LD A,H        ;
- $B475 ADD A,B       ;
- $B476 LD H,A        ;
- $B477 LD A,L        ;
- $B478 SUB $20       ;
- $B47A LD L,A        ;
- $B47B JP NC,$B460   ;
- $B47E LD A,H        ;
- $B47F SUB B         ;
- $B480 LD H,A        ;
- $B481 JP $B460      ;
+*$B464 LD A,(HL)     ; Get existing screen byte
+ $B465 OR C          ; Combine with new pixel
+ $B466 LD (HL),A     ; Write back
+ $B467 DEC D         ; Dec length
+ $B468 RET Z         ; Return if no more pixels to draw
+ $B469 LD A,E        ; Get slope error
+ $B46A ADD A,$00     ; Add slope increment (self-modified)
+ $B46C LD E,A        ; Write it back
+ $B46D JR NC,$B460   ; Jump if line change is not needed
+ $B46F DEC H         ; One line up
+ $B470 DJNZ $B460    ; Dec pixel line and loop until previous character row is reached
+ $B472 LD B,$08      ; Reset pixel line
+ $B474 LD A,H        ; Get screen line
+ $B475 ADD A,B       ; To last line in characte
+ $B476 LD H,A        ; Write it back
+ $B477 LD A,L        ; Get screen row
+ $B478 SUB $20       ; To previous row
+ $B47A LD L,A        ; Write it back
+ $B47B JP NC,$B460   ; Jump if we don't move into a new 3rd of the screen
+ $B47E LD A,H        ; Get screen line
+ $B47F SUB B         ; Move to previous 3rd of screen
+ $B480 LD H,A        ; Write it back
+ $B481 JP $B460      ; Continue with next pixel
 
 ; Line down steep
 ;
@@ -12058,7 +12069,7 @@ c$B460 RRC C         ;
 ;
 ; HL Screen buffer address
 ; D Length in pixels
-; E Start slope offset
+; E Start slope error
 ; B Start pixel line 1-8 from bottom of character row
 ; C Start pixel value to draw
 ;
@@ -12070,7 +12081,7 @@ c$B484 INC H         ; Next line
  $B487 LD (HL),A     ; Write back
  $B488 DEC D         ; Dec length
  $B489 RET Z         ; Return if no more pixels to draw
- $B48A LD A,E        ; Get slope offset
+ $B48A LD A,E        ; Get slope error
  $B48B ADD A,$00     ; Add slope increment (self-modified)
  $B48D LD E,A        ; Write it back
  $B48E JR NC,$B494   ; Jump if pixel shift is not needed
@@ -12092,36 +12103,47 @@ c$B484 INC H         ; Next line
 *$B4A9 INC L         ; Next character to the right/left (self-modified)
  $B4AA JP $B494      ; Continue with next pixel
 
-; Routine at B4AD
-c$B4AD RRC C         ;
- $B4AF JR C,$B4D1    ;
+; Line down flat
+;
+; Draws a flat line from top to bottom
+; .
+; Self-modified for drawing right or left
+;
+; HL Screen buffer address
+; D Length in pixels
+; E Start slope error
+; B Start pixel line 1-8 from bottom of character row
+; C Start pixel value to draw
+;
+c$B4AD RRC C         ; Shift pixel to the right/left (self-modified)
+ $B4AF JR C,$B4D1    ; Jump if we need to move to next/previous character
 ; This entry point is used by the routine at #R$B044.
 @label=draw_line_down_flat
-*$B4B1 LD A,(HL)     ;
- $B4B2 OR C          ;
- $B4B3 LD (HL),A     ;
- $B4B4 DEC D         ;
- $B4B5 RET Z         ;
- $B4B6 LD A,E        ;
- $B4B7 ADD A,$00     ;
- $B4B9 LD E,A        ;
- $B4BA JR NC,$B4AD   ;
- $B4BC INC H         ;
- $B4BD DJNZ $B4AD    ;
- $B4BF LD B,$08      ;
- $B4C1 LD A,H        ;
- $B4C2 SUB B         ;
- $B4C3 LD H,A        ;
- $B4C4 LD A,L        ;
- $B4C5 ADD A,$20     ;
- $B4C7 LD L,A        ;
- $B4C8 JP NC,$B4AD   ;
- $B4CB LD A,H        ;
- $B4CC ADD A,B       ;
- $B4CD LD H,A        ;
- $B4CE JP $B4AD      ;
-*$B4D1 INC L         ;
- $B4D2 JP $B4B1      ;
+*$B4B1 LD A,(HL)     ; Get existing screen byte
+ $B4B2 OR C          ; Combine with new pixel
+ $B4B3 LD (HL),A     ; Write back
+ $B4B4 DEC D         ; Dec length
+ $B4B5 RET Z         ; Return if no more pixels to draw
+ $B4B6 LD A,E        ; Get slope error
+ $B4B7 ADD A,$00     ; Add slope increment (self-modified)
+ $B4B9 LD E,A        ; Write it back
+ $B4BA JR NC,$B4AD   ; Jump if line change is not needed
+ $B4BC INC H         ; Next line
+ $B4BD DJNZ $B4AD    ; Dec pixel line and loop until next character is reached
+ $B4BF LD B,$08      ; Reset pixel line
+ $B4C1 LD A,H        ; Get screen line
+ $B4C2 SUB B         ; To first line in character
+ $B4C3 LD H,A        ; Write it back
+ $B4C4 LD A,L        ; Get screen row
+ $B4C5 ADD A,$20     ; To next row
+ $B4C7 LD L,A        ; Write it back
+ $B4C8 JP NC,$B4AD   ; Jump if we don't move into a new 3rd of the screen
+ $B4CB LD A,H        ; Get screen line
+ $B4CC ADD A,B       ; Move to next 3rd of screen
+ $B4CD LD H,A        ; Write it back
+ $B4CE JP $B4AD      ; Continue with next pixel
+*$B4D1 INC L         ; Next character to the right/left (self-modified)
+ $B4D2 JP $B4B1      ; Continue with next pixel
 
 ; Data block at B4D5
 @label=byte_at_B4D5
