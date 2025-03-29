@@ -51,13 +51,13 @@ Used by the routine at <a href="45124.html">draw_clipped_line</a>.
 </tr>
 <tr>
 <td class="register">C</td>
-<td class="register-desc">(((A + C) / 2)^2 - ((A - C) / 2)^2 + 128) / 256</td>
+<td class="register-desc">MSB of A * C</td>
 </tr>
 </table>
 </td>
 </tr>
 <tr>
-<td class="asm-label">calc_something</td>
+<td class="asm-label">mult_a_c</td>
 <td class="address-2"><span id="45808"></span>B2F0</td>
 <td class="instruction">PUSH DE</td>
 <td class="comment-1" rowspan="1"></td>
@@ -78,25 +78,24 @@ Used by the routine at <a href="45124.html">draw_clipped_line</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="45811"></span>B2F3</td>
 <td class="instruction">CALL <a href="43828.html">mult_b_c</a></td>
-<td class="comment-1" rowspan="1">mult_b_c</td>
+<td class="comment-1" rowspan="1">HL = B * C</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="45814"></span>B2F6</td>
 <td class="instruction">LD DE,$0080</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Add 128 for rounding?</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="45817"></span>B2F9</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="45818"></span>B2FA</td>
 <td class="instruction">LD C,H</td>
-<td class="comment-1" rowspan="1"></td>
+<td class="comment-1" rowspan="1">C = MSB</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

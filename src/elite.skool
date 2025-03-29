@@ -11463,69 +11463,69 @@ c$B044 LD A,H        ;
  $B0FA CP $02        ;
  $B0FC JR NC,$B10A   ;
  $B0FE LD A,$01      ;
- $B100 LD ($B491),A  ;
+ $B100 LD ($B491),A  ; Modify instruction
  $B103 LD A,$2D      ;
- $B105 LD ($B4A9),A  ;
+ $B105 LD ($B4A9),A  ; Modify instruction
  $B108 JR $B124      ;
 *$B10A LD A,$01      ;
- $B10C LD ($B440),A  ;
+ $B10C LD ($B440),A  ; Modify instruction
  $B10F LD A,$2D      ;
- $B111 LD ($B458),A  ;
+ $B111 LD ($B458),A  ; Modify instruction
  $B114 JR $B16E      ;
 *$B116 CP $0A        ;
  $B118 JR NC,$B164   ;
  $B11A LD A,$09      ;
- $B11C LD ($B491),A  ;
+ $B11C LD ($B491),A  ; Modify instruction
  $B11F LD A,$2C      ;
- $B121 LD ($B4A9),A  ;
+ $B121 LD ($B4A9),A  ; Modify instruction
 *$B124 EXX           ;
  $B125 LD A,B        ;
  $B126 EXX           ;
  $B127 LD ($B48C),A  ;
- $B12A JP $B485      ;
+ $B12A JP $B485      ; Draw line
 *$B12D CP $16        ;
  $B12F JR NC,$B14D   ;
  $B131 CP $12        ;
  $B133 JR NC,$B141   ;
  $B135 LD A,$01      ;
- $B137 LD ($B4AE),A  ;
+ $B137 LD ($B4AE),A  ; Modify instruction
  $B13A LD A,$2D      ;
- $B13C LD ($B4D1),A  ;
+ $B13C LD ($B4D1),A  ; Modify instruction
  $B13F JR $B15B      ;
 *$B141 LD A,$01      ;
- $B143 LD ($B461),A  ;
+ $B143 LD ($B461),A  ; Modify instruction
  $B146 LD A,$2D      ;
- $B148 LD ($B45C),A  ;
+ $B148 LD ($B45C),A  ; Modify instruction
  $B14B JR $B181      ;
 *$B14D CP $1A        ;
  $B14F JR NC,$B177   ;
  $B151 LD A,$09      ;
- $B153 LD ($B4AE),A  ;
+ $B153 LD ($B4AE),A  ; Modify instruction
  $B156 LD A,$2C      ;
- $B158 LD ($B4D1),A  ;
+ $B158 LD ($B4D1),A  ; Modify instruction
 *$B15B EXX           ;
  $B15C LD A,B        ;
  $B15D EXX           ;
- $B15E LD ($B4B8),A  ;
- $B161 JP $B4B1      ;
+ $B15E LD ($B4B8),A  ; Modify instruction
+ $B161 JP $B4B1      ; Draw line
 *$B164 LD A,$09      ;
- $B166 LD ($B440),A  ;
+ $B166 LD ($B440),A  ; Modify instruction
  $B169 LD A,$2C      ;
- $B16B LD ($B458),A  ;
+ $B16B LD ($B458),A  ; Modify instruction
 *$B16E EXX           ;
  $B16F LD A,B        ;
  $B170 EXX           ;
- $B171 LD ($B43B),A  ;
- $B174 JP $B434      ;
+ $B171 LD ($B43B),A  ; Modify instruction
+ $B174 JP $B434      ; Draw line
 *$B177 LD A,$09      ;
- $B179 LD ($B461),A  ;
+ $B179 LD ($B461),A  ; Modify instruction
  $B17C LD A,$2C      ;
- $B17E LD ($B45C),A  ;
+ $B17E LD ($B45C),A  ; Modify instruction
 *$B181 EXX           ;
  $B182 LD A,B        ;
  $B183 EXX           ;
- $B184 LD ($B46B),A  ;
- $B187 JP $B464      ;
+ $B184 LD ($B46B),A  ; Modify instruction
+ $B187 JP $B464      ; Draw line
 *$B18A POP HL        ;
  $B18B PUSH HL       ;
  $B18C DEC A         ;
@@ -11745,15 +11745,15 @@ c$B044 LD A,H        ;
 ;
 ; I:A First number
 ; I:C Second number
-; O:C (((A + C) / 2)^2 - ((A - C) / 2)^2 + 128) / 256
-@label=calc_something
+; O:C MSB of A * C
+@label=mult_a_c
 c$B2F0 PUSH DE       ;
  $B2F1 PUSH HL       ;
  $B2F2 LD B,A        ;
- $B2F3 CALL $AB34    ; mult_b_c
- $B2F6 LD DE,$0080   ;
- $B2F9 ADD HL,DE     ;
- $B2FA LD C,H        ;
+ $B2F3 CALL $AB34    ; HL = B * C
+ $B2F6 LD DE,$0080   ; {Add 128 for rounding?
+ $B2F9 ADD HL,DE     ; }
+ $B2FA LD C,H        ; C = MSB
  $B2FB POP HL        ;
  $B2FC POP DE        ;
  $B2FD RET           ;
@@ -11973,35 +11973,47 @@ c$B3A7 LD A,B        ;
  $B431 LD C,A        ;
  $B432 RET           ;
 
-; Routine at B433
-c$B433 DEC H         ;
+; Line up steep
+;
+; Draws a steep line from bottom to top
+; .
+; Self-modified for drawing right or left
+;
+; HL Screen buffer address
+; D Length in pixels
+; E Start slope offset
+; B Start pixel line 1-8 in character row
+; C Start pixel value to draw
+;
+c$B433 DEC H         ; Previous line
 ; This entry point is used by the routine at #R$B044.
-*$B434 LD A,(HL)     ;
- $B435 OR C          ;
- $B436 LD (HL),A     ;
- $B437 DEC D         ;
- $B438 RET Z         ;
- $B439 LD A,E        ;
- $B43A ADD A,$00     ;
- $B43C LD E,A        ;
- $B43D JR NC,$B443   ;
- $B43F RRC C         ;
- $B441 JR C,$B458    ;
-*$B443 DJNZ $B433    ;
- $B445 LD B,$08      ;
- $B447 LD A,H        ;
- $B448 ADD A,$07     ;
- $B44A LD H,A        ;
- $B44B LD A,L        ;
- $B44C SUB $20       ;
- $B44E LD L,A        ;
- $B44F JP NC,$B434   ;
- $B452 LD A,H        ;
- $B453 SUB B         ;
- $B454 LD H,A        ;
- $B455 JP $B434      ;
-*$B458 INC L         ;
- $B459 JP $B443      ;
+@label=draw_line_up_steep
+*$B434 LD A,(HL)     ; Get existing screen byte
+ $B435 OR C          ; Combine with new pixel
+ $B436 LD (HL),A     ; Write back
+ $B437 DEC D         ; Dec length
+ $B438 RET Z         ; Return if no more pixels to draw
+ $B439 LD A,E        ; Get slope offset
+ $B43A ADD A,$00     ; Add slope increment (self-modified)
+ $B43C LD E,A        ; Write it back
+ $B43D JR NC,$B443   ; Jump if pixel shift is not needed
+ $B43F RRC C         ; Shift pixel to the right/left (self-modified)
+ $B441 JR C,$B458    ; Jump if we need to move to next/previous character
+*$B443 DJNZ $B433    ; Dec pixel line and loop until previous character row is reached
+ $B445 LD B,$08      ; Reset pixel line
+ $B447 LD A,H        ; Get screen line
+ $B448 ADD A,$07     ; To last line in character
+ $B44A LD H,A        ; Write it back
+ $B44B LD A,L        ; Get screen row
+ $B44C SUB $20       ; To previous row
+ $B44E LD L,A        ; Write it back
+ $B44F JP NC,$B434   ; Jump if we don't move into a new 3rd of the screen
+ $B452 LD A,H        ; Get screen line
+ $B453 SUB B         ; Move to previous 3rd of screen
+ $B454 LD H,A        ; Write it back
+ $B455 JP $B434      ; Continue with next pixel
+*$B458 INC L         ; Next character to the right/left (self-modified)
+ $B459 JP $B443      ; Continue with next pixel
 
 ; Routine at B45C
 ;
@@ -12013,6 +12025,7 @@ c$B45C INC L         ;
 c$B460 RRC C         ;
  $B462 JR C,$B45C    ;
 ; This entry point is used by the routines at #R$B044 and #R$B45C.
+@label=draw_line_up_flat
 *$B464 LD A,(HL)     ;
  $B465 OR C          ;
  $B466 LD (HL),A     ;
@@ -12037,40 +12050,53 @@ c$B460 RRC C         ;
  $B480 LD H,A        ;
  $B481 JP $B460      ;
 
-; Routine at B484
-c$B484 INC H         ;
+; Line down steep
+;
+; Draws a steep line from top to bottom
+; .
+; Self-modified for drawing right or left
+;
+; HL Screen buffer address
+; D Length in pixels
+; E Start slope offset
+; B Start pixel line 1-8 from bottom of character row
+; C Start pixel value to draw
+;
+c$B484 INC H         ; Next line
 ; This entry point is used by the routine at #R$B044.
-*$B485 LD A,(HL)     ;
- $B486 OR C          ;
- $B487 LD (HL),A     ;
- $B488 DEC D         ;
- $B489 RET Z         ;
- $B48A LD A,E        ;
- $B48B ADD A,$00     ;
- $B48D LD E,A        ;
- $B48E JR NC,$B494   ;
- $B490 RRC C         ;
- $B492 JR C,$B4A9    ;
-*$B494 DJNZ $B484    ;
- $B496 LD B,$08      ;
- $B498 LD A,H        ;
- $B499 SUB $07       ;
- $B49B LD H,A        ;
- $B49C LD A,L        ;
- $B49D ADD A,$20     ;
- $B49F LD L,A        ;
- $B4A0 JP NC,$B485   ;
- $B4A3 LD A,H        ;
- $B4A4 ADD A,B       ;
- $B4A5 LD H,A        ;
- $B4A6 JP $B485      ;
-*$B4A9 INC L         ;
- $B4AA JP $B494      ;
+@label=draw_line_down_steep
+*$B485 LD A,(HL)     ; Get existing screen byte
+ $B486 OR C          ; Combine with new pixel
+ $B487 LD (HL),A     ; Write back
+ $B488 DEC D         ; Dec length
+ $B489 RET Z         ; Return if no more pixels to draw
+ $B48A LD A,E        ; Get slope offset
+ $B48B ADD A,$00     ; Add slope increment (self-modified)
+ $B48D LD E,A        ; Write it back
+ $B48E JR NC,$B494   ; Jump if pixel shift is not needed
+ $B490 RRC C         ; Shift pixel to the right/left (self-modified)
+ $B492 JR C,$B4A9    ; Jump if we need to move to next/previous character
+*$B494 DJNZ $B484    ; Dec pixel line and loop until next character is reached
+ $B496 LD B,$08      ; Reset pixel line
+ $B498 LD A,H        ; Get screen line
+ $B499 SUB $07       ; To first line in character
+ $B49B LD H,A        ; Write it back
+ $B49C LD A,L        ; Get screen row
+ $B49D ADD A,$20     ; To next row
+ $B49F LD L,A        ; Write it back
+ $B4A0 JP NC,$B485   ; Jump if we don't move into a new 3rd of the screen
+ $B4A3 LD A,H        ; Get screen line
+ $B4A4 ADD A,B       ; Move to next 3rd of screen
+ $B4A5 LD H,A        ; Write it back
+ $B4A6 JP $B485      ; Continue with next pixel
+*$B4A9 INC L         ; Next character to the right/left (self-modified)
+ $B4AA JP $B494      ; Continue with next pixel
 
 ; Routine at B4AD
 c$B4AD RRC C         ;
  $B4AF JR C,$B4D1    ;
 ; This entry point is used by the routine at #R$B044.
+@label=draw_line_down_flat
 *$B4B1 LD A,(HL)     ;
  $B4B2 OR C          ;
  $B4B3 LD (HL),A     ;
